@@ -1,0 +1,196 @@
+<h2>Localización</h2>
+
+<div class="panelFluidoSegundoNivel">
+
+  <div class="grid-layout">
+
+    <div class="caja c1">
+      <mat-card appearance="outlined">
+        <mat-card-header>CCAA</mat-card-header>
+        <mat-card-content>
+          <button type="button"  mat-fab aria-label="Generar CCAAs" (click)="onClickBotonGenerarCCAA()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <div [hidden]="!((ccaaGenerado.data.length && ccaaGenerado.data.length > 0))">
+            <table mat-table #sortCcaaGenerado="matSort" [dataSource]="ccaaGenerado" matSort  (matSortChange)="announceSortChange($event)">
+
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+                <td mat-cell *matCellDef="let ccaa">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.id)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="id">{{ccaa.id}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                <td mat-cell *matCellDef="let ccaa">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.nombre)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nombre">{{ccaa.nombre}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsProvinGenerado"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
+            </table>
+
+            <div class="divBox">
+              <button type="button" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarCCAA()"
+                matTooltip="Pulsar para limpiar el CCAA" matTooltipPosition="below">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button type="button"  style="margin-left: 5px;"  mat-fab aria-label="Exportar a Excel" (click)="exportJsonCCAA()"
+                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+                <mat-icon>description</mat-icon>
+              </button>
+              <mat-paginator #paginatorCcaaGenerado="matPaginator"
+              [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+              showFirstLastButtons
+                aria-label="Seleccionar páginación">
+              </mat-paginator>
+            </div>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c2">
+      <mat-card appearance="outlined">
+        <mat-card-header>Provincias</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 250px !important;">
+            <mat-label>Cod. CCAA</mat-label>
+            <input matInput id="provinCodCCAA" type="text"  maxlength="2" placeholder="01" [(ngModel)]="provinCodCCAA">
+          </mat-form-field>
+
+          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar Provincias" (click)="onClickBotonGeneraProvincias()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <div [hidden]="!((provinGenerado.data.length && provinGenerado.data.length > 0))">
+            <table mat-table #sortProvinGenerado="matSort" [dataSource]="provinGenerado" matSort  (matSortChange)="announceSortChange($event)">
+
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+                <td mat-cell *matCellDef="let ccaa">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.id)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="id">{{ccaa.id}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                <td mat-cell *matCellDef="let ccaa">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.nombre)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nombre">{{ccaa.nombre}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsProvinGenerado"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
+            </table>
+
+            <div class="divBox">
+              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarProvincias()"
+                matTooltip="Pulsar para limpiar el provincias" matTooltipPosition="below">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonProvincias()"
+                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+                <mat-icon>description</mat-icon>
+              </button>
+              <mat-paginator #paginatorProvinGenerado="matPaginator"
+              [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+              showFirstLastButtons
+                aria-label="Seleccionar páginación">
+              </mat-paginator>
+            </div>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c3">
+      <mat-card appearance="outlined">
+        <mat-card-header>Municipios</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 250px !important;">
+            <mat-label>Cod. Provincia</mat-label>
+            <input matInput id="muniCodProvin" type="text"  maxlength="2" placeholder="04" [(ngModel)]="muniCodProvin">
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar Municipios" (click)="onClickBotonGeneraMunicipios()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <div [hidden]="!((muniGenerado.data.length && muniGenerado.data.length > 0))">
+            <table mat-table #sortMuniGenerado="matSort" [dataSource]="muniGenerado" matSort  (matSortChange)="announceSortChange($event)">
+
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+                <td mat-cell *matCellDef="let ccaa">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.id)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="id">{{ccaa.id}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                <td mat-cell *matCellDef="let ccaa">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.nombre)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nombre">{{ccaa.nombre}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsProvinGenerado"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
+            </table>
+
+            <div class="divBox">
+              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarMunicipios()"
+                matTooltip="Pulsar para limpiar el municipios" matTooltipPosition="below">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonMunicipios()"
+                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+                <mat-icon>description</mat-icon>
+              </button>
+              <mat-paginator #paginatorMuniGenerado="matPaginator"
+              [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+              showFirstLastButtons
+                aria-label="Seleccionar páginación">
+              </mat-paginator>
+            </div>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+

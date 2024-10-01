@@ -54,4 +54,12 @@ export const routes: Routes = [
       ),
       title: 'Vehículos'
   },
+  {
+    path: 'genera-localizacion',
+    loadComponent: () =>
+      import('./genera-localizacion/genera-localizacion.component').then(
+        (c) => c.GeneraLocalizacionComponent
+      ),
+      title: 'Localización'
+  },
 ];
