@@ -48,6 +48,7 @@ export class MenuComponent {
     { path: 'genera-coches', icon: 'directions_car' },
     { path: 'genera-localizacion', icon: 'travel_explore' },
     { path: 'genera-variados', icon: 'more_horiz' },
+    { path: 'about', icon: 'info' },
   ];
 
   constructor() {}

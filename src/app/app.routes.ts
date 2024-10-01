@@ -70,4 +70,12 @@ export const routes: Routes = [
       ),
       title: 'Variados'
   },
+  {
+    path: 'about',
+    loadComponent: () =>
+      import('./about/about.component').then(
+        (c) => c.AboutComponent
+      ),
+      title: 'Acerca de'
+  },
 ];
