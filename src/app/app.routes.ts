@@ -62,4 +62,12 @@ export const routes: Routes = [
       ),
       title: 'Localización'
   },
+  {
+    path: 'genera-variados',
+    loadComponent: () =>
+      import('./genera-variados/genera-variados.component').then(
+        (c) => c.GeneraVariadosComponent
+      ),
+      title: 'Variados'
+  },
 ];

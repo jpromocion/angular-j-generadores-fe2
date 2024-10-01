@@ -1,0 +1,233 @@
+<h2>Variados</h2>
+
+<div class="panelFluidoSegundoNivel">
+
+  <div class="grid-layout">
+
+    <div class="caja c0">
+      <mat-form-field style="width: 250px !important;">
+        <mat-label>Num. generaciones</mat-label>
+        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+      </mat-form-field>
+    </div>
+
+    <div class="caja c1">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar tipo seleccionado</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 330px;margin-left: 5px;">
+            <mat-label>Seleccionar tipo generación</mat-label>
+            <mat-select [(ngModel)]="selectedTipoGenera">
+              @for (tipo of tiposGenera; track tipo) {
+                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
+            matTooltip="Pulsar para limpiar los tipos" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of textoGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nif">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c2">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar Teléfonos</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 330px;margin-left: 5px;">
+            <mat-label>Seleccionar tipo teléfono</mat-label>
+            <mat-select [(ngModel)]="selectedTipoTelefono">
+              @for (tipo of tiposTelefono; track tipo) {
+                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarTelefono()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTelefono()"
+            matTooltip="Pulsar para limpiar los teléfonos" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonTelefono()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of tlfGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nif">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c3">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar Passwords</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 250px !important;">
+            <mat-label>Longitud</mat-label>
+            <input matInput id="passLongitud" type="number"  min="15" max="100" placeholder="Longitud total" [(ngModel)]="passLongitud">
+            <mat-icon matSuffix matTooltip="Longitud del password. Minimo 15.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-checkbox [(ngModel)]="passMayusMinus">Mayús./minús.</mat-checkbox>
+
+          <mat-checkbox [(ngModel)]="passNumero">Números</mat-checkbox>
+
+          <mat-checkbox [(ngModel)]="passEspecial">Especial</mat-checkbox>
+
+          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar password" (click)="onClickBotonGenerarPassword()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPassword()"
+            matTooltip="Pulsar para limpiar los passwords" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPassword()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of passGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nif">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c4">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar Códigos promocionales</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Longitud</mat-label>
+            <input matInput id="promoLongitud" type="number"  min="1" max="1000" placeholder="Longitud" [(ngModel)]="promoLongitud">
+            <mat-icon matSuffix matTooltip="Longitud de los códigos generados.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Conjunto caract.</mat-label>
+            <input matInput id="promoCharset" type="text" maxlength="500" placeholder="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" [(ngModel)]="promoCharset">
+            <mat-icon matSuffix matTooltip="Juego de carácteres que utilizar.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Patrón</mat-label>
+            <input matInput id="promoPatron" type="text" maxlength="500" placeholder="AA-AAAAA-AAA-AAAA" [(ngModel)]="promoPatron">
+            <mat-icon matSuffix matTooltip="Opcional. Patrón que seguirán los códigos generados. Se utiliza el '-' como separador de partes. Se indicará patrón como 'AA-AAAAA-AAA-AAAA' y cada parte que separa el guión será generada. En caso de rellenar patrón, se ignora lo rellenado en longitud.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Prefijo</mat-label>
+            <input matInput id="promoPrefijo" type="text" maxlength="10" placeholder="prefix" [(ngModel)]="promoPrefijo">
+            <mat-icon matSuffix matTooltip="Opcional. Prefijo a añadir en todo código promocional en la forma 'prefix-'.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Sufijo</mat-label>
+            <input matInput id="promoSufijo" type="text" maxlength="10" placeholder="sufix" [(ngModel)]="promoSufijo">
+            <mat-icon matSuffix matTooltip="Opcional. Sufijo a añadir en todo código promocional en la forma 'sufix-'.">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarPromocionales()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPromocionales()"
+            matTooltip="Pulsar para limpiar los códigos promocionales" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPromocionales()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of promoGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nif">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <div>
+
+
+
+  </div>
+
+
+
+</div>
