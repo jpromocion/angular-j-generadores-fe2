@@ -38,4 +38,12 @@ export const routes: Routes = [
       ),
       title: 'Perfiles'
   },
+  {
+    path: 'genera-textos',
+    loadComponent: () =>
+      import('./genera-textos/genera-textos.component').then(
+        (c) => c.GeneraTextosComponent
+      ),
+      title: 'Textos'
+  },
 ];

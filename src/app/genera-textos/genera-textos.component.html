@@ -1,0 +1,73 @@
+<h2>Textos</h2>
+
+<div class="panelFluidoSegundoNivel">
+
+  <div class="grid-layout">
+
+    <div class="caja c0">
+      <h3>Filtros</h3>
+    </div>
+
+    <div class="caja c1">
+      <label>Idioma: </label>
+      <mat-button-toggle-group name="idioma" aria-label="idioma" [(ngModel)]="idioma" style="margin-left: 10px;">
+        <mat-button-toggle value="spanish">Castellano</mat-button-toggle>
+        <mat-button-toggle value="latin">Latín</mat-button-toggle>
+        <mat-button-toggle value="english">Inglés</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="caja c2">
+      <label>Tipo: </label>
+      <mat-button-toggle-group name="tipo" aria-label="tipo" [(ngModel)]="tipoGeneracion" style="margin-left: 10px;">
+        <mat-button-toggle value="c">Carácteres</mat-button-toggle>
+        <mat-button-toggle value="w">Palabras</mat-button-toggle>
+        <mat-button-toggle value="p">Párrafos</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="caja c3">
+      <mat-form-field style="width: 250px !important;">
+        <mat-label>Cantidad(carac./palabra./parraf.)</mat-label>
+        <input matInput id="cantidad" type="number" min="1" max="1000"
+          placeholder="Número de carácteres, palabras o párrafos a generar" [(ngModel)]="cantidad">
+        <mat-icon matSuffix
+          matTooltip="Si el tipo es 'Carácteres' será el número de carácteres a generar, si el tipo es 'Palabras' será el número de palabras a generar, y si es 'Párrafos' será el número de párrafos a generar">help</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="caja c4">
+      <label>Tipo letra: </label>
+      <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"
+        style="margin-left: 10px;">
+        <mat-button-toggle value="s">Sin formato</mat-button-toggle>
+        <mat-button-toggle value="M">Mayúsculas</mat-button-toggle>
+        <mat-button-toggle value="m">Minúsculas</mat-button-toggle>
+        <mat-button-toggle value="c">Camel case</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="caja c5">
+      <button type="button"  mat-fab aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
+        matTooltip="Pulsar para generar" matTooltipPosition="below">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <button type="button" *ngIf="textoGenerado" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
+        matTooltip="Pulsar para limpiar los caracteres" matTooltipPosition="below">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+    <div class="caja c6">
+      <mat-form-field *ngIf="textoGenerado" style="margin-top: 10px;margin-left: 20px; width: 100%;">
+        <mat-label>Texto generado</mat-label>
+        <textarea matInput rows="6" (click)="onSelectDato(transformaTexto(textoGenerado))" readonly="true" value="{{textoGenerado | caseTransformer: tipoLetra}}">
+        </textarea>
+        <mat-icon matSuffix matTooltip="Pulsar para copiar">help</mat-icon>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+</div>
