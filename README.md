@@ -1,6 +1,7 @@
 # Generadores de jpromocion - FrontEnd en Angular 2
 
 Pretende ser un frontend de ejemplo realizado en Angular 18 para atacar la API REST JSON de generadores desarrollada en mi otro proyecto [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores) y poder utilizar visualmente la explotación de datos auto-generados.
+
 La diferencia con [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) es que aquí vamos a crear la aplicación con angular material también pero con hojas de estilo SCSS y utilizando las plantillas de esquema de angular material para la distribución, para tener una interfaz más bonita.
 
 
@@ -10,7 +11,8 @@ La diferencia con [angular-j-generadores-fe](https://github.com/jpromocion/angul
 ## Funcionamiento
 
 Tendrá un menú lateral (ocultable por tamaño pantalla) cargandose en la parte central la página correspondiente:
-- Principal: Lugar donde fijar la api-key de ataque sobre la API REST de [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores). La url en si es un valor almacenado en los environments del proyecto. Por defecto se inicializa con una de ejemplo. También pueden cargarse mensajes de error generados.
+- Principal: Lugar donde fijar la api-key de ataque sobre la API REST de [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores). Por defecto la aplicación se levanta con una api-key de test de ejemplo pre-rellenada. También pueden cargarse mensajes de error generados en este apartado.
+> La url del servidor en si es un valor almacenado en los environments del proyecto (por defecto localhost:8085).
 - Documentos: Ataca la API REST para la generación/validación de documentos de identidad: NIF, NIE, CIF.
 ![Generador documentos](/screenshots/generador_documento.png)
 - Bancario: Ataca la API REST para la generación/validación de documentos bancarios: IBAN, Tarjeta.
