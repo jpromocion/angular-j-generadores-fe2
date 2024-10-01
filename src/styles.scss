@@ -1,1 +1,158 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+
+
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body, app-root, .app-frame {
+  overflow: auto; /* no valida hidden... cuando las listas de nif eran gigants... las oculta */
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+  color: #e0e0e0;
+}
+
+
+.tituloPrimerNivel {
+  padding-left: 1%;
+}
+
+
+.panelFluidoSegundoNivel {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+h1 {
+  color: #eedee7;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h2 {
+  color: #eedee7;
+}
+
+h3 {
+  color: #eedee7;
+}
+
+
+/* Montar para angular material nuestras div basicas para separarlo todo en filas/columnas */
+.divColumna {
+  float: left;
+  width: 50%;
+}
+.divFila:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Asegurar componentes dentro se muestren horizontalmente seguidos */
+.divBox {
+  display: flex;
+  align-items: flex-start;
+}
+
+
+/* FDunciona mucho mejor para forzar mopstrar horizontalmente pero dejando al tamaño de pantalla
+ * el ponerlos en vertical si no caben
+ */
+.divHorizontal {
+  display:inline;
+}
+
+/* Ademas de forzar horizontalmente como antes, se asegura que los elementos dentro no se separen verticalmente al cambiar el tamaño pantalla */
+.divHorizontalBloque {
+  display:inline;
+  display: inline-block;
+}
+
+.margenElementoLinea{
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+
+/** Div flexible */
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Nos creamos la clase que pinta botones invalidos */
+.btn-danger {
+  background-color:  #D63384;
+  border-color: #EFADCE;
+  color: #EFADCE;
+  height: 55px;
+  border-radius: 12px;
+}
+
+.btn-danger:hover {
+  background-color: #801F4F;
+  color: #EFADCE;
+}
+
+/* Nos creamos la clase que pinta botones validos */
+.btn-success {
+  background-color:  #20C997;
+  border-color: #D2F4EA;
+  color: #D2F4EA;
+  height: 55px;
+  border-radius: 12px;
+}
+
+.btn-success:hover {
+  background-color: #13795B;
+  color: #D2F4EA;
+}
+
+
+
+/** El color de los enlaces es horrible en azul */
+a {
+  color: #C29FFA;
+}
+
+/* Al no estar bootstrap definimos los calores de los mensajers de la barra de mensajes de forma particular */
+.alert-primary{
+  color: #C29FFA;
+}
+
+.alert-primary{
+  color: #C29FFA;
+}
+.alert-warning{
+  color: yellow;
+}
+.alert-danger{
+  color: red;
+}
+.alert-success{
+  color: #8540F5
+}
+
+/* Forma de forzar a que en el grid los componentes por defecto vayan verticalmente
+https://stackoverflow.com/questions/46968990/angular-material-vertically-arranging-contents-in-a-mat-grid-tile
+-NOTA: para evitar aplicar a todops, asignamos por clase adicional "grid-justifica-comienzo" que asignamos al grud
+    flex-direction: column; -> lo ponee en column el contenido, pero no justifica entonces
+ */
+.grid-justifica-comienzo .mat-grid-tile-content
+{
+    justify-content: flex-start;
+}
+
+.multiline-tooltip{
+  white-space: pre-line;
+}
+

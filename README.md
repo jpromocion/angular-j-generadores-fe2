@@ -1,27 +1,81 @@
-# AngularJGeneradoresFe2
+# Generadores - FrontEnd en Angular 2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+Pretende ser un frontend de ejemplo realizado en Angular 18 para atacar la API REST JSON de generadores desarrollada en mi otro proyecto [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores) y poder utilizar visualmente la explotación de datos auto-generados.
+La diferencia con [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) es que aquí vamos a crear la aplicación con angular material también pero con hojas de estilo SCSS y utilizando las plantillas de esquema de angular material para la distribución, para tener una interfaz más bonita.
 
-## Development server
+Creado con [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3:
+  - `ng new`
+    - workspace: angular-j-generadores-fe2
+    - hoja estlo: SCSS
+    - SSR: no
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+NOTA: Los componentes, entidades, servicios reutilizados nos los hemos ido trayendo directamente desde [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) copiando.
 
-## Code scaffolding
+## Instalar Angular Material.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[Angular Material](https://material.angular.io/)
+Componentes y temas preconstruidos.
+
+Instalamos con:
+```
+ng add @angular/material
+```
+- Magenta/violet theme
+- Include typography
+- Include and enable animations
+
+Esto incluye en el angular.json directamente:
+```
+    "styles": [
+      "@angular/material/prebuilt-themes/magenta-violet.css",
+      "src/styles.css"
+    ],
+```
+
+
+## Instalar control entorno.
+
+Instalamos con:
+```
+ng generate environments
+```
+- Configuramos en src/environments para fijar una url API-rest por entorno.
+- Luego rellenamos en los ficheros de entorno lo que necesitamos. Ver documentación Angular
+
+
+## Instalar generador excel.
+
+Instalamos con:
+```
+npm i xlsx --save
+```
+- Permite generar excel
+
+
+## Instalar file saver.
+
+Instalamos con:
+```
+npm install file-saver
+npm install --save-dev @types/file-saver
+```
+- Adicional para generar excel, permite descargar el fichero.
+
+
+
+## Descargar y configurar
+
+Una vez descargado de github: `npm install` para instalar dependencias.
+
+## Servidor de desarrollo
+
+Ejecutar `ng serve` para el servidor de desarrollo. Navegar a `http://localhost:4200/`. La aplicación se recarga automaticamente tras modificar los archivos fuente.
+
+## Incrementar código
+
+Ejecutar `ng generate component component-name` para generar un nuevo componente. Puedes usar `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ejecutar `ng build` para construir el proyecto. El artefacto montado será guardado en el directorio `dist/`.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
