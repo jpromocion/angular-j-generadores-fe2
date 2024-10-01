@@ -46,4 +46,12 @@ export const routes: Routes = [
       ),
       title: 'Textos'
   },
+  {
+    path: 'genera-coches',
+    loadComponent: () =>
+      import('./genera-coches/genera-coches.component').then(
+        (c) => c.GeneraCochesComponent
+      ),
+      title: 'Vehículos'
+  },
 ];

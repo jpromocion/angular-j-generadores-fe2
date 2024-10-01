@@ -1,214 +1,217 @@
 <h2>Documentos</h2>
 
-<div>
-  <mat-form-field style="width: 150px !important;">
-    <mat-label>Num. generaciones</mat-label>
-    <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
-  </mat-form-field>
-</div>
+<div class="panelFluidoSegundoNivel">
 
+  <div class="grid-layout">
 
-<div class="grid-layout">
+    <div class="caja c0">
+      <mat-form-field style="width: 150px !important;">
+        <mat-label>Num. generaciones</mat-label>
+        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+      </mat-form-field>
+    </div>
 
-  <div class="caja c1">
-    <mat-card appearance="outlined">
-      <mat-card-header>Generar NIFs</mat-card-header>
-      <mat-card-content>
-        <button type="button"  mat-fab aria-label="Generar una lista de NIFs" (click)="onClickBotonGenerarListaNif()"
-          matTooltip="Pulsar para generar" matTooltipPosition="below">
-          <mat-icon>refresh</mat-icon>
-        </button>
-        <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista NIFs" (click)="onClickLimpiarListaNif()"
-          matTooltip="Pulsar para limpiar la lista de NIFs" matTooltipPosition="below">
-          <mat-icon>delete</mat-icon>
-        </button>
-        <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonNifs()"
-          matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
-          <mat-icon>description</mat-icon>
-        </button>
-        <mat-list>
-          @for (nif of listaNifs; track nif) {
-            <mat-list-item>
-              <div style="margin-top: 2%; margin-bottom: 2%;">
-                <button mat-flat-button type="button" (click)="onSelectDato(nif)"
-                matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                  <span class="nif">{{nif}}</span>
-                </button>
-                <mat-divider></mat-divider>
-              </div>
-            </mat-list-item>
-          }
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="caja c2">
-    <mat-card appearance="outlined">
-      <mat-card-header>Generar NIEs</mat-card-header>
-      <mat-card-content>
-        <button type="button"  mat-fab aria-label="Generar una lista de NIEs" (click)="onClickBotonGenerarListaNie()"
-          matTooltip="Pulsar para generar" matTooltipPosition="below">
-          <mat-icon>refresh</mat-icon>
-        </button>
-        <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista NIEs" (click)="onClickLimpiarListaNie()"
-          matTooltip="Pulsar para limpiar la lista de NIEs" matTooltipPosition="below">
-          <mat-icon>delete</mat-icon>
-        </button>
-        <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonNies()"
-          matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
-          <mat-icon>description</mat-icon>
-        </button>
-        <mat-list>
-          @for (nie of listaNies; track nie) {
-            <mat-list-item>
-              <div style="margin-top: 2%; margin-bottom: 2%;">
-                <button mat-flat-button type="button" (click)="onSelectDato(nie)"
-                matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                  <span class="nie">{{nie}}</span>
-                </button>
-                <mat-divider></mat-divider>
-              </div>
-            </mat-list-item>
-          }
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="caja c3">
-    <mat-card appearance="outlined">
-      <mat-card-header>Generar CIFs</mat-card-header>
-      <mat-card-content>
-        <mat-form-field style="width: 350px !important; margin-left: 5px;">
-          <mat-label>Seleccionar tipo sociedad</mat-label>
-          <mat-select [(ngModel)]="selectedSociedad">
-            @for (tipo of tiposSociedades; track tipo) {
-              <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+    <div class="caja c1">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar NIFs</mat-card-header>
+        <mat-card-content>
+          <button type="button"  mat-fab aria-label="Generar una lista de NIFs" (click)="onClickBotonGenerarListaNif()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista NIFs" (click)="onClickLimpiarListaNif()"
+            matTooltip="Pulsar para limpiar la lista de NIFs" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonNifs()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+          <mat-list>
+            @for (nif of listaNifs; track nif) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(nif)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nif">{{nif}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
             }
-          </mat-select>
-        </mat-form-field>
-        <button type="button" style="margin-left: 5px;" mat-fab aria-label="Generar una lista de CIFs" (click)="onClickBotonGenerarListaCif()"
-          matTooltip="Pulsar para generar" matTooltipPosition="below">
-          <mat-icon>refresh</mat-icon>
-        </button>
-        <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista CIFs" (click)="onClickLimpiarListaCif()"
-          matTooltip="Pulsar para limpiar la lista de CIFs" matTooltipPosition="below">
-          <mat-icon>delete</mat-icon>
-        </button>
-        <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonCifs()"
-          matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
-          <mat-icon>description</mat-icon>
-        </button>
-        <mat-list>
-          @for (cif of listaCifs; track cif) {
-            <mat-list-item>
-              <div style="margin-top: 2%; margin-bottom: 2%;">
-                <button mat-flat-button type="button" (click)="onSelectDato(cif)"
-                matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                  <span class="cif">{{cif}}</span>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="caja c2">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar NIEs</mat-card-header>
+        <mat-card-content>
+          <button type="button"  mat-fab aria-label="Generar una lista de NIEs" (click)="onClickBotonGenerarListaNie()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista NIEs" (click)="onClickLimpiarListaNie()"
+            matTooltip="Pulsar para limpiar la lista de NIEs" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonNies()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+          <mat-list>
+            @for (nie of listaNies; track nie) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(nie)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nie">{{nie}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="caja c3">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar CIFs</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 350px !important; margin-left: 5px;">
+            <mat-label>Seleccionar tipo sociedad</mat-label>
+            <mat-select [(ngModel)]="selectedSociedad">
+              @for (tipo of tiposSociedades; track tipo) {
+                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar una lista de CIFs" (click)="onClickBotonGenerarListaCif()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista CIFs" (click)="onClickLimpiarListaCif()"
+            matTooltip="Pulsar para limpiar la lista de CIFs" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonCifs()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+          <mat-list>
+            @for (cif of listaCifs; track cif) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(cif)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="cif">{{cif}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="caja c4">
+      <mat-card appearance="outlined">
+        <mat-card-header>Validar NIF</mat-card-header>
+        <mat-card-content>
+          <div class="divBox">
+            <mat-form-field style="width: 150px !important;">
+              <mat-label>NIF a comprobar</mat-label>
+              <input matInput id="nifValidar" type="text" placeholder="91000750P" [(ngModel)]="nifValidar"
+                style="text-transform:uppercase" maxlength="12">
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un NIF" (click)="onClickValidarNif()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>search_check</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
+              <div *ngIf="nifValidarOk == 'OK'">
+                <button type="button" class="btn-success"
+                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                  <mat-icon>done_all</mat-icon>
                 </button>
-                <mat-divider></mat-divider>
               </div>
-            </mat-list-item>
-          }
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="caja c4">
-    <mat-card appearance="outlined">
-      <mat-card-header>Validar NIF</mat-card-header>
-      <mat-card-content>
-        <div class="divBox">
-          <mat-form-field style="width: 150px !important;">
-            <mat-label>NIF a comprobar</mat-label>
-            <input matInput id="nifValidar" type="text" placeholder="91000750P" [(ngModel)]="nifValidar"
-              style="text-transform:uppercase" maxlength="12">
-          </mat-form-field>
-          <button type="button" mat-fab aria-label="Validar un NIF" (click)="onClickValidarNif()"
-            matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
-            <mat-icon>search_check</mat-icon>
-          </button>
-          <div style="margin-left: 5px;">
-            <div *ngIf="nifValidarOk == 'OK'">
-              <button type="button" class="btn-success"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                <mat-icon>done_all</mat-icon>
-              </button>
-            </div>
-            <div *ngIf="nifValidarOk == 'ERROR'">
-              <button type="button" class="btn-danger"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                <mat-icon>close</mat-icon>
-              </button>
+              <div *ngIf="nifValidarOk == 'ERROR'">
+                <button type="button" class="btn-danger"
+                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="caja c5">
-    <mat-card appearance="outlined">
-      <mat-card-header>Validar NIE</mat-card-header>
-      <mat-card-content>
-        <div class="divBox">
-          <mat-form-field style="width: 150px !important;">
-            <mat-label>NIE a comprobar</mat-label>
-            <input matInput id="nieValidar" type="text" placeholder="X6203099E" [(ngModel)]="nieValidar"
-              style="text-transform:uppercase" maxlength="12">
-          </mat-form-field>
-          <button type="button" mat-fab aria-label="Validar un NIE" (click)="onClickValidarNie()"
-            matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
-            <mat-icon>search_check</mat-icon>
-          </button>
-          <div style="margin-left: 5px;">
-            <div *ngIf="nieValidarOk == 'OK'">
-              <button type="button" class="btn-success"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                <mat-icon>done_all</mat-icon>
-              </button>
-            </div>
-            <div *ngIf="nieValidarOk == 'ERROR'">
-              <button type="button" class="btn-danger"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                <mat-icon>close</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="caja c6">
-    <mat-card appearance="outlined">
-      <mat-card-header>Validar CIF</mat-card-header>
-      <mat-card-content>
-        <div class="divBox">
-          <mat-form-field  style="width: 150px !important;">
-            <mat-label>CIF a comprobar</mat-label>
-            <input matInput id="cifValidar" type="text" placeholder="J92456805" [(ngModel)]="cifValidar"
-              style="text-transform:uppercase" maxlength="12">
-          </mat-form-field>
-          <button type="button" mat-fab aria-label="Validar un CIF" (click)="onClickValidarCif()"
-            matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
-            <mat-icon>search_check</mat-icon>
-          </button>
-          <div style="margin-left: 5px;">
-            <div *ngIf="cifValidarOk == 'OK'">
-              <button type="button" class="btn-success"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                <mat-icon>done_all</mat-icon>
-              </button>
-            </div>
-            <div *ngIf="cifValidarOk == 'ERROR'">
-              <button type="button" class="btn-danger"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                <mat-icon>close</mat-icon>
-              </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="caja c5">
+      <mat-card appearance="outlined">
+        <mat-card-header>Validar NIE</mat-card-header>
+        <mat-card-content>
+          <div class="divBox">
+            <mat-form-field style="width: 150px !important;">
+              <mat-label>NIE a comprobar</mat-label>
+              <input matInput id="nieValidar" type="text" placeholder="X6203099E" [(ngModel)]="nieValidar"
+                style="text-transform:uppercase" maxlength="12">
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un NIE" (click)="onClickValidarNie()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>search_check</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
+              <div *ngIf="nieValidarOk == 'OK'">
+                <button type="button" class="btn-success"
+                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                  <mat-icon>done_all</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="nieValidarOk == 'ERROR'">
+                <button type="button" class="btn-danger"
+                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="caja c6">
+      <mat-card appearance="outlined">
+        <mat-card-header>Validar CIF</mat-card-header>
+        <mat-card-content>
+          <div class="divBox">
+            <mat-form-field  style="width: 150px !important;">
+              <mat-label>CIF a comprobar</mat-label>
+              <input matInput id="cifValidar" type="text" placeholder="J92456805" [(ngModel)]="cifValidar"
+                style="text-transform:uppercase" maxlength="12">
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un CIF" (click)="onClickValidarCif()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>search_check</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
+              <div *ngIf="cifValidarOk == 'OK'">
+                <button type="button" class="btn-success"
+                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                  <mat-icon>done_all</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="cifValidarOk == 'ERROR'">
+                <button type="button" class="btn-danger"
+                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
   </div>
 
 </div>
