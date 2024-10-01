@@ -42,6 +42,12 @@ export class MenuComponent {
   iconosRuta = [
     { path: 'dashboard', icon: 'dashboard' },
     { path: 'genera-documentos', icon: 'badge' },
+    { path: 'genera-cuentas', icon: 'account_balance' },
+    { path: 'genera-perfiles', icon: 'person' },
+    { path: 'genera-textos', icon: 'edit_note' },
+    { path: 'genera-coches', icon: 'directions_car' },
+    { path: 'genera-localizacion', icon: 'travel_explore' },
+    { path: 'genera-variados', icon: 'more_horiz' },
   ];
 
   constructor() {}

@@ -1,0 +1,166 @@
+<h2>Elementos bancarios</h2>
+
+<div>
+  <mat-form-field style="width: 150px !important;">
+    <mat-label>Num. generaciones</mat-label>
+    <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+  </mat-form-field>
+</div>
+
+<div class="grid-layout">
+
+  <div class="caja c1">
+    <mat-card appearance="outlined">
+      <mat-card-header>Generar IBANs</mat-card-header>
+      <mat-card-content>
+        <button type="button"  mat-fab aria-label="Generar una lista de IBANs" (click)="onClickBotonGenerarListaIban()"
+          matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <button type="button" *ngIf="listaIban?.length && listaIban.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar listas" (click)="onClickLimpiarListaIBAN()"
+          matTooltip="Pulsar para limpiar la lista de IBANs" matTooltipPosition="below">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button type="button" *ngIf="listaIban?.length && listaIban.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonIban()"
+          matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+          <mat-icon>description</mat-icon>
+        </button>
+        <mat-list>
+          @for (iban of listaIban; track iban) {
+            <mat-list-item>
+              <div style="margin-top: 2%; margin-bottom: 2%;">
+                <button mat-flat-button type="button" (click)="onSelectDato(iban.iban)"  style="margin-left: 20px;"
+                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  <span class="iban">{{iban.iban}}</span>
+                </button>
+                <button mat-flat-button type="button" (click)="onSelectDato(iban.ibanFormateado)"  style="margin-left: 20px;"
+                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  <span class="iban">{{iban.ibanFormateado}}</span>
+                </button>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="caja c2">
+    <mat-card appearance="outlined">
+      <mat-card-header>Generar Tarjetas</mat-card-header>
+      <mat-card-content>
+        <mat-form-field style="width: 250px !important; margin-left: 5px;">
+          <mat-label>Seleccionar tipo tarjeta</mat-label>
+          <mat-select [(ngModel)]="selectedTarjetaTipo">
+            @for (tipo of tiposTarjetas; track tipo) {
+              <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar una lista de Tarjetas" (click)="onClickBotonGenerarListaTarjetas()"
+          matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <button type="button" *ngIf="listaTarjeta?.length && listaTarjeta.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar listas" (click)="onClickLimpiarListaTarjetas()"
+          matTooltip="Pulsar para limpiar la lista de Tarjetas" matTooltipPosition="below">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button type="button" *ngIf="listaTarjeta?.length && listaTarjeta.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonTarjetas()"
+          matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+          <mat-icon>description</mat-icon>
+        </button>
+        <mat-list>
+          @for (tarjetaGenerado of listaTarjeta; track tarjetaGenerado) {
+            <mat-list-item>
+              <div style="margin-top: 2%; margin-bottom: 2%;">
+                <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjeta)" style="margin-left: 20px;"
+                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  <span class="tarjeta">{{tarjetaGenerado.tarjeta}}</span>
+                </button>
+                <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjetaFormateada)" style="margin-left: 20px;"
+                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  <span class="tarjetaFormateada">{{tarjetaGenerado.tarjetaFormateada}}</span>
+                </button>
+                <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.expiracionCredito)" style="margin-left: 20px;"
+                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  <span class="expiracionCredito">{{tarjetaGenerado.expiracionCredito}}</span>
+                </button>
+                <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.cvc)" style="margin-left: 20px;"
+                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  <span class="cvc">{{tarjetaGenerado.cvc}}</span>
+                </button>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="caja c3">
+    <mat-card appearance="outlined">
+      <mat-card-header>Validar IBAN</mat-card-header>
+      <mat-card-content>
+        <div class="divBox">
+          <mat-form-field style="width: 270px !important;">
+            <mat-label>IBAN a comprobar</mat-label>
+            <input matInput id="ibanValidar" type="text" placeholder="ES0920007083880013231063" [(ngModel)]="ibanValidar"
+              style="text-transform:uppercase;" maxlength="35">
+          </mat-form-field>
+          <button type="button" mat-fab aria-label="Validar un IBAN" (click)="onClickValidarIban()"
+            matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <mat-icon>search_check</mat-icon>
+          </button>
+          <div style="margin-left: 5px;">
+            <div *ngIf="ibanValidarOk == 'OK'">
+              <button type="button" class="btn-success"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="ibanValidarOk == 'ERROR'">
+              <button type="button" class="btn-danger"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="caja c4">
+    <mat-card appearance="outlined">
+      <mat-card-header>Validar Tarjeta</mat-card-header>
+      <mat-card-content>
+        <div class="divBox">
+          <mat-form-field style="width: 270px !important;">
+            <mat-label>Tarjeta a comprobar</mat-label>
+            <input matInput id="tarjetaValidar" type="text" placeholder="4846891122550579" [(ngModel)]="tarjetaValidar"
+              style="text-transform:uppercase" size="12">
+          </mat-form-field>
+          <button type="button" mat-fab aria-label="Validar una Tarjeta" (click)="onClickValidarTarjeta()"
+            matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <mat-icon>search_check</mat-icon>
+          </button>
+          <div style="margin-left: 5px;">
+            <div *ngIf="tarjetaValidarOk == 'OK'">
+              <button type="button" class="btn-success"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="tarjetaValidarOk == 'ERROR'">
+              <button type="button" class="btn-danger"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
+

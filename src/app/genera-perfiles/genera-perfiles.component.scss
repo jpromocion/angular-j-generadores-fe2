@@ -1,4 +1,4 @@
-.grid-layout{
+.grid-layout-filtros{
   display: grid;
   grid-template-columns: auto auto auto;
   margin: 10px;
@@ -15,10 +15,12 @@
   //text-align: center;
 }
 
-.c3{
+.c4{
   grid-column: 1 / span 3;
 }
 
-
+.c5{
+  grid-column: 1 / span 3;
+}
 
 

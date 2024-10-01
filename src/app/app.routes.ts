@@ -20,6 +20,22 @@ export const routes: Routes = [
       import('./genera-documentos/genera-documentos.component').then(
         (c) => c.GeneraDocumentosComponent
       ),
-      title: 'Generador documentos'
+      title: 'Documentos'
+  },
+  {
+    path: 'genera-cuentas',
+    loadComponent: () =>
+      import('./genera-cuentas/genera-cuentas.component').then(
+        (c) => c.GeneraCuentasComponent
+      ),
+      title: 'Bancario'
+  },
+  {
+    path: 'genera-perfiles',
+    loadComponent: () =>
+      import('./genera-perfiles/genera-perfiles.component').then(
+        (c) => c.GeneraPerfilesComponent
+      ),
+      title: 'Perfiles'
   },
 ];
