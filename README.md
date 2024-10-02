@@ -36,6 +36,7 @@ Una vez descargado de github: `npm install` para instalar dependencias.
 ### Servidor de desarrollo
 
 Ejecutar `ng serve` para el servidor de desarrollo. Navegar a `http://localhost:4200/`. La aplicación se recarga automaticamente tras modificar los archivos fuente.
+> Como se creo environments, por defecto se lanza con la de desarrollo (Indicado en el angular.json `"defaultConfiguration": "development"`). Para lanzar con la de producción `ng serve --configuration production`
 
 ### Incrementar código
 
@@ -44,7 +45,7 @@ Ejecutar `ng generate component component-name` para generar un nuevo componente
 ### Build
 
 Ejecutar `ng build` para construir el proyecto. El artefacto montado será guardado en el directorio `dist/`.
-
+> Como se creo environments, en el caso de build la configuración por defecto es la de producción (Indicado en el angular.json `"defaultConfiguration": "production"`). Para lanzar con la de desarrollo `ng build --configuration development`
 
 
 
