@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8085/generadores'
+  apiUrl: 'https://rest-j-generadores.onrender.com/generadores'
 };
