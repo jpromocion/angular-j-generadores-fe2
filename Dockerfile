@@ -20,6 +20,10 @@ RUN ng build --configuration=production
 #ahora creamos una imagen de Alpine Linux con Nginx instalado
 FROM nginx:alpine
 
+# copy the custom nginx configuration file to the container in the
+# default location
+COPY --from=builder /usr/src/app/nginx.conf /etc/nginx/nginx.conf
+
 #copiamos la carpeta que genera el build (ver en angular.json el outputPath) a la ruta de aplicaciones del Nginx
 #builder: es el nombre del paso anterior "AS builder"
 COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2 /usr/share/nginx/html
