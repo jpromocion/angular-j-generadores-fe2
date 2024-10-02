@@ -108,3 +108,23 @@ npm install file-saver
 npm install --save-dev @types/file-saver
 ```
 - Adicional para generar excel, permite descargar el fichero.
+
+
+
+## Docker - Render
+
+Se incluye un Dockerfile que permite desplegar la aplicación en Render:
+- Define el contenedor:
+	- Carga una maquina preconfigurada de Alphine Linux con lo necesario para nodejs pero solo para construir nuesta aplicación.
+	- Le instala el cliente angular.
+	- Copia los datos de la aplicación a un directorio de trabajo (evitamos con .dockerignore copiar cosas innecesarias)
+  - Hace el `npm install` para instalar lo necesario en el directorio de trabajo.
+  - Luego hace el `npm build` para construir la carpeta con nuestra aplicación.
+- Define el contenedor que vamos a ejecutar:
+	- Carga una maquina preconfigurada de Alphine Linux con un servidor web Nginx.
+  - Copia la aplicacion build construida antes a la ruta del servidor Nginx para sus aplicacions.
+	- puerto expuesto 80 (El derl servidor Nginx)
+	- Levanta el servidor Nginx
+
+> NOTA: en Dockerfile esta comentada la configuración para lanzarlo como `ng serve`, como se haría en un entorno de desarrollo, aunque con la configuración de producción.
+
