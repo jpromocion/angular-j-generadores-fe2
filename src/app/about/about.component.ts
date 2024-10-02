@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-
+import { version } from '../../../package.json';
 @Component({
   selector: 'app-about',
   standalone: true,
@@ -9,5 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
+
+  version = version;
 
 }
