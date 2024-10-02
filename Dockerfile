@@ -26,7 +26,7 @@ COPY --from=builder /usr/src/app/nginx.conf /etc/nginx/nginx.conf
 
 #copiamos la carpeta que genera el build (ver en angular.json el outputPath) a la ruta de aplicaciones del Nginx
 #builder: es el nombre del paso anterior "AS builder"
-COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2 /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/* /usr/share/nginx/html
 
 #Aqui el expuesto es el del servidor Nginx... que es el 80 noirmal
 EXPOSE 80
