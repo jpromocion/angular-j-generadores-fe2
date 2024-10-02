@@ -1,6 +1,7 @@
 #####################################################################
 #Esto seria para construirla... y desplegarlo con el servidor Nginx
 #####################################################################
+#PASO 1: Contenedor donde se construye la aplicacion
 FROM node:alpine AS builder
 
 RUN npm install -g @angular/cli
@@ -14,11 +15,14 @@ RUN npm install
 #ahora hacemos un build para construit el objeto final (para build es el defecto, pero lo marcamos para que sea mas claro)
 RUN ng build --configuration=production
 
+#PASO 2: Contenedor donde se despliega la aplicacion
+
 #ahora creamos una imagen de Alpine Linux con Nginx instalado
 FROM nginx:alpine
 
 #copiamos la carpeta que genera el build (ver en angular.json el outputPath) a la ruta de aplicaciones del Nginx
-COPY --from=build /usr/src/app/dist/angular-j-generadores-fe2 /usr/share/nginx/html
+#builder: es el nombre del paso anterior "AS builder"
+COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2 /usr/share/nginx/html
 
 #Aqui el expuesto es el del servidor Nginx... que es el 80 noirmal
 EXPOSE 80
