@@ -89,7 +89,7 @@ export class NumberService {
     //fijamos la api-key del servicio de datos conexion
     this.fijarApiKeyServicio();
 
-    let urlfinal: string = this.urlJsonServer + this.interfaz + '/number?results=' + resultados;
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/random?results=' + resultados;
 
     if (minimo) {
       urlfinal = urlfinal + '&minimum=' + minimo;

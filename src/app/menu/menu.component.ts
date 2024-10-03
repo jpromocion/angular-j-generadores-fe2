@@ -49,6 +49,7 @@ export class MenuComponent {
     { path: 'genera-localizacion', icon: 'travel_explore' },
     { path: 'genera-variados', icon: 'more_horiz' },
     { path: 'about', icon: 'info' },
+    { path: 'genera-numeros', icon: '123' },
   ];
 
   constructor() {}

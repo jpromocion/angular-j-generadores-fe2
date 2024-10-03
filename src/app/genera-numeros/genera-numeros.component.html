@@ -1,0 +1,154 @@
+<h2>Números</h2>
+
+<div class="panelFluidoSegundoNivel">
+
+  <div class="grid-layout">
+
+    <div class="caja c0">
+      <mat-form-field style="width: 250px !important;">
+        <mat-label>Num. generaciones</mat-label>
+        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+      </mat-form-field>
+    </div>
+
+    <div class="caja c1">
+      <mat-card appearance="outlined">
+        <mat-card-header>Número aleatorio</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Mínimo</mat-label>
+            <input matInput id="aleatorioMinimo" type="number"  placeholder="0" [(ngModel)]="aleatorioMinimo">
+            <mat-icon matSuffix matTooltip="Valor inferior de los generables.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Máximo</mat-label>
+            <input matInput id="aleatorioMaximo" type="number"  placeholder="100" [(ngModel)]="aleatorioMaximo">
+            <mat-icon matSuffix matTooltip="Valor superior de los generables.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-checkbox [(ngModel)]="aleatorioDecimales">¿Decimales?</mat-checkbox>
+
+          <mat-checkbox [(ngModel)]="aleatorioRepetidos">¿Repetir?</mat-checkbox>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar aleatorios" (click)="onClickBotonGenerarAleatorios()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="aleatorioGenerado?.length && aleatorioGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarAleatorios()"
+            matTooltip="Pulsar para limpiar los números aleatorios" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="aleatorioGenerado?.length && aleatorioGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonAleatorios()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of aleatorioGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="numero">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c2">
+      <mat-card appearance="outlined">
+        <mat-card-header>Moneda</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 80px !important;margin-left: 5px;">
+            <mat-label>Cara</mat-label>
+            <input matInput id="monedaCara" type="text" maxlength="1" placeholder="O" [(ngModel)]="monedaCara">
+            <mat-icon matSuffix matTooltip="Simbolo cara">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 80px !important;margin-left: 5px;">
+            <mat-label>Cruz</mat-label>
+            <input matInput id="monedaCruz" type="text" maxlength="1" placeholder="X" [(ngModel)]="monedaCruz">
+            <mat-icon matSuffix matTooltip="Simbolo cruz">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar lanzamientos moneda" (click)="onClickBotonGenerarMoneda()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="monedaGenerado?.length && monedaGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarMoneda()"
+            matTooltip="Pulsar para limpiar los lanzamientos de moneda" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="monedaGenerado?.length && monedaGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonMoneda()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of monedaGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="moneda">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c3">
+      <mat-card appearance="outlined">
+        <mat-card-header>Dado</mat-card-header>
+        <mat-card-content>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar lanzamientos de dado" (click)="onClickBotonGenerarDado()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button id="btGenerarDado" type="button" *ngIf="dadoGenerado?.length && dadoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarDado()"
+            matTooltip="Pulsar para limpiar los lanzamientos de dado" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="dadoGenerado?.length && dadoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonDado()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of dadoGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="dado">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>
