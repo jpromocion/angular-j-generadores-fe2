@@ -91,13 +91,9 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/random?results=' + resultados;
 
-    if (minimo) {
-      urlfinal = urlfinal + '&minimum=' + minimo;
-    }
+    urlfinal = urlfinal + '&minimum=' + minimo;
 
-    if (maximo) {
-      urlfinal = urlfinal + '&maximum=' + maximo;
-    }
+    urlfinal = urlfinal + '&maximum=' + maximo;
 
     if (decimales != '') {
       urlfinal = urlfinal + '&decimals=' + decimales;
@@ -175,15 +171,11 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/gauss?results=' + resultados;
 
-    if (media) {
-      urlfinal = urlfinal + '&mean=' + media;
-    }
+    urlfinal = urlfinal + '&mean=' + media;
 
-    if (desviacion) {
-      urlfinal = urlfinal + '&standardDeviation=' + desviacion;
-    }
+    urlfinal = urlfinal + '&standardDeviation=' + desviacion;
 
-    if (decimales) {
+    if (decimales >= 0) {
       urlfinal = urlfinal + '&decimals=' + decimales;
     }
 
@@ -208,15 +200,11 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/calculator?operand=' + operando;
 
-    if (numero1) {
-      urlfinal = urlfinal + '&number1=' + numero1;
-    }
+    urlfinal = urlfinal + '&number1=' + numero1;
 
-    if (numero2) {
-      urlfinal = urlfinal + '&number2=' + numero2;
-    }
+    urlfinal = urlfinal + '&number2=' + numero2;
 
-    if (decimales) {
+    if (decimales >= 0) {
       urlfinal = urlfinal + '&decimals=' + decimales;
     }
 
@@ -240,19 +228,14 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/proportion?numberA=' + numeroA;
 
-    if (numeroB) {
-      urlfinal = urlfinal + '&numberB=' + numeroB;
-    }
-
-    if (numeroC) {
-      urlfinal = urlfinal + '&numberC=' + numeroC;
-    }
+    urlfinal = urlfinal + '&numberB=' + numeroB;
+    urlfinal = urlfinal + '&numberC=' + numeroC;
 
     if (directa != '') {
       urlfinal = urlfinal + '&direct=' + directa;
     }
 
-    if (decimales) {
+    if (decimales >= 0) {
       urlfinal = urlfinal + '&decimals=' + decimales;
     }
 
@@ -276,20 +259,14 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/area?type=' + tipo;
 
-    if (numeroA) {
-      urlfinal = urlfinal + '&numberA=' + numeroA;
-    }
+    urlfinal = urlfinal + '&numberA=' + numeroA;
 
-    if (numeroB) {
-      urlfinal = urlfinal + '&numberB=' + numeroB;
-    }
+    urlfinal = urlfinal + '&numberB=' + numeroB;
 
-    if (numeroC) {
-      urlfinal = urlfinal + '&numberC=' + numeroC;
-    }
+    urlfinal = urlfinal + '&numberC=' + numeroC;
 
 
-    if (decimales) {
+    if (decimales >= 0) {
       urlfinal = urlfinal + '&decimals=' + decimales;
     }
 
@@ -313,7 +290,7 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/degreesToRadians?degrees=' + grados;
 
-    if (decimales) {
+    if (decimales >= 0) {
       urlfinal = urlfinal + '&decimals=' + decimales;
     }
 
@@ -337,7 +314,7 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/radiansToDegrees?radians=' + radianes;
 
-    if (decimales) {
+    if (decimales >= 0) {
       urlfinal = urlfinal + '&decimals=' + decimales;
     }
 
@@ -361,15 +338,13 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/trigonometric?type=' + tipo;
 
-    if (numero) {
-      urlfinal = urlfinal + '&number=' + numero;
-    }
+    urlfinal = urlfinal + '&number=' + numero;
 
     if (tipoNumero != '') {
       urlfinal = urlfinal + '&typeNumber=' + tipoNumero;
     }
 
-    if (decimales) {
+    if (decimales >= 0) {
       urlfinal = urlfinal + '&decimals=' + decimales;
     }
 
@@ -393,13 +368,9 @@ export class NumberService {
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/baseConverter?number=' + numero;
 
-    if (baseOrigen) {
-      urlfinal = urlfinal + '&baseFrom=' + baseOrigen;
-    }
+    urlfinal = urlfinal + '&baseFrom=' + baseOrigen;
 
-    if (baseDestino) {
-      urlfinal = urlfinal + '&baseTo=' + baseDestino;
-    }
+    urlfinal = urlfinal + '&baseTo=' + baseDestino;
 
     return this.http.get(urlfinal, {
       headers: this.baseHeaders, responseType: 'text'

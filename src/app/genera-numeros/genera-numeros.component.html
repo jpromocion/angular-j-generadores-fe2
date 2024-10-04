@@ -5,10 +5,18 @@
   <div class="grid-layout">
 
     <div class="caja c0">
-      <mat-form-field style="width: 250px !important;">
+      <mat-form-field style="width: 200px !important;">
         <mat-label>Num. generaciones</mat-label>
-        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+        <input matInput id="numGenera" type="number"  min="1" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+        <mat-icon matSuffix matTooltip="En aquellas generaciones que devuelven una lista, se indica el número de resultados a obtener.">help</mat-icon>
       </mat-form-field>
+
+      <mat-form-field style="width: 120px !important;margin-left: 5px;">
+        <mat-label>Decimales</mat-label>
+        <input matInput id="posicionesDecimales" type="number"  placeholder="2" [(ngModel)]="posicionesDecimales">
+        <mat-icon matSuffix matTooltip="En aquellas generaciones que devuelven un número con parte decimal, se indica el número de posiciones decimales a mostrar en el retorno.">help</mat-icon>
+      </mat-form-field>
+
     </div>
 
     <div class="caja c1">
@@ -28,9 +36,11 @@
             <mat-icon matSuffix matTooltip="Valor superior de los generables.">help</mat-icon>
           </mat-form-field>
 
-          <mat-checkbox [(ngModel)]="aleatorioDecimales">¿Decimales?</mat-checkbox>
+          <!--<mat-checkbox [(ngModel)]="aleatorioDecimales">¿Decimales?</mat-checkbox>-->
+          <mat-slide-toggle [(ngModel)]="aleatorioDecimales" style="margin-left: 5px;">¿Decimales?</mat-slide-toggle>
 
-          <mat-checkbox [(ngModel)]="aleatorioRepetidos">¿Repetir?</mat-checkbox>
+          <!--<mat-checkbox [(ngModel)]="aleatorioRepetidos">¿Repetir?</mat-checkbox>-->
+          <mat-slide-toggle [(ngModel)]="aleatorioRepetidos" style="margin-left: 5px;">¿Repetir?</mat-slide-toggle>
 
           <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar aleatorios" (click)="onClickBotonGenerarAleatorios()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
@@ -145,6 +155,406 @@
               </mat-list-item>
             }
           </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c4">
+      <mat-card appearance="outlined">
+        <mat-card-header>Número aleatorio (Gaussiano)</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;">
+            <mat-label>Media</mat-label>
+            <input matInput id="gaussianoMedia" type="number"  placeholder="0" [(ngModel)]="gaussianoMedia">
+            <mat-icon matSuffix matTooltip="Media (μ) es el valor promedio esperado de la distribución. Representa el punto central alrededor del cual los valores generados por la distribución se agrupan. En términos más formales, es el parámetro de localización de la distribución normal, y se calcula como la suma de todos los valores dividida por el número de valores.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;">
+            <mat-label>Desv. estandar</mat-label>
+            <input matInput id="gaussianoDesviacion" type="number"  placeholder="1" [(ngModel)]="gaussianoDesviacion">
+            <mat-icon matSuffix matTooltip="Desviación estándar (σ) es una medida de la dispersión o variabilidad de los valores alrededor de la media (μ) de la distribución. Indica cuánto se desvían los valores generados de la media, y una desviación estándar mayor implica una mayor dispersión de los datos, mientras que una desviación estándar menor implica que los valores están más agrupados cerca de la media.">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar aleatorio Gaussiano" (click)="onClickBotonGenerarGaussiano()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarGaussiano()"
+            matTooltip="Pulsar para limpiar los números aleatorios Gaussiano" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonGaussiano()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of gaussianoGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="numero">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c5">
+      <mat-card appearance="outlined">
+        <mat-card-header>Calculadora</mat-card-header>
+        <mat-card-content>
+
+          <div class="grid-layout-calculadora" >
+            <div class="boton-calculadora pantalla">
+              <mat-form-field style="width: 300px !important;margin-left: 5px;">
+                <mat-label>Pantalla</mat-label>
+                <input matInput id="calculadoraPantalla" type="text" [(ngModel)]="calculadoraPantalla" readonly="true" style="text-align: end;" (click)="onSelectDato(calculadoraPantalla)">
+              </mat-form-field>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('7')">7</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('8')">8</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('9')">9</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('^')"
+                matTooltip="Potencia" matTooltipPosition="below">^</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('%')"
+                matTooltip="Porcentaje" matTooltipPosition="below">%</button>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('4')">4</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('5')">5</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('6')">6</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('x')">x</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('&#247;')">&#247;</button>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('1')">1</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('2')">2</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('3')">3</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('+')">+</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('-')">-</button>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('0')">0</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('.')">.</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('C')">C</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('=')">=</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('MOD')"
+                matTooltip="Resto (módulo)" matTooltipPosition="below">MOD</button>
+            </div>
+
+            <div class="boton-calculadora pantalla">
+              <mat-divider style="border-top-color: #d5baff;"></mat-divider>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('!')"
+                matTooltip="Factorial (solo un número)" matTooltipPosition="below">!</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('log')"
+                matTooltip="Logaritmo (base 10) (solo un número)" matTooltipPosition="below">log</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('ln')"
+                matTooltip="Logaritmo Neperiano/Natural (base e) (solo un número)" matTooltipPosition="below">ln</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('log2')"
+                matTooltip="Logaritmo (base 10) (solo un número)" matTooltipPosition="below">log2</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('logX')"
+                matTooltip="Logaritmo en base X (indicada en el segundo operador)" matTooltipPosition="below">logX</button>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('&#8730;')"
+                matTooltip="Raíz cuadrada" matTooltipPosition="below">&#8730;</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('&#8731;')"
+                matTooltip="Resto (módulo)" matTooltipPosition="below">&#8731;</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('n&#8730;')"
+                matTooltip="Resto (módulo)" matTooltipPosition="below">n&#8730;</button>
+            </div>
+            <div class="boton-calculadora">
+            </div>
+            <div class="boton-calculadora">
+            </div>
+
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c6">
+      <mat-card appearance="outlined">
+        <mat-card-header>Regla de 3 (Proporción)</mat-card-header>
+        <mat-card-content>
+          <p style="margin-left: 10px;"><small><em>a ---- b</em></small></p>
+          <p style="margin-left: 10px;"><small><em>c ---- X</em></small></p>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;">
+            <mat-label>a</mat-label>
+            <input matInput id="proporcionA" type="number"  placeholder="100" [(ngModel)]="proporcionA">
+            <mat-icon matSuffix matTooltip="Valor de 'a' en regla de 3.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;">
+            <mat-label>b</mat-label>
+            <input matInput id="proporcionB" type="number"  placeholder="10" [(ngModel)]="proporcionB">
+            <mat-icon matSuffix matTooltip="Valor de 'b' en regla de 3.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;">
+            <mat-label>c</mat-label>
+            <input matInput id="proporcionC" type="number"  placeholder="200" [(ngModel)]="proporcionC">
+            <mat-icon matSuffix matTooltip="Valor de 'c' en regla de 3.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-slide-toggle [(ngModel)]="proporcionDirecta" style="margin-left: 5px;">¿Directa?</mat-slide-toggle>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Calcular X" (click)="onClickBotonProporcion()"
+            matTooltip="Pulsar para calcular" matTooltipPosition="below">
+            <mat-icon>calculate</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="proporcionResultado != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarProporcion()"
+            matTooltip="Pulsar para limpiar proporción calculada" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <mat-form-field style="width: 150px !important;margin-left: 5px;">
+              <mat-label>X</mat-label>
+              <input matInput id="proporcionResultado" type="text" [(ngModel)]="proporcionResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(proporcionResultado)">
+            </mat-form-field>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c7">
+      <mat-card appearance="outlined">
+        <mat-card-header>Calcular Área</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 330px;margin-left: 5px;">
+            <mat-label>Seleccionar figura trigonométrica</mat-label>
+            <mat-select [(ngModel)]="areaSelectedTipo" (selectionChange)="onSelectedFiguraTrigo($event.value)">
+              @for (tipo of areaTiposArea; track tipo) {
+                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" *ngIf="areaSelectedTipo != ''">
+            <mat-label>{{areaLabelA}}</mat-label>
+            <input matInput id="areaA" type="number"  placeholder="0" [(ngModel)]="areaA">
+            <mat-icon matSuffix matTooltip="Según cada forma implica un valor: 'cuadrado': Longitud de lado, 'rectangulo': Ancho, 'triangulo': Base, 'paralelogramo': Base, 'trapezoide': Base superior (corta/menor), 'circulo': Radio, 'elipse': Eje corto o menor (similar al radio en círculos)">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" *ngIf="areaSelectedTipo == 'rectangulo' || areaSelectedTipo == 'triangulo' || areaSelectedTipo == 'paralelogramo' || areaSelectedTipo == 'trapezoide' || areaSelectedTipo == 'elipse'">
+            <mat-label>{{areaLabelB}}</mat-label>
+            <input matInput id="areaB" type="number"  placeholder="0" [(ngModel)]="areaB">
+            <mat-icon matSuffix matTooltip="Según cada forma implica un valor: 'rectangulo': Alto, 'triangulo': Altura vertical, 'paralelogramo': Altura vertical, 'trapezoide': Base inferior (larga/mayor), 'elipse': Eje largo o mayor (similar al radio en círculos)">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" *ngIf="areaSelectedTipo == 'trapezoide'">
+            <mat-label>{{areaLabelC}}</mat-label>
+            <input matInput id="areaC" type="number"  placeholder="0" [(ngModel)]="areaC">
+            <mat-icon matSuffix matTooltip="Según cada forma implica un valor: 'trapezoide': Altura vertical">help</mat-icon>
+          </mat-form-field>
+
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Calcular área" (click)="onClickBotonArea()"
+            matTooltip="Pulsar para calcular" matTooltipPosition="below">
+            <mat-icon>calculate</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="areaResultado != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarArea()"
+            matTooltip="Pulsar para limpiar área calculada" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <mat-form-field style="width: 150px !important;margin-left: 5px;">
+              <mat-label>Área</mat-label>
+              <input matInput id="areaResultado" type="text" [(ngModel)]="areaResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(areaResultado)">
+            </mat-form-field>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c8">
+      <mat-card appearance="outlined">
+        <mat-card-header>Grados <-> Radianes</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" >
+            <mat-label>Grados/radianes</mat-label>
+            <input matInput id="gradosValor" type="number"  placeholder="0" [(ngModel)]="gradosValor">
+            <mat-icon matSuffix matTooltip="Grados/radianes (según check marcado)">help</mat-icon>
+          </mat-form-field>
+
+          <mat-button-toggle-group name="medidaGrados" [(ngModel)]="medidaGrados" style="margin-left: 10px;">
+            <mat-button-toggle value="grados">Grados</mat-button-toggle>
+            <mat-button-toggle value="radianes">Radianes</mat-button-toggle>
+          </mat-button-toggle-group>
+
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Conversión grados-radianes" (click)="onClickBotonGrados()"
+            matTooltip="Pulsar para convertir" matTooltipPosition="below">
+            <mat-icon>sync_alt</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="gradosResultado != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarGrados()"
+            matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <mat-form-field style="width: 150px !important;margin-left: 5px;">
+              <mat-label>Área</mat-label>
+              <input matInput id="gradosResultado" type="text" [(ngModel)]="gradosResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(gradosResultado)">
+            </mat-form-field>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c9">
+      <mat-card appearance="outlined">
+        <mat-card-header>Conversor de base</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" >
+            <mat-label>Número</mat-label>
+            <input matInput id="baseValor" type="text"  placeholder="10" [(ngModel)]="baseValor">
+            <mat-icon matSuffix matTooltip="Número a convertir">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;" >
+            <mat-label>Base</mat-label>
+            <input matInput id="baseActual" type="number"  placeholder="10" [(ngModel)]="baseActual">
+            <mat-icon matSuffix matTooltip="Base actual del número">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;" >
+            <mat-label>Base nueva</mat-label>
+            <input matInput id="baseNueva" type="number"  placeholder="10" [(ngModel)]="baseNueva">
+            <mat-icon matSuffix matTooltip="Base a la que convertir">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Conversión de base" (click)="onClickBotonBase()"
+            matTooltip="Pulsar para convertir" matTooltipPosition="below">
+            <mat-icon>sync_alt</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="baseResultado != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarBase()"
+            matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <mat-form-field style="width: 400px !important;margin-left: 5px;">
+              <mat-label>Área</mat-label>
+              <input matInput id="baseResultado" type="text" [(ngModel)]="baseResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(baseResultado)">
+            </mat-form-field>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c10">
+      <mat-card appearance="outlined">
+        <mat-card-header>Arábigo <-> Romano</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" >
+            <mat-label>Número</mat-label>
+            <input matInput id="arabigoValor" type="text"  placeholder="0" [(ngModel)]="arabigoValor">
+            <mat-icon matSuffix matTooltip="Arábigo/romano según marcado">help</mat-icon>
+          </mat-form-field>
+
+          <mat-button-toggle-group name="arabigoTipo" [(ngModel)]="arabigoTipo" style="margin-left: 10px;">
+            <mat-button-toggle value="arabigo">Arábigo</mat-button-toggle>
+            <mat-button-toggle value="romano">Romano</mat-button-toggle>
+          </mat-button-toggle-group>
+
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Conversión arábigo-romano" (click)="onClickBotonArabigo()"
+            matTooltip="Pulsar para convertir" matTooltipPosition="below">
+            <mat-icon>sync_alt</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="arabigoResultado != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarArabigo()"
+            matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <mat-form-field style="width: 150px !important;margin-left: 5px;">
+              <mat-label>Área</mat-label>
+              <input matInput id="arabigoResultado" type="text" [(ngModel)]="arabigoResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(arabigoResultado)">
+            </mat-form-field>
+          </div>
 
         </mat-card-content>
       </mat-card>

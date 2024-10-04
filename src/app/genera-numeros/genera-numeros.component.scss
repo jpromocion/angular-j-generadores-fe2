@@ -19,3 +19,34 @@
 .c1{
   grid-column: 1 / span 2;
 }
+
+.c4{
+  grid-column: 1 / span 2;
+}
+
+.c7{
+  grid-column: 1 / span 2;
+}
+
+
+
+.grid-layout-calculadora{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  margin: 10px;
+  width: 320px;
+  border: 1px solid grey;
+  background-color: grey;
+}
+
+
+.boton-calculadora{
+  width: auto;
+  height: auto;
+  margin: 5px;
+}
+
+.pantalla{
+  grid-column: 1 / span 5;
+}
+
