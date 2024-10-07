@@ -14,6 +14,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatRadioModule} from '@angular/material/radio';
 import { ExcelService } from '../excel.service';
 import { NumberService } from '../number.service';
 
@@ -21,7 +22,7 @@ import { NumberService } from '../number.service';
   selector: 'app-genera-numeros',
   standalone: true,
   imports: [NgFor, NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
-    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule],
+    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule],
   templateUrl: './genera-numeros.component.html',
   styleUrl: './genera-numeros.component.scss'
 })
@@ -53,6 +54,7 @@ export class GeneraNumerosComponent implements OnInit {
   //calculadora
   calculadoraPantalla: string = '';
   calculadoraOperacion: string = '';
+  calculadoraGrado: string = 'grados';
   calculadoraOperando1?: number;
   calculadoraOperando2?: number;
   calculadoraCalculado: boolean = false;
@@ -334,6 +336,31 @@ export class GeneraNumerosComponent implements OnInit {
     });
   }
 
+
+  /**
+   * Invocamos la operacion del servicio para realizar un calculo de la parte trigonometrica
+   */
+  getTrigonometrica(operando: string, numero: number, tipoNumero: String, decimales: number): void {
+    this.calculadoraPantalla = '';
+    this.calculadoraCalculado = false;
+    this.numberService.getTrigonometric(operando, numero, tipoNumero, decimales)
+    .subscribe(resultado => {
+      this.calculadoraPantalla = resultado;
+      //si en el resultado tras la , decimal solo hay ceros, eliminamos la parte decimal
+      if (this.calculadoraPantalla.indexOf(',') > 0){
+        let parteDecimal = this.calculadoraPantalla.substring(this.calculadoraPantalla.indexOf(',') + 1);
+        if (parseFloat(parteDecimal) === 0){
+          this.calculadoraPantalla = this.calculadoraPantalla.substring(0, this.calculadoraPantalla.indexOf(','));
+        }
+      }
+
+      if (this.calculadoraPantalla && this.calculadoraPantalla != ''){
+        this.calculadoraCalculado = true;
+        this.openSnackBar('Operación calculada', 'Calculado');
+      }
+    });
+  }
+
   /**
    * Tras haber realizado una operacion calculada con el servicio,
    * si se vuelve a utilizar la calculadora debemos empezar una nueva
@@ -400,6 +427,42 @@ export class GeneraNumerosComponent implements OnInit {
       case 'n\u221A':
         operadorServicio = 'raizN';
         break;
+      case 'sen':
+        operadorServicio = 'seno';
+        break;
+      case 'cos':
+        operadorServicio = 'coseno';
+        break;
+      case 'tan':
+        operadorServicio = 'tangente';
+        break;
+      case 'cot':
+        operadorServicio = 'cotangente';
+        break;
+      case 'sec':
+        operadorServicio = 'secante';
+        break;
+      case 'csc':
+        operadorServicio = 'cosecante';
+        break;
+      case 'arcsen':
+        operadorServicio = 'arcoseno';
+        break;
+      case 'arccos':
+        operadorServicio = 'arcocoseno';
+        break;
+      case 'arctg':
+        operadorServicio = 'arcotangente';
+        break;
+      case 'sinh':
+        operadorServicio = 'senohiperbolico';
+        break;
+      case 'cosh':
+        operadorServicio = 'cosenohiperbolico';
+        break;
+      case 'tanh':
+        operadorServicio = 'tangentehiperbolico';
+        break;
       default:
         operadorServicio = '';
     }
@@ -434,7 +497,15 @@ export class GeneraNumerosComponent implements OnInit {
       } else {
         //rellenamos el calculadoraOperando2 con la parte de la pantalla que hay tras el operador
         this.calculadoraOperando2 = parseFloat(this.calculadoraPantalla.substring(this.calculadoraPantalla.indexOf(this.calculadoraOperacion) + this.calculadoraOperacion.length).replace(',', '.'));
-        this.getCalcularadora(this.transformarOperando(this.calculadoraOperacion), this.calculadoraOperando1, this.calculadoraOperando2, this.posicionesDecimales);
+
+        if (this.calculadoraOperacion == 'sen' || this.calculadoraOperacion == 'cos' || this.calculadoraOperacion == 'tan' || this.calculadoraOperacion == 'cot'
+          || this.calculadoraOperacion == 'sec' || this.calculadoraOperacion == 'csc' || this.calculadoraOperacion == 'arcsen' || this.calculadoraOperacion == 'arccos'
+          || this.calculadoraOperacion == 'arctg' || this.calculadoraOperacion == 'sinh' || this.calculadoraOperacion == 'cosh' || this.calculadoraOperacion == 'tanh'){
+          this.getTrigonometrica(this.transformarOperando(this.calculadoraOperacion), this.calculadoraOperando1, this.calculadoraGrado, this.posicionesDecimales);
+        } else{
+          this.getCalcularadora(this.transformarOperando(this.calculadoraOperacion), this.calculadoraOperando1, this.calculadoraOperando2, this.posicionesDecimales);
+        }
+
       }
     } else{
       //Cualquier otro caso es un operador.

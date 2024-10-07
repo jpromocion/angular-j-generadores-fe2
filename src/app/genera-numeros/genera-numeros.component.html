@@ -326,9 +326,64 @@
               <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('n&#8730;')"
                 matTooltip="Resto (módulo)" matTooltipPosition="below">n&#8730;</button>
             </div>
-            <div class="boton-calculadora">
+            <div class="boton-calculadora"></div>
+            <div class="boton-calculadora"></div>
+
+            <div class="boton-calculadora filaGrado">
+              <mat-radio-group [(ngModel)]="calculadoraGrado">
+                <mat-radio-button value="grados">Gra</mat-radio-button>
+                <mat-radio-button value="radianes">Rad</mat-radio-button>
+              </mat-radio-group>
             </div>
             <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('sen')"
+                matTooltip="Seno" matTooltipPosition="below">sen</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('cos')"
+                matTooltip="Coseno" matTooltipPosition="below">cos</button>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('tan')"
+                matTooltip="Tangente" matTooltipPosition="below">tan</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('cot')"
+                matTooltip="Cotangente" matTooltipPosition="below">cot</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('sec')"
+                matTooltip="Secante" matTooltipPosition="below">sec</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('csc')"
+                matTooltip="Cosecante" matTooltipPosition="below">csc</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('arcsen')"
+                matTooltip="Arcoseno" matTooltipPosition="below">arcsen</button>
+            </div>
+
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('arccos')"
+                matTooltip="Arcocoseno" matTooltipPosition="below">arccos</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('arctg')"
+                matTooltip="Arcotangente" matTooltipPosition="below">arctg</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('sinh')"
+                matTooltip="Seno hiperbólico" matTooltipPosition="below">sinh</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('cosh')"
+                matTooltip="Coseno hiperbólico" matTooltipPosition="below">cosh</button>
+            </div>
+            <div class="boton-calculadora">
+              <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('tanh')"
+                matTooltip="Tangente hiperbólica" matTooltipPosition="below">tanh</button>
             </div>
 
           </div>
