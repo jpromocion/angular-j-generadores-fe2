@@ -50,6 +50,7 @@ export class MenuComponent {
     { path: 'genera-variados', icon: 'more_horiz' },
     { path: 'about', icon: 'info' },
     { path: 'genera-numeros', icon: '123' },
+    { path: 'genera-barras', icon: 'qr_code_2' },
   ];
 
   constructor() {}

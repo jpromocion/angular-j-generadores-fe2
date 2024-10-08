@@ -71,6 +71,14 @@ export const routes: Routes = [
       title: 'Localización'
   },
   {
+    path: 'genera-barras',
+    loadComponent: () =>
+      import('./genera-barras/genera-barras.component').then(
+        (c) => c.GeneraBarrasComponent
+      ),
+      title: 'Cod. Barras'
+  },
+  {
     path: 'genera-variados',
     loadComponent: () =>
       import('./genera-variados/genera-variados.component').then(

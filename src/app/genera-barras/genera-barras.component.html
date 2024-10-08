@@ -1,0 +1,241 @@
+<h2>QR y Códigos de barras</h2>
+
+<div class="panelFluidoSegundoNivel">
+
+  <div class="grid-layout">
+
+
+    <div class="caja c0">
+      <mat-form-field style="width: 200px !important;">
+        <mat-label>Ancho</mat-label>
+        <input matInput id="ancho" type="number"  [(ngModel)]="ancho">
+        <mat-icon matSuffix matTooltip="Ancho de la imagen en pixeles a generar. Dejar en blanco para que se generen con el valor defecto del servicio.">help</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field style="width: 200px !important;margin-left: 5px;">
+        <mat-label>Alto</mat-label>
+        <input matInput id="alto" type="number"  [(ngModel)]="alto">
+        <mat-icon matSuffix matTooltip="Alto de la imagen en pixeles a generar. Dejar en blanco para que se generen con el valor defecto del servicio.">help</mat-icon>
+      </mat-form-field>
+
+    </div>
+
+    <div class="caja c1">
+      <mat-card appearance="outlined">
+        <mat-card-header>QR</mat-card-header>
+        <mat-card-content>
+
+          <p style="margin-left: 10px;"><small><em>Los códigos QR se están convirtiendo en los códigos de barras 2D más reconocidos en todo el mundo. La gran ventaja del código QR es que podemos almacenar grandes cantidades de datos en un espacio limitado.</em></small></p>
+
+          <p style="margin-left: 10px;"><small><em>Utilizan cuatro modos de codificación estandarizados para almacenar datos de manera eficiente.</em></small></p>
+
+          <p style="margin-left: 10px;"><small><em>Además, son flexibles en tamaño y se escanean fácilmente con un teléfono inteligente. Al igual que el PDF417, un código QR puede soportar algunos daños sin provocar la pérdida de datos.</em></small></p>
+
+          <mat-form-field style="width: 100% !important;margin-left: 5px;">
+            <mat-label>Valor a codificar</mat-label>
+            <textarea matInput id="qrBarcode" type="text" [(ngModel)]="qrBarcode" rows="3">
+            </textarea>
+          </mat-form-field>
+
+          <div>
+            <mat-form-field style="width: 35% !important;margin-left: 5px;">
+              <mat-label>Texto superior</mat-label>
+              <input matInput id="qrTextoTop" type="text"  [(ngModel)]="qrTextoTop">
+              <mat-icon matSuffix matTooltip="Texto a fijar en parte superior. Opcional.">help</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field style="width: 35% !important;margin-left: 5px;">
+              <mat-label>Texto inferior</mat-label>
+              <input matInput id="qrTextoBottom" type="text"  [(ngModel)]="qrTextoBottom">
+              <mat-icon matSuffix matTooltip="Texto a fijar en parte inferior. Opcional.">help</mat-icon>
+            </mat-form-field>
+
+            <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarQr()"
+              matTooltip="Pulsar para generar" matTooltipPosition="below">
+              <mat-icon>refresh</mat-icon>
+            </button>
+
+            <button type="button" *ngIf="imagenQr != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarQr()"
+              matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+          <div>
+            <img *ngIf="imagenQr != ''" src="{{imagenQr}}" alt="código barras generado">
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c2">
+      <mat-card appearance="outlined">
+        <mat-card-header>PDF417</mat-card-header>
+        <mat-card-content>
+
+          <p style="margin-left: 10px;"><small><em>PDF417 es un código de barras lineal apilado compuesto por múltiples códigos de barras 1D apilados uno sobre otro. Por lo tanto, puede utilizar un escáner lineal tradicional.</em></small></p>
+          <p style="margin-left: 10px;"><small><em>Podríamos esperar encontrarlo en una variedad de aplicaciones, como viajes (tarjetas de embarque), tarjetas de identificación y gestión de inventario.</em></small></p>
+
+          <mat-form-field style="width: 70% !important;margin-left: 5px;">
+            <mat-label>Valor a codificar</mat-label>
+            <textarea matInput id="pdf147Barcode" type="text" [(ngModel)]="pdf147Barcode" rows="3">
+            </textarea>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarPdf147()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="imagenPdf147 != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPdf147()"
+            matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <img *ngIf="imagenPdf147 != ''" src="{{imagenPdf147}}" alt="código barras generado">
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+
+    <div class="caja c3">
+      <mat-card appearance="outlined">
+        <mat-card-header>EAN-13</mat-card-header>
+        <mat-card-content>
+
+          <p style="margin-left: 10px;"><small><em>Los códigos EAN se conocen en todo el mundo como números de artículo europeos y números de artículo internacionales. Están diseñados para su lectura en el punto de venta. También existen algunas variaciones diferentes del código EAN, como EAN-13, EAN-8, JAN-13 e ISBN.</em></small></p>
+          <p style="margin-left: 10px;"><small><em>El código EAN-13 es el estándar EAN más utilizado. Está formado por 13 dígitos: un “0” inicial seguido del código UPC-A (12 dígitos).</em></small></p>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Valor a codificar</mat-label>
+            <input matInput id="eanBarcode" type="text"  placeholder="0123456789012" [(ngModel)]="eanBarcode">
+            <mat-icon matSuffix matTooltip="Código numérico de 13 dígitos comenzado por '0'.">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarEan()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="imagenEan != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarEan()"
+            matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <img *ngIf="imagenEan != ''" src="{{imagenEan}}" alt="código barras generado">
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c4">
+      <mat-card appearance="outlined">
+        <mat-card-header>Code 128</mat-card-header>
+        <mat-card-content>
+
+          <p style="margin-left: 10px;"><small><em>El código de barras Code 128 es un código lineal compacto y de alta densidad que se utiliza en las industrias de logística y transporte para pedidos y distribución. </em></small></p>
+          <p style="margin-left: 10px;"><small><em>Puede codificar los 128 caracteres ASCII y su longitud es variable.</em></small></p>
+
+          <mat-form-field style="width: 500px !important;margin-left: 5px;">
+            <mat-label>Valor a codificar</mat-label>
+            <input matInput id="code128Barcode" type="text"  placeholder="CODE128" [(ngModel)]="code128Barcode">
+            <mat-icon matSuffix matTooltip="Código alfanúmerico de máximo 80 carácteres.">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarCode128()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="imagenCode128 != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarCode128()"
+            matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <img *ngIf="imagenCode128 != ''" src="{{imagenCode128}}" alt="código barras generado">
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div class="caja c5">
+      <mat-card appearance="outlined">
+        <mat-card-header>UPC-A</mat-card-header>
+        <mat-card-content>
+
+          <p style="margin-left: 10px;"><small><em>Los códigos UPC  (Universal Product Code) son algunos de los códigos de barras 1D más utilizados y los encontramos principalmente en los Estados Unidos.</em></small></p>
+          <p style="margin-left: 10px;"><small><em>El UPC-A es un código solo numérico que contiene 12 dígitos: un número de identificación del fabricante (6 dígitos), un número de artículo (5 dígitos) y un dígito de control.</em></small></p>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Valor a codificar</mat-label>
+            <input matInput id="upcABarcode" type="text"  placeholder="123456789012" [(ngModel)]="upcABarcode">
+            <mat-icon matSuffix matTooltip="Código numérico de 12 dígitos. Puedes omitir el último que es el dígito de control, y lo generará por debajo.">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarUpcA()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="imagenUpcA != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarUpcA()"
+            matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <img *ngIf="imagenUpcA != ''" src="{{imagenUpcA}}" alt="código barras generado">
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c6">
+      <mat-card appearance="outlined">
+        <mat-card-header>UPC-E</mat-card-header>
+        <mat-card-content>
+
+          <p style="margin-left: 10px;"><small><em>Una variante del UPC que tiene sólo 8 dígitos y se utiliza para paquetes pequeños.</em></small></p>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;">
+            <mat-label>Valor a codificar</mat-label>
+            <input matInput id="upcEBarcode" type="text"  placeholder="12345678" [(ngModel)]="upcEBarcode">
+            <mat-icon matSuffix matTooltip="Código numérico de 8 dígitos.">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarUpcE()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="imagenUpcE != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarUpcE()"
+            matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div>
+            <img *ngIf="imagenUpcE != ''" src="{{imagenUpcE}}" alt="código barras generado">
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>
