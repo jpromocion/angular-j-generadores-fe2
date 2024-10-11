@@ -58,7 +58,7 @@ export class GeneraPerfilesComponent implements OnInit, AfterViewInit  {
 
   //cuando generamos varias empresas
   listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
-  displayedColumnsEmpresas: string[] = ['cif','razon','fechacons','cnae','actividad','email','telefono','fax','ccaa','provincia','municipio','codpostal','direcion','direcioncompleta'];
+  displayedColumnsEmpresas: string[] = ['cif','razon','fechacons','cnae','actividad','email','paginaWeb','telefono','fax','ccaa','provincia','municipio','codpostal','direcion','direcioncompleta'];
   //@ViewChild(MatPaginator) paginatorEmpresas!: MatPaginator;
   @ViewChild('paginatorEmpresas') paginatorEmpresas!: MatPaginator;
   @ViewChild('sortEmpresas') sortEmpresas!: MatSort;

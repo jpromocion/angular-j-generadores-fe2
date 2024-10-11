@@ -16,4 +16,5 @@ export interface Empresa {
 	codigoPostal: string;
 	cnae: string;
 	actividad: string;
+  paginaWeb: string;
 }

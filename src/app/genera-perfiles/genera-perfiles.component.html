@@ -305,6 +305,13 @@
       </button>
     </div>
     <div class="caja" *ngIf="empresaGenerada">
+      <label>Pág. Web: </label>
+      <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.paginaWeb)" style="margin-left: 10px; "
+      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        <span class="web">{{empresaGenerada.paginaWeb}}</span>
+      </button>
+    </div>
+    <div class="caja" *ngIf="empresaGenerada">
       <label>Teléfono: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.telefono)" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -749,6 +756,16 @@
             <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.email)"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="email">{{empresaGenerada.email}}</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paginaWeb">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Pág. Web</th>
+          <td mat-cell *matCellDef="let empresaGenerada">
+            <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.paginaWeb)"
+            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              <span class="web">{{empresaGenerada.paginaWeb}}</span>
             </button>
           </td>
         </ng-container>
