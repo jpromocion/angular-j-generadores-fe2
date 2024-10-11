@@ -2,7 +2,7 @@ import { Component, OnInit, inject, AfterViewInit, ViewChild, ViewChildren, Quer
 import {NgFor,NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { Clipboard } from '@angular/cdk/clipboard';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatButtonToggleModule, MatButtonToggleChange} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -162,4 +162,19 @@ export class GeneraTextosComponent {
   transformaTexto(texto: string): string {
     return new CaseTransformerPipe().transform(texto, this.tipoLetra);
   }
+
+  /**
+   * Evento de cambio del button toggle de tipo de generacion
+   */
+  onChangeTipoGeneracion(event: MatButtonToggleChange): void {
+    if (event.value == 'c') {
+      this.cantidad = 100;
+    } else if (event.value == 'w') {
+      this.cantidad = 20;
+    } else if (event.value == 'p') {
+      this.cantidad = 3;
+    }
+
+  }
+
 }

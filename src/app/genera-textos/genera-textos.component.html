@@ -19,7 +19,7 @@
 
     <div class="caja c2">
       <label>Tipo: </label>
-      <mat-button-toggle-group name="tipo" aria-label="tipo" [(ngModel)]="tipoGeneracion" style="margin-left: 10px;">
+      <mat-button-toggle-group name="tipo" aria-label="tipo" [(ngModel)]="tipoGeneracion" style="margin-left: 10px;" (change)="onChangeTipoGeneracion($event)">
         <mat-button-toggle value="c">Carácteres</mat-button-toggle>
         <mat-button-toggle value="w">Palabras</mat-button-toggle>
         <mat-button-toggle value="p">Párrafos</mat-button-toggle>
