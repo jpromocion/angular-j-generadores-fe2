@@ -21,7 +21,6 @@ import { saveAs } from 'file-saver';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { FilesService } from '../files.service';
 import { ExcelService } from '../excel.service';
-import { DownloadService } from '../download.service';
 
 @Component({
   selector: 'app-genera-archivos',
@@ -63,8 +62,6 @@ export class GeneraArchivosComponent implements OnInit {
   //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
   private _liveAnnouncer = inject(LiveAnnouncer);
 
-  //inyeccion del servicio para descargar archivos
-  private downloadService: DownloadService = inject(DownloadService);
 
   constructor() { }
 
