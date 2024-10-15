@@ -13,9 +13,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatListModule} from '@angular/material/list';
-import { ExcelService } from '../excel.service';
+import { ExcelService } from '../core/services/excel.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { DoiService } from '../doi.service';
+import { DoiService } from '../core/services/doi.service';
 
 
 

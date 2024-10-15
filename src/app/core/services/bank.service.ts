@@ -6,10 +6,10 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, delay } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { MessageService } from './message.service';
-import { Cuenta } from './cuenta';
-import { Tarjeta } from './tarjeta';
+import { Cuenta } from '../models/cuenta';
+import { Tarjeta } from '../models/tarjeta';
 import { DatosConexionService } from './datos-conexion.service';
 
 @Injectable({

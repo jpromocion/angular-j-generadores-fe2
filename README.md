@@ -59,6 +59,8 @@ Creado con [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3:
 
 NOTA: Los componentes, entidades, servicios reutilizados nos los hemos ido trayendo directamente desde [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) copiando.
 
+
+
 ### Instalado Angular Material.
 
 [Angular Material](https://material.angular.io/)
@@ -128,4 +130,22 @@ Se incluye un Dockerfile que permite desplegar la aplicación en Render:
 	- Levanta el servidor Nginx
 
 > NOTA: en Dockerfile esta comentada la configuración para lanzarlo como `ng serve`, como se haría en un entorno de desarrollo, aunque con la configuración de producción.
+
+
+
+## Mejorando la estructura del proyecto
+
+Viendo el tamaño final, realizamos una reestructuración de la estructura del proyecto, dado que la que te genera por defecto Angular CLI es para cosas sencillas.
+En base a ello y siguiendo las recomendaciones de [Así deberías Estructurar tus Proyectos en Angular 17](https://www.youtube.com/watch?v=kLUdumt8lNY):
+  - **src/**: Todo el fuente. Directamente el `index.html` y el `main.ts` de inicio de la aplicación.
+    - **environments**: Definimos los elementos para diferenciar entorno: desarrollo, producción.
+    - **app/**: ELementos de la aplicación en si. Directamente esta el componente `app` principal de la aplicación con su `config` y `routes`.
+      - **core/**: Todos los elementos que no son de interfaz gráfica.
+        - **models/**: Intefaces que definen modelos.
+        - **services/**: Servicios de la aplicación.
+      - **shared/**: Elementos de utilización común en la aplicación.
+        - **pipes/**: Pipes de formato.
+        - **components/**: Componentes particulares comunes y reutilizables. Dentro irá un folder para cada componente con su nombre y a su vez dentro tendra los `.html`, `.scss`, `.ts` que lo definen.
+      - **(cada_carpeta_estructura_logica)/**: El resto son carpetas que organizan la estructura lógica de nuestros componentes según las funcionalidades. Una carpeta podría ser un contenedor de carpetas que son los componentes, o ser el mismo ya el componente (`.html`, `.scss`, `.ts` que lo definen).
+
 

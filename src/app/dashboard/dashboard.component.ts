@@ -10,8 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MessagesComponent } from '../messages/messages.component';
-import { DatosConexionService } from '../datos-conexion.service';
+import { MessagesComponent } from '../shared/components/messages/messages.component';
+import { DatosConexionService } from '../core/services/datos-conexion.service';
 
 @Component({
   selector: 'app-dashboard',

@@ -6,12 +6,12 @@ import {MatButtonToggleModule, MatButtonToggleChange} from '@angular/material/bu
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CaseTransformerPipe } from '../case-transformer.pipe';
+import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { TextosService } from '../textos.service';
-import { ExcelService } from '../excel.service';
+import { TextosService } from '../core/services/textos.service';
+import { ExcelService } from '../core/services/excel.service';
 
 
 @Component({

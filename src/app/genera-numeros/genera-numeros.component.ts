@@ -15,8 +15,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
-import { ExcelService } from '../excel.service';
-import { NumberService } from '../number.service';
+import { ExcelService } from '../core/services/excel.service';
+import { NumberService } from '../core/services/number.service';
 
 @Component({
   selector: 'app-genera-numeros',

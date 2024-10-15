@@ -13,11 +13,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatListModule} from '@angular/material/list';
-import { ExcelService } from '../excel.service';
+import { ExcelService } from '../core/services/excel.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { BankService } from '../bank.service';
-import { Cuenta } from '../cuenta';
-import { Tarjeta } from '../tarjeta';
+import { BankService } from '../core/services/bank.service';
+import { Cuenta } from '../core/models/cuenta';
+import { Tarjeta } from '../core/models/tarjeta';
 
 
 @Component({

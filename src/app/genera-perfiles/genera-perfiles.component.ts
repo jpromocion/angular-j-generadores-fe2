@@ -7,7 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { CaseTransformerPipe } from '../case-transformer.pipe';
+import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
@@ -15,10 +15,10 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { ProfilesService } from '../profiles.service';
-import { Persona } from '../persona';
-import { Empresa } from '../empresa';
-import { ExcelService } from '../excel.service';
+import { ProfilesService } from '../core/services/profiles.service';
+import { Persona } from '../core/models/persona';
+import { Empresa } from '../core/models/empresa';
+import { ExcelService } from '../core/services/excel.service';
 
 
 @Component({

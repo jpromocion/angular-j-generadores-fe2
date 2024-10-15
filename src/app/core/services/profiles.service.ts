@@ -1,23 +1,25 @@
 /**
  * La clase que actuara coimo servicio para acceder a nuestra itnerfaz
- * API rest "demo/"
+ * API rest "profiles/"
  */
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, delay } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { MessageService } from './message.service';
+import { Persona } from '../models/persona';
+import { Empresa } from '../models/empresa';
 import { DatosConexionService } from './datos-conexion.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DemoService {
+export class ProfilesService {
 
   //La URL de la API rest
   private urlJsonServer = environment.apiUrl;
-  private interfaz = '/demo';
+  private interfazProfiles = '/profiles';
 
   baseHeaders = new HttpHeaders().set('X-API-KEY', '');
 
@@ -30,8 +32,7 @@ export class DemoService {
   //de todo app
   private datosConexionService: DatosConexionService = inject(DatosConexionService);
 
-  constructor () {
-  }
+  constructor() { }
 
   /**
    * Fijar la apyKey
@@ -48,17 +49,16 @@ export class DemoService {
     this.setApiKey(this.datosConexionService.getApiKey());
   }
 
-  /** Log a HeroService message with the MessageService */
   /**
    * Loguear un mensaje en el servicio de mensajes
    * @param message
    */
   private log(message: string, error: boolean = false) {
-    console.info(`DemoService: ${message}`);
+    console.info(`ProfilesService: ${message}`);
     if (error) {
-      this.messageService.addError(`DemoService: ${message}`);
+      this.messageService.addError(`ProfilesService: ${message}`);
     } else {
-      this.messageService.add(`DemoService: ${message}`);
+      this.messageService.add(`ProfilesService: ${message}`);
     }
   }
 
@@ -81,19 +81,47 @@ export class DemoService {
   }
 
   /**
-   * Interfaz de invocación del servicio rest para obtener la version
-   * Interfaz: GET /demo/version
-   * @returns Lista de NIFS generados aleatoriamente
+   * Interfaz de invocación del servicio rest para obtener personas generados aleatoriamente.
+   * Interfaz: GET /profiles/person?results=10
+   * @returns Lista de personas generadas aleatoriamente
    */
-  getVersion(): Observable<string>  {
+  getPerson(resultados: number = 1, genero: string = ''): Observable<Persona[]> {
     //fijamos la api-key del servicio de datos conexion
     this.fijarApiKeyServicio();
-    return this.http.get(this.urlJsonServer + this.interfaz + '/version', {
-      headers: this.baseHeaders, responseType: 'text'
+
+    let urlfinal: string;
+    if (genero === '') {
+      urlfinal = this.urlJsonServer + this.interfazProfiles + '/person?results=' + resultados;
+    } else{
+      urlfinal = this.urlJsonServer + this.interfazProfiles + '/person?results=' + resultados + '&gender=' + genero;
+    }
+
+    return this.http.get<Persona[]>(urlfinal, {
+      headers: this.baseHeaders,
     })
       .pipe(
-        //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getVersion', ''))
+        //tap(_ => this.log('Personas recuperadas')),
+        catchError(this.handleError<Persona[]>('getPerson', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para obtener empresas generadas aleatoriamente.
+   * Interfaz: GET /profiles/company?results=10
+   * @returns Lista de empresas generadas aleatoriamente
+   */
+  getCompany(resultados: number = 1): Observable<Empresa[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal = this.urlJsonServer + this.interfazProfiles + '/company?results=' + resultados;
+
+    return this.http.get<Empresa[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Empresas recuperadas')),
+        catchError(this.handleError<Empresa[]>('getCompany', []))
       );
   }
 

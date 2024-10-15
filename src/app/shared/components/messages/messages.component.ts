@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import {NgFor, NgIf} from '@angular/common';
-import { MessageService } from '../message.service';
+import { MessageService } from '../../../core/services/message.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBar} from '@angular/material/snack-bar';
 

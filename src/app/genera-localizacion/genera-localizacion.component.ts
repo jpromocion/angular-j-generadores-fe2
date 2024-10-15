@@ -6,7 +6,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CaseTransformerPipe } from '../case-transformer.pipe';
+import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -18,11 +18,11 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import { MiscService } from '../misc.service';
-import { ExcelService } from '../excel.service';
-import { Ccaa } from '../ccaa';
-import { Provincia } from '../provincia';
-import { Municipio } from '../municipio';
+import { MiscService } from '../core/services/misc.service';
+import { ExcelService } from '../core/services/excel.service';
+import { Ccaa } from '../core/models/ccaa';
+import { Provincia } from '../core/models/provincia';
+import { Municipio } from '../core/models/municipio';
 
 @Component({
   selector: 'app-genera-localizacion',

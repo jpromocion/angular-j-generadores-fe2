@@ -6,7 +6,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, delay } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { MessageService } from './message.service';
 import { DatosConexionService } from './datos-conexion.service';
 

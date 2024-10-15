@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ViewChild  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {MenuComponent}  from './menu/menu.component';
-import { DatosConexionService } from './datos-conexion.service';
+import {MenuComponent}  from './shared/components/menu/menu.component';
+import { DatosConexionService } from './core/services/datos-conexion.service';
 
 @Component({
   selector: 'app-root',

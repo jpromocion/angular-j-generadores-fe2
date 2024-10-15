@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { version } from '../../../package.json';
-import { DemoService } from '../demo.service';
+import { DemoService } from '../core/services/demo.service';
 
 @Component({
   selector: 'app-about',

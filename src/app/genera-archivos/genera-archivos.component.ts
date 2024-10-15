@@ -6,7 +6,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CaseTransformerPipe } from '../case-transformer.pipe';
+import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -19,8 +19,8 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { saveAs } from 'file-saver';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import { FilesService } from '../files.service';
-import { ExcelService } from '../excel.service';
+import { FilesService } from '../core/services/files.service';
+import { ExcelService } from '../core/services/excel.service';
 
 @Component({
   selector: 'app-genera-archivos',

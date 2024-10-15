@@ -6,12 +6,12 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, delay } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import { MessageService } from './message.service';
 import { DatosConexionService } from './datos-conexion.service';
-import { Ccaa } from './ccaa';
-import { Provincia } from './provincia';
-import { Municipio } from './municipio';
+import { Ccaa } from '../models/ccaa';
+import { Provincia } from '../models/provincia';
+import { Municipio } from '../models/municipio';
 
 @Injectable({
   providedIn: 'root'

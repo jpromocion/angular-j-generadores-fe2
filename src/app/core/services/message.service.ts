@@ -2,7 +2,7 @@
  * Va  a ser un servicio especial para mostrar mensjaes generrales de la aplicacion
  */
 import { Injectable } from '@angular/core';
-import { Mensajelog } from './mensajelog';
+import { Mensajelog } from '../models/mensajelog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
