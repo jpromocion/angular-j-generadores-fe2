@@ -1,0 +1,105 @@
+<h2>Archivos</h2>
+
+<div class="panelFluidoSegundoNivel">
+
+  <div class="grid-layout">
+
+    <div class="caja c1">
+      <mat-card appearance="outlined">
+        <mat-card-header>Base 64 (codificar)</mat-card-header>
+        <mat-card-content>
+
+          <div>
+            <label>Tipo entrada: </label>
+            <mat-button-toggle-group name="codifica64Entrada" aria-label="codifica64Entrada" [(ngModel)]="codifica64Entrada" style="margin-left: 10px;margin-top: 10px;">
+              <mat-button-toggle value="texto">Texto</mat-button-toggle>
+              <mat-button-toggle value="archivo">Archivo</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <mat-form-field style="width: 100% !important;margin-top: 10px;margin-left: 5px;" *ngIf="codifica64Entrada && codifica64Entrada == 'texto'">
+            <mat-label>Valor a codificar</mat-label>
+            <textarea matInput id="textoABase64" type="text" [(ngModel)]="textoABase64" rows="6">
+            </textarea>
+          </mat-form-field>
+
+          <!-- Angular material no tiene nada definido para el tipo file... funciona pero visualmente da dolor de cabeza.
+           Alternativa: https://stackoverflow.com/questions/52622061/how-to-use-input-type-file-in-angular-material
+          -->
+          <!-- <input type="file" *ngIf="codifica64Entrada && codifica64Entrada == 'archivo'" (change)="handleSubirFileCodifica64($event)"/> -->
+          <button type="button" mat-raised-button *ngIf="codifica64Entrada && codifica64Entrada == 'archivo'" (click)="fileInputParamCodiBase64.click()">Elegir archivo</button>
+          <input #fileInputParamCodiBase64 type="file" hidden (change)="handleSubirFileCodifica64($event)" id="fileParamCodiBase64">
+          <span *ngIf="codifica64Entrada && codifica64Entrada == 'archivo' && nombreArchivoBase64 != ''">{{nombreArchivoBase64}}</span>
+
+          <div>
+            <button type="button"  mat-fab aria-label="Codificar base64" (click)="onClickBotonCodificarBase64()"
+              matTooltip="Pulsar para codificar" matTooltipPosition="below">
+              <mat-icon>code</mat-icon>
+            </button>
+
+            <button type="button" *ngIf="textoCodificadoBase64" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarBase64()"
+              matTooltip="Pulsar para limpiar codificado" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+          <div>
+            <mat-form-field *ngIf="textoCodificadoBase64" style="width: 100% !important; margin-top: 10px;margin-left: 5px;">
+              <mat-label>Codificado en Base 64</mat-label>
+              <textarea matInput rows="6" (click)="onSelectDato(textoCodificadoBase64)" readonly="true" value="{{textoCodificadoBase64}}">
+              </textarea>
+              <mat-icon matSuffix matTooltip="Pulsar para copiar">help</mat-icon>
+            </mat-form-field>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c2">
+      <mat-card appearance="outlined">
+        <mat-card-header>Base 64 (decodificar)</mat-card-header>
+        <mat-card-content>
+
+          <div>
+            <label>Tipo salida: </label>
+            <mat-button-toggle-group name="decodifica64Salida" aria-label="decodifica64Salida" [(ngModel)]="decodifica64Salida" style="margin-left: 10px;margin-top: 10px;">
+              <mat-button-toggle value="texto">Texto</mat-button-toggle>
+              <mat-button-toggle value="archivo">Archivo</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <mat-form-field style="width: 100% !important; margin-top: 10px;margin-left: 5px;">
+            <mat-label>Valor a decodificar</mat-label>
+            <textarea matInput id="textoDeBase64" type="text" [(ngModel)]="textoDeBase64" rows="6">
+            </textarea>
+          </mat-form-field>
+
+          <div>
+            <button type="button"  mat-fab aria-label="Decodificar base64" (click)="onClickBotonDecodificarBase64()"
+              matTooltip="Pulsar para decodificar" matTooltipPosition="below">
+              <mat-icon>code</mat-icon>
+            </button>
+
+            <button type="button" *ngIf="textoDecodificadoBase64" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarDecoBase64()"
+              matTooltip="Pulsar para limpiar decodificado" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+          <div>
+            <mat-form-field *ngIf="textoDecodificadoBase64" style="width: 100% !important; margin-top: 10px;margin-left: 5px;">
+              <mat-label>Texto decodificado</mat-label>
+              <textarea matInput rows="6" (click)="onSelectDato(textoDecodificadoBase64)" readonly="true" value="{{textoDecodificadoBase64}}">
+              </textarea>
+              <mat-icon matSuffix matTooltip="Pulsar para copiar">help</mat-icon>
+            </mat-form-field>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+
+</div>

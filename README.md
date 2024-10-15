@@ -107,7 +107,8 @@ Instalamos con:
 npm install file-saver
 npm install --save-dev @types/file-saver
 ```
-- Adicional para generar excel, permite descargar el fichero.
+- Permite descargar fichero desde el navegador.
+- Es requerido para generar excel además.
 
 
 

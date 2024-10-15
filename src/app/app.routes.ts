@@ -79,6 +79,14 @@ export const routes: Routes = [
       title: 'Cod. Barras'
   },
   {
+    path: 'genera-archivos',
+    loadComponent: () =>
+      import('./genera-archivos/genera-archivos.component').then(
+        (c) => c.GeneraArchivosComponent
+      ),
+      title: 'Archivos'
+  },
+  {
     path: 'genera-variados',
     loadComponent: () =>
       import('./genera-variados/genera-variados.component').then(

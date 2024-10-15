@@ -51,6 +51,7 @@ export class MenuComponent {
     { path: 'about', icon: 'info' },
     { path: 'genera-numeros', icon: '123' },
     { path: 'genera-barras', icon: 'qr_code_2' },
+    { path: 'genera-archivos', icon: 'folder_copy' },
   ];
 
   constructor() {}
