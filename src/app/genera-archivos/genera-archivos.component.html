@@ -100,6 +100,47 @@
       </mat-card>
     </div>
 
+    <div class="caja c3">
+      <mat-card appearance="outlined">
+        <mat-card-header>Obtener Hash</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 350px !important; margin-top: 10px;margin-left: 5px;">
+            <mat-label>Seleccionar tipo algoritmo</mat-label>
+            <mat-select [(ngModel)]="selectedTipoHash">
+              @for (tipo of listaTiposHash; track tipo) {
+                <mat-option [value]="tipo.codigo">{{tipo.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button type="button" mat-raised-button (click)="fileParamHashInput.click()" style="margin-top: 10px;margin-left: 5px;">Elegir archivo</button>
+          <input #fileParamHashInput type="file" hidden (change)="handleSubirFileHash($event)" id="fileParamHash">
+          <span *ngIf="nombreArchivoHash != ''">{{nombreArchivoHash}}</span>
+
+          <div>
+            <button type="button"  mat-fab aria-label="Obtener hash" (click)="onClickBotonHash()"
+              matTooltip="Pulsar para obtener hash" matTooltipPosition="below">
+              <mat-icon>code</mat-icon>
+            </button>
+
+            <button type="button" *ngIf="textoHash" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarHash()"
+              matTooltip="Pulsar para limpiar hash" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+          <div>
+            <button mat-flat-button *ngIf="textoHash" type="button" (click)="onSelectDato(textoHash)"
+              matTooltip="Pulsar para copiar" matTooltipPosition="below" style="margin-top: 10px;margin-left: 5px;">
+              <span class="texto">{{textoHash}}</span>
+            </button>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
   </div>
 
 </div>

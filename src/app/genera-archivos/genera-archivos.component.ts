@@ -21,6 +21,7 @@ import { saveAs } from 'file-saver';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { FilesService } from '../core/services/files.service';
 import { ExcelService } from '../core/services/excel.service';
+import { Tipohash } from '../core/models/tipohash';
 
 @Component({
   selector: 'app-genera-archivos',
@@ -46,6 +47,13 @@ export class GeneraArchivosComponent implements OnInit {
   textoDecodificadoBase64: string = '';
   archivoDecodificadoBase64: File | undefined;
 
+  //hash
+  selectedTipoHash: string = '';
+  listaTiposHash: Array<Tipohash> = [];
+  archivoHash: File | undefined;
+  nombreArchivoHash: string = '';
+  textoHash: string = '';
+
 
   //inyeccion de dependencia para utilizar el servicio de clipboard
   private clipboard: Clipboard = inject(Clipboard);
@@ -66,7 +74,21 @@ export class GeneraArchivosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.listaTiposHash = [];
+    this.getHashTypes();
+  }
 
+  /**
+   * Invocamos la operacion del servicio para obtener la lista de hash validos
+   */
+  getHashTypes(): void {
+    this.filesService.getHashtypes()
+    .subscribe(tipos => {
+      this.listaTiposHash = tipos;
+      if (this.listaTiposHash && this.listaTiposHash.length > 0) {
+        this.openSnackBar('Lista tipos hash recuperados', 'RecuperarListaTiposHash');
+      }
+    });
   }
 
 
@@ -219,7 +241,7 @@ export class GeneraArchivosComponent implements OnInit {
   }
 
   /**
-   * Manejador del tipo file para cargar archivo seleccionado
+   * Manejador del tipo file para cargar archivo seleccionado en codificaicon base64
    * @param event
    */
   handleSubirFileCodifica64(event: Event) {
@@ -237,6 +259,69 @@ export class GeneraArchivosComponent implements OnInit {
 
     }
   }
+
+  /**
+   * Manejador del tipo file para cargar archivo seleccionado en hash
+   * @param event
+   */
+  handleSubirFileHash(event: Event) {
+    //lo fijamos en el campo de archivo
+    const target = event.target as HTMLInputElement;
+    if (target && target.files) {
+      const archivo = target.files[0];
+      if (archivo) {
+        this.archivoHash = archivo;
+        this.nombreArchivoHash = archivo.name;
+      } else{
+        this.archivoHash = undefined;
+        this.nombreArchivoHash = '';
+      }
+
+    }
+  }
+
+
+  /**
+   * Invocamos la operacion del servicio para obtener el hash de un archivo
+   */
+  postHash(archivo: File, nombre: string, tipo: string): void {
+    this.textoHash = '';
+    this.filesService.postHash(archivo, nombre, tipo)
+    .subscribe(hash => {
+      if (hash && hash != '') {
+        this.textoHash = hash;
+        this.openSnackBar('Obtenido hash', 'ObtenidoHash');
+      }
+    });
+  }
+
+  /**
+    * Generar hash
+    */
+  onClickBotonHash(): void {
+    this.textoHash = '';
+    //comprobamos que tenga algo
+
+    if (this.selectedTipoHash == '') {
+      this.openSnackBar('Debe seleccionarse algún tipo de hash', 'ErrorHash');
+      return;
+    } else if (this.archivoHash == undefined) {
+      this.openSnackBar('Debe seleccionarse algún fichero', 'ErrorHash');
+      return;
+    } else{
+      this.postHash(this.archivoHash, this.nombreArchivoHash, this.selectedTipoHash);
+    }
+
+  }
+
+  /**
+    * Limpiar hash
+    */
+  onClickLimpiarHash(): void {
+    this.textoHash = '';
+    this.openSnackBar('Hash limpiado', 'LimpiarHash');
+  }
+
 
 
 }

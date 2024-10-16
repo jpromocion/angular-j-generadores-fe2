@@ -9,6 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { MessageService } from './message.service';
 import { DatosConexionService } from './datos-conexion.service';
+import { Tipohash } from '../models/tipohash';
 
 @Injectable({
   providedIn: 'root'
@@ -178,6 +179,55 @@ export class FilesService {
       );
   }
 
+
+
+  /**
+   * Interfaz de invocación del servicio rest para obtener tipos de algoritmos hash
+   * Interfaz: GET /file/hashtypes
+   * @returns Lista de algoritmos hash
+   */
+  getHashtypes(): Observable<Tipohash[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/hashtypes';
+
+    return this.http.get<Tipohash[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Tipos de hash recuperados')),
+        catchError(this.handleError<Tipohash[]>('getHashtypes', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para obtener el hash de un archivo
+   * Interfaz: POST /file/hash
+   * @returns hash del archivo
+   */
+  postHash(file: File, name: string, type: string): Observable<string> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    //el texto se fija a la url
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/hash';
+
+    //Se pasa el archivo como un form data -> https://stackoverflow.com/questions/54693529/how-to-use-post-method-to-send-form-data-in-angular
+    const form = new FormData;
+    form.append('file', file);
+    form.append('name', name);
+    form.append('type', type);
+
+    return this.http.post(urlfinal, form,{
+        headers: this.baseHeaders,
+        responseType: 'text'
+      })
+      .pipe(
+        //tap(_ => this.log('Hash recuperado')),
+        catchError(this.handleError<string>('postHash', ''))
+      );
+    }
 
 
 }
