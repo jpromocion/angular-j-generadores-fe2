@@ -230,4 +230,35 @@ export class FilesService {
     }
 
 
+  /**
+   * Interfaz de invocación del servicio rest para zipear archivos
+   * Interfaz: POST /file/zip
+   * @returns Archivo zip
+   */
+  postZip(files: File[]): Observable<any> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    //el texto se fija a la url
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/zip';
+
+    const form = new FormData;
+    //debo pasar un form data form con una parametro de key "files" que contendra una lista de archivos recibidos como parametor en files
+    for (let i = 0; i < files.length; i++) {
+      form.append('files', files[i]);
+    }
+
+    return this.http.post(urlfinal, form,{
+        headers: this.baseHeaders,
+        responseType: "blob" // This tells angular to parse it as a blob, default is json
+      })
+      .pipe(
+        //tap(_ => this.log('Num aleatorios recuperados')),
+        catchError(this.handleError<Blob>('postZip', new Blob()))
+      );
+  }
+
+
+
+
 }

@@ -54,6 +54,11 @@ export class GeneraArchivosComponent implements OnInit {
   nombreArchivoHash: string = '';
   textoHash: string = '';
 
+  //zip
+  archivosZip: File[] = [];
+  nombreArchivosZip: string = '';
+  archivoGeneradoZip: File | undefined;
+
 
   //inyeccion de dependencia para utilizar el servicio de clipboard
   private clipboard: Clipboard = inject(Clipboard);
@@ -320,6 +325,62 @@ export class GeneraArchivosComponent implements OnInit {
   onClickLimpiarHash(): void {
     this.textoHash = '';
     this.openSnackBar('Hash limpiado', 'LimpiarHash');
+  }
+
+
+  /**
+   * Manejador del tipo file para cargar archivo seleccionado en hash
+   * @param event
+   */
+  handleSubirFilesZip(event: Event) {
+    //lo fijamos en el campo de archivo
+    const target = event.target as HTMLInputElement;
+    if (target && target.files) {
+      this.archivosZip = Array.from(target.files);
+      if (this.archivosZip.length > 0){
+        this.nombreArchivosZip = this.archivosZip[0].name;
+        if (this.archivosZip.length > 1) {
+          this.nombreArchivosZip = this.nombreArchivosZip + ' ...';
+        }
+      } else{
+        this.nombreArchivosZip = '';
+      }
+
+    }
+  }
+
+  /**
+   * Invocamos la operacion del servicio para obtener un archivo decodificado de base64
+   */
+  postZip(files: File[]): void {
+    this.archivoGeneradoZip = undefined;
+    this.filesService.postZip(files)
+    .subscribe(archivo => {
+      if (archivo.size > 0) {
+        this.archivoGeneradoZip = new File([archivo], 'comprimido.zip', {type: 'application/zip'});
+        //ahora lo descargamos
+        saveAs(archivo, 'comprimido.zip');
+        this.openSnackBar('Generado zip', 'GeneradoZip');
+      } else{
+        this.archivoGeneradoZip = undefined;
+      }
+    });
+  }
+
+  /**
+  * Generar zip
+  */
+  onClickBotonZip(): void {
+    this.textoDecodificadoBase64 = '';
+    //comprobamos que tenga algo
+    if (this.archivosZip.length <= 0) {
+      this.openSnackBar('Debe seleccionar al menos un fichero', 'ErrorGeneraZip');
+      return;
+    } else{
+      this.postZip(this.archivosZip);
+
+    }
+
   }
 
 
