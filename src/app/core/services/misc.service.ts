@@ -346,5 +346,22 @@ export class MiscService {
       );
   }
 
+  /**
+   * Interfaz de invocación del servicio rest para obtener UUIDS generados aleatoriamente.
+   * Interfaz: GET /misc/uuid?results=10
+   * @returns Lista de UUIDS generados aleatoriamente
+   */
+  getUuid(resultados: number = 1): Observable<string[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/uuid?results=' + resultados, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Emails recuperados')),
+        catchError(this.handleError<string[]>('getUuid', []))
+      );
+  }
 
 }

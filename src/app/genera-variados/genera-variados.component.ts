@@ -38,7 +38,8 @@ export class GeneraVariadosComponent {
     {valor: 'ff', nombre: 'Fecha futura'},
     {valor: 'ci', nombre: 'Ciudad'},
     {valor: 'cp', nombre: 'Cod. Postal'},
-    {valor: 'im', nombre: 'IMEI'}
+    {valor: 'im', nombre: 'IMEI'},
+    {valor: 'ui', nombre: 'UUID'},
   ];
   textoGenerado: string[] = [];
 
@@ -193,6 +194,19 @@ export class GeneraVariadosComponent {
   }
 
   /**
+   * Invocamos la operacion del servicio para obtener una lista de uuids
+   */
+  getUuid(resultados: number): void {
+    this.miscService.getUuid(resultados)
+    .subscribe(cadena => {
+      this.textoGenerado = cadena;
+      if (this.textoGenerado && this.textoGenerado.length > 0){
+        this.openSnackBar('UUIDs generados', 'GenerarUUID');
+      }
+    });
+  }
+
+  /**
   * Generamos un tipo seleccionado aleatorio
   */
   onClickBotonGenerarTipo(): void {
@@ -211,6 +225,8 @@ export class GeneraVariadosComponent {
       this.getCodPostal(this.numGenerar);
     } else if (this.selectedTipoGenera == 'im') {
       this.getImei(this.numGenerar);
+    } else if (this.selectedTipoGenera == 'ui') {
+      this.getUuid(this.numGenerar);
     }
 
   }
