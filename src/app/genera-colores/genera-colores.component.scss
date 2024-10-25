@@ -1,0 +1,37 @@
+.grid-layout{
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 10px;
+}
+
+.grid-layout-selector{
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 10px;
+}
+
+
+.grid-layout-transformacion{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: 10px;
+}
+
+
+.grid-layout-gradiente{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  margin: 10px;
+}
+
+
+.caja{
+  width: auto;
+  height: auto;
+  margin: 5px;
+}
+
+.c1, .c2, .c7, .c10, .c11, .c12 {
+  grid-column: 1 / span 2;
+}
+

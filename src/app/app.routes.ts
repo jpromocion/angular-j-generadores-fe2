@@ -87,6 +87,14 @@ export const routes: Routes = [
       title: 'Archivos'
   },
   {
+    path: 'genera-colores',
+    loadComponent: () =>
+      import('./genera-colores/genera-colores.component').then(
+        (c) => c.GeneraColoresComponent
+      ),
+      title: 'Colores'
+  },
+  {
     path: 'genera-variados',
     loadComponent: () =>
       import('./genera-variados/genera-variados.component').then(

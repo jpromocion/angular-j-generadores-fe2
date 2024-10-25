@@ -113,6 +113,20 @@ npm install --save-dev @types/file-saver
 - Es requerido para generar excel además.
 
 
+### Instalar Angular Color Picker.
+
+[Angular Color Picker](https://www.npmjs.com/package/ngx-color-picker)
+[Angular Color Picker Github](https://github.com/zefoy/ngx-color-picker?tab=readme-ov-file)
+
+Instalamos con:
+```
+npm install ngx-color-picker --save
+```
+- Permite utilizar un color picker
+
+
+
+
 
 ## Docker - Render
 

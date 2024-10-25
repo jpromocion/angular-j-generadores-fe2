@@ -1,6 +1,6 @@
 {
   "name": "angular-j-generadores-fe2",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "file-saver": "^2.0.5",
+    "ngx-color-picker": "^17.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
