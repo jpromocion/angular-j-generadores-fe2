@@ -1,7 +1,6 @@
 import { Component, inject, OnInit} from '@angular/core';
 import {NgFor,NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import { Clipboard } from '@angular/cdk/clipboard';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -9,7 +8,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -19,8 +17,8 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { saveAs } from 'file-saver';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { FilesService } from '../core/services/files.service';
-import { ExcelService } from '../core/services/excel.service';
 import { Tipohash } from '../core/models/tipohash';
 
 @Component({
@@ -32,7 +30,7 @@ import { Tipohash } from '../core/models/tipohash';
   templateUrl: './genera-archivos.component.html',
   styleUrl: './genera-archivos.component.scss'
 })
-export class GeneraArchivosComponent implements OnInit {
+export class GeneraArchivosComponent extends BaseGeneraComponent implements OnInit {
 
   //Codificar a base 64
   codifica64Entrada: string = 'texto';
@@ -60,28 +58,23 @@ export class GeneraArchivosComponent implements OnInit {
   archivoGeneradoZip: File | undefined;
 
 
-  //inyeccion de dependencia para utilizar el servicio de clipboard
-  private clipboard: Clipboard = inject(Clipboard);
 
   //inyeccion de dependencia para utilizar el servicio de generacion de archivos
   private filesService: FilesService = inject(FilesService);
 
-  //inyeccion del servicio para generar excel
-  private excelService: ExcelService = inject(ExcelService);
-
-  //mensajes notificaciones
-  private _snackBar = inject(MatSnackBar);
-
   //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
   private _liveAnnouncer = inject(LiveAnnouncer);
 
+  constructor() {
+    super();
+  }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.listaTiposHash = [];
     this.getHashTypes();
   }
+
+
 
   /**
    * Invocamos la operacion del servicio para obtener la lista de hash validos
@@ -96,29 +89,6 @@ export class GeneraArchivosComponent implements OnInit {
     });
   }
 
-
-  /**
-  * Mensaje de notificacion
-  * @param message Mensaje
-  * @param action
-  */
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-    });
-  }
-
-
-  /**
-   * Capturamos el seleccionar un item generado para copiarlo al portapapeles
-   * @param dato
-   */
-  onSelectDato(dato: string | undefined): void {
-    if (dato) {
-      this.clipboard.copy(dato);
-      this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
-    }
-  }
 
 
   /**

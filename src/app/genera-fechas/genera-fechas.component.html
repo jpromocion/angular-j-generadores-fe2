@@ -1,0 +1,61 @@
+<h2>Fechas</h2>
+
+<div class="panelFluidoSegundoNivel">
+
+  <div class="grid-layout">
+
+
+    <div class="caja c1">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar tipos fecha</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 250px !important;">
+            <mat-label>Num. generaciones</mat-label>
+            <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+          </mat-form-field>
+
+          <mat-form-field style="width: 330px;margin-left: 5px;">
+            <mat-label>Seleccionar tipo generación</mat-label>
+            <mat-select [(ngModel)]="selectedTipoGenera">
+              @for (tipo of tiposGenera; track tipo) {
+                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
+            matTooltip="Pulsar para limpiar los tipos" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of textoGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="fecha">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+  </div>
+
+</div>
+

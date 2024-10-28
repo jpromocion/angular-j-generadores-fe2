@@ -53,6 +53,7 @@ export class MenuComponent {
     { path: 'genera-barras', icon: 'qr_code_2' },
     { path: 'genera-archivos', icon: 'folder_copy' },
     { path: 'genera-colores', icon: 'palette' },
+    { path: 'genera-fechas', icon: 'calendar_month' },
   ];
 
   constructor() {}

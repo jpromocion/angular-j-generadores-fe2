@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import {NgFor,NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import { Clipboard } from '@angular/cdk/clipboard';
 //necesario  para tooltips de bootstrap, al cambiar a angular material es innecesario
 //import * as bootstrap from 'bootstrap';
 import {MatIconModule} from '@angular/material/icon';
@@ -14,9 +13,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatListModule} from '@angular/material/list';
 import { ColorPickerModule } from 'ngx-color-picker';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatSliderModule} from '@angular/material/slider';
-import { ExcelService } from '../core/services/excel.service';
+import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ColorService } from '../core/services/color.service';
 import { Color } from '../core/models/color';
 
@@ -29,7 +27,7 @@ import { Color } from '../core/models/color';
   templateUrl: './genera-colores.component.html',
   styleUrl: './genera-colores.component.scss'
 })
-export class GeneraColoresComponent implements OnInit {
+export class GeneraColoresComponent extends BaseGeneraComponent implements OnInit {
 
   //selector color
   colorSele: string = '';
@@ -84,47 +82,24 @@ export class GeneraColoresComponent implements OnInit {
   monocromaticoCantidad: number = 32;
   listaMonocromaticos: Color[] = [];
 
-  //inyeccion de dependencia para utilizar el servicio de clipboard
-  private clipboard: Clipboard = inject(Clipboard);
 
   //inyeccion de dependencia para utilizar el servicio de generacion de datos bancarios
   private colorService: ColorService = inject(ColorService);
 
-  //mensajes notificaciones
-  private _snackBar = inject(MatSnackBar);
-
-  //inyeccion del servicio para generar excel
-  private excelService: ExcelService = inject(ExcelService);
 
 
+  constructor() {
+    super();
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.colorSele = '#ffffff';
     this.getHexToRgbSele(this.colorSele);
     this.colorSele2 = '#000000';
   }
 
-  /**
-   * Mensaje de notificacion
-   * @param message Mensaje
-   * @param action
-   */
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-    });
-  }
 
-  /**
-   * Capturamos el seleccionar un item generado para copiarlo al portapapeles
-   * @param dato
-   */
-  onSelectDato(dato: string | undefined): void {
-    if (dato) {
-      this.clipboard.copy(dato);
-      this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
-    }
-  }
+
 
   /**
    * Invocamos la operacion del servicio para obtener conversion de hex a rgb

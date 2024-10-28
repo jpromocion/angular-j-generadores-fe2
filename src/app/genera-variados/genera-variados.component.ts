@@ -1,7 +1,6 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject, OnInit} from '@angular/core';
 import {NgFor,NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import { Clipboard } from '@angular/cdk/clipboard';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -9,13 +8,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { MiscService } from '../core/services/misc.service';
-import { ExcelService } from '../core/services/excel.service';
 
 @Component({
   selector: 'app-genera-variados',
@@ -25,7 +23,7 @@ import { ExcelService } from '../core/services/excel.service';
   templateUrl: './genera-variados.component.html',
   styleUrl: './genera-variados.component.scss'
 })
-export class GeneraVariadosComponent {
+export class GeneraVariadosComponent extends BaseGeneraComponent implements OnInit {
   //filtro general
   numGenerar: number = 1;
 
@@ -34,8 +32,6 @@ export class GeneraVariadosComponent {
   tiposGenera: Array<any> = [
     {valor: '', nombre: 'Seleccionar un tipo de generación.'},
     {valor: 'em', nombre: 'Email'},
-    {valor: 'fn', nombre: 'Fecha nacimiento'},
-    {valor: 'ff', nombre: 'Fecha futura'},
     {valor: 'ci', nombre: 'Ciudad'},
     {valor: 'cp', nombre: 'Cod. Postal'},
     {valor: 'im', nombre: 'IMEI'},
@@ -72,47 +68,21 @@ export class GeneraVariadosComponent {
   promoGenerado: string[] = [];
 
 
-  //inyeccion de dependencia para utilizar el servicio de clipboard
-  private clipboard: Clipboard = inject(Clipboard);
+
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
   private miscService: MiscService = inject(MiscService);
 
-  //inyeccion del servicio para generar excel
-  private excelService: ExcelService = inject(ExcelService);
-
-  //mensajes notificaciones
-  private _snackBar = inject(MatSnackBar);
 
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
 
   }
 
-  /**
-  * Mensaje de notificacion
-  * @param message Mensaje
-  * @param action
-  */
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-    });
-  }
-
-
-  /**
-   * Capturamos el seleccionar un item generado para copiarlo al portapapeles
-   * @param dato
-   */
-  onSelectDato(dato: string | undefined): void {
-    if (dato) {
-      this.clipboard.copy(dato);
-      this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
-    }
-  }
 
 
   /**
@@ -128,31 +98,6 @@ export class GeneraVariadosComponent {
     });
   }
 
-  /**
-   * Invocamos la operacion del servicio para obtener una lista de fechas nacimiento
-   */
-  getFecNacimiento(resultados: number): void {
-    this.miscService.getBirthDate(resultados)
-    .subscribe(cadena => {
-      this.textoGenerado = cadena;
-      if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('Fec. nacimiento generadas', 'GenerarFecNacimiento');
-      }
-    });
-  }
-
-  /**
-   * Invocamos la operacion del servicio para obtener una lista de fechas futuras
-   */
-  getFutureDate(resultados: number): void {
-    this.miscService.getFutureDate(resultados)
-    .subscribe(cadena => {
-      this.textoGenerado = cadena;
-      if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('Fec. futuras generadas', 'GenerarFecFutura');
-      }
-    });
-  }
 
   /**
    * Invocamos la operacion del servicio para obtener una lista de ciudades
@@ -215,10 +160,6 @@ export class GeneraVariadosComponent {
       this.openSnackBar('Debe seleccionar un tipo de generación.','Cerrar');
     } else if (this.selectedTipoGenera == 'em') {
       this.getEmail(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'fn') {
-      this.getFecNacimiento(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'ff') {
-      this.getFutureDate(this.numGenerar);
     } else if (this.selectedTipoGenera == 'ci') {
       this.getCiudad(this.numGenerar);
     } else if (this.selectedTipoGenera == 'cp') {

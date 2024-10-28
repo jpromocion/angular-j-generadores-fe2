@@ -55,6 +55,14 @@ export const routes: Routes = [
       title: 'Números'
   },
   {
+    path: 'genera-fechas',
+    loadComponent: () =>
+      import('./genera-fechas/genera-fechas.component').then(
+        (c) => c.GeneraFechasComponent
+      ),
+      title: 'Fechas'
+  },
+  {
     path: 'genera-coches',
     loadComponent: () =>
       import('./genera-coches/genera-coches.component').then(

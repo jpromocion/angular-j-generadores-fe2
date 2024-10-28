@@ -1,7 +1,5 @@
 import { Component, OnInit, inject} from '@angular/core';
 import {NgFor,NgIf} from '@angular/common';
-import { Clipboard } from '@angular/cdk/clipboard';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -15,7 +13,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
-import { ExcelService } from '../core/services/excel.service';
+import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { NumberService } from '../core/services/number.service';
 
 @Component({
@@ -26,7 +24,7 @@ import { NumberService } from '../core/services/number.service';
   templateUrl: './genera-numeros.component.html',
   styleUrl: './genera-numeros.component.scss'
 })
-export class GeneraNumerosComponent implements OnInit {
+export class GeneraNumerosComponent extends BaseGeneraComponent implements OnInit {
   //filtro general
   numGenerar: number = 1;
   posicionesDecimales: number = 2;
@@ -102,48 +100,19 @@ export class GeneraNumerosComponent implements OnInit {
   arabigoTipo: string = 'arabigo';
   arabigoResultado: string = '';
 
-
-  //inyeccion de dependencia para utilizar el servicio de clipboard
-  private clipboard: Clipboard = inject(Clipboard);
-
   //inyeccion de dependencia para utilizar el servicio de generacion de numeros
   private numberService: NumberService = inject(NumberService);
 
-  //inyeccion del servicio para generar excel
-  private excelService: ExcelService = inject(ExcelService);
 
-  //mensajes notificaciones
-  private _snackBar = inject(MatSnackBar);
+  constructor() {
+    super();
+  }
 
-
-  constructor() { }
-
-  ngOnInit(): void {
+  override ngOnInit(): void {
 
   }
 
-  /**
-  * Mensaje de notificacion
-  * @param message Mensaje
-  * @param action
-  */
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-    });
-  }
 
-
-  /**
-   * Capturamos el seleccionar un item generado para copiarlo al portapapeles
-   * @param dato
-   */
-  onSelectDato(dato: string | undefined): void {
-    if (dato) {
-      this.clipboard.copy(dato);
-      this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
-    }
-  }
 
 
   /**

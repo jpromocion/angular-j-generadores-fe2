@@ -161,42 +161,6 @@ export class MiscService {
   }
 
   /**
-   * Interfaz de invocación del servicio rest para obtener Fec. nacimiento generados aleatoriamente.
-   * Interfaz: GET /misc/birthdate?results=10
-   * @returns Lista de Fec. nacimiento generados aleatoriamente
-   */
-  getBirthDate(resultados: number = 1): Observable<string[]> {
-    //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
-
-    return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/birthdate?results=' + resultados, {
-      headers: this.baseHeaders,
-    })
-      .pipe(
-        //tap(_ => this.log('Fec. nacimiento recuperados')),
-        catchError(this.handleError<string[]>('getBirthDate', []))
-      );
-  }
-
-  /**
-   * Interfaz de invocación del servicio rest para obtener Fec. futuras generados aleatoriamente.
-   * Interfaz: GET /misc/futuredate?results=10
-   * @returns Lista de Fec. futuras generados aleatoriamente
-   */
-  getFutureDate(resultados: number = 1): Observable<string[]> {
-    //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
-
-    return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/futuredate?results=' + resultados, {
-      headers: this.baseHeaders,
-    })
-      .pipe(
-        //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<string[]>('getFutureDate', []))
-      );
-  }
-
-  /**
    * Interfaz de invocación del servicio rest para obtener Ciudades generados aleatoriamente.
    * Interfaz: GET /misc/city?results=10
    * @returns Lista de Ciudades generados aleatoriamente

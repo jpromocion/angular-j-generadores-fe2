@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {NgFor,NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import { Clipboard } from '@angular/cdk/clipboard';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -9,7 +8,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -18,8 +16,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { MiscService } from '../core/services/misc.service';
-import { ExcelService } from '../core/services/excel.service';
 import { Ccaa } from '../core/models/ccaa';
 import { Provincia } from '../core/models/provincia';
 import { Municipio } from '../core/models/municipio';
@@ -33,7 +31,7 @@ import { Municipio } from '../core/models/municipio';
   templateUrl: './genera-localizacion.component.html',
   styleUrl: './genera-localizacion.component.scss'
 })
-export class GeneraLocalizacionComponent implements OnInit, AfterViewInit {
+export class GeneraLocalizacionComponent extends BaseGeneraComponent implements OnInit, AfterViewInit {
 
   //ccaa
   //ccaaGenerado: Ccaa[] = [];
@@ -60,25 +58,20 @@ export class GeneraLocalizacionComponent implements OnInit, AfterViewInit {
 
 
 
-  //inyeccion de dependencia para utilizar el servicio de clipboard
-  private clipboard: Clipboard = inject(Clipboard);
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
   private miscService: MiscService = inject(MiscService);
 
-  //inyeccion del servicio para generar excel
-  private excelService: ExcelService = inject(ExcelService);
-
-  //mensajes notificaciones
-  private _snackBar = inject(MatSnackBar);
 
   //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
   private _liveAnnouncer = inject(LiveAnnouncer);
 
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
 
   }
 
@@ -118,28 +111,6 @@ export class GeneraLocalizacionComponent implements OnInit, AfterViewInit {
   }
 
 
-  /**
-  * Mensaje de notificacion
-  * @param message Mensaje
-  * @param action
-  */
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-    });
-  }
-
-
-  /**
-   * Capturamos el seleccionar un item generado para copiarlo al portapapeles
-   * @param dato
-   */
-  onSelectDato(dato: string | undefined): void {
-    if (dato) {
-      this.clipboard.copy(dato);
-      this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
-    }
-  }
 
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {

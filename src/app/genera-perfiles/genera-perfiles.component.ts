@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, AfterViewInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import {NgFor,NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import { Clipboard } from '@angular/cdk/clipboard';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -14,11 +13,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
 import { Empresa } from '../core/models/empresa';
-import { ExcelService } from '../core/services/excel.service';
 
 
 @Component({
@@ -29,7 +27,7 @@ import { ExcelService } from '../core/services/excel.service';
   templateUrl: './genera-perfiles.component.html',
   styleUrl: './genera-perfiles.component.scss'
 })
-export class GeneraPerfilesComponent implements OnInit, AfterViewInit  {
+export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnInit , AfterViewInit  {
 
   //filstros
   tipoPerfil: string = 'p';
@@ -63,8 +61,6 @@ export class GeneraPerfilesComponent implements OnInit, AfterViewInit  {
   @ViewChild('paginatorEmpresas') paginatorEmpresas!: MatPaginator;
   @ViewChild('sortEmpresas') sortEmpresas!: MatSort;
 
-  //inyeccion de dependencia para utilizar el servicio de clipboard
-  private clipboard: Clipboard = inject(Clipboard);
 
   //inyeccion de dependencia para utilizar el servicio de generacion de datos bancarios
   private profilesService: ProfilesService = inject(ProfilesService);
@@ -72,15 +68,15 @@ export class GeneraPerfilesComponent implements OnInit, AfterViewInit  {
   //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
   private _liveAnnouncer = inject(LiveAnnouncer);
 
-  //inyeccion del servicio para generar excel
-  private excelService: ExcelService = inject(ExcelService);
 
-  //mensajes notificaciones
-  private _snackBar = inject(MatSnackBar);
 
-  ngOnInit(): void {
+  constructor() {
+    super();
   }
 
+  override ngOnInit(): void {
+
+  }
   /**
   * Inicializamos los labels del paginador de personas
   */
@@ -117,28 +113,6 @@ export class GeneraPerfilesComponent implements OnInit, AfterViewInit  {
     this.listaEmpresasGeneradas.sort = this.sortEmpresas;
   }
 
-  /**
-   * Mensaje de notificacion
-   * @param message Mensaje
-   * @param action
-   */
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-    });
-  }
-
-
-  /**
-   * Capturamos el seleccionar un item generado para copiarlo al portapapeles
-   * @param dato
-   */
-  onSelectDato(dato: string | undefined): void {
-    if (dato) {
-      this.clipboard.copy(dato);
-      this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
-    }
-  }
 
   /**
    * Invocamos la operacion del servicio para obtener una lista de personas aleatorios
