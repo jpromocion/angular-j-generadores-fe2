@@ -9,3 +9,22 @@
   height: auto;
   margin: 5px;
 }
+
+.c5{
+  grid-column: 1 / span 2;
+}
+
+
+
+.grid-layout-edad{
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 10px;
+}
+
+.grid-layout-pascua{
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 10px;
+}
+

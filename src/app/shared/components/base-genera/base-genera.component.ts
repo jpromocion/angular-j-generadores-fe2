@@ -58,4 +58,12 @@ export class BaseGeneraComponent implements OnInit  {
     }
   }
 
+  /**
+   *
+   * @param fecha Coge la fecha y la formatea a un string dd/MM/yyyy
+   */
+  fechaFormateada(fecha: Date): string {
+    return fecha.toLocaleDateString('es-ES');
+  }
+
 }

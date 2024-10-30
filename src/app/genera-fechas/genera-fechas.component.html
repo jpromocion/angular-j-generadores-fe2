@@ -9,12 +9,12 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar tipos fecha</mat-card-header>
         <mat-card-content>
-          <mat-form-field style="width: 250px !important;">
+          <mat-form-field style="width: 200px !important;">
             <mat-label>Num. generaciones</mat-label>
             <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
           </mat-form-field>
 
-          <mat-form-field style="width: 330px;margin-left: 5px;">
+          <mat-form-field style="width: 200px;margin-left: 5px;">
             <mat-label>Seleccionar tipo generación</mat-label>
             <mat-select [(ngModel)]="selectedTipoGenera">
               @for (tipo of tiposGenera; track tipo) {
@@ -50,6 +50,685 @@
               </mat-list-item>
             }
           </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c2">
+      <mat-card appearance="outlined">
+        <mat-card-header>Edad</mat-card-header>
+        <mat-card-content>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Fecha nacimiento</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento" readonly="true">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora</mat-label>
+              <input matInput
+                    name="in_horaNacimiento"
+                    [format]="24"
+                    [(ngModel)]="horaNacimiento"
+                    [ngxMatTimepicker]="pickerHoraNacimiento"
+                    readonly />
+              <mat-icon matSuffix
+                        (click)="pickerHoraNacimiento.open()">
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+            <ngx-mat-timepicker color="accent" #pickerHoraNacimiento></ngx-mat-timepicker>
+
+            <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Calcular edad" (click)="onClickBotonEdad()"
+              matTooltip="Pulsar para calcular" matTooltipPosition="below">
+              <mat-icon>calculate</mat-icon>
+            </button>
+
+            <button type="button" *ngIf="edadRes" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarEdad()"
+              matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
+
+          <div *ngIf="edadRes" style="margin-top: 5px;">
+            <div class="grid-layout-edad">
+
+              <div class="caja">
+                Valores relativos:
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.anyosRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.anyosRelativos}}</span>
+                  </button>
+                  años
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.mesesRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.mesesRelativos}}</span>
+                  </button>
+                  meses
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.diasRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.diasRelativos}}</span>
+                  </button>
+                  días
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.horasRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.horasRelativos}}</span>
+                  </button>
+                  horas
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.minutosRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.minutosRelativos}}</span>
+                  </button>
+                  minutos
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.segundosRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.segundosRelativos}}</span>
+                  </button>
+                  segundos
+                </p>
+              </div>
+
+              <div class="caja">
+                Valores absolutos:
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.anyos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.anyos}}</span>
+                  </button>
+                  años
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.meses.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.meses}}</span>
+                  </button>
+                  meses
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.dias.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.dias}}</span>
+                  </button>
+                  días
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.horas.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.horas}}</span>
+                  </button>
+                  horas
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(edadRes.minutos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.minutos}}</span>
+                  </button>
+                  minutos
+                </p>
+                <p>
+                  <button mat-flat-button id="btnResEdadFinal" type="button" (click)="onSelectDato(edadRes.segundos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{edadRes.segundos}}</span>
+                  </button>
+                  segundos
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div class="caja c3">
+      <mat-card appearance="outlined">
+        <mat-card-header>Diferencia</mat-card-header>
+        <mat-card-content>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Fecha 1</mat-label>
+              <input matInput [matDatepicker]="pickerFecDifParam1" [(ngModel)]="fechaDifParam1" readonly="true">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFecDifParam1"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFecDifParam1 disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora 1</mat-label>
+              <input matInput
+                    name="in_horaDifParam1"
+                    [format]="24"
+                    [(ngModel)]="horaDifParam1"
+                    [ngxMatTimepicker]="pickerHoraDifParam1"
+                    readonly />
+              <mat-icon matSuffix
+                        (click)="pickerHoraDifParam1.open()">
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+            <ngx-mat-timepicker color="accent" #pickerHoraDifParam1></ngx-mat-timepicker>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Fecha 2</mat-label>
+              <input matInput [matDatepicker]="pickerFecDifParam2" [(ngModel)]="fechaDifParam2" readonly="true">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFecDifParam2"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFecDifParam2 disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora 2</mat-label>
+              <input matInput
+                    name="in_horaDifParam2"
+                    [format]="24"
+                    [(ngModel)]="horaDifParam2"
+                    [ngxMatTimepicker]="pickerHoraDifParam2"
+                    readonly />
+              <mat-icon matSuffix
+                        (click)="pickerHoraDifParam2.open()">
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+            <ngx-mat-timepicker color="accent" #pickerHoraDifParam2></ngx-mat-timepicker>
+          </div>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Calcular diferencia" (click)="onClickBotonDiferencia()"
+            matTooltip="Pulsar para calcular" matTooltipPosition="below">
+            <mat-icon>calculate</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="difRes" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarDiferencia()"
+            matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div *ngIf="difRes" style="margin-top: 5px;">
+            <div class="grid-layout-edad">
+
+              <div class="caja">
+                Valores relativos:
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.anyosRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.anyosRelativos}}</span>
+                  </button>
+                  años
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.mesesRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.mesesRelativos}}</span>
+                  </button>
+                  meses
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.diasRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.diasRelativos}}</span>
+                  </button>
+                  días
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.horasRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.horasRelativos}}</span>
+                  </button>
+                  horas
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.minutosRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.minutosRelativos}}</span>
+                  </button>
+                  minutos
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.segundosRelativos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.segundosRelativos}}</span>
+                  </button>
+                  segundos
+                </p>
+              </div>
+
+              <div class="caja">
+                Valores absolutos:
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.anyos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.anyos}}</span>
+                  </button>
+                  años
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.meses.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.meses}}</span>
+                  </button>
+                  meses
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.dias.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.dias}}</span>
+                  </button>
+                  días
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.horas.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.horas}}</span>
+                  </button>
+                  horas
+                </p>
+                <p>
+                  <button mat-flat-button type="button" (click)="onSelectDato(difRes.minutos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.minutos}}</span>
+                  </button>
+                  minutos
+                </p>
+                <p>
+                  <button mat-flat-button id="btnResDifFinal" type="button" (click)="onSelectDato(difRes.segundos.toString())"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{difRes.segundos}}</span>
+                  </button>
+                  segundos
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c4">
+      <mat-card appearance="outlined">
+        <mat-card-header>Día de la semana</mat-card-header>
+        <mat-card-content>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Fecha</mat-label>
+              <input matInput [matDatepicker]="pickerFecDiaSemanaParam" [(ngModel)]="fechaDiaSemanaParam" readonly="true">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFecDiaSemanaParam"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFecDiaSemanaParam disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Calcular día" (click)="onClickBotonDiaSemana()"
+              matTooltip="Pulsar para calcular" matTooltipPosition="below">
+              <mat-icon>calculate</mat-icon>
+            </button>
+
+            <button type="button" *ngIf="diaSemanaRes != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarDiaSemana()"
+              matTooltip="Pulsar para limpiar" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
+
+          <div>
+            <mat-form-field style="width: 200px !important;margin-left: 5px;"  *ngIf="diaSemanaRes != ''">
+              <mat-label>Día semana</mat-label>
+              <input matInput id="in_diaSemanaRes" type="text" [(ngModel)]="diaSemanaRes" readonly="true" (click)="onSelectDato(diaSemanaRes)">
+            </mat-form-field>
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div class="caja c5">
+      <mat-card appearance="outlined">
+        <mat-card-header>Operar</mat-card-header>
+        <mat-card-content>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Fecha</mat-label>
+              <input matInput [matDatepicker]="pickerFecOperarParam" [(ngModel)]="fechaOperarParam" readonly="true">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFecOperarParam"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFecOperarParam disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora</mat-label>
+              <input matInput
+                    name="in_horaOperarParam"
+                    [format]="24"
+                    [(ngModel)]="horaOperarParam"
+                    [ngxMatTimepicker]="pickerHoraOperarParam"
+                    readonly />
+              <mat-icon matSuffix
+                        (click)="pickerHoraOperarParam.open()">
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+            <ngx-mat-timepicker color="accent" #pickerHoraOperarParam></ngx-mat-timepicker>
+
+            <mat-form-field style="width: 200px;margin-left: 5px;">
+              <mat-label>Operación</mat-label>
+              <mat-select [(ngModel)]="selectedTipoOpera">
+                @for (tipo of tiposOpera; track tipo) {
+                  <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+
+          <div>
+            <mat-form-field style="width: 150px !important;">
+              <mat-label>Años</mat-label>
+              <input matInput id="paramOperaAnyos" type="number"  min="0" max="1000" [(ngModel)]="paramOperaAnyos">
+            </mat-form-field>
+
+            <mat-form-field style="width: 150px;margin-left: 5px;">
+              <mat-label>Meses</mat-label>
+              <input matInput id="paramOperaMeses" type="number"  min="0" max="1000" [(ngModel)]="paramOperaMeses">
+            </mat-form-field>
+
+            <mat-form-field style="width: 150px;margin-left: 5px;">
+              <mat-label>Días</mat-label>
+              <input matInput id="paramOperaDias" type="number"  min="0" max="1000" [(ngModel)]="paramOperaDias">
+            </mat-form-field>
+
+            <mat-form-field style="width: 150px;margin-left: 5px;">
+              <mat-label>Horas</mat-label>
+              <input matInput id="paramOperaHoras" type="number"  min="0" max="1000" [(ngModel)]="paramOperaHoras">
+            </mat-form-field>
+
+            <mat-form-field style="width: 150px;margin-left: 5px;">
+              <mat-label>Minutos</mat-label>
+              <input matInput id="paramOperaMinutos" type="number"  min="0" max="1000" [(ngModel)]="paramOperaMinutos">
+            </mat-form-field>
+          </div>
+
+
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Calcular operación" (click)="onClickBotonOperar()"
+            matTooltip="Pulsar para calcular" matTooltipPosition="below">
+            <mat-icon>calculate</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="fechaOperarRes && horaOperarRes != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarOperar()"
+            matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div *ngIf="fechaOperarRes && horaOperarRes != ''">
+            <mat-form-field>
+              <mat-label>Fecha resultado</mat-label>
+              <input matInput id="in_fechaOperarRes" [matDatepicker]="pickerFecOperarRes" [(ngModel)]="fechaOperarRes" readonly="true"
+                (click)="onSelectDato(fechaFormateada(fechaOperarRes))">
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFecOperarRes" disabled></mat-datepicker-toggle>
+              <mat-datepicker #pickerFecOperarRes disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora resultado</mat-label>
+              <input matInput readonly [(ngModel)]="horaOperarRes" (click)="onSelectDato(horaOperarRes)"/>
+              <mat-icon matSuffix>
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+
+    <div class="caja c6">
+      <mat-card appearance="outlined">
+        <mat-card-header>Tiempo UNIX UTC -> Fecha</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" >
+            <mat-label>UTC</mat-label>
+            <input matInput id="paramTimeUnix" type="number"  placeholder="1730199192" [(ngModel)]="paramTimeUnix">
+            <mat-icon matSuffix matTooltip="Tiempo UNIX UTC">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonUTCFecha()"
+            matTooltip="Pulsar para transformar" matTooltipPosition="below">
+            <mat-icon>sync_alt</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != '' && fechaUTCResTimUnix && horaUTCResTimUnix != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarUTCFecha()"
+            matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div  *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != ''">
+            <mat-form-field>
+              <mat-label>Fecha local</mat-label>
+              <input matInput id="in_fechaLocalResTimUnix" [matDatepicker]="pickerFecLocalResTimUnix" [(ngModel)]="fechaLocalResTimUnix" readonly="true"
+                (click)="onSelectDato(fechaFormateada(fechaLocalResTimUnix))">
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFecLocalResTimUnix" disabled></mat-datepicker-toggle>
+              <mat-datepicker #pickerFecLocalResTimUnix disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora local</mat-label>
+              <input matInput readonly [(ngModel)]="horaLocalResTimUnix" (click)="onSelectDato(horaLocalResTimUnix)"/>
+              <mat-icon matSuffix>
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+
+          </div>
+
+          <div  *ngIf="fechaUTCResTimUnix && horaUTCResTimUnix != ''">
+            <mat-form-field>
+              <mat-label>Fecha UTC</mat-label>
+              <input matInput id="in_fechaUTCResTimUnix" [matDatepicker]="pickerFecUTCResTimUnix" [(ngModel)]="fechaUTCResTimUnix" readonly="true"
+                (click)="onSelectDato(fechaFormateada(fechaUTCResTimUnix))">
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFecUTCResTimUnix" disabled></mat-datepicker-toggle>
+              <mat-datepicker #pickerFecUTCResTimUnix disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora UTC</mat-label>
+              <input matInput readonly [(ngModel)]="horaUTCResTimUnix" (click)="onSelectDato(horaUTCResTimUnix)"/>
+              <mat-icon matSuffix>
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c7">
+      <mat-card appearance="outlined">
+        <mat-card-header>Fecha local -> Tiempo UNIX UTC</mat-card-header>
+        <mat-card-content>
+
+
+          <div>
+            <mat-form-field>
+              <mat-label>Fecha local</mat-label>
+              <input matInput [matDatepicker]="pickerparamFechaLocal" [(ngModel)]="paramFechaLocal" readonly="true">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerparamFechaLocal"></mat-datepicker-toggle>
+              <mat-datepicker #pickerparamFechaLocal disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 5px;">
+              <mat-label>Hora local</mat-label>
+              <input matInput
+                    name="in_paramHoraLocal"
+                    [format]="24"
+                    [(ngModel)]="paramHoraLocal"
+                    [ngxMatTimepicker]="pickerparamHoraLocal"
+                    readonly />
+              <mat-icon matSuffix
+                        (click)="pickerparamHoraLocal.open()">
+                  watch_later
+              </mat-icon>
+            </mat-form-field>
+            <ngx-mat-timepicker color="accent" #pickerparamHoraLocal></ngx-mat-timepicker>
+
+            <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonFechaUTC()"
+              matTooltip="Pulsar para transformar" matTooltipPosition="below">
+              <mat-icon>sync_alt</mat-icon>
+            </button>
+
+            <button type="button" *ngIf="timeUnixRes" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarFechaUTC()"
+              matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
+
+          <div *ngIf="timeUnixRes">
+            <button mat-flat-button id="btnResTimeUnix" type="button" (click)="onSelectDato(timeUnixRes.toString())"
+            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              <span class="unix">{{timeUnixRes}}</span>
+            </button>
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c8">
+      <mat-card appearance="outlined">
+        <mat-card-header>Pascua</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 200px !important;">
+            <mat-label>Ejercicio</mat-label>
+            <input matInput id="pascuaParamEjercicio" type="number"  placeholder="2024" [(ngModel)]="pascuaParamEjercicio">
+          </mat-form-field>
+
+          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar datos de pascua" (click)="onClickBotonGenerarPascua()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="pascuaRes" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPascua()"
+            matTooltip="Pulsar para limpiar la pascua" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div *ngIf="pascuaRes" style="margin-top: 5px;">
+            <div class="grid-layout-pascua">
+
+              <div class="caja">
+                <p>
+                  Domingo ramos:
+                  <button id="btnPascuaResDomingoRamos" mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaDomingoRamos))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaDomingoRamos)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Lunes santo:
+                  <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaLunesSanto))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaLunesSanto)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Martes santo:
+                  <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaMartesSanto))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaMartesSanto)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Miércoles santo:
+                  <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaMiercolesSanto))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaMiercolesSanto)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Jueves santo:
+                  <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaJuevesSanto))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaJuevesSanto)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Viernes santo:
+                  <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaViernesSanto))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaViernesSanto)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Sábado santo:
+                  <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaSabadoSanto))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaSabadoSanto)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Domingo resurrección:
+                  <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaDomingoResurreccion))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaDomingoResurreccion)}}</span>
+                  </button>
+                </p>
+              </div>
+
+              <div class="caja">
+                Periodo "vacacional" 2 semanas:
+                <p>
+                  Inicio:
+                  <button mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaLunesPeriodoVacacional))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaLunesPeriodoVacacional)}}</span>
+                  </button>
+                </p>
+                <p>
+                  Fin:
+                  <button mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaDomingoPeriodoVacacional))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="edad">{{fechaFormateada(pascuaRes.fechaDomingoPeriodoVacacional)}}</span>
+                  </button>
+                </p>
+
+              </div>
+
+            </div>
+          </div>
+
         </mat-card-content>
       </mat-card>
     </div>

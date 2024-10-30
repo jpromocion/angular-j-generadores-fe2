@@ -126,6 +126,17 @@ npm install ngx-color-picker --save
 
 
 
+### Instalar Angular Material Moment Adapter
+
+Requisitos de internacionalizacióin de los DatePicker de Angular Material
+[Angular Material Date Picker](https://material.angular.io/components/datepicker/overview)
+
+Instalamos con:
+```
+npm install @angular/material-moment-adapter --force
+```
+- Permite configurar en el app.config.ts el "provideMomentDateAdapter", de forma que los calendarios empiecen por Lunes.
+
 
 
 ## Docker - Render
