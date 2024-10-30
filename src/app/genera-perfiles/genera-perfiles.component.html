@@ -428,11 +428,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha nacimiento (edad)</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
-              <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.fechaNacimiento)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.fechaNacimiento)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="fecha">{{personaGenerada.fechaNacimiento}}</span>
               </button>
-              <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.edad)" style="margin-left: 10px;"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.edad)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="edad">{{personaGenerada.edad}}</span>
               </button>
@@ -534,11 +534,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CCAA</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
-              <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.ccaaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.ccaaIne)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="ccaaIne">{{personaGenerada.ccaaIne}}</span>
               </button>
-              <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.ccaa))" style="height: max(36px, 100%);"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.ccaa))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="ccaa">{{personaGenerada.ccaa | caseTransformer: tipoLetra}}</span>
               </button>
@@ -550,11 +550,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
-              <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.provinciaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.provinciaIne)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="provinciaIne">{{personaGenerada.provinciaIne}}</span>
               </button>
-              <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.provincia))" style="margin-left: 10px;height: max(36px, 100%);"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.provincia))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="provincia">{{personaGenerada.provincia | caseTransformer: tipoLetra}}</span>
               </button>
@@ -566,11 +566,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Municipio</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
-              <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.municipioIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.municipioIne)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="municipioIne">{{personaGenerada.municipioIne}}</span>
               </button>
-              <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.municipio))" style="margin-left: 10px;height: max(36px, 100%);"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.municipio))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="municipio">{{personaGenerada.municipio | caseTransformer: tipoLetra}}</span>
               </button>
@@ -794,11 +794,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CCAA</th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <div>
-              <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.ccaaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.ccaaIne)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="ccaaIne">{{empresaGenerada.ccaaIne}}</span>
               </button>
-              <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.ccaa))" style="margin-left: 10px;height: max(36px, 100%);"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.ccaa))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="ccaa">{{empresaGenerada.ccaa | caseTransformer: tipoLetra}}</span>
               </button>
@@ -810,11 +810,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <div>
-              <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.provinciaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.provinciaIne)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="provinciaIne">{{empresaGenerada.provinciaIne}}</span>
               </button>
-              <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.provincia))" style="margin-left: 10px;height: max(36px, 100%);"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.provincia))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="provincia">{{empresaGenerada.provincia | caseTransformer: tipoLetra}}</span>
               </button>
@@ -826,11 +826,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Municipio</th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <div>
-              <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.municipioIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.municipioIne)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="municipioIne">{{empresaGenerada.municipioIne}}</span>
               </button>
-              <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.municipio))" style="margin-left: 10px;height: max(36px, 100%);"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.municipio))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
                 <span class="municipio">{{empresaGenerada.municipio | caseTransformer: tipoLetra}}</span>
               </button>

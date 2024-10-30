@@ -26,7 +26,7 @@ export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit
   idioma: string = 'spanish';
   tipoGeneracion: string = 'c';
   cantidad: number = 100;
-  tipoLetra: string = 's';
+
 
   textoGenerado: string = '';
 
@@ -40,7 +40,7 @@ export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit
   }
 
   override ngOnInit(): void {
-
+    this.tipoLetra = 's';
   }
 
   /**
@@ -125,13 +125,6 @@ export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit
   }
 
 
-
-  /**
-   * Dado un texto, lo transformamos segun el tipo de letra seleccionado con el pipe CaseTransformerPipe
-   */
-  transformaTexto(texto: string): string {
-    return new CaseTransformerPipe().transform(texto, this.tipoLetra);
-  }
 
   /**
    * Evento de cambio del button toggle de tipo de generacion

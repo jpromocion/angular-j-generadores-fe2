@@ -12,11 +12,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { saveAs } from 'file-saver';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { FilesService } from '../core/services/files.service';
 import { Tipohash } from '../core/models/tipohash';
@@ -25,8 +21,7 @@ import { Tipohash } from '../core/models/tipohash';
   selector: 'app-genera-archivos',
   standalone: true,
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
-    MatTableModule, MatPaginatorModule,MatSortModule],
+    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule],
   templateUrl: './genera-archivos.component.html',
   styleUrl: './genera-archivos.component.scss'
 })
@@ -61,9 +56,6 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
 
   //inyeccion de dependencia para utilizar el servicio de generacion de archivos
   private filesService: FilesService = inject(FilesService);
-
-  //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
-  private _liveAnnouncer = inject(LiveAnnouncer);
 
   constructor() {
     super();

@@ -14,13 +14,13 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {MatSort, MatSortModule} from '@angular/material/sort';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { MiscService } from '../core/services/misc.service';
 import { Ccaa } from '../core/models/ccaa';
 import { Provincia } from '../core/models/provincia';
 import { Municipio } from '../core/models/municipio';
+import { DireccionCompleta } from '../core/models/direccion-completa';
 
 @Component({
   selector: 'app-genera-localizacion',
@@ -56,15 +56,17 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   @ViewChild('paginatorMuniGenerado') paginatorMuniGenerado!: MatPaginator;
   @ViewChild('sortMuniGenerado') sortMuniGenerado!: MatSort;
 
-
-
+  //direccion completa
+  direccionParamCodMuni: string = '';
+  direccionParamNumGenerar: number = 10;
+  direccionGenerado = new MatTableDataSource<DireccionCompleta>();
+  displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'codpostal', 'municipio', 'provincia', 'ccaa'];
+  @ViewChild('paginatorDireccionGenerado') paginatorDireccionGenerado!: MatPaginator;
+  @ViewChild('sortDireccionGenerado') sortDireccionGenerado!: MatSort;
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
   private miscService: MiscService = inject(MiscService);
 
-
-  //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
-  private _liveAnnouncer = inject(LiveAnnouncer);
 
 
   constructor() {
@@ -72,27 +74,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   }
 
   override ngOnInit(): void {
-
-  }
-
-  /**
-  * Inicializamos los labels del paginador
-  */
-  inicializarLabelsPaginador(paginator:MatPaginator): void {
-    paginator._intl.itemsPerPageLabel = 'Elementos por página';
-    paginator._intl.firstPageLabel = 'Primera página';
-    paginator._intl.lastPageLabel = 'Última página';
-    paginator._intl.nextPageLabel = 'Siguiente página';
-    paginator._intl.previousPageLabel = 'Página anterior';
-    paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
-      if (length === 0 || pageSize === 0) {
-        return `0 de ${length}`;
-      }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-      return `${startIndex + 1} - ${endIndex} de ${length}`;
-    }
+    this.tipoLetra = 's';
   }
 
 
@@ -108,22 +90,14 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.inicializarLabelsPaginador(this.paginatorMuniGenerado);
     this.muniGenerado.paginator = this.paginatorMuniGenerado;
     this.muniGenerado.sort = this.sortMuniGenerado;
+
+    this.inicializarLabelsPaginador(this.paginatorDireccionGenerado);
+    this.direccionGenerado.paginator = this.paginatorDireccionGenerado;
+    this.direccionGenerado.sort = this.sortDireccionGenerado;
   }
 
 
 
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
 
   /**
    * Invocamos la operacion del servicio para obtener una lista de CAAA
@@ -289,6 +263,69 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.excelService.exportAsExcelFile(formatted, 'Lista_Municipios');
     this.openSnackBar('Excel generado','ExcelMunicipios');
   }
+
+
+
+
+
+
+
+  /**
+   * Invocamos la operacion del servicio para obtener una lista de direciciones
+   */
+  getDirecciones(resultados: number = 1, ineccaa: string = '', ineprovincia: string = '', inemunicipio: string = ''): void {
+    this.miscService.getAddress(resultados, ineccaa, ineprovincia, inemunicipio)
+    .subscribe(direccion => {
+      if (direccion){
+        this.direccionGenerado.data = direccion;
+        this.direccionGenerado.paginator = this.paginatorDireccionGenerado;
+        this.direccionGenerado.sort = this.sortDireccionGenerado;
+        if (this.direccionGenerado && this.direccionGenerado.data.length > 0) {
+          this.openSnackBar('Lista domicilios generados', 'GenerarDomicilios');
+        }
+      }
+
+    });
+  }
+
+  /**
+  * Generamos un tipo seleccionado aleatorio
+  */
+  onClickBotonGeneraDomicilios(): void {
+    this.direccionGenerado = new MatTableDataSource<DireccionCompleta>();
+    if (this.direccionParamCodMuni != '' && this.muniCodProvin == '') {
+      this.openSnackBar('El municipio debe seleccionarse con un código de provincia.','ErrorDomicilios');
+    } else{
+      this.getDirecciones(this.direccionParamNumGenerar, this.provinCodCCAA, this.muniCodProvin, this.direccionParamCodMuni);
+    }
+
+  }
+
+  /**
+    * Limpiar el campo de tipo generado
+    */
+  onClickLimpiarDomicilios(): void {
+    this.direccionGenerado = new MatTableDataSource<DireccionCompleta>();
+    this.openSnackBar('Domicilios limpiados', 'LimpiarDomicilios');
+  }
+
+  /**
+  * Exportar la lista de tipos generados a excel
+  */
+  exportJsonDomicilios(): void {
+    const formatted = this.direccionGenerado.data.map(dato => ({
+      DirecciónCompleta: this.transformaTexto(dato.direccionCompleta) ,
+      Direccion: this.transformaTexto(dato.direccion + ', ' + dato.numVia),
+      CodigoPostal: dato.codPostal,
+        Municipio: this.transformaTexto(dato.ineMunicipio + ' - ' + dato.municipio),
+      Provincia: this.transformaTexto(dato.ineProvincia + ' - ' + dato.provincia),
+      CCAA: this.transformaTexto(dato.ineCcaa + ' - ' + dato.ccaa) }));
+    this.excelService.exportAsExcelFile(formatted, 'Lista_Domicilios');
+    this.openSnackBar('Excel generado','ExcelDomicilios');
+  }
+
+
+
 
 
 }

@@ -185,6 +185,164 @@
       </mat-card>
     </div>
 
+    <div class="caja c4">
+      <mat-card appearance="outlined">
+        <mat-card-header>Domicilios</mat-card-header>
+        <mat-card-content>
+
+          <p style="margin-left: 10px;"><small><em>Genera un domicilio completamente aleatorio en CCAA, Provincia, Municipio, o selecciona en los bloques anterires una CCAA y provincia para generarlos dirigidos.</em></small></p>
+          <p style="margin-left: 10px;"><small><em>Adicionalmente en este bloque podrás filtrar por el Municipio concreto de una provincia sobre el que generar.</em></small></p>
+
+          <div>
+            <mat-form-field style="width: 200px !important;">
+              <mat-label>Cod. CCAA</mat-label>
+              <input matInput id="provinCodCCAADomi" type="text"  maxlength="2"  [(ngModel)]="provinCodCCAA" readonly="true">
+              <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Provincias'.">help</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field style="width: 200px !important;margin-left: 5px;">
+              <mat-label>Cod. Provincia</mat-label>
+              <input matInput id="muniCodProvinDomi" type="text"  maxlength="2"  [(ngModel)]="muniCodProvin" readonly="true">
+              <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Municipios'.">help</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field style="width: 200px !important;margin-left: 5px;">
+              <mat-label>Cod. Municipio</mat-label>
+              <input matInput id="direccionParamCodMuni" type="text"  maxlength="3" placeholder="001" [(ngModel)]="direccionParamCodMuni">
+              <mat-icon matSuffix matTooltip="Este valor si debe ser rellenado si se quiere filtrar las direcciones por municipio. El código de municipio está relacionado con la provincia, por lo que no tiene sentido por si solo. Puede copiarlo de uno de los resultados del bloque 'Municipios' tras filtrar una provincia.">help</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field style="width: 150px !important;margin-left: 5px;">
+              <mat-label>Num. generaciones</mat-label>
+              <input matInput id="direccionParamNumGenerar" type="number"  min="1" max="1000" placeholder="Número de generaciones" [(ngModel)]="direccionParamNumGenerar">
+              <mat-icon matSuffix matTooltip="Número de domicilios a obtener.">help</mat-icon>
+            </mat-form-field>
+
+          </div>
+
+          <div>
+            <label>Tipo letra: </label>
+            <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="s">Sin formato</mat-button-toggle>
+              <mat-button-toggle value="M">Mayúsculas</mat-button-toggle>
+              <mat-button-toggle value="m">Minúsculas</mat-button-toggle>
+              <mat-button-toggle value="c">Camel case</mat-button-toggle>
+            </mat-button-toggle-group>
+
+            <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar domicilios" (click)="onClickBotonGeneraDomicilios()"
+              matTooltip="Pulsar para generar" matTooltipPosition="below">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+
+          <div [hidden]="!((direccionGenerado.data.length && direccionGenerado.data.length > 0))">
+            <table mat-table #sortDireccionGenerado="matSort" [dataSource]="direccionGenerado" matSort  (matSortChange)="announceSortChange($event)">
+
+              <ng-container matColumnDef="direccionCompleta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Completa</th>
+                <td mat-cell *matCellDef="let direccion">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(direccion.direccionCompleta))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="direcion">{{direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="direccion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
+                <td mat-cell *matCellDef="let direccion">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(direccion.direccion + ', ' + direccion.numVia))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="direccion">{{direccion.direccion | caseTransformer: tipoLetra}}, {{direccion.numVia}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="codpostal">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod. Postal</th>
+                <td mat-cell *matCellDef="let direccion">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(direccion.codPostal)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="codpostal">{{direccion.codPostal}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="municipio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Municipio</th>
+                <td mat-cell *matCellDef="let direccion">
+                  <div>
+                    <button mat-flat-button class="botonFlatReducido" type="button" (click)="onSelectDato(direccion.ineMunicipio)"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="ine">{{direccion.ineMunicipio}}</span>
+                    </button>
+                    <button mat-flat-button class="botonFlatReducido" type="button" (click)="onSelectDato(transformaTexto(direccion.municipio))"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="municipio">{{direccion.municipio | caseTransformer: tipoLetra}}</span>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="provincia">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
+                <td mat-cell *matCellDef="let direccion">
+                  <div>
+                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(direccion.ineProvincia)"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="provinciaIne">{{direccion.ineProvincia}}</span>
+                    </button>
+                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(direccion.provincia))"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="provincia">{{direccion.provincia | caseTransformer: tipoLetra}}</span>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ccaa">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>CCAA</th>
+                <td mat-cell *matCellDef="let direccion">
+                  <div>
+                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(direccion.ineCcaa)"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="ccaaIne">{{direccion.ineCcaa}}</span>
+                    </button>
+                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(direccion.ccaa))"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="ccaa">{{direccion.ccaa | caseTransformer: tipoLetra}}</span>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsDireccionGenerado"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsDireccionGenerado;"></tr>
+            </table>
+
+            <div class="divBox">
+              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDomicilios()"
+                matTooltip="Pulsar para limpiar las direcciones" matTooltipPosition="below">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonDomicilios()"
+                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+                <mat-icon>description</mat-icon>
+              </button>
+              <mat-paginator #paginatorDireccionGenerado="matPaginator"
+              [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]"
+              showFirstLastButtons
+                aria-label="Seleccionar páginación">
+              </mat-paginator>
+            </div>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
 
   </div>
 

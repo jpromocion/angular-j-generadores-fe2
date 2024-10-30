@@ -12,6 +12,7 @@ import { DatosConexionService } from './datos-conexion.service';
 import { Ccaa } from '../models/ccaa';
 import { Provincia } from '../models/provincia';
 import { Municipio } from '../models/municipio';
+import { DireccionCompleta } from '../models/direccion-completa';
 
 @Injectable({
   providedIn: 'root'
@@ -325,6 +326,38 @@ export class MiscService {
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
         catchError(this.handleError<string[]>('getUuid', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para obtener lista de direcciones
+   * Interfaz: GET /misc/address
+   * @returns Lista de Direcciones
+   */
+  getAddress(resultados: number = 1, ineccaa: string = '', ineprovincia: string = '', inemunicipio: string = ''): Observable<DireccionCompleta[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/address?results=' + resultados;
+
+    if (ineccaa != '') {
+      urlfinal = urlfinal + '&ineccaa=' + ineccaa;
+    }
+
+    if (ineprovincia != '') {
+      urlfinal = urlfinal + '&ineprovincia=' + ineprovincia;
+    }
+
+    if (inemunicipio != '') {
+      urlfinal = urlfinal + '&inemunicipio=' + inemunicipio;
+    }
+
+    return this.http.get<DireccionCompleta[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('provincias de una CCAA recuperados')),
+        catchError(this.handleError<DireccionCompleta[]>('getAddress', []))
       );
   }
 

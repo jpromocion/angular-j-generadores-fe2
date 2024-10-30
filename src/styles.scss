@@ -199,3 +199,13 @@ mat-header-cell {
   overflow: hidden;
   vertical-align: middle;
 }
+
+
+/**
+ * Botones flat en tabla que queremos no se vean tan anchos
+ */
+.botonFlatReducido{
+  height: max(36px, 100%) !important;
+  margin-left: 5px !important;
+  margin-top: 2px !important;
+}

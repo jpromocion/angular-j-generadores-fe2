@@ -11,8 +11,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {MatSort, MatSortModule} from '@angular/material/sort';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
@@ -32,7 +31,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   //filstros
   tipoPerfil: string = 'p';
   sexoSeleccionado: string = 'a';
-  tipoLetra: string = 'M';
+
 
   numGenerar: number = 1;
 
@@ -65,10 +64,6 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   //inyeccion de dependencia para utilizar el servicio de generacion de datos bancarios
   private profilesService: ProfilesService = inject(ProfilesService);
 
-  //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
-  private _liveAnnouncer = inject(LiveAnnouncer);
-
-
 
   constructor() {
     super();
@@ -77,25 +72,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   override ngOnInit(): void {
 
   }
-  /**
-  * Inicializamos los labels del paginador de personas
-  */
-  inicializarLabelsPaginador(paginator:MatPaginator): void {
-    paginator._intl.itemsPerPageLabel = 'Elementos por página';
-    paginator._intl.firstPageLabel = 'Primera página';
-    paginator._intl.lastPageLabel = 'Última página';
-    paginator._intl.nextPageLabel = 'Siguiente página';
-    paginator._intl.previousPageLabel = 'Página anterior';
-    paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
-      if (length === 0 || pageSize === 0) {
-        return `0 de ${length}`;
-      }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-      return `${startIndex + 1} - ${endIndex} de ${length}`;
-    }
-  }
+
 
   ngAfterViewInit() {
     //this.inicializarLabelsPaginador(this.paginatorPagina.toArray()[0]);
@@ -203,26 +180,6 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     this.empresaGenerada = undefined;
     this.listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
     this.openSnackBar('Perfil limpiado', 'LimpiarPerfil');
-  }
-
-  /**
-   * Dado un texto, lo transformamos segun el tipo de letra seleccionado con el pipe CaseTransformerPipe
-   */
-  transformaTexto(texto: string): string {
-    return new CaseTransformerPipe().transform(texto, this.tipoLetra);
-  }
-
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
   }
 
 
