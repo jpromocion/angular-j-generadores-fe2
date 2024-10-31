@@ -25,6 +25,7 @@
     <div class="caja c3">
       <label style="margin-left: 5px;">Tipo letra: </label>
       <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"  style="margin-left: 10px;">
+        <mat-button-toggle value="s">Sin formato</mat-button-toggle>
         <mat-button-toggle value="M">Mayúsculas</mat-button-toggle>
         <mat-button-toggle value="m">Minúsculas</mat-button-toggle>
         <mat-button-toggle value="c">Camel case</mat-button-toggle>
@@ -156,61 +157,60 @@
     </div>
     <div class="caja" *ngIf="personaGenerada">
       <label>CCAA:</label>
-        <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.ccaaIne)" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineCcaa)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="ccaaIne">{{personaGenerada.ccaaIne}}</span>
+          <span class="ccaaIne">{{personaGenerada.direccion.ineCcaa}}</span>
         </button>
-        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.ccaa))" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.ccaa))" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="ccaa">{{personaGenerada.ccaa | caseTransformer: tipoLetra}}</span>
+          <span class="ccaa">{{personaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" *ngIf="personaGenerada">
       <label>Provincia:</label>
-        <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.provinciaIne)" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineProvincia)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="provinciaIne">{{personaGenerada.provinciaIne}}</span>
+          <span class="provinciaIne">{{personaGenerada.direccion.ineProvincia}}</span>
         </button>
-        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.provincia))" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.provincia))" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="provincia">{{personaGenerada.provincia | caseTransformer: tipoLetra}}</span>
+          <span class="provincia">{{personaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" *ngIf="personaGenerada">
       <label>Municipio:</label>
-        <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.municipioIne)" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineMunicipio)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="municipioIne">{{personaGenerada.municipioIne}}</span>
+          <span class="municipioIne">{{personaGenerada.direccion.ineMunicipio}}</span>
         </button>
-        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.municipio))" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.municipio))" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="municipio">{{personaGenerada.municipio | caseTransformer: tipoLetra}}</span>
+          <span class="municipio">{{personaGenerada.direccion.municipio| caseTransformer: tipoLetra}}</span>
         </button>
     </div>
 
     <div class="caja" *ngIf="personaGenerada">
       <label>Cod. Postal:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.codigoPostal)" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.codPostal)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="codigoPostal">{{personaGenerada.codigoPostal}}</span>
+        <span class="codigoPostal">{{personaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja cpDir" *ngIf="personaGenerada">
       <label>Dirección:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion + ', ' + personaGenerada.numerovia))" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="direccion">{{personaGenerada.direccion | caseTransformer: tipoLetra}}, {{personaGenerada.numerovia}}</span>
+        <span class="direccion">{{personaGenerada.direccion.direccionAMedio | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja cpDir" *ngIf="personaGenerada">
       <label>Dirección completa:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion + ', ' + personaGenerada.numerovia + ', '  + personaGenerada.codigoPostal + ', ' + personaGenerada.municipio+ ' (' + personaGenerada.provincia + ')'))" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="direccion">{{personaGenerada.direccion | caseTransformer: tipoLetra}}, {{personaGenerada.numerovia}}, {{personaGenerada.codigoPostal}}, {{personaGenerada.municipio | caseTransformer: tipoLetra}} ({{personaGenerada.provincia | caseTransformer: tipoLetra}})</span>
+        <span class="direccion">{{personaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-
 
     <div class="caja" *ngIf="personaGenerada">
       <label>IBAN:</label>
@@ -328,58 +328,58 @@
 
     <div class="caja" *ngIf="empresaGenerada">
       <label>CCAA:</label>
-        <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.ccaaIne)" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineCcaa)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="ccaaIne">{{empresaGenerada.ccaaIne}}</span>
+          <span class="ccaaIne">{{empresaGenerada.direccion.ineCcaa}}</span>
         </button>
-        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.ccaa))" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.ccaa))" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="ccaa">{{empresaGenerada.ccaa | caseTransformer: tipoLetra}}</span>
+          <span class="ccaa">{{empresaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" *ngIf="empresaGenerada">
       <label>Provincia:</label>
-        <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.provinciaIne)" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineProvincia)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="provinciaIne">{{empresaGenerada.provinciaIne}}</span>
+          <span class="provinciaIne">{{empresaGenerada.direccion.ineProvincia}}</span>
         </button>
-        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.provincia))" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.provincia))" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="provincia">{{empresaGenerada.provincia | caseTransformer: tipoLetra}}</span>
+          <span class="provincia">{{empresaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" *ngIf="empresaGenerada">
       <label>Municipio:</label>
-        <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.municipioIne)" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineMunicipio)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="municipioIne">{{empresaGenerada.municipioIne}}</span>
+          <span class="municipioIne">{{empresaGenerada.direccion.ineMunicipio}}</span>
         </button>
-        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.municipio))" style="margin-left: 10px;"
+        <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.municipio))" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
-          <span class="municipio">{{empresaGenerada.municipio | caseTransformer: tipoLetra}}</span>
+          <span class="municipio">{{empresaGenerada.direccion.municipio | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
 
     <div class="caja" *ngIf="empresaGenerada">
       <label>Cod. Postal:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.codigoPostal)" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.codPostal)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="codigoPostal">{{empresaGenerada.codigoPostal}}</span>
+        <span class="codigoPostal">{{empresaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja cpDir" *ngIf="empresaGenerada">
       <label>Dirección:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion) + ', ' + empresaGenerada.numerovia)" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="direccion">{{empresaGenerada.direccion | caseTransformer: tipoLetra}}, {{empresaGenerada.numerovia}}</span>
+        <span class="direccion">{{empresaGenerada.direccion.direccionAMedio| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja cpDir" *ngIf="empresaGenerada">
       <label>Dirección completa:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion) + ', ' + empresaGenerada.numerovia + ', '  + empresaGenerada.codigoPostal + ', ' + transformaTexto(empresaGenerada.municipio)+ ' (' + transformaTexto(empresaGenerada.provincia) + ')')" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="direccion">{{empresaGenerada.direccion | caseTransformer: tipoLetra}}, {{empresaGenerada.numerovia}}, {{empresaGenerada.codigoPostal}}, {{empresaGenerada.municipio | caseTransformer: tipoLetra}} ({{empresaGenerada.provincia | caseTransformer: tipoLetra}})</span>
+        <span class="direccion">{{empresaGenerada.direccion.direccionCompleta| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
@@ -473,7 +473,7 @@
         <ng-container matColumnDef="nombrecompleto">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre completo</th>
           <td mat-cell *matCellDef="let personaGenerada">
-            <button mat-flat-button type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombreCompleto))" style="height: max(36px, 100%);"
+            <button mat-flat-button type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombreCompleto))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="nombre">{{personaGenerada.nombreCompleto | caseTransformer: tipoLetra}}</span>
             </button>
@@ -534,13 +534,13 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CCAA</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.ccaaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.direccion.ineCcaa)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="ccaaIne">{{personaGenerada.ccaaIne}}</span>
+                <span class="ccaaIne">{{personaGenerada.direccion.ineCcaa}}</span>
               </button>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.ccaa))"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.ccaa))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="ccaa">{{personaGenerada.ccaa | caseTransformer: tipoLetra}}</span>
+                <span class="ccaa">{{personaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
           </td>
@@ -550,13 +550,13 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.provinciaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.direccion.ineProvincia)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="provinciaIne">{{personaGenerada.provinciaIne}}</span>
+                <span class="provinciaIne">{{personaGenerada.direccion.ineProvincia}}</span>
               </button>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.provincia))"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.provincia))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="provincia">{{personaGenerada.provincia | caseTransformer: tipoLetra}}</span>
+                <span class="provincia">{{personaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
           </td>
@@ -566,13 +566,13 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Municipio</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.municipioIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.direccion.ineMunicipio)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="municipioIne">{{personaGenerada.municipioIne}}</span>
+                <span class="municipioIne">{{personaGenerada.direccion.ineMunicipio}}</span>
               </button>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.municipio))"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.municipio))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="municipio">{{personaGenerada.municipio | caseTransformer: tipoLetra}}</span>
+                <span class="municipio">{{personaGenerada.direccion.municipio | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
           </td>
@@ -581,9 +581,9 @@
         <ng-container matColumnDef="codpostal">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod. Postal</th>
           <td mat-cell *matCellDef="let personaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.codigoPostal)"
+            <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.codPostal)"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
-              <span class="codigoPostal">{{personaGenerada.codigoPostal}}</span>
+              <span class="codigoPostal">{{personaGenerada.direccion.codPostal}}</span>
             </button>
           </td>
         </ng-container>
@@ -591,9 +591,9 @@
         <ng-container matColumnDef="direccion">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
           <td mat-cell *matCellDef="let personaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion + ', ' + personaGenerada.numerovia))" style="height: max(36px, 100%);"
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionAMedio))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
-              <span class="direccion">{{personaGenerada.direccion | caseTransformer: tipoLetra}}, {{personaGenerada.numerovia}}</span>
+              <span class="direccion">{{personaGenerada.direccion.direccionAMedio | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
         </ng-container>
@@ -601,9 +601,9 @@
         <ng-container matColumnDef="direccioncompleta">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección completa</th>
           <td mat-cell *matCellDef="let personaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion + ', ' + personaGenerada.numerovia + ', '  + personaGenerada.codigoPostal + ', ' + personaGenerada.municipio+ ' (' + personaGenerada.provincia + ')'))" style="height: max(36px, 100%);"
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionCompleta))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
-              <span class="direccion">{{personaGenerada.direccion | caseTransformer: tipoLetra}}, {{personaGenerada.numerovia}}, {{personaGenerada.codigoPostal}}, {{personaGenerada.municipio | caseTransformer: tipoLetra}} ({{personaGenerada.provincia | caseTransformer: tipoLetra}})</span>
+              <span class="direccion">{{personaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
         </ng-container>
@@ -713,7 +713,7 @@
         <ng-container matColumnDef="razon">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Razón social</th>
           <td mat-cell *matCellDef="let empresaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.nombre))" style="height: max(36px, 100%);"
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.nombre))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="nombre">{{empresaGenerada.nombre | caseTransformer: tipoLetra}}</span>
             </button>
@@ -743,7 +743,7 @@
         <ng-container matColumnDef="actividad">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Actividad</th>
           <td mat-cell *matCellDef="let empresaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.actividad))" style="height: max(36px, 100%);"
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.actividad))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="actividad">{{empresaGenerada.actividad | caseTransformer: tipoLetra}}</span>
             </button>
@@ -794,13 +794,13 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CCAA</th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <div>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.ccaaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineCcaa)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="ccaaIne">{{empresaGenerada.ccaaIne}}</span>
+                <span class="ccaaIne">{{empresaGenerada.direccion.ineCcaa}}</span>
               </button>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.ccaa))"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.ccaa))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="ccaa">{{empresaGenerada.ccaa | caseTransformer: tipoLetra}}</span>
+                <span class="ccaa">{{empresaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
           </td>
@@ -810,13 +810,13 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <div>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.provinciaIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineProvincia)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="provinciaIne">{{empresaGenerada.provinciaIne}}</span>
+                <span class="provinciaIne">{{empresaGenerada.direccion.ineProvincia}}</span>
               </button>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.provincia))"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.provincia))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="provincia">{{empresaGenerada.provincia | caseTransformer: tipoLetra}}</span>
+                <span class="provincia">{{empresaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
           </td>
@@ -826,13 +826,13 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Municipio</th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <div>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.municipioIne)"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineMunicipio)"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="municipioIne">{{empresaGenerada.municipioIne}}</span>
+                <span class="municipioIne">{{empresaGenerada.direccion.ineMunicipio}}</span>
               </button>
-              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.municipio))"
+              <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.municipio))"
               matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                <span class="municipio">{{empresaGenerada.municipio | caseTransformer: tipoLetra}}</span>
+                <span class="municipio">{{empresaGenerada.direccion.municipio | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
           </td>
@@ -841,9 +841,9 @@
         <ng-container matColumnDef="codpostal">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod. Postal</th>
           <td mat-cell *matCellDef="let empresaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.codigoPostal)"
+            <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.codPostal)"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
-              <span class="codigoPostal">{{empresaGenerada.codigoPostal}}</span>
+              <span class="codigoPostal">{{empresaGenerada.direccion.codPostal}}</span>
             </button>
           </td>
         </ng-container>
@@ -851,9 +851,9 @@
         <ng-container matColumnDef="direcion">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
           <td mat-cell *matCellDef="let empresaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion) + ', ' + empresaGenerada.numerovia)" style="height: max(36px, 100%);"
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionAMedio))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
-              <span class="direccion">{{empresaGenerada.direccion | caseTransformer: tipoLetra}}, {{empresaGenerada.numerovia}}</span>
+              <span class="direccion">{{empresaGenerada.direccion.direccionAMedio | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
         </ng-container>
@@ -861,9 +861,9 @@
         <ng-container matColumnDef="direcioncompleta">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección completa</th>
           <td mat-cell *matCellDef="let empresaGenerada">
-            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion + ', ' + empresaGenerada.numerovia + ', '  + empresaGenerada.codigoPostal + ', ' + empresaGenerada.municipio+ ' (' + empresaGenerada.provincia + ')'))" style="height: max(36px, 100%);"
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionCompleta))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
-              <span class="direccion">{{empresaGenerada.direccion | caseTransformer: tipoLetra}}, {{empresaGenerada.numerovia}}, {{empresaGenerada.codigoPostal}}, {{empresaGenerada.municipio | caseTransformer: tipoLetra}} ({{empresaGenerada.provincia | caseTransformer: tipoLetra}})</span>
+              <span class="direccion">{{empresaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
         </ng-container>

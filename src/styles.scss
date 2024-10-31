@@ -209,3 +209,13 @@ mat-header-cell {
   margin-left: 5px !important;
   margin-top: 2px !important;
 }
+
+/*
+* Botones flat en tabla de texto grande, que buscamos que se vea el textoc ompletamente dentro del boton
+*/
+.botonFlatGrande{
+  height: fit-content !important;
+  margin-left: 5px !important;
+  margin-top: 2px !important;
+  border-radius: 15% !important;
+}

@@ -1,3 +1,5 @@
+import { DireccionCompleta } from './direccion-completa';
+
 export interface Persona {
 	nif: string;
 	nie: string;
@@ -13,15 +15,7 @@ export interface Persona {
 	login: string;
 	email: string;
 	password: string;
-	ccaa: string;
-	ccaaIne: string;
-	provincia: string;
-	provinciaIne: string;
-	municipio: string;
-	municipioIne: string;
-	direccion: string;
-	numerovia: string;
-	codigoPostal: string;
+  direccion: DireccionCompleta;
 	iban: string;
 	bic: string;
 	tarjetaCredito: string;

@@ -60,7 +60,10 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   direccionParamCodMuni: string = '';
   direccionParamNumGenerar: number = 10;
   direccionGenerado = new MatTableDataSource<DireccionCompleta>();
-  displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'codpostal', 'municipio', 'provincia', 'ccaa'];
+  displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'numVia', 'kilometro', 'bloque', 'portal', 'escalera', 'planta', 'puerta' , 'codpostal', 'municipio', 'provincia', 'ccaa'];
+
+
+
   @ViewChild('paginatorDireccionGenerado') paginatorDireccionGenerado!: MatPaginator;
   @ViewChild('sortDireccionGenerado') sortDireccionGenerado!: MatSort;
 
@@ -315,9 +318,16 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   exportJsonDomicilios(): void {
     const formatted = this.direccionGenerado.data.map(dato => ({
       DirecciónCompleta: this.transformaTexto(dato.direccionCompleta) ,
-      Direccion: this.transformaTexto(dato.direccion + ', ' + dato.numVia),
+      Direccion: this.transformaTexto(dato.direccion),
+      NumVia: dato.numVia,
+      Kilometro: dato.kilometro,
+      Bloque: dato.bloque,
+      Portal: dato.portal,
+      Escalera: dato.escalera,
+      Planta: this.transformaTexto(dato.planta),
+      Puerta: this.transformaTexto(dato.puerta),
       CodigoPostal: dato.codPostal,
-        Municipio: this.transformaTexto(dato.ineMunicipio + ' - ' + dato.municipio),
+      Municipio: this.transformaTexto(dato.ineMunicipio + ' - ' + dato.municipio),
       Provincia: this.transformaTexto(dato.ineProvincia + ' - ' + dato.provincia),
       CCAA: this.transformaTexto(dato.ineCcaa + ' - ' + dato.ccaa) }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_Domicilios');

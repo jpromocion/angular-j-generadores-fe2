@@ -1,3 +1,5 @@
+import { DireccionCompleta } from './direccion-completa';
+
 export interface Empresa {
   cif: string;
 	nombre: string;
@@ -5,15 +7,7 @@ export interface Empresa {
 	telefono: string;
 	fax: string;
 	email: string;
-	ccaa: string;
-	ccaaIne: string	;
-	municipio: string;
-	municipioIne: string;
-	provincia: string;
-	provinciaIne: string;
-	direccion: string;
-	numerovia: string;
-	codigoPostal: string;
+  direccion: DireccionCompleta;
 	cnae: string;
 	actividad: string;
   paginaWeb: string;

@@ -2,6 +2,12 @@ export interface DireccionCompleta {
 
 	direccion: string;
 	numVia: string;
+	kilometro: string;
+	bloque: string;
+	portal: string;
+	escalera: string;
+	planta: string;
+	puerta: string;
 	codPostal: string;
 	ineMunicipio: string;
 	municipio: string;
@@ -9,6 +15,7 @@ export interface DireccionCompleta {
 	provincia: string;
 	ineCcaa: string;
 	ccaa: string;
+  direccionAMedio: string;
 	direccionCompleta: string;
 
 }
