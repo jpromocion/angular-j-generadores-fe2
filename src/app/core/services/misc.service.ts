@@ -406,4 +406,89 @@ export class MiscService {
   }
 
 
+  /**
+   * Interfaz de invocación del servicio rest para obtener CUPS generados aleatoriamente.
+   * Interfaz: GET /misc/cups
+   * @returns Lista de CUPS generados aleatoriamente
+   */
+  getCups(resultados: number = 1, type: string = ''): Observable<string[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/cups?results=' + resultados;
+
+    if (type != '') {
+      urlfinal = urlfinal + '&type=' + type;
+    }
+
+    return this.http.get<string[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Emails recuperados')),
+        catchError(this.handleError<string[]>('getCups', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para validar un CUPS
+   * Interfaz: GET /doi/validatecups
+   * @returns devuelve OK si correcto o ERROR sino correcto
+   */
+  getValidatecups(cups: string): Observable<string>  {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatecups?cups=' + cups;
+
+    return this.http.get(urlfinal, {
+      headers: this.baseHeaders, responseType: 'text'
+    })
+      .pipe(
+        //tap(_ => this.log('Nifs recuperados')),
+        catchError(this.handleError<string>('getValidatecups', ''))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para obtener LEI generados aleatoriamente.
+   * Interfaz: GET /misc/lei
+   * @returns Lista de LEI generados aleatoriamente
+   */
+  getLei(resultados: number = 1): Observable<string[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/lei?results=' + resultados;
+
+    return this.http.get<string[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Emails recuperados')),
+        catchError(this.handleError<string[]>('getLei', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para validar un LEI
+   * Interfaz: GET /doi/validatelei
+   * @returns devuelve OK si correcto o ERROR sino correcto
+   */
+  getValidatelei(lei: string): Observable<string>  {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatelei?lei=' + lei;
+
+    return this.http.get(urlfinal, {
+      headers: this.baseHeaders, responseType: 'text'
+    })
+      .pipe(
+        //tap(_ => this.log('Nifs recuperados')),
+        catchError(this.handleError<string>('getValidatelei', ''))
+      );
+  }
+
+
 }

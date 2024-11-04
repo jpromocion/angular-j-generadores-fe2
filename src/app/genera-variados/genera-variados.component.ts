@@ -34,8 +34,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     {valor: 'em', nombre: 'Email'},
     {valor: 'ci', nombre: 'Ciudad'},
     {valor: 'cp', nombre: 'Cod. Postal'},
-    {valor: 'im', nombre: 'IMEI'},
-    {valor: 'ui', nombre: 'UUID'},
+    {valor: 'im', nombre: 'IMEI - Identidad internacional de equipo móvil'},
+    {valor: 'ui', nombre: 'UUID - Identificador único universal'},
+    {valor: 'lei', nombre: 'LEI - Identificador de Entidad Legal'},
   ];
   textoGenerado: string[] = [];
 
@@ -80,6 +81,24 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   //validar ref catastral
   refCatasValidar: string = '';
   refCatasValidarOk: string = '';
+
+
+  //CUPS
+  cupsParamSelectedTipo: string = '';
+  tiposCups: Array<any> = [
+    {valor: '', nombre: 'Seleccionar un tipo.'},
+    {valor: 'e', nombre: 'Energía'},
+    {valor: 'g', nombre: 'Gas'}
+  ];
+  cupsGeneradas: string[] = [];
+
+  //validar CUPS
+  cupsValidar: string = '';
+  cupsValidarOk: string = '';
+
+  //validar LEI
+  leiValidar: string = '';
+  leiValidarOk: string = '';
 
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
@@ -164,6 +183,19 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   }
 
   /**
+   * Invocamos la operacion del servicio para obtener una lista de LEIs
+   */
+  getLei(resultados: number): void {
+    this.miscService.getLei(resultados)
+    .subscribe(cadena => {
+      this.textoGenerado = cadena;
+      if (this.textoGenerado && this.textoGenerado.length > 0){
+        this.openSnackBar('LEIs generados', 'GenerarLEI');
+      }
+    });
+  }
+
+  /**
   * Generamos un tipo seleccionado aleatorio
   */
   onClickBotonGenerarTipo(): void {
@@ -180,6 +212,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
       this.getImei(this.numGenerar);
     } else if (this.selectedTipoGenera == 'ui') {
       this.getUuid(this.numGenerar);
+    } else if (this.selectedTipoGenera == 'lei') {
+      this.getLei(this.numGenerar);
     }
 
   }
@@ -384,7 +418,7 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(nifOk => {
       this.refCatasValidarOk = nifOk;
       if (this.refCatasValidarOk && this.refCatasValidarOk != ''){
-        this.openSnackBar('Ref. catastral validado', 'ValidarRefCatastral');
+        this.openSnackBar('Ref. catastral validada', 'ValidarRefCatastral');
       }
     });
   }
@@ -394,6 +428,77 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
 
 
 
+
+  /**
+   * Invocamos la operacion del servicio para obtener una lista de refe catastrales
+   */
+  getCups(resultados: number, tipo: string): void {
+    this.miscService.getCups(resultados, tipo)
+    .subscribe(cadena => {
+      this.cupsGeneradas = cadena;
+      if (this.cupsGeneradas && this.cupsGeneradas.length > 0){
+        this.openSnackBar('CUPS generados', 'GenerarCups');
+      }
+    });
+  }
+
+  /**
+  * Generamos un tipo seleccionado aleatorio
+  */
+  onClickBotonGenerarCups(): void {
+    this.cupsGeneradas = [];
+    this.getCups(this.numGenerar, this.cupsParamSelectedTipo);
+  }
+
+  /**
+    * Limpiar el campo de tipo generado
+    */
+  onClickLimpiarCups(): void {
+    this.cupsGeneradas = [];
+    this.openSnackBar('CUPS limpiados', 'LimpiarCups');
+  }
+
+  /**
+  * Exportar la lista de tipos generados a excel
+  */
+  exportJsonCups(): void {
+    const formatted = this.cupsGeneradas.map(dato => ({ Cups: dato }));
+    this.excelService.exportAsExcelFile(formatted, 'Lista_Cups');
+    this.openSnackBar('Excel generado','ExcelCups');
+  }
+
+
+
+
+  /**
+    * Evento boton para validar una CUPS
+    */
+  onClickValidaCups(): void {
+    this.cupsValidarOk = '';
+    this.miscService.getValidatecups(this.cupsValidar)
+    .subscribe(cups => {
+      this.cupsValidarOk = cups;
+      if (this.cupsValidarOk && this.cupsValidarOk != ''){
+        this.openSnackBar('CUPS validado', 'ValidarCups');
+      }
+    });
+  }
+
+
+
+  /**
+    * Evento boton para validar un LEI
+    */
+  onClickValidaLei(): void {
+    this.leiValidarOk = '';
+    this.miscService.getValidatelei(this.leiValidar)
+    .subscribe(lei => {
+      this.leiValidarOk = lei;
+      if (this.leiValidarOk && this.leiValidarOk != ''){
+        this.openSnackBar('LEI validado', 'ValidarLei');
+      }
+    });
+  }
 
 
 

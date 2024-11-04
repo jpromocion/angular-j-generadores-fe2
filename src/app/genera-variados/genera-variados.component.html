@@ -15,7 +15,7 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar tipo seleccionado</mat-card-header>
         <mat-card-content>
-          <mat-form-field style="width: 330px;margin-left: 5px;">
+          <mat-form-field style="width: 400px;margin-left: 5px;">
             <mat-label>Seleccionar tipo generación</mat-label>
             <mat-select [(ngModel)]="selectedTipoGenera">
               @for (tipo of tiposGenera; track tipo) {
@@ -248,7 +248,7 @@
                 <div style="margin-top: 2%; margin-bottom: 2%;">
                   <button mat-flat-button type="button" (click)="onSelectDato(texto)"
                   matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="nif">{{texto}}</span>
+                    <span class="catastral">{{texto}}</span>
                   </button>
                   <mat-divider></mat-divider>
                 </div>
@@ -270,7 +270,7 @@
               <input matInput id="refCatasValidar" type="text" placeholder="31044Z932050006628FU" [(ngModel)]="refCatasValidar"
                 style="text-transform:uppercase" maxlength="20">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un Ref. catastral" (click)="onClickValidaRefCatastral()"
+            <button type="button" mat-fab aria-label="Validar una Ref. catastral" (click)="onClickValidaRefCatastral()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -294,7 +294,117 @@
     </div>
 
 
+    <div class="caja c7">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar CUPS (Código Universal del Punto de Suministro)</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 220px;margin-left: 5px;">
+            <mat-label>Seleccionar tipo</mat-label>
+            <mat-select [(ngModel)]="cupsParamSelectedTipo">
+              @for (tipo of tiposCups; track tipo) {
+                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
 
+          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar CUPS" (click)="onClickBotonGenerarCups()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarCups()"
+            matTooltip="Pulsar para limpiar los CUPS" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonCups()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of cupsGeneradas; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="cups">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c8">
+      <mat-card appearance="outlined">
+        <mat-card-header>Validar CUPS (Código Universal del Punto de Suministro)</mat-card-header>
+        <mat-card-content>
+          <div class="divBox">
+            <mat-form-field style="width: 250px !important;">
+              <mat-label>CUPS</mat-label>
+              <input matInput id="cupsValidar" type="text" placeholder="ES0223678468476634WK" [(ngModel)]="cupsValidar"
+                style="text-transform:uppercase" maxlength="22">
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un CUPS" (click)="onClickValidaCups()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>search_check</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
+              <div *ngIf="cupsValidarOk == 'OK'">
+                <button type="button" class="btn-success"
+                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                  <mat-icon>done_all</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="cupsValidarOk == 'ERROR'">
+                <button type="button" class="btn-danger"
+                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div class="caja c9">
+      <mat-card appearance="outlined">
+        <mat-card-header>Validar LEI (Legal Entity Identifier)</mat-card-header>
+        <mat-card-content>
+          <div class="divBox">
+            <mat-form-field style="width: 250px !important;">
+              <mat-label>LEI</mat-label>
+              <input matInput id="leiValidar" type="text" placeholder="9598009DZMHWCT7D0W77" [(ngModel)]="leiValidar"
+                style="text-transform:uppercase" maxlength="20">
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un LEI" (click)="onClickValidaLei()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>search_check</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
+              <div *ngIf="leiValidarOk == 'OK'">
+                <button type="button" class="btn-success"
+                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                  <mat-icon>done_all</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="leiValidarOk == 'ERROR'">
+                <button type="button" class="btn-danger"
+                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
   </div>
 
