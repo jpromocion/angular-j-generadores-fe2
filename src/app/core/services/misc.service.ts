@@ -361,4 +361,49 @@ export class MiscService {
       );
   }
 
+  /**
+   * Interfaz de invocación del servicio rest para obtener ref catastrales generados aleatoriamente.
+   * Interfaz: GET /misc/catastral
+   * @returns Lista de ref catastrales generados aleatoriamente
+   */
+  getCatastral(resultados: number = 1, type: string = ''): Observable<string[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/catastral?results=' + resultados;
+
+    if (type != '') {
+      urlfinal = urlfinal + '&type=' + type;
+    }
+
+    return this.http.get<string[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Emails recuperados')),
+        catchError(this.handleError<string[]>('getCatastral', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para validar una ref. catastral
+   * Interfaz: GET /doi/validatecatastral
+   * @returns devuelve OK si correcto o ERROR sino correcto
+   */
+  getValidatecatastral(catastral: string): Observable<string>  {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatecatastral?catastral=' + catastral;
+
+    return this.http.get(urlfinal, {
+      headers: this.baseHeaders, responseType: 'text'
+    })
+      .pipe(
+        //tap(_ => this.log('Nifs recuperados')),
+        catchError(this.handleError<string>('getValidatecatastral', ''))
+      );
+  }
+
+
 }

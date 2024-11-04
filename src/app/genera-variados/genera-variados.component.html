@@ -215,6 +215,87 @@
       </mat-card>
     </div>
 
+    <div class="caja c5">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar referencias catastrales</mat-card-header>
+        <mat-card-content>
+          <mat-form-field style="width: 220px;margin-left: 5px;">
+            <mat-label>Seleccionar tipo</mat-label>
+            <mat-select [(ngModel)]="refCatasParamSelectedTipo">
+              @for (tipo of tiposRefCatastrales; track tipo) {
+                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar referencia" (click)="onClickBotonGenerarRefCatastral()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarRefCatastral()"
+            matTooltip="Pulsar para limpiar las referencias" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonRefCatastral()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list>
+            @for (texto of refCatasGeneradas; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="nif">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c6">
+      <mat-card appearance="outlined">
+        <mat-card-header>Validar referencias catastrales</mat-card-header>
+        <mat-card-content>
+          <div class="divBox">
+            <mat-form-field style="width: 250px !important;">
+              <mat-label>Ref. catastral</mat-label>
+              <input matInput id="refCatasValidar" type="text" placeholder="31044Z932050006628FU" [(ngModel)]="refCatasValidar"
+                style="text-transform:uppercase" maxlength="20">
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un Ref. catastral" (click)="onClickValidaRefCatastral()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>search_check</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
+              <div *ngIf="refCatasValidarOk == 'OK'">
+                <button type="button" class="btn-success"
+                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                  <mat-icon>done_all</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="refCatasValidarOk == 'ERROR'">
+                <button type="button" class="btn-danger"
+                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+
+
   </div>
 
 </div>

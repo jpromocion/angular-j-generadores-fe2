@@ -68,6 +68,18 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   promoGenerado: string[] = [];
 
 
+  //referencias catastrales
+  refCatasParamSelectedTipo: string = '';
+  tiposRefCatastrales: Array<any> = [
+    {valor: '', nombre: 'Seleccionar un tipo.'},
+    {valor: 'u', nombre: 'Urbana'},
+    {valor: 'r', nombre: 'Rústica'}
+  ];
+  refCatasGeneradas: string[] = [];
+
+  //validar ref catastral
+  refCatasValidar: string = '';
+  refCatasValidarOk: string = '';
 
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
@@ -318,6 +330,70 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     this.excelService.exportAsExcelFile(formatted, 'Lista_CodPromocionales');
     this.openSnackBar('Excel generado','ExcelCodPromocional');
   }
+
+
+
+
+  /**
+   * Invocamos la operacion del servicio para obtener una lista de refe catastrales
+   */
+  getCatastral(resultados: number, tipo: string): void {
+    this.miscService.getCatastral(resultados, tipo)
+    .subscribe(cadena => {
+      this.refCatasGeneradas = cadena;
+      if (this.refCatasGeneradas && this.refCatasGeneradas.length > 0){
+        this.openSnackBar('Ref. catastrales generadas', 'GenerarRefCatastral');
+      }
+    });
+  }
+
+  /**
+  * Generamos un tipo seleccionado aleatorio
+  */
+  onClickBotonGenerarRefCatastral(): void {
+    this.refCatasGeneradas = [];
+    this.getCatastral(this.numGenerar, this.refCatasParamSelectedTipo);
+  }
+
+  /**
+    * Limpiar el campo de tipo generado
+    */
+  onClickLimpiarRefCatastral(): void {
+    this.refCatasGeneradas = [];
+    this.openSnackBar('Ref. catastrales limpiadas', 'LimpiarRefCatastral');
+  }
+
+  /**
+  * Exportar la lista de tipos generados a excel
+  */
+  exportJsonRefCatastral(): void {
+    const formatted = this.refCatasGeneradas.map(dato => ({ RefCatastral: dato }));
+    this.excelService.exportAsExcelFile(formatted, 'Lista_RefCatastrales');
+    this.openSnackBar('Excel generado','ExcelRefCatastral');
+  }
+
+
+
+
+  /**
+    * Evento boton para validar una ref. catastral
+    */
+  onClickValidaRefCatastral(): void {
+    this.refCatasValidarOk = '';
+    this.miscService.getValidatecatastral(this.refCatasValidar)
+    .subscribe(nifOk => {
+      this.refCatasValidarOk = nifOk;
+      if (this.refCatasValidarOk && this.refCatasValidarOk != ''){
+        this.openSnackBar('Ref. catastral validado', 'ValidarRefCatastral');
+      }
+    });
+  }
+
+
+
+
+
+
 
 
 
