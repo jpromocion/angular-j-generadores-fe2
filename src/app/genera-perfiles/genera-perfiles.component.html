@@ -213,6 +213,14 @@
     </div>
 
     <div class="caja" *ngIf="personaGenerada">
+      <label>Ref. catastral:</label>
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"
+      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        <span class="iban">{{personaGenerada.direccion.referenciaCatastral | caseTransformer: tipoLetra}}</span>
+      </button>
+    </div>
+
+    <div class="caja" *ngIf="personaGenerada">
       <label>IBAN:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.iban)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -380,6 +388,14 @@
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="direccion">{{empresaGenerada.direccion.direccionCompleta| caseTransformer: tipoLetra}}</span>
+      </button>
+    </div>
+
+    <div class="caja" *ngIf="empresaGenerada">
+      <label>Ref. catastral:</label>
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"
+      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        <span class="catastral">{{empresaGenerada.direccion.referenciaCatastral| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
@@ -604,6 +620,16 @@
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionCompleta))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="direccion">{{personaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="referenciaCatastral">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ref. catastral</th>
+          <td mat-cell *matCellDef="let personaGenerada">
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.referenciaCatastral))"
+            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              <span class="direccion">{{personaGenerada.direccion.referenciaCatastral | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
         </ng-container>
@@ -858,12 +884,22 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="direcioncompleta">
+        <ng-container matColumnDef="direccioncompleta">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección completa</th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionCompleta))" class="botonFlatGrande"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="direccion">{{empresaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="referenciaCatastral">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ref. catastral</th>
+          <td mat-cell *matCellDef="let empresaGenerada">
+            <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccireferenciaCatastralonCompleta))"
+            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              <span class="direccion">{{empresaGenerada.direccion.referenciaCatastral | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
         </ng-container>

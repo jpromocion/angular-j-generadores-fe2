@@ -60,7 +60,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   direccionParamCodMuni: string = '';
   direccionParamNumGenerar: number = 10;
   direccionGenerado = new MatTableDataSource<DireccionCompleta>();
-  displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'numVia', 'kilometro', 'bloque', 'portal', 'escalera', 'planta', 'puerta' , 'codpostal', 'municipio', 'provincia', 'ccaa'];
+  displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'numVia', 'kilometro', 'bloque', 'portal', 'escalera', 'planta', 'puerta' , 'codpostal', 'municipio', 'provincia', 'ccaa', 'referenciaCatastral'];
 
 
 
@@ -329,7 +329,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       CodigoPostal: dato.codPostal,
       Municipio: this.transformaTexto(dato.ineMunicipio + ' - ' + dato.municipio),
       Provincia: this.transformaTexto(dato.ineProvincia + ' - ' + dato.provincia),
-      CCAA: this.transformaTexto(dato.ineCcaa + ' - ' + dato.ccaa) }));
+      CCAA: this.transformaTexto(dato.ineCcaa + ' - ' + dato.ccaa),
+      ReferenciaCatastral: this.transformaTexto(dato.referenciaCatastral)}));
     this.excelService.exportAsExcelFile(formatted, 'Lista_Domicilios');
     this.openSnackBar('Excel generado','ExcelDomicilios');
   }

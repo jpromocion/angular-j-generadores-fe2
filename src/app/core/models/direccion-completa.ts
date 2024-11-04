@@ -17,5 +17,6 @@ export interface DireccionCompleta {
 	ccaa: string;
   direccionAMedio: string;
 	direccionCompleta: string;
+  referenciaCatastral: string;
 
 }

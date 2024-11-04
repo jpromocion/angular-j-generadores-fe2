@@ -41,7 +41,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   //cuando generamos varias personas
   listaPersonasGeneradas = new MatTableDataSource<Persona>();
   displayedColumnsPersonas: string[] = ['nif', 'nie','sexo', 'fechanacimiento', 'nombre', 'apellido1', 'apellido2','nombrecompleto','tlfmovil','tlffijo','login','email',
-    'password','ccaa','provincia','municipio','codpostal','direccion','direccioncompleta','iban','bic', 'tarjeta','tipotarjeta',
+    'password','ccaa','provincia','municipio','codpostal','direccion','direccioncompleta', 'referenciaCatastral','iban','bic', 'tarjeta','tipotarjeta',
   'expiracion','cvc'];
   //OJO!: al tener dos paginadopres en la misma pagina, no se puede usar ViewChild con dos sino ViewChildren
   //que es un array de paginadores, y ya utilizar cada uno por su orden dentro del array.
@@ -55,7 +55,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   //cuando generamos varias empresas
   listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
-  displayedColumnsEmpresas: string[] = ['cif','razon','fechacons','cnae','actividad','email','paginaWeb','telefono','fax','ccaa','provincia','municipio','codpostal','direcion','direcioncompleta'];
+  displayedColumnsEmpresas: string[] = ['cif','razon','fechacons','cnae','actividad','email','paginaWeb','telefono','fax','ccaa','provincia','municipio','codpostal','direcion','direccioncompleta', 'referenciaCatastral'];
   //@ViewChild(MatPaginator) paginatorEmpresas!: MatPaginator;
   @ViewChild('paginatorEmpresas') paginatorEmpresas!: MatPaginator;
   @ViewChild('sortEmpresas') sortEmpresas!: MatSort;
@@ -212,6 +212,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       CodigoPostal: persona.direccion.codPostal,
       Direccion: this.transformaTexto(persona.direccion.direccionAMedio),
       Direccion_Completa: this.transformaTexto(persona.direccion.direccionCompleta),
+      ReferenciaCatastral: this.transformaTexto(persona.direccion.referenciaCatastral),
       IBAN: persona.iban,
       BIC: persona.bic,
       TarjetaCredito: persona.tarjetaCredito,
@@ -246,6 +247,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       CodigoPostal: empresa.direccion.codPostal,
       Direccion: this.transformaTexto(empresa.direccion.direccionAMedio),
       Direccion_Completa: this.transformaTexto(empresa.direccion.direccionCompleta),
+      ReferenciaCatastral: this.transformaTexto(empresa.direccion.referenciaCatastral)
     }));
 
     this.excelService.exportAsExcelFile(res, 'Perfiles_empresas');

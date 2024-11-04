@@ -396,6 +396,16 @@
                 </td>
               </ng-container>
 
+              <ng-container matColumnDef="referenciaCatastral">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ref. catastral</th>
+                <td mat-cell *matCellDef="let direccion">
+                  <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(direccion.referenciaCatastral))"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="catastral">{{direccion.referenciaCatastral | caseTransformer: tipoLetra}}</span>
+                  </button>
+                </td>
+              </ng-container>
+
 
               <tr mat-header-row *matHeaderRowDef="displayedColumnsDireccionGenerado"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumnsDireccionGenerado;"></tr>
