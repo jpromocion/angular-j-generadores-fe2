@@ -40,7 +40,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   //cuando generamos varias personas
   listaPersonasGeneradas = new MatTableDataSource<Persona>();
-  displayedColumnsPersonas: string[] = ['nif', 'nie','sexo', 'fechanacimiento', 'nombre', 'apellido1', 'apellido2','nombrecompleto','tlfmovil','tlffijo','login','email',
+  displayedColumnsPersonas: string[] = ['nif', 'nie','nss', 'pasaporte','sexo', 'fechanacimiento', 'nombre', 'apellido1', 'apellido2','nombrecompleto','tlfmovil','tlffijo','login','email',
     'password','ccaa','provincia','municipio','codpostal','direccion','direccioncompleta', 'referenciaCatastral','iban','bic', 'tarjeta','tipotarjeta',
   'expiracion','cvc'];
   //OJO!: al tener dos paginadopres en la misma pagina, no se puede usar ViewChild con dos sino ViewChildren
@@ -191,6 +191,8 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     const res = this.listaPersonasGeneradas.data.map(persona => ({
       NIF: persona.nif,
       NIE: persona.nie,
+      NSS: persona.nss,
+      Pasaporte: persona.pasaporte,
       Genero: persona.genero,
       FechaNacimiento: persona.fechaNacimiento,
       Edad: persona.edad,

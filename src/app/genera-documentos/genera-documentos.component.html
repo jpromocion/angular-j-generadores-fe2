@@ -75,6 +75,38 @@
         </mat-card-content>
       </mat-card>
     </div>
+    <div class="caja c2_1">
+      <mat-card appearance="outlined">
+        <mat-card-header>Generar Pasaportes</mat-card-header>
+        <mat-card-content>
+          <button type="button"  mat-fab aria-label="Generar una lista de Pasaportes" (click)="onClickBotonGenerarListaPasaporte()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaPasaportes?.length && listaPasaportes.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista Pasaportes" (click)="onClickLimpiarListaPasaporte()"
+            matTooltip="Pulsar para limpiar la lista de Pasaportes" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" *ngIf="listaPasaportes?.length && listaPasaportes.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPasaporte()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+          <mat-list>
+            @for (pasaporte of listaPasaportes; track pasaporte) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(pasaporte)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="pasaporte">{{pasaporte}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
     <div class="caja c3">
       <mat-card appearance="outlined">
         <mat-card-header>Generar CIFs</mat-card-header>
@@ -211,6 +243,67 @@
         </mat-card-content>
       </mat-card>
     </div>
+
+    <div class="caja c7">
+      <mat-card appearance="outlined">
+        <mat-card-header>Validar Pasaporte</mat-card-header>
+        <mat-card-content>
+          <div class="divBox">
+            <mat-form-field style="width: 250px !important;">
+              <mat-label>Pasaporte a comprobar</mat-label>
+              <input matInput id="pasaporteValidar" type="text" placeholder="AAC0568227" [(ngModel)]="pasaporteValidar"
+                style="text-transform:uppercase" maxlength="10">
+              <mat-icon matSuffix matTooltip="Número de pasaporte completo con el dígito de control incluido.">help</mat-icon>
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un pasaporte" (click)="onClickValidarPasaporte()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>search_check</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
+              <div *ngIf="pasaporteValidarOk == 'OK'">
+                <button type="button" class="btn-success"
+                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                  <mat-icon>done_all</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="pasaporteValidarOk == 'ERROR'">
+                <button type="button" class="btn-danger"
+                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="caja c7">
+      <mat-card appearance="outlined">
+        <mat-card-header>Calcular DC Pasaporte</mat-card-header>
+        <mat-card-content>
+          <div class="divBox" >
+            <mat-form-field style="width: 250px !important;">
+              <mat-label>Pasaporte sin DC</mat-label>
+              <input matInput id="pasaporteCalcular" type="text" placeholder="AAC056822" [(ngModel)]="pasaporteCalcular"
+                style="text-transform:uppercase" maxlength="9">
+              <mat-icon matSuffix matTooltip="Número de pasaporte sin el dígito de control.">help</mat-icon>
+            </mat-form-field>
+            <button type="button" mat-fab aria-label="Validar un pasaporte" (click)="onClickCalcularDCPasaporte()"
+              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+              <mat-icon>refresh</mat-icon>
+            </button>
+            <div *ngIf="pasaporteCalcularDC && pasaporteCalcularDC != ''" style="margin-left: 5px;" >
+              <button mat-flat-button type="button" (click)="onSelectDato(pasaporteCalcularDC)"
+              matTooltip="Pulsar para copiar" matTooltipPosition="below" style="height: 55px;">
+                <span class="dc">{{pasaporteCalcularDC}}</span>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
 
   </div>
 

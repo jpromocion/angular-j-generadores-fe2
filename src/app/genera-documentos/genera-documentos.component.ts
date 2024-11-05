@@ -35,14 +35,20 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   nifValidar: string = '';
   nieValidar: string = '';
   cifValidar: string = '';
+  pasaporteValidar: string = '';
+  pasaporteCalcular: string = '';
 
   nifValidarOk: string = '';
   nieValidarOk: string = '';
   cifValidarOk: string = '';
+  pasaporteValidarOk: string = '';
+  pasaporteCalcularDC: string = '';
 
   listaNifs: string[] = [];
   listaNies: string[] = [];
   listaCifs: string[] = [];
+  listaPasaportes: string[] = [];
+
 
   selectedSociedad: string = '';
 
@@ -311,6 +317,75 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     this.openSnackBar('Excel generado','ExcelCIFs');
   }
 
+
+  /**
+   * Invocamos la operacion del servicio para obtener una lista de pasaportes aleatorios
+   */
+  getPassport(resultados: number): void {
+      this.doiService.getPassport(resultados)
+      .subscribe(pasaportes => {
+        this.listaPasaportes = pasaportes;
+        if (this.listaPasaportes && this.listaPasaportes.length > 0) {
+          this.openSnackBar('Lista Pasaportes generados', 'GenerarPasaporte');
+        }
+      });
+  }
+
+
+  /**
+   * Generamos un nuevo pasaporte aleatorio
+   */
+  onClickBotonGenerarListaPasaporte(): void {
+    this.listaPasaportes = [];
+    this.getPassport(this.numGenerar);
+  }
+
+
+  /**
+    * Limpiar la lista de pasaporte generados
+    */
+  onClickLimpiarListaPasaporte(): void {
+    this.listaPasaportes = [];
+    this.openSnackBar('Pasaportes limpiado', 'LimpiarPasaporte');
+  }
+
+    /**
+   * Exportar la lista de pasaporte generados a excel
+   */
+    exportJsonPasaporte(): void {
+      const formattedNies = this.listaPasaportes.map(nie => ({ NIE: nie }));
+      this.excelService.exportAsExcelFile(formattedNies, 'Lista_Pasaportes');
+      this.openSnackBar('Excel generado','ExcelPasaporte');
+    }
+
+  /**
+    * Evento boton para validar un pasaporte
+    */
+  onClickValidarPasaporte(): void {
+    this.pasaporteValidarOk = '';
+    this.doiService.getValidatepassport(this.pasaporteValidar)
+    .subscribe(pasaporteOk => {
+      this.pasaporteValidarOk = pasaporteOk;
+      if (this.pasaporteValidarOk && this.pasaporteValidarOk != ''){
+        this.openSnackBar('Pasaporte validado', 'ValidarPasaporte');
+      }
+    });
+    //console.info('Nie validado: ' + this.pasaporteValidarOk);
+  }
+
+  /**
+    * Evento boton para calcular DC un pasaporte
+    */
+  onClickCalcularDCPasaporte(): void {
+    this.pasaporteCalcularDC = '';
+    this.doiService.getCalculatepassportdc(this.pasaporteCalcular)
+    .subscribe(dc => {
+      this.pasaporteCalcularDC = dc;
+      if (this.pasaporteCalcularDC && this.pasaporteCalcularDC != ''){
+        this.openSnackBar('Calculado dígitos de control del pasaporte', 'CalculadoDCPasaporte');
+      }
+    });
+  }
 
 
 }

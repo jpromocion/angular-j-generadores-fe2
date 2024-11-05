@@ -22,5 +22,7 @@ export interface Persona {
 	cvc: string;
 	expiracionCredito: string;
 	tipoTarjeta: string;
+  nss: string;
+  pasaporte: string;
 
 }

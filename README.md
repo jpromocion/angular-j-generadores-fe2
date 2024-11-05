@@ -174,3 +174,5 @@ En base a ello y siguiendo las recomendaciones de [Así deberías Estructurar tu
       - **(cada_carpeta_estructura_logica)/**: El resto son carpetas que organizan la estructura lógica de nuestros componentes según las funcionalidades. Una carpeta podría ser un contenedor de carpetas que son los componentes, o ser el mismo ya el componente (`.html`, `.scss`, `.ts` que lo definen).
 
 
+
+

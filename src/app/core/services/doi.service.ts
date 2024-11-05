@@ -188,4 +188,56 @@ export class DoiService {
   }
 
 
+  /**
+   * Interfaz de invocación del servicio rest para obtener pasaportes generados aleatoriamente.
+   * Interfaz: GET /doi/passport
+   * @returns Lista de pasaportes generados aleatoriamente
+   */
+  getPassport(resultados: number = 1): Observable<string[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+    return this.http.get<string[]>(this.urlJsonServer + this.interfazDoi + '/passport?results=' + resultados, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Nies recuperados')),
+        catchError(this.handleError<string[]>('getPassport', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para validar un pasaporte
+   * Interfaz: GET /doi/validatepassport
+   * @returns devuelve OK si correcto o ERROR sino correcto
+   */
+  getValidatepassport(passport: string): Observable<string>  {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+    return this.http.get(this.urlJsonServer + this.interfazDoi + '/validatepassport?passport=' + passport, {
+      headers: this.baseHeaders, responseType: 'text'
+    })
+      .pipe(
+        //tap(_ => this.log('Nifs recuperados')),
+        catchError(this.handleError<string>('getValidatepassport', ''))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para validar un nie
+   * Interfaz: GET /doi/calculatepassportdc
+   * @returns devuelve OK si correcto o ERROR sino correcto
+   */
+  getCalculatepassportdc(passport: string): Observable<string>  {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+    return this.http.get(this.urlJsonServer + this.interfazDoi + '/calculatepassportdc?passport=' + passport, {
+      headers: this.baseHeaders, responseType: 'text'
+    })
+      .pipe(
+        //tap(_ => this.log('Nifs recuperados')),
+        catchError(this.handleError<string>('getCalculatepassportdc', ''))
+      );
+  }
+
+
 }

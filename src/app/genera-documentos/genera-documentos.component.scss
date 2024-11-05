@@ -1,6 +1,6 @@
 .grid-layout{
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   margin: 10px;
 }
 
@@ -16,13 +16,11 @@
 }
 
 .c0{
-  grid-column: 1 / span 3;
+  grid-column: 1 / span 2;
 }
 
 
-.c3{
-  grid-column: 1 / span 3;
-}
+
 
 
 

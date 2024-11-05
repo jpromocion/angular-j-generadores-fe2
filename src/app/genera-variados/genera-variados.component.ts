@@ -37,6 +37,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     {valor: 'im', nombre: 'IMEI - Identidad internacional de equipo móvil'},
     {valor: 'ui', nombre: 'UUID - Identificador único universal'},
     {valor: 'lei', nombre: 'LEI - Identificador de Entidad Legal'},
+    {valor: 'isi', nombre: 'ISIN - International Securities Identification Numbering'},
+    {valor: 'nss', nombre: 'NSS - Número Seguridad Social'},
   ];
   textoGenerado: string[] = [];
 
@@ -99,6 +101,14 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   //validar LEI
   leiValidar: string = '';
   leiValidarOk: string = '';
+
+  //validar ISIN
+  isinValidar: string = '';
+  isinValidarOk: string = '';
+
+  //validar ISIN
+  nssValidar: string = '';
+  nssValidarOk: string = '';
 
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
@@ -196,6 +206,32 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   }
 
   /**
+   * Invocamos la operacion del servicio para obtener una lista de ISINs
+   */
+  getIsin(resultados: number): void {
+    this.miscService.getIsin(resultados)
+    .subscribe(cadena => {
+      this.textoGenerado = cadena;
+      if (this.textoGenerado && this.textoGenerado.length > 0){
+        this.openSnackBar('ISINs generados', 'GenerarISIN');
+      }
+    });
+  }
+
+  /**
+   * Invocamos la operacion del servicio para obtener una lista de NSS
+   */
+  getNss(resultados: number): void {
+    this.miscService.getNss(resultados)
+    .subscribe(cadena => {
+      this.textoGenerado = cadena;
+      if (this.textoGenerado && this.textoGenerado.length > 0){
+        this.openSnackBar('NSS generados', 'GenerarNSS');
+      }
+    });
+  }
+
+  /**
   * Generamos un tipo seleccionado aleatorio
   */
   onClickBotonGenerarTipo(): void {
@@ -214,6 +250,10 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
       this.getUuid(this.numGenerar);
     } else if (this.selectedTipoGenera == 'lei') {
       this.getLei(this.numGenerar);
+    } else if (this.selectedTipoGenera == 'isi') {
+      this.getIsin(this.numGenerar);
+    } else if (this.selectedTipoGenera == 'nss') {
+      this.getNss(this.numGenerar);
     }
 
   }
@@ -501,5 +541,32 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   }
 
 
+  /**
+    * Evento boton para validar un ISIN
+    */
+  onClickValidaIsin(): void {
+    this.isinValidarOk = '';
+    this.miscService.getValidateisin(this.isinValidar)
+    .subscribe(isin => {
+      this.isinValidarOk = isin;
+      if (this.isinValidarOk && this.isinValidarOk != ''){
+        this.openSnackBar('ISIN validado', 'ValidarIsin');
+      }
+    });
+  }
+
+  /**
+    * Evento boton para validar un NSS
+    */
+  onClickValidaNss(): void {
+    this.nssValidarOk = '';
+    this.miscService.getValidatenss(this.nssValidar)
+    .subscribe(nss => {
+      this.nssValidarOk = nss;
+      if (this.nssValidarOk && this.nssValidarOk != ''){
+        this.openSnackBar('NSS validado', 'ValidarNss');
+      }
+    });
+  }
 
 }

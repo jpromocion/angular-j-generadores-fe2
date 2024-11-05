@@ -70,6 +70,20 @@
       </button>
     </div>
     <div class="caja" *ngIf="personaGenerada">
+      <label>NSS: </label>
+      <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nss)" style="margin-left: 10px;"
+      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        <span class="nss">{{personaGenerada.nss}}</span>
+      </button>
+    </div>
+    <div class="caja" *ngIf="personaGenerada">
+      <label>Pasaporte: </label>
+      <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.pasaporte)" style="margin-left: 10px;"
+      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        <span class="pasaporte">{{personaGenerada.pasaporte}}</span>
+      </button>
+    </div>
+    <div class="caja" *ngIf="personaGenerada">
       <label>Sexo: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.genero))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -426,6 +440,26 @@
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nie)"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="nie">{{personaGenerada.nie}}</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nss">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>NSS</th>
+          <td mat-cell *matCellDef="let personaGenerada">
+            <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nss)"
+            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              <span class="nss">{{personaGenerada.nss}}</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pasaporte">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Pasaporte</th>
+          <td mat-cell *matCellDef="let personaGenerada">
+            <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.pasaporte)"
+            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              <span class="pasaporte">{{personaGenerada.pasaporte}}</span>
             </button>
           </td>
         </ng-container>

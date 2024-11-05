@@ -490,5 +490,84 @@ export class MiscService {
       );
   }
 
+  /**
+   * Interfaz de invocación del servicio rest para obtener isin generados aleatoriamente.
+   * Interfaz: GET /misc/isin
+   * @returns Lista de isin generados aleatoriamente
+   */
+  getIsin(resultados: number = 1): Observable<string[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/isin?results=' + resultados;
+
+    return this.http.get<string[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Emails recuperados')),
+        catchError(this.handleError<string[]>('getIsin', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para validar un isin
+   * Interfaz: GET /doi/validateisin
+   * @returns devuelve OK si correcto o ERROR sino correcto
+   */
+  getValidateisin(isin: string): Observable<string>  {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/validateisin?isin=' + isin;
+
+    return this.http.get(urlfinal, {
+      headers: this.baseHeaders, responseType: 'text'
+    })
+      .pipe(
+        //tap(_ => this.log('Nifs recuperados')),
+        catchError(this.handleError<string>('getValidateisin', ''))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para obtener nss generados aleatoriamente.
+   * Interfaz: GET /misc/nss
+   * @returns Lista de nss generados aleatoriamente
+   */
+  getNss(resultados: number = 1): Observable<string[]> {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/nss?results=' + resultados;
+
+    return this.http.get<string[]>(urlfinal, {
+      headers: this.baseHeaders,
+    })
+      .pipe(
+        //tap(_ => this.log('Emails recuperados')),
+        catchError(this.handleError<string[]>('getNss', []))
+      );
+  }
+
+  /**
+   * Interfaz de invocación del servicio rest para validar un nss
+   * Interfaz: GET /doi/validatenss
+   * @returns devuelve OK si correcto o ERROR sino correcto
+   */
+  getValidatenss(nss: string): Observable<string>  {
+    //fijamos la api-key del servicio de datos conexion
+    this.fijarApiKeyServicio();
+
+    let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatenss?nss=' + nss;
+
+    return this.http.get(urlfinal, {
+      headers: this.baseHeaders, responseType: 'text'
+    })
+      .pipe(
+        //tap(_ => this.log('Nifs recuperados')),
+        catchError(this.handleError<string>('getValidatenss', ''))
+      );
+  }
 
 }
