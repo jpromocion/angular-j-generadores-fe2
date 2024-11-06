@@ -111,8 +111,13 @@ export class BaseGeneraComponent implements OnInit  {
   /**
    * Dado un texto, lo transformamos segun el tipo de letra seleccionado con el pipe CaseTransformerPipe
    */
-  transformaTexto(texto: string): string {
-    return new CaseTransformerPipe().transform(texto, this.tipoLetra);
+  transformaTexto(texto: string, sensitivo: boolean = true): string {
+    if (sensitivo) {
+      return new CaseTransformerPipe().transform(texto, this.tipoLetra);
+    }
+    return texto;
   }
+
+
 
 }

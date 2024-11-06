@@ -16,23 +16,28 @@
           <div [hidden]="!((ccaaGenerado.data.length && ccaaGenerado.data.length > 0))">
             <table mat-table #sortCcaaGenerado="matSort" [dataSource]="ccaaGenerado" matSort  (matSortChange)="announceSortChange($event)">
 
-              <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+              <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
+                https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
+              -->
+              <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaCcaaGenerado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}</th>
                 <td mat-cell *matCellDef="let ccaa">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.id)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="id">{{ccaa.id}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
-                <td mat-cell *matCellDef="let ccaa">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.nombre)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="nombre">{{ccaa.nombre}}</span>
-                  </button>
+                  <!-- Seleccionamos por el type como mostrarlo-->
+                  <div [ngSwitch]="col.type" >
+                    <!--button: boton normal para mostrar un dato (viene parametrizado por propiedades: si aplica una clase de formato distinta,
+                      si aplica cambio mayus/minus e incluso si no lleva solo un valor a mostrar sino dos valores)
+                    -->
+                    <div *ngSwitchCase="'button'">
+                      <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(ccaa[col.columna], col.caseSensitive))"
+                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        <span *ngIf="col.caseSensitive">{{ccaa[col.columna] | caseTransformer: tipoLetra }}</span>
+                        <span *ngIf="!col.caseSensitive">{{ccaa[col.columna]}}</span>
+                      </button>
+                    </div>
+                    <span *ngSwitchDefault>
+                      {{ ccaa[col.columna] }}
+                    </span>
+                  </div>
                 </td>
               </ng-container>
 
@@ -78,25 +83,31 @@
           <div [hidden]="!((provinGenerado.data.length && provinGenerado.data.length > 0))">
             <table mat-table #sortProvinGenerado="matSort" [dataSource]="provinGenerado" matSort  (matSortChange)="announceSortChange($event)">
 
-              <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
-                <td mat-cell *matCellDef="let ccaa">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.id)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="id">{{ccaa.id}}</span>
-                  </button>
+              <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
+                https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
+              -->
+              <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaProvinGenerado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}</th>
+                <td mat-cell *matCellDef="let provincia">
+                  <!-- Seleccionamos por el type como mostrarlo-->
+                  <div [ngSwitch]="col.type" >
+                    <!--button: boton normal para mostrar un dato (viene parametrizado por propiedades: si aplica una clase de formato distinta,
+                      si aplica cambio mayus/minus e incluso si no lleva solo un valor a mostrar sino dos valores)
+                    -->
+                    <div *ngSwitchCase="'button'">
+                      <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(provincia[col.columna], col.caseSensitive))"
+                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        <span *ngIf="col.caseSensitive">{{provincia[col.columna] | caseTransformer: tipoLetra }}</span>
+                        <span *ngIf="!col.caseSensitive">{{provincia[col.columna]}}</span>
+                      </button>
+                    </div>
+                    <span *ngSwitchDefault>
+                      {{ provincia[col.columna] }}
+                    </span>
+                  </div>
                 </td>
               </ng-container>
 
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
-                <td mat-cell *matCellDef="let ccaa">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.nombre)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="nombre">{{ccaa.nombre}}</span>
-                  </button>
-                </td>
-              </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumnsProvinGenerado"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
@@ -140,23 +151,28 @@
           <div [hidden]="!((muniGenerado.data.length && muniGenerado.data.length > 0))">
             <table mat-table #sortMuniGenerado="matSort" [dataSource]="muniGenerado" matSort  (matSortChange)="announceSortChange($event)">
 
-              <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
-                <td mat-cell *matCellDef="let ccaa">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.id)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="id">{{ccaa.id}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
-                <td mat-cell *matCellDef="let ccaa">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(ccaa.nombre)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="nombre">{{ccaa.nombre}}</span>
-                  </button>
+              <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
+                https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
+              -->
+              <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaMuniGenerado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}</th>
+                <td mat-cell *matCellDef="let municipio">
+                  <!-- Seleccionamos por el type como mostrarlo-->
+                  <div [ngSwitch]="col.type" >
+                    <!--button: boton normal para mostrar un dato (viene parametrizado por propiedades: si aplica una clase de formato distinta,
+                      si aplica cambio mayus/minus e incluso si no lleva solo un valor a mostrar sino dos valores)
+                    -->
+                    <div *ngSwitchCase="'button'">
+                      <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(municipio[col.columna], col.caseSensitive))"
+                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        <span *ngIf="col.caseSensitive">{{municipio[col.columna] | caseTransformer: tipoLetra }}</span>
+                        <span *ngIf="!col.caseSensitive">{{municipio[col.columna]}}</span>
+                      </button>
+                    </div>
+                    <span *ngSwitchDefault>
+                      {{ municipio[col.columna] }}
+                    </span>
+                  </div>
                 </td>
               </ng-container>
 

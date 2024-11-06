@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, AfterViewInit, ViewChild} from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgFor,NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
@@ -22,12 +22,67 @@ import { Provincia } from '../core/models/provincia';
 import { Municipio } from '../core/models/municipio';
 import { DireccionCompleta } from '../core/models/direccion-completa';
 
+
+
+//Definicion del mostrado de columnas para tabla CCAA, personalizado opciones
+//para mostrar filas por plantillas
+const COLUMNS_SCHEMA_CCAA = [
+  {
+      key: "id",
+      columna: "id",
+      type: "button",
+      label: "Código"
+  },
+  {
+    key: "nombre",
+    columna: "nombre",
+    type: "button",
+    label: "Nombre"
+  }
+];
+
+
+//Definicion del mostrado de columnas para tabla provincias, personalizado opciones
+//para mostrar filas por plantillas
+const COLUMNS_SCHEMA_PROVIN = [
+  {
+      key: "id",
+      columna: "id",
+      type: "button",
+      label: "Código"
+  },
+  {
+    key: "nombre",
+    columna: "nombre",
+    type: "button",
+    label: "Nombre"
+  }
+];
+
+//Definicion del mostrado de columnas para tabla provincias, personalizado opciones
+//para mostrar filas por plantillas
+const COLUMNS_SCHEMA_MUNI = [
+  {
+      key: "id",
+      columna: "id",
+      type: "button",
+      label: "Código"
+  },
+  {
+    key: "nombre",
+    columna: "nombre",
+    type: "button",
+    label: "Nombre"
+  }
+];
+
+
 @Component({
   selector: 'app-genera-localizacion',
   standalone: true,
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
-    MatTableModule, MatPaginatorModule,MatSortModule],
+    MatTableModule, MatPaginatorModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass],
   templateUrl: './genera-localizacion.component.html',
   styleUrl: './genera-localizacion.component.scss'
 })
@@ -36,7 +91,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   //ccaa
   //ccaaGenerado: Ccaa[] = [];
   ccaaGenerado = new MatTableDataSource<Ccaa>();
-  displayedColumnsCcaaGenerado: string[] = ['id', 'nombre'];
+  displayedColumnsCcaaGenerado: string[] =  COLUMNS_SCHEMA_CCAA.map((col) => col.key)
+  columnsSchemaCcaaGenerado: any = COLUMNS_SCHEMA_CCAA;
   @ViewChild('paginatorCcaaGenerado') paginatorCcaaGenerado!: MatPaginator;
   @ViewChild('sortCcaaGenerado') sortCcaaGenerado!: MatSort;
 
@@ -44,7 +100,10 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   provinCodCCAA: string = '';
   //provinGenerado: Provincia[] = [];
   provinGenerado = new MatTableDataSource<Provincia>();
-  displayedColumnsProvinGenerado: string[] = ['id', 'nombre'];
+  displayedColumnsProvinGenerado: string[] =  COLUMNS_SCHEMA_PROVIN.map((col) => col.key)
+  columnsSchemaProvinGenerado: any = COLUMNS_SCHEMA_PROVIN;
+
+
   @ViewChild('paginatorProvinGenerado') paginatorProvinGenerado!: MatPaginator;
   @ViewChild('sortProvinGenerado') sortProvinGenerado!: MatSort;
 
@@ -52,7 +111,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   muniCodProvin: string = '';
   //muniGenerado: Municipio[] = [];
   muniGenerado = new MatTableDataSource<Provincia>();
-  displayedColumnsMuniGenerado: string[] = ['id', 'nombre'];
+  displayedColumnsMuniGenerado: string[] =  COLUMNS_SCHEMA_MUNI.map((col) => col.key)
+  columnsSchemaMuniGenerado: any = COLUMNS_SCHEMA_MUNI;
+
   @ViewChild('paginatorMuniGenerado') paginatorMuniGenerado!: MatPaginator;
   @ViewChild('sortMuniGenerado') sortMuniGenerado!: MatSort;
 

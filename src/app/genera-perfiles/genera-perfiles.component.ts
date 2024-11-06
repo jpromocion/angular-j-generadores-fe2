@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, AfterViewInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgFor,NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
@@ -17,12 +17,355 @@ import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
 import { Empresa } from '../core/models/empresa';
 
+//Definicion del mostrado de columnas para tabla personas, personalizado opciones
+//para mostrar filas por plantillas
+const COLUMNS_SCHEMA_PERSONAS = [
+  {
+      key: "nif",
+      columna: "nif",
+      type: "button",
+      label: "NIF"
+  },
+  {
+      key: "nie",
+      columna: "nie",
+      type: "button",
+      label: "NIE"
+  },
+  {
+      key: "nss",
+      columna: "nss",
+      type: "button",
+      label: "NSS"
+  },
+  {
+      key: "pasaporte",
+      columna: "pasaporte",
+      type: "button",
+      label: "Pasaporte"
+  },
+  {
+      key: "genero",
+      columna: "genero",
+      type: "button",
+      caseSensitive: true,
+      label: "Sexo"
+  },
+  {
+      key: "fechaNacimiento",
+      columna: "fechaNacimiento",
+      type: "button",
+      caseSensitive: true,
+      clase: "botonFlatReducido",
+      label: "Fecha nacimiento (edad)",
+      columna2: "edad",
+  },
+  {
+      key: "nombre",
+      columna: "nombre",
+      type: "button",
+      caseSensitive: true,
+      clase: "botonFlatGrande",
+      label: "Nombre"
+  },
+  {
+      key: "apellido1",
+      columna: "apellido1",
+      type: "button",
+      caseSensitive: true,
+      clase: "botonFlatGrande",
+      label: "1º Apellido"
+  },
+  {
+      key: "apellido2",
+      columna: "apellido2",
+      type: "button",
+      caseSensitive: true,
+      clase: "botonFlatGrande",
+      label: "2º Apellido"
+  },
+  {
+      key: "nombreCompleto",
+      columna: "nombreCompleto",
+      type: "button",
+      caseSensitive: true,
+      clase: "botonFlatGrande",
+      label: "Nombre completo"
+  },
+  {
+      key: "telefonoMovil",
+      columna: "telefonoMovil",
+      type: "button",
+      label: "Teléfono movil"
+  },
+  {
+      key: "telefonoFijo",
+      columna: "telefonoFijo",
+      type: "button",
+      label: "Teléfono fijo"
+  },
+  {
+      key: "login",
+      columna: "login",
+      type: "button",
+      label: "Login"
+  },
+  {
+      key: "email",
+      columna: "email",
+      type: "button",
+      label: "Email"
+  },
+  {
+      key: "password",
+      columna: "password",
+      type: "button",
+      label: "Password"
+  },
+  {
+      key: "direccion_ccaa",
+      columna: "direccion",
+      subpropiedad: "ineCcaa",
+      clase: "botonFlatReducido",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "CCAA",
+      columna2: "direccion",
+      subpropiedad2: "ccaa",
+  },
+  {
+    key: "direccion_provincia",
+    columna: "direccion",
+    subpropiedad: "ineProvincia",
+    clase: "botonFlatReducido",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Provincia",
+    columna2: "direccion",
+    subpropiedad2: "provincia",
+  },
+  {
+    key: "direccion_municipio",
+    columna: "direccion",
+    subpropiedad: "ineMunicipio",
+    clase: "botonFlatReducido",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Municipio",
+    columna2: "direccion",
+    subpropiedad2: "municipio",
+  },
+  {
+    key: "direccion_cp",
+    columna: "direccion",
+    subpropiedad: "codPostal",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Cod. Postal"
+  },
+  {
+    key: "direccion_direccion",
+    columna: "direccion",
+    subpropiedad: "direccionAMedio",
+    clase: "botonFlatGrande",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Dirección"
+  },
+  {
+    key: "direccion_direccioncompleta",
+    columna: "direccion",
+    subpropiedad: "direccionCompleta",
+    clase: "botonFlatGrande",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Dirección completa"
+  },
+  {
+    key: "direccion_refcatas",
+    columna: "direccion",
+    subpropiedad: "referenciaCatastral",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Ref. catastral"
+  },
+  {
+      key: "iban",
+      columna: "iban",
+      type: "button",
+      label: "IBAN"
+  },
+  {
+    key: "bic",
+    columna: "bic",
+    type: "button",
+    label: "BIC (SWIFT)"
+  },
+  {
+    key: "tarjeta",
+    columna: "tarjetaCredito",
+    type: "button",
+    label: "Num. tarjeta"
+  },
+  {
+    key: "tipotarjeta",
+    columna: "tipoTarjeta",
+    type: "button",
+    caseSensitive: true,
+    label: "Tipo tarj."
+  },
+  {
+    key: "expiracion",
+    columna: "expiracionCredito",
+    type: "button",
+    label: "Expiración"
+  },
+  {
+    key: "cvc",
+    columna: "cvc",
+    type: "button",
+    label: "CVC"
+  }
+];
+
+//Definicion del mostrado de columnas para tabla empresas, personalizado opciones
+//para mostrar filas por plantillas
+const COLUMNS_SCHEMA_EMPRESAS = [
+  {
+      key: "cif",
+      columna: "cif",
+      type: "button",
+      label: "CIF"
+  },
+  {
+    key: "razon",
+    columna: "nombre",
+    type: "button",
+    clase: "botonFlatGrande",
+    caseSensitive: true,
+    label: "Razón social"
+  },
+  {
+    key: "fechacons",
+    columna: "fechaCreacion",
+    type: "button",
+    label: "F. constitución"
+  },
+  {
+    key: "cnae",
+    columna: "cnae",
+    type: "button",
+    label: "CNAE"
+  },
+  {
+    key: "actividad",
+    columna: "actividad",
+    type: "button",
+    clase: "botonFlatGrande",
+    caseSensitive: true,
+    label: "Actividad"
+  },
+  {
+    key: "email",
+    columna: "email",
+    type: "button",
+    caseSensitive: true,
+    label: "Email"
+  },
+  {
+    key: "paginaWeb",
+    columna: "paginaWeb",
+    type: "button",
+    caseSensitive: true,
+    label: "Pág. Web"
+  },
+  {
+    key: "telefono",
+    columna: "telefono",
+    type: "button",
+    label: "Teléfono"
+  },
+  {
+    key: "fax",
+    columna: "fax",
+    type: "button",
+    label: "Fax"
+  },
+  {
+    key: "direccion_ccaa",
+    columna: "direccion",
+    subpropiedad: "ineCcaa",
+    clase: "botonFlatReducido",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "CCAA",
+    columna2: "direccion",
+    subpropiedad2: "ccaa",
+  },
+  {
+    key: "direccion_provincia",
+    columna: "direccion",
+    subpropiedad: "ineProvincia",
+    clase: "botonFlatReducido",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Provincia",
+    columna2: "direccion",
+    subpropiedad2: "provincia",
+  },
+  {
+    key: "direccion_municipio",
+    columna: "direccion",
+    subpropiedad: "ineMunicipio",
+    clase: "botonFlatReducido",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Municipio",
+    columna2: "direccion",
+    subpropiedad2: "municipio",
+  },
+  {
+    key: "direccion_cp",
+    columna: "direccion",
+    subpropiedad: "codPostal",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Cod. Postal"
+  },
+  {
+    key: "direccion_direccion",
+    columna: "direccion",
+    subpropiedad: "direccionAMedio",
+    clase: "botonFlatGrande",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Dirección"
+  },
+  {
+    key: "direccion_direccioncompleta",
+    columna: "direccion",
+    subpropiedad: "direccionCompleta",
+    clase: "botonFlatGrande",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Dirección completa"
+  },
+  {
+    key: "direccion_refcatas",
+    columna: "direccion",
+    subpropiedad: "referenciaCatastral",
+    type: "subobjeto",
+    caseSensitive: true,
+    label: "Ref. catastral"
+  }
+];
+
 
 @Component({
   selector: 'app-genera-perfiles',
   standalone: true,
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,MatGridListModule, CaseTransformerPipe,
-    MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule],
+    MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass],
   templateUrl: './genera-perfiles.component.html',
   styleUrl: './genera-perfiles.component.scss'
 })
@@ -40,9 +383,13 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   //cuando generamos varias personas
   listaPersonasGeneradas = new MatTableDataSource<Persona>();
-  displayedColumnsPersonas: string[] = ['nif', 'nie','nss', 'pasaporte','sexo', 'fechanacimiento', 'nombre', 'apellido1', 'apellido2','nombrecompleto','tlfmovil','tlffijo','login','email',
-    'password','ccaa','provincia','municipio','codpostal','direccion','direccioncompleta', 'referenciaCatastral','iban','bic', 'tarjeta','tipotarjeta',
-  'expiracion','cvc'];
+
+  //DEPRECATED: antiguo sistema donde se defina cada columna en el html individualmente
+  // displayedColumnsPersonas: string[] = ['nif', 'nie','nss', 'pasaporte','sexo', 'fechanacimiento', 'nombre', 'apellido1', 'apellido2','nombrecompleto','tlfmovil','tlffijo','login','email',
+  //   'password','ccaa','provincia','municipio','codpostal','direccion','direccioncompleta', 'referenciaCatastral','iban','bic', 'tarjeta','tipotarjeta',
+  //   'expiracion','cvc'];
+  displayedColumnsPersonas: string[] =  COLUMNS_SCHEMA_PERSONAS.map((col) => col.key)
+  columnsSchemaPersonas: any = COLUMNS_SCHEMA_PERSONAS;
   //OJO!: al tener dos paginadopres en la misma pagina, no se puede usar ViewChild con dos sino ViewChildren
   //que es un array de paginadores, y ya utilizar cada uno por su orden dentro del array.
   //NOTA: https://stackoverflow.com/questions/50428605/multiple-material-pagination-in-one-component-doesnt-work-in-angular
@@ -55,7 +402,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   //cuando generamos varias empresas
   listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
-  displayedColumnsEmpresas: string[] = ['cif','razon','fechacons','cnae','actividad','email','paginaWeb','telefono','fax','ccaa','provincia','municipio','codpostal','direcion','direccioncompleta', 'referenciaCatastral'];
+  displayedColumnsEmpresas: string[] =  COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key)
+  columnsSchemaEmpresas: any = COLUMNS_SCHEMA_EMPRESAS;
+
   //@ViewChild(MatPaginator) paginatorEmpresas!: MatPaginator;
   @ViewChild('paginatorEmpresas') paginatorEmpresas!: MatPaginator;
   @ViewChild('sortEmpresas') sortEmpresas!: MatSort;
