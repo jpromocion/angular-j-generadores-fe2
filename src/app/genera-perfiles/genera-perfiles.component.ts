@@ -821,24 +821,5 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     return this.displayedColumnsEmpresas;
   }
 
-  /*
-
-  tosslePerOnePersonas(all: any): void{
-    if (this.allSelectedPersonas.selected) {
-     this.allSelectedPersonas.deselect();
-     //return false;
-    } else if(this.listaColumnasEmpresas.length == this.selectColumnasEmpresas.length){
-      this.allSelectedPersonas.select();
-    }
-  }
-
-  toggleAllSelectionPersonas() {
-    if (this.allSelectedPersonas.selected) {
-      this.selectColumnasEmpresas= this.listaColumnasEmpresas;
-    } else {
-      this.selectColumnasEmpresas = [];
-    }
-  }
-*/
 
 }

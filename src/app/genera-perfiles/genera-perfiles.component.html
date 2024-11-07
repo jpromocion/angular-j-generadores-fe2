@@ -796,9 +796,7 @@
       <mat-form-field style="margin-left: 5px; width: 350px !important;">
         <mat-label>Columnas visibles</mat-label>
         <mat-select multiple [(ngModel)]="selectColumnasPersonas">
-          <!-- <mat-option #allSelectedPersonas (click)="toggleAllSelectionPersonas()" [value]="0">Todo</mat-option> -->
           @for (columna of listaColumnasPersonas; track columna) {
-            <!--(click)="tosslePerOnePersonas(allSelectedPersonas.viewValue)"-->
             <mat-option [value]="columna" >{{columna}}</mat-option>
           }
         </mat-select>
