@@ -24,57 +24,7 @@ import { DireccionCompleta } from '../core/models/direccion-completa';
 
 
 
-//Definicion del mostrado de columnas para tabla CCAA, personalizado opciones
-//para mostrar filas por plantillas
-const COLUMNS_SCHEMA_CCAA = [
-  {
-      key: "id",
-      columna: "id",
-      type: "button",
-      label: "Código"
-  },
-  {
-    key: "nombre",
-    columna: "nombre",
-    type: "button",
-    label: "Nombre"
-  }
-];
-
-
-//Definicion del mostrado de columnas para tabla provincias, personalizado opciones
-//para mostrar filas por plantillas
-const COLUMNS_SCHEMA_PROVIN = [
-  {
-      key: "id",
-      columna: "id",
-      type: "button",
-      label: "Código"
-  },
-  {
-    key: "nombre",
-    columna: "nombre",
-    type: "button",
-    label: "Nombre"
-  }
-];
-
-//Definicion del mostrado de columnas para tabla provincias, personalizado opciones
-//para mostrar filas por plantillas
-const COLUMNS_SCHEMA_MUNI = [
-  {
-      key: "id",
-      columna: "id",
-      type: "button",
-      label: "Código"
-  },
-  {
-    key: "nombre",
-    columna: "nombre",
-    type: "button",
-    label: "Nombre"
-  }
-];
+//displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'numVia', 'kilometro', 'bloque', 'portal', 'escalera', 'planta', 'puerta' , 'codpostal', 'municipio', 'provincia', 'ccaa', 'referenciaCatastral'];
 
 
 @Component({
@@ -88,11 +38,171 @@ const COLUMNS_SCHEMA_MUNI = [
 })
 export class GeneraLocalizacionComponent extends BaseGeneraComponent implements OnInit, AfterViewInit {
 
+
+  //Definicion del mostrado de columnas para tabla CCAA, personalizado opciones
+  //para mostrar filas por plantillas
+  static COLUMNS_SCHEMA_CCAA = [
+    {
+      key: "id",
+      columna: "id",
+      type: "button",
+      label: "Código"
+    },
+    {
+      key: "nombre",
+      columna: "nombre",
+      type: "button",
+      label: "Nombre"
+    }
+  ];
+
+
+  //Definicion del mostrado de columnas para tabla provincias, personalizado opciones
+  //para mostrar filas por plantillas
+  static COLUMNS_SCHEMA_PROVIN = [
+    {
+      key: "id",
+      columna: "id",
+      type: "button",
+      label: "Código"
+    },
+    {
+      key: "nombre",
+      columna: "nombre",
+      type: "button",
+      label: "Nombre"
+    }
+  ];
+
+  //Definicion del mostrado de columnas para tabla provincias, personalizado opciones
+  //para mostrar filas por plantillas
+  static COLUMNS_SCHEMA_MUNI = [
+    {
+      key: "id",
+      columna: "id",
+      type: "button",
+      label: "Código"
+    },
+    {
+      key: "nombre",
+      columna: "nombre",
+      type: "button",
+      label: "Nombre"
+    }
+  ];
+
+  //Definicion del mostrado de columnas para tabla domicilios, personalizado opciones
+  //para mostrar filas por plantillas
+  static COLUMNS_SCHEMA_DOMICILIO = [
+    {
+      key: "Dirección completa",
+      columna: "direccionCompleta",
+      type: "button",
+      caseSensitive: true,
+      clase: "botonFlatGrande",
+      label: "Completa"
+    },
+    {
+      key: "Dirección",
+      columna: "direccion",
+      type: "button",
+      caseSensitive: true,
+      clase: "botonFlatGrande",
+      label: "Dirección"
+    },
+    {
+      key: "Número",
+      columna: "numVia",
+      type: "button",
+      label: "Número"
+    },
+    {
+      key: "Km",
+      columna: "kilometro",
+      type: "button",
+      label: "Km"
+    },
+    {
+      key: "Bloque",
+      columna: "bloque",
+      type: "button",
+      label: "Bloque"
+    },
+    {
+      key: "Portal",
+      columna: "portal",
+      type: "button",
+      label: "Portal"
+    },
+    {
+      key: "Escalera",
+      columna: "escalera",
+      type: "button",
+      label: "Escalera"
+    },
+    {
+      key: "Planta",
+      columna: "planta",
+      type: "button",
+      caseSensitive: true,
+      label: "Planta"
+    },
+    {
+      key: "Puerta",
+      columna: "puerta",
+      type: "button",
+      caseSensitive: true,
+      label: "Puerta"
+    },
+    {
+      key: "CP",
+      columna: "codPostal",
+      type: "button",
+      caseSensitive: true,
+      label: "Cod. Postal"
+    },
+    {
+      key: "Municipio",
+      columna: "ineMunicipio",
+      clase: "botonFlatReducido",
+      type: "button",
+      caseSensitive: true,
+      label: "Municipio",
+      columna2: "municipio",
+    },
+    {
+      key: "Provincia",
+      columna: "ineProvincia",
+      clase: "botonFlatReducido",
+      type: "button",
+      caseSensitive: true,
+      label: "Provincia",
+      columna2: "provincia",
+    },
+    {
+      key: "CCAA",
+      columna: "ineCcaa",
+      clase: "botonFlatReducido",
+      type: "button",
+      caseSensitive: true,
+      label: "CCAA",
+      columna2: "ccaa",
+    },
+    {
+      key: "Ref. catastral",
+      columna: "referenciaCatastral",
+      type: "button",
+      caseSensitive: true,
+      label: "Ref. catastral"
+    },
+  ];
+
+
   //ccaa
   //ccaaGenerado: Ccaa[] = [];
   ccaaGenerado = new MatTableDataSource<Ccaa>();
-  displayedColumnsCcaaGenerado: string[] =  COLUMNS_SCHEMA_CCAA.map((col) => col.key)
-  columnsSchemaCcaaGenerado: any = COLUMNS_SCHEMA_CCAA;
+  displayedColumnsCcaaGenerado: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_CCAA.map((col) => col.key)
+  columnsSchemaCcaaGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_CCAA;
   @ViewChild('paginatorCcaaGenerado') paginatorCcaaGenerado!: MatPaginator;
   @ViewChild('sortCcaaGenerado') sortCcaaGenerado!: MatSort;
 
@@ -100,8 +210,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   provinCodCCAA: string = '';
   //provinGenerado: Provincia[] = [];
   provinGenerado = new MatTableDataSource<Provincia>();
-  displayedColumnsProvinGenerado: string[] =  COLUMNS_SCHEMA_PROVIN.map((col) => col.key)
-  columnsSchemaProvinGenerado: any = COLUMNS_SCHEMA_PROVIN;
+  displayedColumnsProvinGenerado: string[] =  GeneraLocalizacionComponent.COLUMNS_SCHEMA_PROVIN.map((col) => col.key)
+  columnsSchemaProvinGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_PROVIN;
 
 
   @ViewChild('paginatorProvinGenerado') paginatorProvinGenerado!: MatPaginator;
@@ -111,8 +221,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   muniCodProvin: string = '';
   //muniGenerado: Municipio[] = [];
   muniGenerado = new MatTableDataSource<Provincia>();
-  displayedColumnsMuniGenerado: string[] =  COLUMNS_SCHEMA_MUNI.map((col) => col.key)
-  columnsSchemaMuniGenerado: any = COLUMNS_SCHEMA_MUNI;
+  displayedColumnsMuniGenerado: string[] =  GeneraLocalizacionComponent.COLUMNS_SCHEMA_MUNI.map((col) => col.key)
+  columnsSchemaMuniGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_MUNI;
 
   @ViewChild('paginatorMuniGenerado') paginatorMuniGenerado!: MatPaginator;
   @ViewChild('sortMuniGenerado') sortMuniGenerado!: MatSort;
@@ -121,17 +231,17 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   direccionParamCodMuni: string = '';
   direccionParamNumGenerar: number = 10;
   direccionGenerado = new MatTableDataSource<DireccionCompleta>();
-  displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'numVia', 'kilometro', 'bloque', 'portal', 'escalera', 'planta', 'puerta' , 'codpostal', 'municipio', 'provincia', 'ccaa', 'referenciaCatastral'];
-
-
-
+  displayedColumnsDireccionGenerado: string[] =  GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.key)
+  columnsSchemaDireccionGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO;
   @ViewChild('paginatorDireccionGenerado') paginatorDireccionGenerado!: MatPaginator;
   @ViewChild('sortDireccionGenerado') sortDireccionGenerado!: MatSort;
 
+  //seleccionar columnas a mostrar en tabla direcciones
+  listaColumnasDirecciones: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.key);
+  selectColumnasDirecciones: string[] = this.listaColumnasDirecciones;
+
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
   private miscService: MiscService = inject(MiscService);
-
-
 
   constructor() {
     super();
@@ -396,7 +506,14 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.openSnackBar('Excel generado','ExcelDomicilios');
   }
 
-
+  /**
+   * Devolver las columnas que en cada momento se mostraran en tabla direcciones al cambiar con el selector de columnas visibles
+   * @returns
+   */
+  getDisplayedColumnsDireccionGenerado(): string[] {
+    this.displayedColumnsDireccionGenerado = this.selectColumnasDirecciones;
+    return this.displayedColumnsDireccionGenerado;
+  }
 
 
 

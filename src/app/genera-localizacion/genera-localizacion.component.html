@@ -45,7 +45,8 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
             </table>
 
-            <div class="divBox">
+            <!-- Acciones, y paginador -->
+            <div style="float: left;">
               <button type="button" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarCCAA()"
                 matTooltip="Pulsar para limpiar el CCAA" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
@@ -54,12 +55,16 @@
                 matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
+            </div>
+
+            <div style="float: right;">
               <mat-paginator #paginatorCcaaGenerado="matPaginator"
-              [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
-              showFirstLastButtons
+                [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+                showFirstLastButtons
                 aria-label="Seleccionar páginación">
               </mat-paginator>
             </div>
+
           </div>
 
         </mat-card-content>
@@ -113,7 +118,8 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
             </table>
 
-            <div class="divBox">
+            <!-- Acciones, y paginador -->
+            <div style="float: left;">
               <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarProvincias()"
                 matTooltip="Pulsar para limpiar el provincias" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
@@ -122,12 +128,16 @@
                 matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
+            </div>
+
+            <div style="float: right;">
               <mat-paginator #paginatorProvinGenerado="matPaginator"
-              [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
-              showFirstLastButtons
+                [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+                showFirstLastButtons
                 aria-label="Seleccionar páginación">
               </mat-paginator>
             </div>
+
           </div>
 
         </mat-card-content>
@@ -180,7 +190,8 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
             </table>
 
-            <div class="divBox">
+            <!-- Acciones, y paginador -->
+            <div style="float: left;">
               <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarMunicipios()"
                 matTooltip="Pulsar para limpiar el municipios" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
@@ -189,12 +200,16 @@
                 matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
+            </div>
+
+            <div style="float: right;">
               <mat-paginator #paginatorMuniGenerado="matPaginator"
-              [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
-              showFirstLastButtons
+                [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+                showFirstLastButtons
                 aria-label="Seleccionar páginación">
               </mat-paginator>
             </div>
+
           </div>
 
         </mat-card-content>
@@ -264,185 +279,70 @@
           <div class="table-responsive">
             <table mat-table #sortDireccionGenerado="matSort" [dataSource]="direccionGenerado" matSort  (matSortChange)="announceSortChange($event)">
 
-              <ng-container matColumnDef="direccionCompleta">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Completa</th>
+              <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
+                https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
+              -->
+              <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaDireccionGenerado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}</th>
                 <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button class="botonFlatGrande" type="button" (click)="onSelectDato(transformaTexto(direccion.direccionCompleta))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="direcion">{{direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="direccion">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button class="botonFlatGrande" type="button" (click)="onSelectDato(transformaTexto(direccion.direccion))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="direccion">{{direccion.direccion | caseTransformer: tipoLetra}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="numVia">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Número</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(direccion.numVia)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="numVia">{{direccion.numVia}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="kilometro">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Km</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(direccion.kilometro)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="kilometro">{{direccion.kilometro}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="bloque">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Bloque</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(direccion.bloque)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="bloque">{{direccion.bloque}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="portal">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Portal</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(direccion.portal)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="portal">{{direccion.portal}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="escalera">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Escalera</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(direccion.escalera)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="escalera">{{direccion.escalera}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="planta">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Planta</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(direccion.planta))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="planta">{{direccion.planta | caseTransformer: tipoLetra}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="puerta">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Puerta</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(direccion.puerta))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="puerta">{{direccion.puerta | caseTransformer: tipoLetra}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="codpostal">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod. Postal</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(direccion.codPostal)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="codpostal">{{direccion.codPostal}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="municipio">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Municipio</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <div>
-                    <button mat-flat-button class="botonFlatReducido" type="button" (click)="onSelectDato(direccion.ineMunicipio)"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                      <span class="ine">{{direccion.ineMunicipio}}</span>
-                    </button>
-                    <button mat-flat-button class="botonFlatReducido" type="button" (click)="onSelectDato(transformaTexto(direccion.municipio))"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                      <span class="municipio">{{direccion.municipio | caseTransformer: tipoLetra}}</span>
-                    </button>
+                  <!-- Seleccionamos por el type como mostrarlo-->
+                  <div [ngSwitch]="col.type" >
+                    <!--button: boton normal para mostrar un dato (viene parametrizado por propiedades: si aplica una clase de formato distinta,
+                      si aplica cambio mayus/minus e incluso si no lleva solo un valor a mostrar sino dos valores)
+                    -->
+                    <div *ngSwitchCase="'button'">
+                      <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(direccion[col.columna], col.caseSensitive))"
+                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        <span *ngIf="col.caseSensitive">{{direccion[col.columna] | caseTransformer: tipoLetra }}</span>
+                        <span *ngIf="!col.caseSensitive">{{direccion[col.columna]}}</span>
+                      </button>
+                      <button *ngIf="direccion[col.columna2] && direccion[col.columna2] != ''"
+                        mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(direccion[col.columna2], col.caseSensitive))"
+                        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        <span *ngIf="col.caseSensitive">{{direccion[col.columna2] | caseTransformer: tipoLetra }}</span>
+                        <span *ngIf="!col.caseSensitive">{{direccion[col.columna2]}}</span>
+                      </button>
+                    </div>
+                    <span *ngSwitchDefault>
+                      {{ direccion[col.columna] }}
+                    </span>
                   </div>
                 </td>
               </ng-container>
 
-              <ng-container matColumnDef="provincia">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <div>
-                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(direccion.ineProvincia)"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                      <span class="provinciaIne">{{direccion.ineProvincia}}</span>
-                    </button>
-                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(direccion.provincia))"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                      <span class="provincia">{{direccion.provincia | caseTransformer: tipoLetra}}</span>
-                    </button>
-                  </div>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="ccaa">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>CCAA</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <div>
-                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(direccion.ineCcaa)"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                      <span class="ccaaIne">{{direccion.ineCcaa}}</span>
-                    </button>
-                    <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(direccion.ccaa))"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                      <span class="ccaa">{{direccion.ccaa | caseTransformer: tipoLetra}}</span>
-                    </button>
-                  </div>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="referenciaCatastral">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ref. catastral</th>
-                <td mat-cell *matCellDef="let direccion">
-                  <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(direccion.referenciaCatastral))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="catastral">{{direccion.referenciaCatastral | caseTransformer: tipoLetra}}</span>
-                  </button>
-                </td>
-              </ng-container>
-
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumnsDireccionGenerado"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumnsDireccionGenerado;"></tr>
+              <tr mat-header-row *matHeaderRowDef="getDisplayedColumnsDireccionGenerado()"></tr>
+              <tr mat-row *matRowDef="let row; columns: getDisplayedColumnsDireccionGenerado();"></tr>
             </table>
+          </div>
 
-            <div class="divBox">
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDomicilios()"
-                matTooltip="Pulsar para limpiar las direcciones" matTooltipPosition="below">
-                <mat-icon>delete</mat-icon>
-              </button>
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonDomicilios()"
-                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
-                <mat-icon>description</mat-icon>
-              </button>
-              <mat-paginator #paginatorDireccionGenerado="matPaginator"
+          <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
+          <div style="float: left;margin-top:5px;">
+            <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDomicilios()"
+              matTooltip="Pulsar para limpiar las direcciones" matTooltipPosition="below">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonDomicilios()"
+              matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+              <mat-icon>description</mat-icon>
+            </button>
+            <mat-form-field style="margin-left: 5px; width: 350px !important;">
+              <mat-label>Columnas visibles</mat-label>
+              <mat-select multiple [(ngModel)]="selectColumnasDirecciones">
+                @for (columna of listaColumnasDirecciones; track columna) {
+                  <mat-option [value]="columna">{{columna}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div style="float: right;margin-top:5px;">
+            <mat-paginator #paginatorDireccionGenerado="matPaginator"
               [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]"
               showFirstLastButtons
-                aria-label="Seleccionar páginación">
-              </mat-paginator>
-            </div>
+              aria-label="Seleccionar páginación">
+            </mat-paginator>
           </div>
+
         </div>
 
       </mat-card-content>

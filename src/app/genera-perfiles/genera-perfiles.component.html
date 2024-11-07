@@ -777,28 +777,49 @@
         </ng-container>
         -->
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsPersonas"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumnsPersonas;"></tr>
+        <tr mat-header-row *matHeaderRowDef="getDisplayedColumnsPersonas()"></tr>
+        <tr mat-row *matRowDef="let row; columns: getDisplayedColumnsPersonas();"></tr>
       </table>
 
+    </div>
+
+    <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
+    <div style="float: left;margin-top:5px;">
+      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPersonas()"
+        matTooltip="Pulsar para limpiar las personas" matTooltipPosition="below">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button type="button" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPersonas()"
+        matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+        <mat-icon>description</mat-icon>
+      </button>
+      <mat-form-field style="margin-left: 5px; width: 350px !important;">
+        <mat-label>Columnas visibles</mat-label>
+        <mat-select multiple [(ngModel)]="selectColumnasPersonas">
+          <!-- <mat-option #allSelectedPersonas (click)="toggleAllSelectionPersonas()" [value]="0">Todo</mat-option> -->
+          @for (columna of listaColumnasPersonas; track columna) {
+            <!--(click)="tosslePerOnePersonas(allSelectedPersonas.viewValue)"-->
+            <mat-option [value]="columna" >{{columna}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div style="float: right;margin-top:5px;">
       <!-- Porque daba undefine el paginador... al estar dentro del div con el ngIf para no mostrar hasta tener datos... la primera
         vez llegaba undefined
         -> https://stackoverflow.com/questions/48785965/angular-matpaginator-doesnt-get-initialized
         -> https://stackoverflow.com/questions/56028775/mat-paginator-breaks-when-mat-table-is-inside-of-ngif
         Susdituimos el ngIf del div por un hidden justo con la condicion opuesta
       -->
-      <div class="divBox">
-        <button type="button"  mat-fab aria-label="Exportar a Excel" (click)="exportJsonPersonas()"
-          matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
-          <mat-icon>description</mat-icon>
-        </button>
-        <mat-paginator #paginatorPersonas="matPaginator"
+      <mat-paginator #paginatorPersonas="matPaginator"
         [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons
-          aria-label="Seleccionar páginación">
-        </mat-paginator>
-      </div>
+        aria-label="Seleccionar páginación">
+      </mat-paginator>
     </div>
+
+
   </div>
 
 
@@ -855,22 +876,40 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsEmpresas"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumnsEmpresas;"></tr>
+        <tr mat-header-row *matHeaderRowDef="getDisplayedColumnsEmpresas()"></tr>
+        <tr mat-row *matRowDef="let row; columns: getDisplayedColumnsEmpresas();"></tr>
       </table>
-
-      <div class="divBox">
-        <button type="button"  mat-fab aria-label="Exportar a Excel" (click)="exportJsonEmpresas()"
-          matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
-          <mat-icon>description</mat-icon>
-        </button>
-        <mat-paginator #paginatorEmpresas="matPaginator"
-          [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
-          showFirstLastButtons
-          aria-label="Seleccionar páginación">
-        </mat-paginator>
-      </div>
     </div>
+
+    <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
+    <div style="float: left;margin-top:5px;">
+      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarEmpresas()"
+        matTooltip="Pulsar para limpiar las empresas" matTooltipPosition="below">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button type="button" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonEmpresas()"
+        matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+        <mat-icon>description</mat-icon>
+      </button>
+      <mat-form-field style="margin-left: 5px; width: 350px !important;">
+        <mat-label>Columnas visibles</mat-label>
+        <mat-select multiple [(ngModel)]="selectColumnasEmpresas">
+          @for (columna of listaColumnasEmpresas; track columna) {
+            <mat-option [value]="columna">{{columna}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div style="float: right;margin-top:5px;">
+      <mat-paginator #paginatorEmpresas="matPaginator"
+        [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Seleccionar páginación">
+      </mat-paginator>
+    </div>
+
+
   </div>
 
 

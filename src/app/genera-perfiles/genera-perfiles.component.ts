@@ -11,119 +11,135 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
+import { MatOption } from '@angular/material/core';
 import {MatSort, MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
 import { Empresa } from '../core/models/empresa';
 
-//Definicion del mostrado de columnas para tabla personas, personalizado opciones
-//para mostrar filas por plantillas
-const COLUMNS_SCHEMA_PERSONAS = [
-  {
-      key: "nif",
+
+
+
+@Component({
+  selector: 'app-genera-perfiles',
+  standalone: true,
+  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,MatGridListModule, CaseTransformerPipe,
+    MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
+    MatSelectModule],
+  templateUrl: './genera-perfiles.component.html',
+  styleUrl: './genera-perfiles.component.scss'
+})
+export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnInit , AfterViewInit  {
+
+  //Definicion del mostrado de columnas para tabla personas, personalizado opciones
+  //para mostrar filas por plantillas
+  static COLUMNS_SCHEMA_PERSONAS = [
+    {
+      key: "Nif",
       columna: "nif",
       type: "button",
       label: "NIF"
-  },
-  {
-      key: "nie",
+    },
+    {
+      key: "Nie",
       columna: "nie",
       type: "button",
       label: "NIE"
-  },
-  {
-      key: "nss",
+    },
+    {
+      key: "Nss",
       columna: "nss",
       type: "button",
       label: "NSS"
-  },
-  {
-      key: "pasaporte",
+    },
+    {
+      key: "Pasaporte",
       columna: "pasaporte",
       type: "button",
       label: "Pasaporte"
-  },
-  {
-      key: "genero",
+    },
+    {
+      key: "Genero",
       columna: "genero",
       type: "button",
       caseSensitive: true,
       label: "Sexo"
-  },
-  {
-      key: "fechaNacimiento",
+    },
+    {
+      key: "Fecha_Nacimiento",
       columna: "fechaNacimiento",
       type: "button",
       caseSensitive: true,
       clase: "botonFlatReducido",
       label: "Fecha nacimiento (edad)",
       columna2: "edad",
-  },
-  {
-      key: "nombre",
+    },
+    {
+      key: "Nombre",
       columna: "nombre",
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
       label: "Nombre"
-  },
-  {
-      key: "apellido1",
+    },
+    {
+      key: "Apellido_1",
       columna: "apellido1",
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
       label: "1º Apellido"
-  },
-  {
-      key: "apellido2",
+    },
+    {
+      key: "Apellido_2",
       columna: "apellido2",
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
       label: "2º Apellido"
-  },
-  {
-      key: "nombreCompleto",
+    },
+    {
+      key: "Nombre_Completo",
       columna: "nombreCompleto",
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
       label: "Nombre completo"
-  },
-  {
-      key: "telefonoMovil",
+    },
+    {
+      key: "Telefono_Movil",
       columna: "telefonoMovil",
       type: "button",
       label: "Teléfono movil"
-  },
-  {
-      key: "telefonoFijo",
+    },
+    {
+      key: "Telefono_Fijo",
       columna: "telefonoFijo",
       type: "button",
       label: "Teléfono fijo"
-  },
-  {
-      key: "login",
+    },
+    {
+      key: "Login",
       columna: "login",
       type: "button",
       label: "Login"
-  },
-  {
-      key: "email",
+    },
+    {
+      key: "Email",
       columna: "email",
       type: "button",
       label: "Email"
-  },
-  {
-      key: "password",
+    },
+    {
+      key: "Password",
       columna: "password",
       type: "button",
       label: "Password"
-  },
-  {
-      key: "direccion_ccaa",
+    },
+    {
+      key: "CCAA",
       columna: "direccion",
       subpropiedad: "ineCcaa",
       clase: "botonFlatReducido",
@@ -132,244 +148,233 @@ const COLUMNS_SCHEMA_PERSONAS = [
       label: "CCAA",
       columna2: "direccion",
       subpropiedad2: "ccaa",
-  },
-  {
-    key: "direccion_provincia",
-    columna: "direccion",
-    subpropiedad: "ineProvincia",
-    clase: "botonFlatReducido",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Provincia",
-    columna2: "direccion",
-    subpropiedad2: "provincia",
-  },
-  {
-    key: "direccion_municipio",
-    columna: "direccion",
-    subpropiedad: "ineMunicipio",
-    clase: "botonFlatReducido",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Municipio",
-    columna2: "direccion",
-    subpropiedad2: "municipio",
-  },
-  {
-    key: "direccion_cp",
-    columna: "direccion",
-    subpropiedad: "codPostal",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Cod. Postal"
-  },
-  {
-    key: "direccion_direccion",
-    columna: "direccion",
-    subpropiedad: "direccionAMedio",
-    clase: "botonFlatGrande",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Dirección"
-  },
-  {
-    key: "direccion_direccioncompleta",
-    columna: "direccion",
-    subpropiedad: "direccionCompleta",
-    clase: "botonFlatGrande",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Dirección completa"
-  },
-  {
-    key: "direccion_refcatas",
-    columna: "direccion",
-    subpropiedad: "referenciaCatastral",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Ref. catastral"
-  },
-  {
-      key: "iban",
+    },
+    {
+      key: "Provincia",
+      columna: "direccion",
+      subpropiedad: "ineProvincia",
+      clase: "botonFlatReducido",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Provincia",
+      columna2: "direccion",
+      subpropiedad2: "provincia",
+    },
+    {
+      key: "Municipio",
+      columna: "direccion",
+      subpropiedad: "ineMunicipio",
+      clase: "botonFlatReducido",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Municipio",
+      columna2: "direccion",
+      subpropiedad2: "municipio",
+    },
+    {
+      key: "Cod_Postal",
+      columna: "direccion",
+      subpropiedad: "codPostal",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Cod. Postal"
+    },
+    {
+      key: "Direccion",
+      columna: "direccion",
+      subpropiedad: "direccionAMedio",
+      clase: "botonFlatGrande",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Dirección"
+    },
+    {
+      key: "Dir_Completa",
+      columna: "direccion",
+      subpropiedad: "direccionCompleta",
+      clase: "botonFlatGrande",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Dirección completa"
+    },
+    {
+      key: "Ref_Catastral",
+      columna: "direccion",
+      subpropiedad: "referenciaCatastral",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Ref. catastral"
+    },
+    {
+      key: "Iban",
       columna: "iban",
       type: "button",
       label: "IBAN"
-  },
-  {
-    key: "bic",
-    columna: "bic",
-    type: "button",
-    label: "BIC (SWIFT)"
-  },
-  {
-    key: "tarjeta",
-    columna: "tarjetaCredito",
-    type: "button",
-    label: "Num. tarjeta"
-  },
-  {
-    key: "tipotarjeta",
-    columna: "tipoTarjeta",
-    type: "button",
-    caseSensitive: true,
-    label: "Tipo tarj."
-  },
-  {
-    key: "expiracion",
-    columna: "expiracionCredito",
-    type: "button",
-    label: "Expiración"
-  },
-  {
-    key: "cvc",
-    columna: "cvc",
-    type: "button",
-    label: "CVC"
-  }
-];
+    },
+    {
+      key: "Bic",
+      columna: "bic",
+      type: "button",
+      label: "BIC (SWIFT)"
+    },
+    {
+      key: "Tarjeta",
+      columna: "tarjetaCredito",
+      type: "button",
+      label: "Num. tarjeta"
+    },
+    {
+      key: "Tipo_Tarjeta",
+      columna: "tipoTarjeta",
+      type: "button",
+      caseSensitive: true,
+      label: "Tipo tarj."
+    },
+    {
+      key: "Expiracion",
+      columna: "expiracionCredito",
+      type: "button",
+      label: "Expiración"
+    },
+    {
+      key: "Cvc",
+      columna: "cvc",
+      type: "button",
+      label: "CVC"
+    }
+  ];
 
-//Definicion del mostrado de columnas para tabla empresas, personalizado opciones
-//para mostrar filas por plantillas
-const COLUMNS_SCHEMA_EMPRESAS = [
-  {
-      key: "cif",
+  //Definicion del mostrado de columnas para tabla empresas, personalizado opciones
+  //para mostrar filas por plantillas
+  static COLUMNS_SCHEMA_EMPRESAS = [
+    {
+      key: "Cif",
       columna: "cif",
       type: "button",
       label: "CIF"
-  },
-  {
-    key: "razon",
-    columna: "nombre",
-    type: "button",
-    clase: "botonFlatGrande",
-    caseSensitive: true,
-    label: "Razón social"
-  },
-  {
-    key: "fechacons",
-    columna: "fechaCreacion",
-    type: "button",
-    label: "F. constitución"
-  },
-  {
-    key: "cnae",
-    columna: "cnae",
-    type: "button",
-    label: "CNAE"
-  },
-  {
-    key: "actividad",
-    columna: "actividad",
-    type: "button",
-    clase: "botonFlatGrande",
-    caseSensitive: true,
-    label: "Actividad"
-  },
-  {
-    key: "email",
-    columna: "email",
-    type: "button",
-    caseSensitive: true,
-    label: "Email"
-  },
-  {
-    key: "paginaWeb",
-    columna: "paginaWeb",
-    type: "button",
-    caseSensitive: true,
-    label: "Pág. Web"
-  },
-  {
-    key: "telefono",
-    columna: "telefono",
-    type: "button",
-    label: "Teléfono"
-  },
-  {
-    key: "fax",
-    columna: "fax",
-    type: "button",
-    label: "Fax"
-  },
-  {
-    key: "direccion_ccaa",
-    columna: "direccion",
-    subpropiedad: "ineCcaa",
-    clase: "botonFlatReducido",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "CCAA",
-    columna2: "direccion",
-    subpropiedad2: "ccaa",
-  },
-  {
-    key: "direccion_provincia",
-    columna: "direccion",
-    subpropiedad: "ineProvincia",
-    clase: "botonFlatReducido",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Provincia",
-    columna2: "direccion",
-    subpropiedad2: "provincia",
-  },
-  {
-    key: "direccion_municipio",
-    columna: "direccion",
-    subpropiedad: "ineMunicipio",
-    clase: "botonFlatReducido",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Municipio",
-    columna2: "direccion",
-    subpropiedad2: "municipio",
-  },
-  {
-    key: "direccion_cp",
-    columna: "direccion",
-    subpropiedad: "codPostal",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Cod. Postal"
-  },
-  {
-    key: "direccion_direccion",
-    columna: "direccion",
-    subpropiedad: "direccionAMedio",
-    clase: "botonFlatGrande",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Dirección"
-  },
-  {
-    key: "direccion_direccioncompleta",
-    columna: "direccion",
-    subpropiedad: "direccionCompleta",
-    clase: "botonFlatGrande",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Dirección completa"
-  },
-  {
-    key: "direccion_refcatas",
-    columna: "direccion",
-    subpropiedad: "referenciaCatastral",
-    type: "subobjeto",
-    caseSensitive: true,
-    label: "Ref. catastral"
-  }
-];
-
-
-@Component({
-  selector: 'app-genera-perfiles',
-  standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,MatGridListModule, CaseTransformerPipe,
-    MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass],
-  templateUrl: './genera-perfiles.component.html',
-  styleUrl: './genera-perfiles.component.scss'
-})
-export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnInit , AfterViewInit  {
+    },
+    {
+      key: "Razón",
+      columna: "nombre",
+      type: "button",
+      clase: "botonFlatGrande",
+      caseSensitive: true,
+      label: "Razón social"
+    },
+    {
+      key: "Fecha_Constitución",
+      columna: "fechaCreacion",
+      type: "button",
+      label: "F. constitución"
+    },
+    {
+      key: "Cnae",
+      columna: "cnae",
+      type: "button",
+      label: "CNAE"
+    },
+    {
+      key: "Actividad",
+      columna: "actividad",
+      type: "button",
+      clase: "botonFlatGrande",
+      caseSensitive: true,
+      label: "Actividad"
+    },
+    {
+      key: "Email",
+      columna: "email",
+      type: "button",
+      caseSensitive: true,
+      label: "Email"
+    },
+    {
+      key: "Página_Web",
+      columna: "paginaWeb",
+      type: "button",
+      caseSensitive: true,
+      label: "Pág. Web"
+    },
+    {
+      key: "Telefono",
+      columna: "telefono",
+      type: "button",
+      label: "Teléfono"
+    },
+    {
+      key: "Fax",
+      columna: "fax",
+      type: "button",
+      label: "Fax"
+    },
+    {
+      key: "CCAA",
+      columna: "direccion",
+      subpropiedad: "ineCcaa",
+      clase: "botonFlatReducido",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "CCAA",
+      columna2: "direccion",
+      subpropiedad2: "ccaa",
+    },
+    {
+      key: "Provincia",
+      columna: "direccion",
+      subpropiedad: "ineProvincia",
+      clase: "botonFlatReducido",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Provincia",
+      columna2: "direccion",
+      subpropiedad2: "provincia",
+    },
+    {
+      key: "Municipio",
+      columna: "direccion",
+      subpropiedad: "ineMunicipio",
+      clase: "botonFlatReducido",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Municipio",
+      columna2: "direccion",
+      subpropiedad2: "municipio",
+    },
+    {
+      key: "Cod_Postal",
+      columna: "direccion",
+      subpropiedad: "codPostal",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Cod. Postal"
+    },
+    {
+      key: "Dirección",
+      columna: "direccion",
+      subpropiedad: "direccionAMedio",
+      clase: "botonFlatGrande",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Dirección"
+    },
+    {
+      key: "Dir_Completa",
+      columna: "direccion",
+      subpropiedad: "direccionCompleta",
+      clase: "botonFlatGrande",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Dirección completa"
+    },
+    {
+      key: "Ref_Catastral",
+      columna: "direccion",
+      subpropiedad: "referenciaCatastral",
+      type: "subobjeto",
+      caseSensitive: true,
+      label: "Ref. catastral"
+    }
+  ];
 
   //filstros
   tipoPerfil: string = 'p';
@@ -388,8 +393,8 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   // displayedColumnsPersonas: string[] = ['nif', 'nie','nss', 'pasaporte','sexo', 'fechanacimiento', 'nombre', 'apellido1', 'apellido2','nombrecompleto','tlfmovil','tlffijo','login','email',
   //   'password','ccaa','provincia','municipio','codpostal','direccion','direccioncompleta', 'referenciaCatastral','iban','bic', 'tarjeta','tipotarjeta',
   //   'expiracion','cvc'];
-  displayedColumnsPersonas: string[] =  COLUMNS_SCHEMA_PERSONAS.map((col) => col.key)
-  columnsSchemaPersonas: any = COLUMNS_SCHEMA_PERSONAS;
+  displayedColumnsPersonas: string[] =  GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.map((col) => col.key)
+  columnsSchemaPersonas: any = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS;
   //OJO!: al tener dos paginadopres en la misma pagina, no se puede usar ViewChild con dos sino ViewChildren
   //que es un array de paginadores, y ya utilizar cada uno por su orden dentro del array.
   //NOTA: https://stackoverflow.com/questions/50428605/multiple-material-pagination-in-one-component-doesnt-work-in-angular
@@ -402,12 +407,23 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   //cuando generamos varias empresas
   listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
-  displayedColumnsEmpresas: string[] =  COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key)
-  columnsSchemaEmpresas: any = COLUMNS_SCHEMA_EMPRESAS;
-
+  displayedColumnsEmpresas: string[] =  GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key)
+  columnsSchemaEmpresas: any = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS;
   //@ViewChild(MatPaginator) paginatorEmpresas!: MatPaginator;
   @ViewChild('paginatorEmpresas') paginatorEmpresas!: MatPaginator;
   @ViewChild('sortEmpresas') sortEmpresas!: MatSort;
+
+  //seleccionar columnas a mostrar en tabla personas
+  listaColumnasPersonas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.map((col) => col.key);
+  selectColumnasPersonas: string[] = this.listaColumnasPersonas;
+  //inicializar marcado, dado que estan todas las opciones seleccionada
+  @ViewChild('allSelectedPersonas') private allSelectedPersonas!: MatOption;
+
+
+  //seleccionar columnas a mostrar en tabla empresas
+  listaColumnasEmpresas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key);
+  selectColumnasEmpresas: string[] = this.listaColumnasEmpresas;
+
 
 
   //inyeccion de dependencia para utilizar el servicio de generacion de datos bancarios
@@ -437,6 +453,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
     this.listaPersonasGeneradas.sort = this.sortPersonas;
     this.listaEmpresasGeneradas.sort = this.sortEmpresas;
+
+    //el seleccionar todo de columnas de personas marcado de inicio
+    //this.allSelectedPersonas.select();
   }
 
 
@@ -537,40 +556,140 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    */
   exportJsonPersonas(): void {
     //var res = alasql('SEARCH / AS @data \ people / AS @persons \ RETURN(@persons->name as Name, @persons->age as Age, @data->city AS City) \ FROM ?', [this.peopleByCity])
-    const res = this.listaPersonasGeneradas.data.map(persona => ({
-      NIF: persona.nif,
-      NIE: persona.nie,
-      NSS: persona.nss,
-      Pasaporte: persona.pasaporte,
-      Genero: persona.genero,
-      FechaNacimiento: persona.fechaNacimiento,
-      Edad: persona.edad,
-      Nombre: this.transformaTexto(persona.nombre),
-      Apellido1: this.transformaTexto(persona.apellido1),
-      Apellido2: this.transformaTexto(persona.apellido2),
-      NombreCompleto: this.transformaTexto(persona.nombreCompleto),
-      TelefonoMovil: persona.telefonoMovil,
-      TelefonoFijo: persona.telefonoFijo,
-      Login: persona.login,
-      Email: persona.email,
-      Password: persona.password,
-      CCAA_Ine: persona.direccion.ineCcaa,
-      CCAA: this.transformaTexto(persona.direccion.ccaa),
-      Provincia_Ine: persona.direccion.ineProvincia,
-      Provincia: this.transformaTexto(persona.direccion.provincia),
-      Municipio_Ine: persona.direccion.ineMunicipio,
-      Municipio: this.transformaTexto(persona.direccion.municipio),
-      CodigoPostal: persona.direccion.codPostal,
-      Direccion: this.transformaTexto(persona.direccion.direccionAMedio),
-      Direccion_Completa: this.transformaTexto(persona.direccion.direccionCompleta),
-      ReferenciaCatastral: this.transformaTexto(persona.direccion.referenciaCatastral),
-      IBAN: persona.iban,
-      BIC: persona.bic,
-      TarjetaCredito: persona.tarjetaCredito,
-      TipoTarjeta: this.transformaTexto(persona.tipoTarjeta),
-      ExpiracionCredito: persona.expiracionCredito,
-      CVC: persona.cvc
-    }));
+
+    const displayedColumns = this.getDisplayedColumnsPersonas();
+    const res = this.listaPersonasGeneradas.data.map(persona => {
+      const result: any = {};
+      displayedColumns.forEach(col => {
+      switch (col) {
+        case 'Nif':
+        result.NIF = persona.nif;
+        break;
+        case 'Nie':
+        result.NIE = persona.nie;
+        break;
+        case 'Nss':
+        result.NSS = persona.nss;
+        break;
+        case 'Pasaporte':
+        result.Pasaporte = persona.pasaporte;
+        break;
+        case 'Genero':
+        result.Genero = persona.genero;
+        break;
+        case 'Fecha_Nacimiento':
+        result.FechaNacimiento = persona.fechaNacimiento;
+        result.Edad = persona.edad;
+        break;
+        case 'Nombre':
+        result.Nombre = this.transformaTexto(persona.nombre);
+        break;
+        case 'Apellido_1':
+        result.Apellido1 = this.transformaTexto(persona.apellido1);
+        break;
+        case 'Apellido_2':
+        result.Apellido2 = this.transformaTexto(persona.apellido2);
+        break;
+        case 'Nombre_Completo':
+        result.NombreCompleto = this.transformaTexto(persona.nombreCompleto);
+        break;
+        case 'Telefono_Movil':
+        result.TelefonoMovil = persona.telefonoMovil;
+        break;
+        case 'Telefono_Fijo':
+        result.TelefonoFijo = persona.telefonoFijo;
+        break;
+        case 'Login':
+        result.Login = persona.login;
+        break;
+        case 'Email':
+        result.Email = persona.email;
+        break;
+        case 'Password':
+        result.Password = persona.password;
+        break;
+        case 'CCAA':
+        result.CCAA_Ine = persona.direccion.ineCcaa;
+        result.CCAA = this.transformaTexto(persona.direccion.ccaa);
+        break;
+        case 'Provincia':
+        result.Provincia_Ine = persona.direccion.ineProvincia;
+        result.Provincia = this.transformaTexto(persona.direccion.provincia);
+        break;
+        case 'Municipio':
+        result.Municipio_Ine = persona.direccion.ineMunicipio;
+        result.Municipio = this.transformaTexto(persona.direccion.municipio);
+        break;
+        case 'Cod_Postal':
+        result.CodigoPostal = persona.direccion.codPostal;
+        break;
+        case 'Direccion':
+        result.Direccion = this.transformaTexto(persona.direccion.direccionAMedio);
+        break;
+        case 'Dir_Completa':
+        result.Direccion_Completa = this.transformaTexto(persona.direccion.direccionCompleta);
+        break;
+        case 'Ref_Catastral':
+        result.ReferenciaCatastral = this.transformaTexto(persona.direccion.referenciaCatastral);
+        break;
+        case 'Iban':
+        result.IBAN = persona.iban;
+        break;
+        case 'Bic':
+        result.BIC = persona.bic;
+        break;
+        case 'Tarjeta':
+        result.TarjetaCredito = persona.tarjetaCredito;
+        break;
+        case 'Tipo_Tarjeta':
+        result.TipoTarjeta = this.transformaTexto(persona.tipoTarjeta);
+        break;
+        case 'Expiracion':
+        result.ExpiracionCredito = persona.expiracionCredito;
+        break;
+        case 'Cvc':
+        result.CVC = persona.cvc;
+        break;
+      }
+      });
+      return result;
+    });
+
+    //DEPRECATED: cuando exportabamos todas las columnas y no solo las seleccionadas en el selector de columnas visibles
+    // const res = this.listaPersonasGeneradas.data.map(persona => ({
+    //   NIF: persona.nif,
+    //   NIE: persona.nie,
+    //   NSS: persona.nss,
+    //   Pasaporte: persona.pasaporte,
+    //   Genero: persona.genero,
+    //   FechaNacimiento: persona.fechaNacimiento,
+    //   Edad: persona.edad,
+    //   Nombre: this.transformaTexto(persona.nombre),
+    //   Apellido1: this.transformaTexto(persona.apellido1),
+    //   Apellido2: this.transformaTexto(persona.apellido2),
+    //   NombreCompleto: this.transformaTexto(persona.nombreCompleto),
+    //   TelefonoMovil: persona.telefonoMovil,
+    //   TelefonoFijo: persona.telefonoFijo,
+    //   Login: persona.login,
+    //   Email: persona.email,
+    //   Password: persona.password,
+    //   CCAA_Ine: persona.direccion.ineCcaa,
+    //   CCAA: this.transformaTexto(persona.direccion.ccaa),
+    //   Provincia_Ine: persona.direccion.ineProvincia,
+    //   Provincia: this.transformaTexto(persona.direccion.provincia),
+    //   Municipio_Ine: persona.direccion.ineMunicipio,
+    //   Municipio: this.transformaTexto(persona.direccion.municipio),
+    //   CodigoPostal: persona.direccion.codPostal,
+    //   Direccion: this.transformaTexto(persona.direccion.direccionAMedio),
+    //   Direccion_Completa: this.transformaTexto(persona.direccion.direccionCompleta),
+    //   ReferenciaCatastral: this.transformaTexto(persona.direccion.referenciaCatastral),
+    //   IBAN: persona.iban,
+    //   BIC: persona.bic,
+    //   TarjetaCredito: persona.tarjetaCredito,
+    //   TipoTarjeta: this.transformaTexto(persona.tipoTarjeta),
+    //   ExpiracionCredito: persona.expiracionCredito,
+    //   CVC: persona.cvc
+    // }));
 
     this.excelService.exportAsExcelFile(res, 'Perfiles_personas');
     this.openSnackBar('Excel generado','ExcelPersonas');
@@ -580,29 +699,146 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    * Exportacion de los datos a un fichero excel la lista de empresas generadas
    */
   exportJsonEmpresas(): void {
-    const res = this.listaEmpresasGeneradas.data.map(empresa => ({
-      CIF: empresa.cif,
-      Razon: this.transformaTexto(empresa.nombre),
-      FechaConstitucion: empresa.fechaCreacion,
-      CNAE: empresa.cnae,
-      Actividad: this.transformaTexto(empresa.actividad),
-      Email: empresa.email,
-      Telefono: empresa.telefono,
-      Fax: empresa.fax,
-      CCAA_Ine: empresa.direccion.ineCcaa,
-      CCAA: this.transformaTexto(empresa.direccion.ccaa),
-      Provincia_Ine: empresa.direccion.ineProvincia,
-      Provincia: this.transformaTexto(empresa.direccion.provincia),
-      Municipio_Ine: empresa.direccion.ineMunicipio,
-      Municipio: this.transformaTexto(empresa.direccion.municipio),
-      CodigoPostal: empresa.direccion.codPostal,
-      Direccion: this.transformaTexto(empresa.direccion.direccionAMedio),
-      Direccion_Completa: this.transformaTexto(empresa.direccion.direccionCompleta),
-      ReferenciaCatastral: this.transformaTexto(empresa.direccion.referenciaCatastral)
-    }));
+    const displayedColumns = this.getDisplayedColumnsEmpresas();
+    const res = this.listaEmpresasGeneradas.data.map(empresa => {
+      const result: any = {};
+      displayedColumns.forEach(col => {
+      switch (col) {
+        case 'Cif':
+        result.CIF = empresa.cif;
+        break;
+        case 'Razón':
+        result.Razon = this.transformaTexto(empresa.nombre);
+        break;
+        case 'Fecha_Constitución':
+        result.FechaConstitucion = empresa.fechaCreacion;
+        break;
+        case 'Cnae':
+        result.CNAE = empresa.cnae;
+        break;
+        case 'Actividad':
+        result.Actividad = this.transformaTexto(empresa.actividad);
+        break;
+        case 'Email':
+        result.Email = empresa.email;
+        break;
+        case 'Página_Web':
+        result.PaginaWeb = empresa.paginaWeb;
+        break;
+        case 'Telefono':
+        result.Telefono = empresa.telefono;
+        break;
+        case 'Fax':
+        result.Fax = empresa.fax;
+        break;
+        case 'CCAA':
+        result.CCAA_Ine = empresa.direccion.ineCcaa;
+        result.CCAA = this.transformaTexto(empresa.direccion.ccaa);
+        break;
+        case 'Provincia':
+        result.Provincia_Ine = empresa.direccion.ineProvincia;
+        result.Provincia = this.transformaTexto(empresa.direccion.provincia);
+        break;
+        case 'Municipio':
+        result.Municipio_Ine = empresa.direccion.ineMunicipio;
+        result.Municipio = this.transformaTexto(empresa.direccion.municipio);
+        break;
+        case 'Cod_Postal':
+        result.CodigoPostal = empresa.direccion.codPostal;
+        break;
+        case 'Direccion':
+        result.Direccion = this.transformaTexto(empresa.direccion.direccionAMedio);
+        break;
+        case 'Dir_Completa':
+        result.Direccion_Completa = this.transformaTexto(empresa.direccion.direccionCompleta);
+        break;
+        case 'Ref_Catastral':
+        result.ReferenciaCatastral = this.transformaTexto(empresa.direccion.referenciaCatastral);
+        break;
+      }
+      });
+      return result;
+    });
+
+    //DEPRECATED: cuando exportabamos todas las columnas y no solo las seleccionadas en el selector de columnas visibles
+    // const res = this.listaEmpresasGeneradas.data.map(empresa => ({
+    //   CIF: empresa.cif,
+    //   Razon: this.transformaTexto(empresa.nombre),
+    //   FechaConstitucion: empresa.fechaCreacion,
+    //   CNAE: empresa.cnae,
+    //   Actividad: this.transformaTexto(empresa.actividad),
+    //   Email: empresa.email,
+    //   Telefono: empresa.telefono,
+    //   Fax: empresa.fax,
+    //   CCAA_Ine: empresa.direccion.ineCcaa,
+    //   CCAA: this.transformaTexto(empresa.direccion.ccaa),
+    //   Provincia_Ine: empresa.direccion.ineProvincia,
+    //   Provincia: this.transformaTexto(empresa.direccion.provincia),
+    //   Municipio_Ine: empresa.direccion.ineMunicipio,
+    //   Municipio: this.transformaTexto(empresa.direccion.municipio),
+    //   CodigoPostal: empresa.direccion.codPostal,
+    //   Direccion: this.transformaTexto(empresa.direccion.direccionAMedio),
+    //   Direccion_Completa: this.transformaTexto(empresa.direccion.direccionCompleta),
+    //   ReferenciaCatastral: this.transformaTexto(empresa.direccion.referenciaCatastral)
+    // }));
 
     this.excelService.exportAsExcelFile(res, 'Perfiles_empresas');
     this.openSnackBar('Excel generado','ExcelEmpresas');
   }
+
+  /**
+    * Limpiar tabla personas
+    */
+  onClickLimpiarPersonas(): void {
+    this.listaPersonasGeneradas = new MatTableDataSource<Persona>();
+    this.openSnackBar('Personas limpiados', 'LimpiarPersonas');
+
+  }
+
+  /**
+    * Limpiar tabla empresas
+    */
+  onClickLimpiarEmpresas(): void {
+    this.listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
+    this.openSnackBar('Empresas limpiadas', 'LimpiarEmpresas');
+  }
+
+  /**
+   * Devolver las columnas que en cada momento se mostraran en tabla personas al cambiar con el selector de columnas visibles
+   * @returns
+   */
+  getDisplayedColumnsPersonas(): string[] {
+    this.displayedColumnsPersonas = this.selectColumnasPersonas;
+    return this.displayedColumnsPersonas;
+  }
+
+  /**
+   * Devolver las columnas que en cada momento se mostraran en tabla personas al cambiar con el selector de columnas visibles
+   * @returns
+   */
+  getDisplayedColumnsEmpresas(): string[] {
+    this.displayedColumnsEmpresas = this.selectColumnasEmpresas;
+    return this.displayedColumnsEmpresas;
+  }
+
+  /*
+
+  tosslePerOnePersonas(all: any): void{
+    if (this.allSelectedPersonas.selected) {
+     this.allSelectedPersonas.deselect();
+     //return false;
+    } else if(this.listaColumnasEmpresas.length == this.selectColumnasEmpresas.length){
+      this.allSelectedPersonas.select();
+    }
+  }
+
+  toggleAllSelectionPersonas() {
+    if (this.allSelectedPersonas.selected) {
+      this.selectColumnasEmpresas= this.listaColumnasEmpresas;
+    } else {
+      this.selectColumnasEmpresas = [];
+    }
+  }
+*/
 
 }
