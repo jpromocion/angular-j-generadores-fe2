@@ -797,7 +797,10 @@
         <mat-label>Columnas visibles</mat-label>
         <mat-select multiple [(ngModel)]="selectColumnasPersonas">
           @for (columna of listaColumnasPersonas; track columna) {
-            <mat-option [value]="columna" >{{columna}}</mat-option>
+            <mat-option #matOptionColumPersonas [value]="columna"
+              (click)="togglePerOneColumnasPersonas(matOptionColumPersonas.selected, matOptionColumPersonas.value)">
+              {{columna}}
+            </mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -894,6 +897,10 @@
         <mat-select multiple [(ngModel)]="selectColumnasEmpresas">
           @for (columna of listaColumnasEmpresas; track columna) {
             <mat-option [value]="columna">{{columna}}</mat-option>
+            <mat-option #matOptionColumEmpresas [value]="columna"
+              (click)="togglePerOneColumnasEmpresas(matOptionColumEmpresas.selected, matOptionColumEmpresas.value)">
+              {{columna}}
+            </mat-option>
           }
         </mat-select>
       </mat-form-field>

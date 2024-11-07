@@ -413,16 +413,21 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   @ViewChild('paginatorEmpresas') paginatorEmpresas!: MatPaginator;
   @ViewChild('sortEmpresas') sortEmpresas!: MatSort;
 
-  //seleccionar columnas a mostrar en tabla personas
-  listaColumnasPersonas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.map((col) => col.key);
-  selectColumnasPersonas: string[] = this.listaColumnasPersonas;
-  //inicializar marcado, dado que estan todas las opciones seleccionada
-  @ViewChild('allSelectedPersonas') private allSelectedPersonas!: MatOption;
+  //seleccionar columnas a mostrar en tabla personas:
+  //-Lista de todas las opciones posibles para el combo.
+  //NOTA: utilizamos las columnas originales... a las que se añade la opcion especial Seleccionar Todos
+  listaColumnasPersonas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
+  //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
+  //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
+  selectColumnasPersonas: string[] = this.listaColumnasPersonas.concat([BaseGeneraComponent.columSeleccionarTodas]);
 
-
-  //seleccionar columnas a mostrar en tabla empresas
-  listaColumnasEmpresas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key);
-  selectColumnasEmpresas: string[] = this.listaColumnasEmpresas;
+  //seleccionar columnas a mostrar en tabla empresas:
+  //-Lista de todas las opciones posibles para el combo.
+  //NOTA: utilizamos las columnas originales... a las que se añade la opcion especial Seleccionar Todos
+  listaColumnasEmpresas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
+  //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
+  //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
+  selectColumnasEmpresas: string[] = this.listaColumnasEmpresas.concat([BaseGeneraComponent.columSeleccionarTodas]);
 
 
 
@@ -453,9 +458,6 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
     this.listaPersonasGeneradas.sort = this.sortPersonas;
     this.listaEmpresasGeneradas.sort = this.sortEmpresas;
-
-    //el seleccionar todo de columnas de personas marcado de inicio
-    //this.allSelectedPersonas.select();
   }
 
 
@@ -575,7 +577,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
         result.Pasaporte = persona.pasaporte;
         break;
         case 'Genero':
-        result.Genero = persona.genero;
+        result.Genero = this.transformaTexto(persona.genero);
         break;
         case 'Fecha_Nacimiento':
         result.FechaNacimiento = persona.fechaNacimiento;
@@ -808,8 +810,48 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    * @returns
    */
   getDisplayedColumnsPersonas(): string[] {
-    this.displayedColumnsPersonas = this.selectColumnasPersonas;
+    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
+    this.displayedColumnsPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
     return this.displayedColumnsPersonas;
+  }
+
+  /**
+   * Evento ante las seleccion/deseleccion de una columna visible del combo de columnas de personas
+   * NOTA: "selectColumnasPersonas" ya llega con el nuevo valor actualizado, llevando el string[] de las columnas
+   * seleccionadas tras el cambio efectuado.
+   * @param selected true si el cambio a sido a marcado, false en otro caso
+   * @param value Columna cambiada en el combo
+   */
+  togglePerOneColumnasPersonas(selected: boolean, value: string): void {
+    //Tratamos como caso especial el Seleccionar Todas... para marcar o desmarcar directamente las columnas reales
+    if (value == BaseGeneraComponent.columSeleccionarTodas && selected) {
+      this.selectColumnasPersonas = this.listaColumnasPersonas;
+    } else if (value == BaseGeneraComponent.columSeleccionarTodas && !selected){
+      this.selectColumnasPersonas = [];
+    } else {
+      //otro caso implica que se ha marcado o desmarcado una columna real
+      //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
+      //hacer nada especial, dado que el model asociado al mat-select "selectColumnasPersonas" ya llega
+      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsPersonas"
+      //actualizara la tabla automaticamente al coger las nueva columnas.
+
+      //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
+      //especial "Seleccionar Todas..."
+      let seleccionesMenosTodos = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      let todasMenosTodos = this.listaColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      if (seleccionesMenosTodos.length == todasMenosTodos.length) {
+        //marcamos seleccionar todo si no lo esta ya
+        if (!this.selectColumnasPersonas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasPersonas = this.selectColumnasPersonas.concat([BaseGeneraComponent.columSeleccionarTodas])
+        }
+      } else{
+        //si estuviera marcado seleccionadr todo, lo quitamos
+        if (this.selectColumnasPersonas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+        }
+      }
+    }
+
   }
 
   /**
@@ -817,9 +859,48 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    * @returns
    */
   getDisplayedColumnsEmpresas(): string[] {
-    this.displayedColumnsEmpresas = this.selectColumnasEmpresas;
+    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
+    this.displayedColumnsEmpresas = this.selectColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
     return this.displayedColumnsEmpresas;
   }
 
+  /**
+   * Evento ante las seleccion/deseleccion de una columna visible del combo de columnas de empresas
+   * NOTA: "selectColumnasEmpresas" ya llega con el nuevo valor actualizado, llevando el string[] de las columnas
+   * seleccionadas tras el cambio efectuado.
+   * @param selected true si el cambio a sido a marcado, false en otro caso
+   * @param value Columna cambiada en el combo
+   */
+  togglePerOneColumnasEmpresas(selected: boolean, value: string): void {
+    //Tratamos como caso especial el Seleccionar Todas... para marcar o desmarcar directamente las columnas reales
+    if (value == BaseGeneraComponent.columSeleccionarTodas && selected) {
+      this.selectColumnasEmpresas = this.listaColumnasEmpresas;
+    } else if (value == BaseGeneraComponent.columSeleccionarTodas && !selected){
+      this.selectColumnasEmpresas = [];
+    } else {
+      //otro caso implica que se ha marcado o desmarcado una columna real
+      //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
+      //hacer nada especial, dado que el model asociado al mat-select "selectColumnasEmpresas" ya llega
+      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsEmpresas"
+      //actualizara la tabla automaticamente al coger las nueva columnas.
+
+      //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
+      //especial "Seleccionar Todas..."
+      let seleccionesMenosTodos = this.selectColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      let todasMenosTodos = this.listaColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      if (seleccionesMenosTodos.length == todasMenosTodos.length) {
+        //marcamos seleccionar todo si no lo esta ya
+        if (!this.selectColumnasEmpresas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasEmpresas = this.selectColumnasEmpresas.concat([BaseGeneraComponent.columSeleccionarTodas])
+        }
+      } else{
+        //si estuviera marcado seleccionadr todo, lo quitamos
+        if (this.selectColumnasEmpresas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasEmpresas = this.selectColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+        }
+      }
+    }
+
+  }
 
 }

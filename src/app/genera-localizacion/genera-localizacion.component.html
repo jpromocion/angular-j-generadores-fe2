@@ -329,7 +329,10 @@
               <mat-label>Columnas visibles</mat-label>
               <mat-select multiple [(ngModel)]="selectColumnasDirecciones">
                 @for (columna of listaColumnasDirecciones; track columna) {
-                  <mat-option [value]="columna">{{columna}}</mat-option>
+                  <mat-option #matOptionColumDirecciones [value]="columna"
+                    (click)="togglePerOneColumnasDireccion(matOptionColumDirecciones.selected, matOptionColumDirecciones.value)">
+                    {{columna}}
+                  </mat-option>
                 }
               </mat-select>
             </mat-form-field>

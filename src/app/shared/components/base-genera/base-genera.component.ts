@@ -22,6 +22,9 @@ import { CaseTransformerPipe } from '../../pipes/case-transformer.pipe';
 })
 export class BaseGeneraComponent implements OnInit  {
 
+  //Opcion fija "Seleccionar todas" para los combos de columnas a mostrar en tablas
+  static columSeleccionarTodas = 'Seleccionar todas';
+
   //tipo de letra para transformaciones masyucula, minuscula, capitaliza
   tipoLetra: string = 'M';
 

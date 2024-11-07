@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, AfterViewInit, ViewChild} from '@angular/core';
+import { Component, inject, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import {NgFor,NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -16,6 +16,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
+import { MatOption } from '@angular/material/core';
 import { MiscService } from '../core/services/misc.service';
 import { Ccaa } from '../core/models/ccaa';
 import { Provincia } from '../core/models/provincia';
@@ -236,9 +237,13 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   @ViewChild('paginatorDireccionGenerado') paginatorDireccionGenerado!: MatPaginator;
   @ViewChild('sortDireccionGenerado') sortDireccionGenerado!: MatSort;
 
-  //seleccionar columnas a mostrar en tabla direcciones
-  listaColumnasDirecciones: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.key);
-  selectColumnasDirecciones: string[] = this.listaColumnasDirecciones;
+  //seleccionar columnas a mostrar en tabla direcciones:
+  //-Lista de todas las opciones posibles para el combo.
+  //NOTA: utilizamos las columnas originales... a las que se añade la opcion especial Seleccionar Todos
+  listaColumnasDirecciones: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
+  //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
+  //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
+  selectColumnasDirecciones: string[] = this.listaColumnasDirecciones.concat([BaseGeneraComponent.columSeleccionarTodas]);
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
   private miscService: MiscService = inject(MiscService);
@@ -249,6 +254,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
 
   override ngOnInit(): void {
     this.tipoLetra = 's';
+
   }
 
 
@@ -511,10 +517,49 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
    * @returns
    */
   getDisplayedColumnsDireccionGenerado(): string[] {
-    this.displayedColumnsDireccionGenerado = this.selectColumnasDirecciones;
+    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
+    this.displayedColumnsDireccionGenerado = this.selectColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
     return this.displayedColumnsDireccionGenerado;
   }
 
 
+  /**
+   * Evento ante las seleccion/deseleccion de una columna visible del combo de columnas de direcciones
+   * NOTA: "selectColumnasDirecciones" ya llega con el nuevo valor actualizado, llevando el string[] de las columnas
+   * seleccionadas tras el cambio efectuado.
+   * @param selected true si el cambio a sido a marcado, false en otro caso
+   * @param value Columna cambiada en el combo
+   */
+  togglePerOneColumnasDireccion(selected: boolean, value: string): void {
+    //Tratamos como caso especial el Seleccionar Todas... para marcar o desmarcar directamente las columnas reales
+    if (value == BaseGeneraComponent.columSeleccionarTodas && selected) {
+      this.selectColumnasDirecciones = this.listaColumnasDirecciones;
+    } else if (value == BaseGeneraComponent.columSeleccionarTodas && !selected){
+      this.selectColumnasDirecciones = [];
+    } else {
+      //otro caso implica que se ha marcado o desmarcado una columna real
+      //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
+      //hacer nada especial, dado que el model asociado al mat-select "selectColumnasDirecciones" ya llega
+      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsDireccionGenerado"
+      //actualizara la tabla automaticamente al coger las nueva columnas.
+
+      //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
+      //especial "Seleccionar Todas..."
+      let seleccionesMenosTodos = this.selectColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      let todasMenosTodos = this.listaColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      if (seleccionesMenosTodos.length == todasMenosTodos.length) {
+        //marcamos seleccionar todo si no lo esta ya
+        if (!this.selectColumnasDirecciones.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasDirecciones = this.selectColumnasDirecciones.concat([BaseGeneraComponent.columSeleccionarTodas])
+        }
+      } else{
+        //si estuviera marcado seleccionadr todo, lo quitamos
+        if (this.selectColumnasDirecciones.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasDirecciones = this.selectColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+        }
+      }
+    }
+
+  }
 
 }
