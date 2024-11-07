@@ -44,13 +44,9 @@
       </button>
     </div>
 
-    <div class="caja c5" *ngIf="personaGenerada || (listaPersonasGeneradas?.data?.length && listaPersonasGeneradas.data.length > 0) || empresaGenerada || (listaEmpresasGeneradas?.data?.length && listaEmpresasGeneradas.data.length > 0)" style="margin-top: 10px;">
+    <div class="caja c5" *ngIf="personaGenerada || (listaPersonasGeneradasOriginal?.length && listaPersonasGeneradasOriginal.length > 0) || empresaGenerada || (listaEmpresasGeneradasOriginal?.length && listaEmpresasGeneradasOriginal.length > 0)" style="margin-top: 10px;">
       <div class="divBox">
         <h3>Perfil generado</h3>
-        <button type="button" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPerfil()"
-          matTooltip="Pulsar para limpiar el perfil generado" matTooltipPosition="below">
-          <mat-icon>delete</mat-icon>
-        </button>
       </div>
     </div>
 
@@ -419,16 +415,22 @@
 
 
   <!-- Personas cuando estamos generando una lista -->
-  <!--  *ngIf="personaGenerada || (listaPersonasGeneradas?.data?.length && listaPersonasGeneradas.data.length > 0)" -->
-  <div [hidden]="!((listaPersonasGeneradas.data.length && listaPersonasGeneradas.data.length > 0))">
+  <!--  *ngIf="personaGenerada || (listaPersonasGeneradasOriginal?.length && listaPersonasGeneradasOriginal.length > 0)" -->
+  <div [hidden]="!((listaPersonasGeneradasOriginal.length && listaPersonasGeneradasOriginal.length > 0))">
     <div class="table-responsive">
-      <table mat-table #sortPersonas="matSort" [dataSource]="listaPersonasGeneradas" matSort  (matSortChange)="announceSortChange($event)">
+      <table mat-table #sortPersonas="matSort" [dataSource]="listaPersonasGeneradas" matSort  (matSortChange)="sortDataPersonas($event)">
 
         <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
           https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
          -->
         <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaPersonas">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+            <button mat-icon-button (click)="$event.stopPropagation(); openFilterPersonas(col.key); ">
+              <mat-icon>search</mat-icon>
+            </button>
+            <input class="filtroCabeceraTabla" #inputSearchPersonas type="text" hidden id="{{col.key}}-filterPersonas"
+              (blur)="filterDataPersonas(col.key, inputSearchPersonas.value); closeFilterPersonas(col.key)" />
+          </th>
           <td mat-cell *matCellDef="let personaGenerada">
             <!-- Seleccionamos por el type como mostrarlo-->
             <div [ngSwitch]="col.type" >
@@ -789,6 +791,10 @@
         matTooltip="Pulsar para limpiar las personas" matTooltipPosition="below">
         <mat-icon>delete</mat-icon>
       </button>
+      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosPersonas()"
+        matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+        <mat-icon>cleaning_services</mat-icon>
+      </button>
       <button type="button" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPersonas()"
         matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
         <mat-icon>description</mat-icon>
@@ -826,15 +832,21 @@
 
 
    <!-- Empresas cuando estamos generando una lista -->
-   <div [hidden]="!((listaEmpresasGeneradas.data.length && listaEmpresasGeneradas.data.length > 0))">
+   <div [hidden]="!((listaEmpresasGeneradasOriginal.length && listaEmpresasGeneradasOriginal.length > 0))">
     <div class="table-responsive">
-      <table mat-table #sortEmpresas="matSort" [dataSource]="listaEmpresasGeneradas" matSort  (matSortChange)="announceSortChange($event)">
+      <table mat-table #sortEmpresas="matSort" [dataSource]="listaEmpresasGeneradas" matSort  (matSortChange)="sortDataEmpresas($event)">
 
         <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
           https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
          -->
         <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaEmpresas">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+            <button mat-icon-button (click)="$event.stopPropagation(); openFilterEmpresas(col.key); ">
+              <mat-icon>search</mat-icon>
+            </button>
+            <input class="filtroCabeceraTabla" #inputSearchEmpresas type="text" hidden id="{{col.key}}-filterEmpresas"
+              (blur)="filterDataEmpresas(col.key, inputSearchEmpresas.value); closeFilterEmpresas(col.key)" />
+          </th>
           <td mat-cell *matCellDef="let empresaGenerada">
             <!-- Seleccionamos por el type como mostrarlo-->
             <div [ngSwitch]="col.type" >
@@ -888,6 +900,10 @@
         matTooltip="Pulsar para limpiar las empresas" matTooltipPosition="below">
         <mat-icon>delete</mat-icon>
       </button>
+      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosEmpresas()"
+        matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+        <mat-icon>cleaning_services</mat-icon>
+      </button>
       <button type="button" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonEmpresas()"
         matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
         <mat-icon>description</mat-icon>
@@ -896,7 +912,6 @@
         <mat-label>Columnas visibles</mat-label>
         <mat-select multiple [(ngModel)]="selectColumnasEmpresas">
           @for (columna of listaColumnasEmpresas; track columna) {
-            <mat-option [value]="columna">{{columna}}</mat-option>
             <mat-option #matOptionColumEmpresas [value]="columna"
               (click)="togglePerOneColumnasEmpresas(matOptionColumEmpresas.selected, matOptionColumEmpresas.value)">
               {{columna}}

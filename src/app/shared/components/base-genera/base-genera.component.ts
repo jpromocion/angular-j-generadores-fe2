@@ -97,7 +97,10 @@ export class BaseGeneraComponent implements OnInit  {
     }
   }
 
-  /** Announce the change in sort state for assistive technology. */
+  /** Announce the change in sort state for assistive technology.
+   * NOTA: solo funciona, si el matColumnDef de la columna coincide con el mismo nombre en el campo
+   * de los datos que filtramos.... sino, es necesario crearse una funcion de sort personalizada
+  */
   announceSortChange(sortState: Sort) {
     // This example uses English messages. If your application supports
     // multiple language, you would internationalize these strings.

@@ -16,16 +16,13 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
-import { MatOption } from '@angular/material/core';
+import {Sort} from '@angular/material/sort';
 import { MiscService } from '../core/services/misc.service';
 import { Ccaa } from '../core/models/ccaa';
 import { Provincia } from '../core/models/provincia';
 import { Municipio } from '../core/models/municipio';
 import { DireccionCompleta } from '../core/models/direccion-completa';
 
-
-
-//displayedColumnsDireccionGenerado: string[] = ['direccionCompleta', 'direccion', 'numVia', 'kilometro', 'bloque', 'portal', 'escalera', 'planta', 'puerta' , 'codpostal', 'municipio', 'provincia', 'ccaa', 'referenciaCatastral'];
 
 
 @Component({
@@ -200,8 +197,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
 
 
   //ccaa
-  //ccaaGenerado: Ccaa[] = [];
   ccaaGenerado = new MatTableDataSource<Ccaa>();
+  ccaaGeneradoOriginal: Ccaa[] = [];
   displayedColumnsCcaaGenerado: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_CCAA.map((col) => col.key)
   columnsSchemaCcaaGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_CCAA;
   @ViewChild('paginatorCcaaGenerado') paginatorCcaaGenerado!: MatPaginator;
@@ -209,8 +206,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
 
   //provincias
   provinCodCCAA: string = '';
-  //provinGenerado: Provincia[] = [];
   provinGenerado = new MatTableDataSource<Provincia>();
+  provinGeneradoOriginal: Provincia[] = [];
   displayedColumnsProvinGenerado: string[] =  GeneraLocalizacionComponent.COLUMNS_SCHEMA_PROVIN.map((col) => col.key)
   columnsSchemaProvinGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_PROVIN;
 
@@ -220,8 +217,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
 
   //municipios
   muniCodProvin: string = '';
-  //muniGenerado: Municipio[] = [];
-  muniGenerado = new MatTableDataSource<Provincia>();
+  muniGenerado = new MatTableDataSource<Municipio>();
+  muniGeneradoOriginal: Municipio[] = [];
   displayedColumnsMuniGenerado: string[] =  GeneraLocalizacionComponent.COLUMNS_SCHEMA_MUNI.map((col) => col.key)
   columnsSchemaMuniGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_MUNI;
 
@@ -231,7 +228,12 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   //direccion completa
   direccionParamCodMuni: string = '';
   direccionParamNumGenerar: number = 10;
+  // - direccionGenerado: va a contener los datos visibles en la tabla, de forma que se actualiza al aplicar filtros por columna.
+  // - direccionGeneradoOriginal: va a contener los datos originales de la ultima vez que se accedio a la API rest,
+  //   de forma que no se modifica por la aplicacion de filtros por columna, y permite restablecer los datos al quitar
+  //   o revisar los filtros.
   direccionGenerado = new MatTableDataSource<DireccionCompleta>();
+  direccionGeneradoOriginal: DireccionCompleta[] = [];
   displayedColumnsDireccionGenerado: string[] =  GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.key)
   columnsSchemaDireccionGenerado: any = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO;
   @ViewChild('paginatorDireccionGenerado') paginatorDireccionGenerado!: MatPaginator;
@@ -243,7 +245,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   listaColumnasDirecciones: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
   //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
   //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
-  selectColumnasDirecciones: string[] = this.listaColumnasDirecciones.concat([BaseGeneraComponent.columSeleccionarTodas]);
+  selectColumnasDirecciones: string[] = this.listaColumnasDirecciones;
 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
   private miscService: MiscService = inject(MiscService);
@@ -293,6 +295,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.miscService.getCcaa()
     .subscribe(ccaa => {
       this.ccaaGenerado.data = ccaa;
+      this.ccaaGeneradoOriginal = ccaa;
       this.ccaaGenerado.paginator = this.paginatorCcaaGenerado;
       this.ccaaGenerado.sort = this.sortCcaaGenerado;
       if (this.ccaaGenerado && this.ccaaGenerado.data.length > 0) {
@@ -307,6 +310,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   onClickBotonGenerarCCAA(): void {
     //this.ccaaGenerado = [];
     this.ccaaGenerado = new MatTableDataSource<Ccaa>();
+    this.ccaaGeneradoOriginal = [];
     this.getCCAA();
 
   }
@@ -317,6 +321,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   onClickLimpiarCCAA(): void {
     //this.ccaaGenerado = [];
     this.ccaaGenerado = new MatTableDataSource<Ccaa>();
+    this.ccaaGeneradoOriginal = [];
     this.openSnackBar('CCAA limpiados', 'LimpiarCCAA');
   }
 
@@ -328,6 +333,55 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     const formatted = this.ccaaGenerado.data.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_CCAA');
     this.openSnackBar('Excel generado','ExcelCCAA');
+  }
+
+  /**
+   * Des-oculta el filtro asociado a una columna de la cabecera de la tabla de CCAA
+   * @param col
+   */
+  openFilterCCAA(col: string) {
+    const filterElement = document.getElementById(col + '-filterCCAA');
+    if (filterElement) {
+      filterElement.removeAttribute('hidden');
+    }
+  }
+
+  /**
+   * Oculta el filtro asociado a una columna de la cabecera de la tabla de CCAA
+   * @param col
+   */
+  closeFilterCCAA(col: string) {
+    const filterElement = document.getElementById(col + '-filterCCAA');
+    if (filterElement) {
+      filterElement.setAttribute('hidden', 'true');
+    }
+  }
+
+  /**
+   * Aplica el filtro de texto (sin distincion mayusculars/minusculas) en la tabla
+   * de CCAA.
+   * @param col Nombre de la columna en la tabla sobre la que se filtra
+   * @param filtertext Entrada del texto a filtrar
+   */
+  filterDataCCAA(col: string, filtertext: string) {
+    if (filtertext.trim() != '') {
+      this.ccaaGenerado.data = this.ccaaGeneradoOriginal.slice().filter(
+        (element) => JSON.stringify(element[col as keyof Ccaa]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+      );
+    } else{
+      //si hubieramos filtrado antes, ahora limpiamos
+      if (this.ccaaGenerado.data.length != this.ccaaGeneradoOriginal.length) {
+        this.ccaaGenerado.data = this.ccaaGeneradoOriginal;
+      }
+    }
+  }
+
+  /**
+   * Accion boton para limpiar la aplicacion de filtrar en la tabla CCAA, y volver al estado original
+   */
+  onClickLimpiarFiltrosCCAA(): void {
+    this.ccaaGenerado.data = this.ccaaGeneradoOriginal;
+    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosCCAA');
   }
 
 
@@ -346,6 +400,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.miscService.getProvincias(idccaa)
     .subscribe(provin => {
       this.provinGenerado.data = provin;
+      this.provinGeneradoOriginal = provin;
       this.provinGenerado.paginator = this.paginatorProvinGenerado;
       this.provinGenerado.sort = this.sortProvinGenerado;
       if (this.provinGenerado && this.provinGenerado.data.length > 0) {
@@ -360,6 +415,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   onClickBotonGeneraProvincias(): void {
     //this.provinGenerado = [];
     this.provinGenerado = new MatTableDataSource<Provincia>();
+    this.provinGeneradoOriginal = [];
     if (this.provinCodCCAA == '') {
       this.openSnackBar('Debe seleccionar una CCAA.','Cerrar');
     } else{
@@ -374,6 +430,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   onClickLimpiarProvincias(): void {
     //this.provinGenerado = [];
     this.provinGenerado = new MatTableDataSource<Provincia>();
+    this.provinGeneradoOriginal = [];
     this.openSnackBar('Provincias limpiados', 'LimpiarProvincias');
   }
 
@@ -385,6 +442,56 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     const formatted = this.provinGenerado.data.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_Provincias');
     this.openSnackBar('Excel generado','ExcelProvincias');
+  }
+
+
+  /**
+   * Des-oculta el filtro asociado a una columna de la cabecera de la tabla de Provincia
+   * @param col
+   */
+  openFilterProvincia(col: string) {
+    const filterElement = document.getElementById(col + '-filterProvincia');
+    if (filterElement) {
+      filterElement.removeAttribute('hidden');
+    }
+  }
+
+  /**
+   * Oculta el filtro asociado a una columna de la cabecera de la tabla de Provincia
+   * @param col
+   */
+  closeFilterProvincia(col: string) {
+    const filterElement = document.getElementById(col + '-filterProvincia');
+    if (filterElement) {
+      filterElement.setAttribute('hidden', 'true');
+    }
+  }
+
+  /**
+   * Aplica el filtro de texto (sin distincion mayusculars/minusculas) en la tabla
+   * de Provincia.
+   * @param col Nombre de la columna en la tabla sobre la que se filtra
+   * @param filtertext Entrada del texto a filtrar
+   */
+  filterDataProvincia(col: string, filtertext: string) {
+    if (filtertext.trim() != '') {
+      this.provinGenerado.data = this.provinGeneradoOriginal.slice().filter(
+        (element) => JSON.stringify(element[col as keyof Ccaa]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+      );
+    } else{
+      //si hubieramos filtrado antes, ahora limpiamos
+      if (this.provinGenerado.data.length != this.provinGeneradoOriginal.length) {
+        this.provinGenerado.data = this.provinGeneradoOriginal;
+      }
+    }
+  }
+
+  /**
+   * Accion boton para limpiar la aplicacion de filtrar en la tabla Provincia, y volver al estado original
+   */
+  onClickLimpiarFiltrosProvincia(): void {
+    this.provinGenerado.data = this.provinGeneradoOriginal;
+    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosProvincia');
   }
 
 
@@ -403,6 +510,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.miscService.getMunicipios(idprovin)
     .subscribe(muni => {
       this.muniGenerado.data = muni;
+      this.muniGeneradoOriginal = muni;
       this.muniGenerado.paginator = this.paginatorMuniGenerado;
       this.muniGenerado.sort = this.sortMuniGenerado;
       if (this.muniGenerado && this.muniGenerado.data.length > 0) {
@@ -417,6 +525,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   onClickBotonGeneraMunicipios(): void {
     //this.muniGenerado = [];
     this.muniGenerado = new MatTableDataSource<Municipio>();
+    this.muniGeneradoOriginal = [];
     if (this.provinCodCCAA == '') {
       this.openSnackBar('Debe seleccionar una Provincia.','Cerrar');
     } else{
@@ -431,6 +540,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   onClickLimpiarMunicipios(): void {
     //this.muniGenerado = [];
     this.muniGenerado = new MatTableDataSource<Municipio>();
+    this.muniGeneradoOriginal = [];
     this.openSnackBar('Municipios limpiados', 'LimpiarMunicipios');
   }
 
@@ -444,6 +554,54 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.openSnackBar('Excel generado','ExcelMunicipios');
   }
 
+  /**
+   * Des-oculta el filtro asociado a una columna de la cabecera de la tabla de Municipio
+   * @param col
+   */
+  openFilterMunicipio(col: string) {
+    const filterElement = document.getElementById(col + '-filterMunicipio');
+    if (filterElement) {
+      filterElement.removeAttribute('hidden');
+    }
+  }
+
+  /**
+   * Oculta el filtro asociado a una columna de la cabecera de la tabla de Municipio
+   * @param col
+   */
+  closeFilterMunicipio(col: string) {
+    const filterElement = document.getElementById(col + '-filterMunicipio');
+    if (filterElement) {
+      filterElement.setAttribute('hidden', 'true');
+    }
+  }
+
+  /**
+   * Aplica el filtro de texto (sin distincion mayusculars/minusculas) en la tabla
+   * de Municipio.
+   * @param col Nombre de la columna en la tabla sobre la que se filtra
+   * @param filtertext Entrada del texto a filtrar
+   */
+  filterDataMunicipio(col: string, filtertext: string) {
+    if (filtertext.trim() != '') {
+      this.muniGenerado.data = this.muniGeneradoOriginal.slice().filter(
+        (element) => JSON.stringify(element[col as keyof Ccaa]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+      );
+    } else{
+      //si hubieramos filtrado antes, ahora limpiamos
+      if (this.muniGenerado.data.length != this.muniGeneradoOriginal.length) {
+        this.muniGenerado.data = this.muniGeneradoOriginal;
+      }
+    }
+  }
+
+  /**
+   * Accion boton para limpiar la aplicacion de filtrar en la tabla Municipio, y volver al estado original
+   */
+  onClickLimpiarFiltrosMunicipio(): void {
+    this.muniGenerado.data = this.muniGeneradoOriginal;
+    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosMunicipio');
+  }
 
 
 
@@ -458,6 +616,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     .subscribe(direccion => {
       if (direccion){
         this.direccionGenerado.data = direccion;
+        this.direccionGeneradoOriginal = direccion;
         this.direccionGenerado.paginator = this.paginatorDireccionGenerado;
         this.direccionGenerado.sort = this.sortDireccionGenerado;
         if (this.direccionGenerado && this.direccionGenerado.data.length > 0) {
@@ -473,6 +632,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   */
   onClickBotonGeneraDomicilios(): void {
     this.direccionGenerado = new MatTableDataSource<DireccionCompleta>();
+    this.direccionGeneradoOriginal = [];
     if (this.direccionParamCodMuni != '' && this.muniCodProvin == '') {
       this.openSnackBar('El municipio debe seleccionarse con un código de provincia.','ErrorDomicilios');
     } else{
@@ -486,6 +646,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     */
   onClickLimpiarDomicilios(): void {
     this.direccionGenerado = new MatTableDataSource<DireccionCompleta>();
+    this.direccionGeneradoOriginal = [];
     this.openSnackBar('Domicilios limpiados', 'LimpiarDomicilios');
   }
 
@@ -561,5 +722,84 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     }
 
   }
+
+  /**
+   * Des-oculta el filtro asociado a una columna de la cabecera de la tabla de direcciones
+   * @param col
+   */
+  openFilterDirecciones(col: string) {
+    const filterElement = document.getElementById(col + '-filterDireccion');
+    if (filterElement) {
+      filterElement.removeAttribute('hidden');
+    }
+  }
+
+  /**
+   * Oculta el filtro asociado a una columna de la cabecera de la tabla de direcciones
+   * @param col
+   */
+  closeFilterDirecciones(col: string) {
+    const filterElement = document.getElementById(col + '-filterDireccion');
+    if (filterElement) {
+      filterElement.setAttribute('hidden', 'true');
+    }
+  }
+
+  /**
+   * Aplica el filtro de texto (sin distincion mayusculars/minusculas) en la tabla
+   * de direcciones.
+   * @param col Nombre de la columna en la tabla sobre la que se filtra
+   * @param filtertext Entrada del texto a filtrar
+   */
+  filterDataDirecciones(col: string, filtertext: string) {
+    if (filtertext.trim() != '') {
+      this.direccionGenerado.data = this.direccionGeneradoOriginal.slice().filter(
+        (element) => JSON.stringify(element[col as keyof DireccionCompleta]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+      );
+    } else{
+      //si hubieramos filtrado antes, ahora limpiamos
+      if (this.direccionGenerado.data.length != this.direccionGeneradoOriginal.length) {
+        this.direccionGenerado.data = this.direccionGeneradoOriginal;
+      }
+    }
+  }
+
+  /**
+   * Accion boton para limpiar la aplicacion de filtrar en la tabla direcciones, y volver al estado original
+   */
+  onClickLimpiarFiltrosDomicilios(): void {
+    this.direccionGenerado.data = this.direccionGeneradoOriginal;
+    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosDomicilios');
+  }
+
+
+  /**
+   * Necesitamos una funcion concreta de ordenacion para tabla direcciones.
+   * No nos sirve announceSortChange porque para eso los key que se asocia a matColumnDef
+   * deberia tener el mismo valor que en la propiedad de los datos que se filtran, y no es asi,
+   * porque los modificamos porque son los que se utilizan en el combo de columnas visibles.
+   * Referencia: https://medium.com/@srik913/angular-material-table-complete-example-bb5726b96c5e
+   * @param $event
+   */
+  sortDataDirecciones($event: Sort) {
+    const sortId = $event.active;
+    const sortDirection = $event.direction;
+
+    //sortId recibe el col.key... y debemos sacar de COLUMNS_SCHEMA_DOMICILIO, el valor de col.columna que corresponde a esa key
+    //para poder ordenar correctamente. En caso de no encontrarlo, no se ordena.
+    let columnaOrdenar = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.find((col) => col.key == sortId);
+    let columnaOrdenarReal = columnaOrdenar ? columnaOrdenar.columna : '';
+
+    if ('asc' == sortDirection) {
+      this.direccionGenerado.data = this.direccionGenerado.data.slice().sort(
+        (a, b) => a[columnaOrdenarReal as keyof DireccionCompleta] > b[columnaOrdenarReal as keyof DireccionCompleta] ? -1 : a[columnaOrdenarReal as keyof DireccionCompleta] < b[columnaOrdenarReal as keyof DireccionCompleta] ? 1 : 0
+      );
+    } else {
+      this.direccionGenerado.data = this.direccionGenerado.data.slice().sort(
+        (a, b) => a[columnaOrdenarReal as keyof DireccionCompleta] < b[columnaOrdenarReal as keyof DireccionCompleta] ? -1 : a[columnaOrdenarReal as keyof DireccionCompleta] > b[columnaOrdenarReal as keyof DireccionCompleta] ? 1 : 0
+      );
+    }
+  }
+
 
 }

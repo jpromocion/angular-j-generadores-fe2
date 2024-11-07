@@ -11,13 +11,14 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
-import { MatOption } from '@angular/material/core';
+import {Sort} from '@angular/material/sort';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
 import { Empresa } from '../core/models/empresa';
+import { DireccionCompleta } from '../core/models/direccion-completa';
 
 
 
@@ -387,8 +388,12 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   empresaGenerada: Empresa | undefined;
 
   //cuando generamos varias personas
+  // - listaPersonasGeneradas: va a contener los datos visibles en la tabla, de forma que se actualiza al aplicar filtros por columna.
+  // - listaPersonasGeneradasOriginal: va a contener los datos originales de la ultima vez que se accedio a la API rest,
+  //   de forma que no se modifica por la aplicacion de filtros por columna, y permite restablecer los datos al quitar
+  //   o revisar los filtros.
   listaPersonasGeneradas = new MatTableDataSource<Persona>();
-
+  listaPersonasGeneradasOriginal: Persona	[] = [];
   //DEPRECATED: antiguo sistema donde se defina cada columna en el html individualmente
   // displayedColumnsPersonas: string[] = ['nif', 'nie','nss', 'pasaporte','sexo', 'fechanacimiento', 'nombre', 'apellido1', 'apellido2','nombrecompleto','tlfmovil','tlffijo','login','email',
   //   'password','ccaa','provincia','municipio','codpostal','direccion','direccioncompleta', 'referenciaCatastral','iban','bic', 'tarjeta','tipotarjeta',
@@ -407,6 +412,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   //cuando generamos varias empresas
   listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
+  listaEmpresasGeneradasOriginal: Empresa[] = [];
   displayedColumnsEmpresas: string[] =  GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key)
   columnsSchemaEmpresas: any = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS;
   //@ViewChild(MatPaginator) paginatorEmpresas!: MatPaginator;
@@ -419,7 +425,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   listaColumnasPersonas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
   //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
   //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
-  selectColumnasPersonas: string[] = this.listaColumnasPersonas.concat([BaseGeneraComponent.columSeleccionarTodas]);
+  selectColumnasPersonas: string[] = this.listaColumnasPersonas;
 
   //seleccionar columnas a mostrar en tabla empresas:
   //-Lista de todas las opciones posibles para el combo.
@@ -427,7 +433,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   listaColumnasEmpresas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
   //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
   //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
-  selectColumnasEmpresas: string[] = this.listaColumnasEmpresas.concat([BaseGeneraComponent.columSeleccionarTodas]);
+  selectColumnasEmpresas: string[] = this.listaColumnasEmpresas;
 
 
 
@@ -440,7 +446,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   }
 
   override ngOnInit(): void {
-
+    console.log("prueba");
   }
 
 
@@ -486,6 +492,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       this.profilesService.getPerson(resultados, sexoparam)
       .subscribe(personas => {
         this.listaPersonasGeneradas.data = personas;
+        this.listaPersonasGeneradasOriginal = personas;
         //this.listaPersonasGeneradas.paginator = this.paginatorPagina.toArray()[0];
         this.listaPersonasGeneradas.paginator = this.paginatorPersonas;
         this.listaPersonasGeneradas.sort = this.sortPersonas;
@@ -512,6 +519,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       this.profilesService.getCompany(resultados)
       .subscribe(empresa => {
           this.listaEmpresasGeneradas.data = empresa;
+          this.listaEmpresasGeneradasOriginal = empresa;
           //this.listaEmpresasGeneradas.paginator = this.paginatorPagina.toArray()[1];
           this.listaEmpresasGeneradas.paginator = this.paginatorEmpresas;
           this.listaEmpresasGeneradas.sort = this.sortEmpresas;
@@ -530,8 +538,10 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   onClickBotonGenerarPerfil(): void {
     this.personaGenerada = undefined;
     this.listaPersonasGeneradas = new MatTableDataSource<Persona>();
+    this.listaPersonasGeneradasOriginal = [];
     this.empresaGenerada = undefined;
     this.listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
+    this.listaEmpresasGeneradasOriginal = [];
 
     if (this.tipoPerfil == 'p') {
       this.getPersonas(this.numGenerar);
@@ -539,17 +549,6 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       this.getEmpresas(this.numGenerar);
     }
 
-  }
-
-  /**
-   * Limpiamos el perfil generado
-   */
-  onClickLimpiarPerfil(): void {
-    this.personaGenerada = undefined;
-    this.listaPersonasGeneradas = new MatTableDataSource<Persona>();
-    this.empresaGenerada = undefined;
-    this.listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
-    this.openSnackBar('Perfil limpiado', 'LimpiarPerfil');
   }
 
 
@@ -698,6 +697,180 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   }
 
   /**
+    * Limpiar tabla personas
+    */
+  onClickLimpiarPersonas(): void {
+    this.listaPersonasGeneradas = new MatTableDataSource<Persona>();
+    this.listaPersonasGeneradasOriginal = [];
+    this.openSnackBar('Personas limpiados', 'LimpiarPersonas');
+
+  }
+
+  /**
+   * Devolver las columnas que en cada momento se mostraran en tabla personas al cambiar con el selector de columnas visibles
+   * @returns
+   */
+  getDisplayedColumnsPersonas(): string[] {
+    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
+    this.displayedColumnsPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+    return this.displayedColumnsPersonas;
+  }
+
+  /**
+   * Evento ante las seleccion/deseleccion de una columna visible del combo de columnas de personas
+   * NOTA: "selectColumnasPersonas" ya llega con el nuevo valor actualizado, llevando el string[] de las columnas
+   * seleccionadas tras el cambio efectuado.
+   * @param selected true si el cambio a sido a marcado, false en otro caso
+   * @param value Columna cambiada en el combo
+   */
+  togglePerOneColumnasPersonas(selected: boolean, value: string): void {
+    //Tratamos como caso especial el Seleccionar Todas... para marcar o desmarcar directamente las columnas reales
+    if (value == BaseGeneraComponent.columSeleccionarTodas && selected) {
+      this.selectColumnasPersonas = this.listaColumnasPersonas;
+    } else if (value == BaseGeneraComponent.columSeleccionarTodas && !selected){
+      this.selectColumnasPersonas = [];
+    } else {
+      //otro caso implica que se ha marcado o desmarcado una columna real
+      //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
+      //hacer nada especial, dado que el model asociado al mat-select "selectColumnasPersonas" ya llega
+      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsPersonas"
+      //actualizara la tabla automaticamente al coger las nueva columnas.
+
+      //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
+      //especial "Seleccionar Todas..."
+      let seleccionesMenosTodos = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      let todasMenosTodos = this.listaColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+      if (seleccionesMenosTodos.length == todasMenosTodos.length) {
+        //marcamos seleccionar todo si no lo esta ya
+        if (!this.selectColumnasPersonas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasPersonas = this.selectColumnasPersonas.concat([BaseGeneraComponent.columSeleccionarTodas])
+        }
+      } else{
+        //si estuviera marcado seleccionadr todo, lo quitamos
+        if (this.selectColumnasPersonas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
+          this.selectColumnasPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+        }
+      }
+    }
+
+  }
+
+  /**
+   * Necesitamos una funcion concreta de ordenacion para tabla personas.
+   * No nos sirve announceSortChange porque para eso los key que se asocia a matColumnDef
+   * deberia tener el mismo valor que en la propiedad de los datos que se filtran, y no es asi,
+   * porque los modificamos porque son los que se utilizan en el combo de columnas visibles.
+   * Referencia: https://medium.com/@srik913/angular-material-table-complete-example-bb5726b96c5e
+   * @param $event
+   */
+  sortDataPersonas($event: Sort) {
+    const sortId = $event.active;
+    const sortDirection = $event.direction;
+
+    //sortId recibe el col.key... y debemos sacar de COLUMNS_SCHEMA_PERSONAS, el valor de col.columna que corresponde a esa key
+    //para poder ordenar correctamente. En caso de no encontrarlo, no se ordena.
+    let columnaOrdenar = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.find((col) => col.key == sortId);
+
+    //ojo, si es del type "subobjeto" se debe filtrar dentro del objeto de la propiedad "columna", por la propiedad "subpropiedad"
+    if (columnaOrdenar && columnaOrdenar.type == 'subobjeto') {
+      let propiedad = columnaOrdenar.columna as keyof Persona;
+      let subpropiedad = columnaOrdenar.subpropiedad as keyof DireccionCompleta;
+
+      if ('asc' == sortDirection) {
+        this.listaPersonasGeneradas.data = this.listaPersonasGeneradas.data.slice().sort(
+          (a, b) => (a[propiedad] as DireccionCompleta)[subpropiedad] > (b[propiedad] as DireccionCompleta)[subpropiedad] ? -1 : (a[propiedad] as DireccionCompleta)[subpropiedad] < (b[propiedad] as DireccionCompleta)[subpropiedad] ? 1 : 0
+        );
+      } else {
+        this.listaPersonasGeneradas.data = this.listaPersonasGeneradas.data.slice().sort(
+          (a, b) => (a[propiedad] as DireccionCompleta)[subpropiedad] < (b[propiedad] as DireccionCompleta)[subpropiedad] ? -1 : (a[propiedad] as DireccionCompleta)[subpropiedad] > (b[propiedad] as DireccionCompleta)[subpropiedad] ? 1 : 0
+        );
+      }
+
+    } else{
+      let columnaOrdenarReal = columnaOrdenar ? columnaOrdenar.columna : '';
+
+      if ('asc' == sortDirection) {
+        this.listaPersonasGeneradas.data = this.listaPersonasGeneradas.data.slice().sort(
+          (a, b) => a[columnaOrdenarReal as keyof Persona] > b[columnaOrdenarReal as keyof Persona] ? -1 : a[columnaOrdenarReal as keyof Persona] < b[columnaOrdenarReal as keyof Persona] ? 1 : 0
+        );
+      } else {
+        this.listaPersonasGeneradas.data = this.listaPersonasGeneradas.data.slice().sort(
+          (a, b) => a[columnaOrdenarReal as keyof Persona] < b[columnaOrdenarReal as keyof Persona] ? -1 : a[columnaOrdenarReal as keyof Persona] > b[columnaOrdenarReal as keyof Persona] ? 1 : 0
+        );
+      }
+    }
+
+
+  }
+
+  /**
+   * Des-oculta el filtro asociado a una columna de la cabecera de la tabla de Personas
+   * @param col
+   */
+  openFilterPersonas(col: string) {
+    const filterElement = document.getElementById(col + '-filterPersonas');
+    if (filterElement) {
+      filterElement.removeAttribute('hidden');
+    }
+  }
+
+  /**
+   * Oculta el filtro asociado a una columna de la cabecera de la tabla de Personas
+   * @param col
+   */
+  closeFilterPersonas(col: string) {
+    const filterElement = document.getElementById(col + '-filterPersonas');
+    if (filterElement) {
+      filterElement.setAttribute('hidden', 'true');
+    }
+  }
+
+  /**
+   * Aplica el filtro de texto (sin distincion mayusculars/minusculas) en la tabla
+   * de Personas.
+   * @param col Nombre de la columna en la tabla sobre la que se filtra
+   * @param filtertext Entrada del texto a filtrar
+   */
+  filterDataPersonas(col: string, filtertext: string) {
+    if (filtertext.trim() != '') {
+
+      //En col.key recibimos el key de la columna, debenmos acceder a COLUMN_SCHEMA_PERSONAS para obtener la columna real
+      //que se corresponde con el key, y asi poder filtrar correctamente.
+      let columnaFiltrar = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.find((col2) => col2.key == col);
+
+      //ojo, si es del type "subobjeto" se debe filtrar dentro del objeto de la propiedad "columna", por la propiedad "subpropiedad"
+      if (columnaFiltrar && columnaFiltrar.type == 'subobjeto') {
+        let propiedad = columnaFiltrar.columna as keyof Persona;
+        let subpropiedad = columnaFiltrar.subpropiedad as keyof DireccionCompleta;
+
+        this.listaPersonasGeneradas.data = this.listaPersonasGeneradasOriginal.slice().filter(
+          (element) => JSON.stringify((element[propiedad] as DireccionCompleta)[subpropiedad]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+        );
+      } else{
+        let columnaOrdenarReal = columnaFiltrar ? columnaFiltrar.columna : '';
+        this.listaPersonasGeneradas.data = this.listaPersonasGeneradasOriginal.slice().filter(
+          (element) => JSON.stringify(element[columnaOrdenarReal as keyof Persona]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+        );
+      }
+
+    } else{
+      //si hubieramos filtrado antes, ahora limpiamos
+      if (this.listaPersonasGeneradas.data.length != this.listaPersonasGeneradasOriginal.length) {
+        this.listaPersonasGeneradas.data = this.listaPersonasGeneradasOriginal;
+      }
+    }
+  }
+
+  /**
+   * Accion boton para limpiar la aplicacion de filtrar en la tabla Personas, y volver al estado original
+   */
+  onClickLimpiarFiltrosPersonas(): void {
+    this.listaPersonasGeneradas.data = this.listaPersonasGeneradasOriginal;
+    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosPersonas');
+  }
+
+
+  /**
    * Exportacion de los datos a un fichero excel la lista de empresas generadas
    */
   exportJsonEmpresas(): void {
@@ -788,71 +961,20 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     this.openSnackBar('Excel generado','ExcelEmpresas');
   }
 
-  /**
-    * Limpiar tabla personas
-    */
-  onClickLimpiarPersonas(): void {
-    this.listaPersonasGeneradas = new MatTableDataSource<Persona>();
-    this.openSnackBar('Personas limpiados', 'LimpiarPersonas');
 
-  }
+
 
   /**
     * Limpiar tabla empresas
     */
   onClickLimpiarEmpresas(): void {
     this.listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
+    this.listaEmpresasGeneradasOriginal = [];
     this.openSnackBar('Empresas limpiadas', 'LimpiarEmpresas');
   }
 
-  /**
-   * Devolver las columnas que en cada momento se mostraran en tabla personas al cambiar con el selector de columnas visibles
-   * @returns
-   */
-  getDisplayedColumnsPersonas(): string[] {
-    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
-    this.displayedColumnsPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
-    return this.displayedColumnsPersonas;
-  }
 
-  /**
-   * Evento ante las seleccion/deseleccion de una columna visible del combo de columnas de personas
-   * NOTA: "selectColumnasPersonas" ya llega con el nuevo valor actualizado, llevando el string[] de las columnas
-   * seleccionadas tras el cambio efectuado.
-   * @param selected true si el cambio a sido a marcado, false en otro caso
-   * @param value Columna cambiada en el combo
-   */
-  togglePerOneColumnasPersonas(selected: boolean, value: string): void {
-    //Tratamos como caso especial el Seleccionar Todas... para marcar o desmarcar directamente las columnas reales
-    if (value == BaseGeneraComponent.columSeleccionarTodas && selected) {
-      this.selectColumnasPersonas = this.listaColumnasPersonas;
-    } else if (value == BaseGeneraComponent.columSeleccionarTodas && !selected){
-      this.selectColumnasPersonas = [];
-    } else {
-      //otro caso implica que se ha marcado o desmarcado una columna real
-      //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
-      //hacer nada especial, dado que el model asociado al mat-select "selectColumnasPersonas" ya llega
-      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsPersonas"
-      //actualizara la tabla automaticamente al coger las nueva columnas.
 
-      //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
-      //especial "Seleccionar Todas..."
-      let seleccionesMenosTodos = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
-      let todasMenosTodos = this.listaColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
-      if (seleccionesMenosTodos.length == todasMenosTodos.length) {
-        //marcamos seleccionar todo si no lo esta ya
-        if (!this.selectColumnasPersonas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
-          this.selectColumnasPersonas = this.selectColumnasPersonas.concat([BaseGeneraComponent.columSeleccionarTodas])
-        }
-      } else{
-        //si estuviera marcado seleccionadr todo, lo quitamos
-        if (this.selectColumnasPersonas.includes(BaseGeneraComponent.columSeleccionarTodas)) {
-          this.selectColumnasPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
-        }
-      }
-    }
-
-  }
 
   /**
    * Devolver las columnas que en cada momento se mostraran en tabla personas al cambiar con el selector de columnas visibles
@@ -902,5 +1024,125 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     }
 
   }
+
+
+
+
+
+  /**
+   * Necesitamos una funcion concreta de ordenacion para tabla empresas.
+   * No nos sirve announceSortChange porque para eso los key que se asocia a matColumnDef
+   * deberia tener el mismo valor que en la propiedad de los datos que se filtran, y no es asi,
+   * porque los modificamos porque son los que se utilizan en el combo de columnas visibles.
+   * Referencia: https://medium.com/@srik913/angular-material-table-complete-example-bb5726b96c5e
+   * @param $event
+   */
+  sortDataEmpresas($event: Sort) {
+    const sortId = $event.active;
+    const sortDirection = $event.direction;
+
+    //sortId recibe el col.key... y debemos sacar de COLUMNS_SCHEMA_EMPRESAS, el valor de col.columna que corresponde a esa key
+    //para poder ordenar correctamente. En caso de no encontrarlo, no se ordena.
+    let columnaOrdenar = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.find((col) => col.key == sortId);
+
+    //ojo, si es del type "subobjeto" se debe filtrar dentro del objeto de la propiedad "columna", por la propiedad "subpropiedad"
+    if (columnaOrdenar && columnaOrdenar.type == 'subobjeto') {
+      let propiedad = columnaOrdenar.columna as keyof Empresa;
+      let subpropiedad = columnaOrdenar.subpropiedad as keyof DireccionCompleta;
+
+      if ('asc' == sortDirection) {
+        this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradas.data.slice().sort(
+          (a, b) => (a[propiedad] as DireccionCompleta)[subpropiedad] > (b[propiedad] as DireccionCompleta)[subpropiedad] ? -1 : (a[propiedad] as DireccionCompleta)[subpropiedad] < (b[propiedad] as DireccionCompleta)[subpropiedad] ? 1 : 0
+        );
+      } else {
+        this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradas.data.slice().sort(
+          (a, b) => (a[propiedad] as DireccionCompleta)[subpropiedad] < (b[propiedad] as DireccionCompleta)[subpropiedad] ? -1 : (a[propiedad] as DireccionCompleta)[subpropiedad] > (b[propiedad] as DireccionCompleta)[subpropiedad] ? 1 : 0
+        );
+      }
+
+    } else {
+      let columnaOrdenarReal = columnaOrdenar ? columnaOrdenar.columna : '';
+
+      if ('asc' == sortDirection) {
+        this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradas.data.slice().sort(
+          (a, b) => a[columnaOrdenarReal as keyof Empresa] > b[columnaOrdenarReal as keyof Empresa] ? -1 : a[columnaOrdenarReal as keyof Empresa] < b[columnaOrdenarReal as keyof Empresa] ? 1 : 0
+        );
+      } else {
+        this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradas.data.slice().sort(
+          (a, b) => a[columnaOrdenarReal as keyof Empresa] < b[columnaOrdenarReal as keyof Empresa] ? -1 : a[columnaOrdenarReal as keyof Empresa] > b[columnaOrdenarReal as keyof Empresa] ? 1 : 0
+        );
+      }
+
+
+    }
+  }
+
+
+  /**
+   * Des-oculta el filtro asociado a una columna de la cabecera de la tabla de Empresas
+   * @param col
+   */
+  openFilterEmpresas(col: string) {
+    const filterElement = document.getElementById(col + '-filterEmpresas');
+    if (filterElement) {
+      filterElement.removeAttribute('hidden');
+    }
+  }
+
+  /**
+   * Oculta el filtro asociado a una columna de la cabecera de la tabla de Empresas
+   * @param col
+   */
+  closeFilterEmpresas(col: string) {
+    const filterElement = document.getElementById(col + '-filterEmpresas');
+    if (filterElement) {
+      filterElement.setAttribute('hidden', 'true');
+    }
+  }
+
+  /**
+   * Aplica el filtro de texto (sin distincion mayusculars/minusculas) en la tabla
+   * de Empresas.
+   * @param col Nombre de la columna en la tabla sobre la que se filtra
+   * @param filtertext Entrada del texto a filtrar
+   */
+  filterDataEmpresas(col: string, filtertext: string) {
+    if (filtertext.trim() != '') {
+
+      //En col.key recibimos el key de la columna, debenmos acceder a COLUMNS_SCHEMA_EMPRESAS para obtener la columna real
+      //que se corresponde con el key, y asi poder filtrar correctamente.
+      let columnaFiltrar = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.find((col2) => col2.key == col);
+
+      //ojo, si es del type "subobjeto" se debe filtrar dentro del objeto de la propiedad "columna", por la propiedad "subpropiedad"
+      if (columnaFiltrar && columnaFiltrar.type == 'subobjeto') {
+        let propiedad = columnaFiltrar.columna as keyof Empresa;
+        let subpropiedad = columnaFiltrar.subpropiedad as keyof DireccionCompleta;
+
+        this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradasOriginal.slice().filter(
+          (element) => JSON.stringify((element[propiedad] as DireccionCompleta)[subpropiedad]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+        );
+      } else{
+        let columnaOrdenarReal = columnaFiltrar ? columnaFiltrar.columna : '';
+        this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradasOriginal.slice().filter(
+          (element) => JSON.stringify(element[columnaOrdenarReal as keyof Empresa]).toLowerCase().indexOf(filtertext.toLowerCase()) > -1
+        );
+      }
+
+    } else{
+      //si hubieramos filtrado antes, ahora limpiamos
+      if (this.listaEmpresasGeneradas.data.length != this.listaEmpresasGeneradasOriginal.length) {
+        this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradasOriginal;
+      }
+    }
+  }
+
+  /**
+   * Accion boton para limpiar la aplicacion de filtrar en la tabla Empresas, y volver al estado original
+   */
+  onClickLimpiarFiltrosEmpresas(): void {
+    this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradasOriginal;
+    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosEmpresas');
+  }
+
 
 }

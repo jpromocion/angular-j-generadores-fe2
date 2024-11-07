@@ -1,7 +1,8 @@
 @use '@angular/material' as mat;
 @include mat.core();
 
-
+//tema fijado en variable para recuperar cosas
+$theme: mat.define-theme();
 
 html, body { height: 100%; }
 body {
@@ -218,4 +219,17 @@ mat-header-cell {
   margin-left: 5px !important;
   margin-top: 2px !important;
   border-radius: 15% !important;
+}
+
+
+/**
+ * Los filtros de cabecera de las tablas , no pueden meterse en un mat-form-field, y no cogen el estilo
+ * de colores de que tenemos para los input. Se lo ponemos
+ */
+.filtroCabeceraTabla{
+  background-color: rgba(233, 224, 228, 0.38);
+  color: #e9e0e4;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
