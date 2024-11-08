@@ -17,6 +17,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import {Sort} from '@angular/material/sort';
+import {CdkDragDrop,CdkDrag, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import { MiscService } from '../core/services/misc.service';
 import { Ccaa } from '../core/models/ccaa';
 import { Provincia } from '../core/models/provincia';
@@ -30,7 +31,8 @@ import { DireccionCompleta } from '../core/models/direccion-completa';
   standalone: true,
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
-    MatTableModule, MatPaginatorModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass],
+    MatTableModule, MatPaginatorModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
+    CdkDropList, CdkDrag],
   templateUrl: './genera-localizacion.component.html',
   styleUrl: './genera-localizacion.component.scss'
 })
@@ -329,10 +331,34 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   * Exportar la lista de tipos generados a excel
   */
   exportJsonCCAA(): void {
-    //const formatted = this.ccaaGenerado.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
-    const formatted = this.ccaaGenerado.data.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
+    //NOTA: si bien en CCAA no tenemos mostrado/ocuiltado columnas... si reordeacion... por ello
+    //hacemos un mapeo de las columnas mostradas en la tabla para generar el excel
+    const displayedColumns = this.displayedColumnsCcaaGenerado;
+    const formatted = this.ccaaGenerado.data.map(ccaa => {
+      const result: any = {};
+      displayedColumns.forEach(col => {
+        switch (col) {
+          case 'id':
+          result.Codigo = ccaa.id;
+          break;
+          case 'nombre':
+          result.Nombre = ccaa.nombre;
+          break;
+        }
+      });
+      return result;
+    });
+
     this.excelService.exportAsExcelFile(formatted, 'Lista_CCAA');
     this.openSnackBar('Excel generado','ExcelCCAA');
+  }
+
+  /**
+   * Evento de drag&drop para reordenar las columnas visibles de la tabla de CCAA
+   * @param event
+   */
+  dropColumnsCCAA(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumnsCcaaGenerado, event.previousIndex, event.currentIndex);
   }
 
   /**
@@ -439,11 +465,38 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   */
   exportJsonProvincias(): void {
     //const formatted = this.provinGenerado.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
-    const formatted = this.provinGenerado.data.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
+    //const formatted = this.provinGenerado.data.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
+
+    //NOTA: si bien en provincias no tenemos mostrado/ocuiltado columnas... si reordeacion... por ello
+    //hacemos un mapeo de las columnas mostradas en la tabla para generar el excel
+    const displayedColumns = this.displayedColumnsProvinGenerado;
+    const formatted = this.provinGenerado.data.map(provin => {
+      const result: any = {};
+      displayedColumns.forEach(col => {
+        switch (col) {
+          case 'id':
+          result.Codigo = provin.id;
+          break;
+          case 'nombre':
+          result.Nombre = provin.nombre;
+          break;
+        }
+      });
+      return result;
+    });
+
     this.excelService.exportAsExcelFile(formatted, 'Lista_Provincias');
     this.openSnackBar('Excel generado','ExcelProvincias');
   }
 
+
+  /**
+   * Evento de drag&drop para reordenar las columnas visibles de la tabla de provincias
+   * @param event
+   */
+  dropColumnsProvincia(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumnsProvinGenerado, event.previousIndex, event.currentIndex);
+  }
 
   /**
    * Des-oculta el filtro asociado a una columna de la cabecera de la tabla de Provincia
@@ -548,10 +601,34 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   * Exportar la lista de tipos generados a excel
   */
   exportJsonMunicipios(): void {
-    //const formatted = this.muniGenerado.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
-    const formatted = this.muniGenerado.data.map(dato => ({ Codigo: dato.id, Nombre: dato.nombre }));
+    //NOTA: si bien en provincias no tenemos mostrado/ocuiltado columnas... si reordeacion... por ello
+    //hacemos un mapeo de las columnas mostradas en la tabla para generar el excel
+    const displayedColumns = this.displayedColumnsMuniGenerado;
+    const formatted = this.muniGenerado.data.map(muni => {
+      const result: any = {};
+      displayedColumns.forEach(col => {
+        switch (col) {
+          case 'id':
+          result.Codigo = muni.id;
+          break;
+          case 'nombre':
+          result.Nombre = muni.nombre;
+          break;
+        }
+      });
+      return result;
+    });
+
     this.excelService.exportAsExcelFile(formatted, 'Lista_Municipios');
     this.openSnackBar('Excel generado','ExcelMunicipios');
+  }
+
+  /**
+   * Evento de drag&drop para reordenar las columnas visibles de la tabla de municipios
+   * @param event
+   */
+  dropColumnsMunicipio(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumnsMuniGenerado, event.previousIndex, event.currentIndex);
   }
 
   /**
@@ -654,34 +731,81 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   * Exportar la lista de tipos generados a excel
   */
   exportJsonDomicilios(): void {
-    const formatted = this.direccionGenerado.data.map(dato => ({
-      DirecciónCompleta: this.transformaTexto(dato.direccionCompleta) ,
-      Direccion: this.transformaTexto(dato.direccion),
-      NumVia: dato.numVia,
-      Kilometro: dato.kilometro,
-      Bloque: dato.bloque,
-      Portal: dato.portal,
-      Escalera: dato.escalera,
-      Planta: this.transformaTexto(dato.planta),
-      Puerta: this.transformaTexto(dato.puerta),
-      CodigoPostal: dato.codPostal,
-      Municipio: this.transformaTexto(dato.ineMunicipio + ' - ' + dato.municipio),
-      Provincia: this.transformaTexto(dato.ineProvincia + ' - ' + dato.provincia),
-      CCAA: this.transformaTexto(dato.ineCcaa + ' - ' + dato.ccaa),
-      ReferenciaCatastral: this.transformaTexto(dato.referenciaCatastral)}));
+    //DEPRECATED: Cuadno la tabla tenia siempre las mismas columnas y en el mismo orden, se podia hacer un mapeo directo
+    // const formatted = this.direccionGenerado.data.map(dato => ({
+    //   DirecciónCompleta: this.transformaTexto(dato.direccionCompleta) ,
+    //   Direccion: this.transformaTexto(dato.direccion),
+    //   NumVia: dato.numVia,
+    //   Kilometro: dato.kilometro,
+    //   Bloque: dato.bloque,
+    //   Portal: dato.portal,
+    //   Escalera: dato.escalera,
+    //   Planta: this.transformaTexto(dato.planta),
+    //   Puerta: this.transformaTexto(dato.puerta),
+    //   CodigoPostal: dato.codPostal,
+    //   Municipio: this.transformaTexto(dato.ineMunicipio + ' - ' + dato.municipio),
+    //   Provincia: this.transformaTexto(dato.ineProvincia + ' - ' + dato.provincia),
+    //   CCAA: this.transformaTexto(dato.ineCcaa + ' - ' + dato.ccaa),
+    //   ReferenciaCatastral: this.transformaTexto(dato.referenciaCatastral)}));
+
+    //lo basamso en las columnas mostradas para coger los cambios de columnas visibles o no, y el orden de las mismas
+    const displayedColumns = this.displayedColumnsDireccionGenerado;
+    const formatted = this.direccionGenerado.data.map(direccion => {
+      const result: any = {};
+      displayedColumns.forEach(col => {
+        switch (col) {
+          case 'Dirección completa':
+          result.DireccionCompleta = direccion.direccionCompleta;
+          break;
+          case 'Dirección':
+          result.Direccion = direccion.direccion;
+          break;
+          case 'Número':
+          result.NumVia = direccion.numVia;
+          break;
+          case 'Km':
+          result.Kilometro = direccion.kilometro;
+          break;
+          case 'Bloque':
+          result.Bloque = direccion.bloque;
+          break;
+          case 'Portal':
+          result.Portal = direccion.portal;
+          break;
+          case 'Escalera':
+          result.Escalera = direccion.escalera;
+          break;
+          case 'Planta':
+          result.Planta = direccion.planta;
+          break;
+          case 'Puerta':
+          result.Puerta = direccion.puerta;
+          break;
+          case 'CP':
+          result.CodigoPostal = direccion.codPostal;
+          break;
+          case 'Municipio':
+          result.Municipio = direccion.ineMunicipio + ' - ' + direccion.municipio;
+          break;
+          case 'Provincia':
+          result.Provincia = direccion.ineProvincia + ' - ' + direccion.provincia;
+          break;
+          case 'CCAA':
+          result.CCAA = direccion.ineCcaa + ' - ' + direccion.ccaa;
+          break;
+          case 'Ref. catastral':
+          result.ReferenciaCatastral = direccion.referenciaCatastral;
+          break
+        }
+      });
+      return result;
+    });
+
     this.excelService.exportAsExcelFile(formatted, 'Lista_Domicilios');
     this.openSnackBar('Excel generado','ExcelDomicilios');
   }
 
-  /**
-   * Devolver las columnas que en cada momento se mostraran en tabla direcciones al cambiar con el selector de columnas visibles
-   * @returns
-   */
-  getDisplayedColumnsDireccionGenerado(): string[] {
-    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
-    this.displayedColumnsDireccionGenerado = this.selectColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
-    return this.displayedColumnsDireccionGenerado;
-  }
+
 
 
   /**
@@ -701,8 +825,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       //otro caso implica que se ha marcado o desmarcado una columna real
       //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
       //hacer nada especial, dado que el model asociado al mat-select "selectColumnasDirecciones" ya llega
-      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsDireccionGenerado"
-      //actualizara la tabla automaticamente al coger las nueva columnas.
+      //aqui con dicha columna real marcada/desmarcada según se realizo. Al final
+      //soincronizaremos displayedColumnsDireccionGenerado.
 
       //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
       //especial "Seleccionar Todas..."
@@ -721,6 +845,24 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       }
     }
 
+    //Sincronizamos a la lista de columnas visibles de la tabla
+    this.sincronizarListaColumVisiblesDirecciones();
+  }
+
+  /**
+   * Sincroniza las columnas visibles modificadas por el combo de columnas de direcciones a mostrar
+   * sobre la lista de columnas mostradas asociadas a la tabla.
+   */
+  sincronizarListaColumVisiblesDirecciones(): void {
+    this.displayedColumnsDireccionGenerado = this.selectColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+  }
+
+  /**
+   * Evento de drag&drop para reordenar las columnas visibles de la tabla de direcciones
+   * @param event
+   */
+  dropColumnsDirecciones(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumnsDireccionGenerado, event.previousIndex, event.currentIndex);
   }
 
   /**
@@ -800,6 +942,12 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       );
     }
   }
+
+
+
+
+
+
 
 
 }

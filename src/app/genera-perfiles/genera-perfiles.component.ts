@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {Sort} from '@angular/material/sort';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
+import {CdkDragDrop,CdkDrag, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
@@ -28,7 +29,7 @@ import { DireccionCompleta } from '../core/models/direccion-completa';
   standalone: true,
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,MatGridListModule, CaseTransformerPipe,
     MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
-    MatSelectModule],
+    MatSelectModule, CdkDropList, CdkDrag],
   templateUrl: './genera-perfiles.component.html',
   styleUrl: './genera-perfiles.component.scss'
 })
@@ -125,12 +126,14 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       key: "Login",
       columna: "login",
       type: "button",
+      caseSensitive: true,
       label: "Login"
     },
     {
       key: "Email",
       columna: "email",
       type: "button",
+      caseSensitive: true,
       label: "Email"
     },
     {
@@ -558,7 +561,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   exportJsonPersonas(): void {
     //var res = alasql('SEARCH / AS @data \ people / AS @persons \ RETURN(@persons->name as Name, @persons->age as Age, @data->city AS City) \ FROM ?', [this.peopleByCity])
 
-    const displayedColumns = this.getDisplayedColumnsPersonas();
+    const displayedColumns = this.displayedColumnsPersonas;
     const res = this.listaPersonasGeneradas.data.map(persona => {
       const result: any = {};
       displayedColumns.forEach(col => {
@@ -601,10 +604,10 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
         result.TelefonoFijo = persona.telefonoFijo;
         break;
         case 'Login':
-        result.Login = persona.login;
+        result.Login = this.transformaTexto(persona.login);
         break;
         case 'Email':
-        result.Email = persona.email;
+        result.Email = this.transformaTexto(persona.email);
         break;
         case 'Password':
         result.Password = persona.password;
@@ -706,15 +709,6 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   }
 
-  /**
-   * Devolver las columnas que en cada momento se mostraran en tabla personas al cambiar con el selector de columnas visibles
-   * @returns
-   */
-  getDisplayedColumnsPersonas(): string[] {
-    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
-    this.displayedColumnsPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
-    return this.displayedColumnsPersonas;
-  }
 
   /**
    * Evento ante las seleccion/deseleccion de una columna visible del combo de columnas de personas
@@ -733,8 +727,8 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       //otro caso implica que se ha marcado o desmarcado una columna real
       //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
       //hacer nada especial, dado que el model asociado al mat-select "selectColumnasPersonas" ya llega
-      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsPersonas"
-      //actualizara la tabla automaticamente al coger las nueva columnas.
+      //aqui con dicha columna real marcada/desmarcada según se realizo. Al final
+      //soincronizaremos displayedColumnsPersonas.
 
       //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
       //especial "Seleccionar Todas..."
@@ -753,7 +747,27 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       }
     }
 
+    //Sincronizamos a la lista de columnas visibles de la tabla
+    this.sincronizarListaColumVisiblesPersonas();
+
   }
+
+  /**
+   * Sincroniza las columnas visibles modificadas por el combo de columnas de personas a mostrar
+   * sobre la lista de columnas mostradas asociadas a la tabla.
+   */
+  sincronizarListaColumVisiblesPersonas(): void {
+    this.displayedColumnsPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+  }
+
+  /**
+   * Evento de drag&drop para reordenar las columnas visibles de la tabla de personas
+   * @param event
+   */
+  dropColumnsPersonas(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumnsPersonas, event.previousIndex, event.currentIndex);
+  }
+
 
   /**
    * Necesitamos una funcion concreta de ordenacion para tabla personas.
@@ -874,7 +888,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    * Exportacion de los datos a un fichero excel la lista de empresas generadas
    */
   exportJsonEmpresas(): void {
-    const displayedColumns = this.getDisplayedColumnsEmpresas();
+    const displayedColumns = this.displayedColumnsEmpresas;
     const res = this.listaEmpresasGeneradas.data.map(empresa => {
       const result: any = {};
       displayedColumns.forEach(col => {
@@ -895,10 +909,10 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
         result.Actividad = this.transformaTexto(empresa.actividad);
         break;
         case 'Email':
-        result.Email = empresa.email;
+        result.Email = this.transformaTexto(empresa.email);
         break;
         case 'Página_Web':
-        result.PaginaWeb = empresa.paginaWeb;
+        result.PaginaWeb = this.transformaTexto(empresa.paginaWeb);
         break;
         case 'Telefono':
         result.Telefono = empresa.telefono;
@@ -975,17 +989,6 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
 
 
-
-  /**
-   * Devolver las columnas que en cada momento se mostraran en tabla personas al cambiar con el selector de columnas visibles
-   * @returns
-   */
-  getDisplayedColumnsEmpresas(): string[] {
-    //la opcion Seleccionar Todos, nunca se devuelve, dado que no es una columan existente y daria error
-    this.displayedColumnsEmpresas = this.selectColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
-    return this.displayedColumnsEmpresas;
-  }
-
   /**
    * Evento ante las seleccion/deseleccion de una columna visible del combo de columnas de empresas
    * NOTA: "selectColumnasEmpresas" ya llega con el nuevo valor actualizado, llevando el string[] de las columnas
@@ -1003,8 +1006,8 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       //otro caso implica que se ha marcado o desmarcado una columna real
       //NOTA: en lo que respecta a la aplicacion del marcado/desmarcado de una columna real, no hay que
       //hacer nada especial, dado que el model asociado al mat-select "selectColumnasEmpresas" ya llega
-      //aqui con dicha columna real marcada/desmarcada según se realizo. Por tanto "getDisplayedColumnsEmpresas"
-      //actualizara la tabla automaticamente al coger las nueva columnas.
+      //aqui con dicha columna real marcada/desmarcada según se realizo. Al final
+      //soincronizaremos displayedColumnsEmpresas.
 
       //Eso si, comparamos si estan todas o no, dado que de ello dependerera el automarcar o autodesmarcar la opcion
       //especial "Seleccionar Todas..."
@@ -1023,10 +1026,27 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       }
     }
 
+    //Sincronizamos a la lista de columnas visibles de la tabla
+    this.sincronizarListaColumVisiblesEmpresas();
+
   }
 
 
+  /**
+   * Sincroniza las columnas visibles modificadas por el combo de columnas de Empresas a mostrar
+   * sobre la lista de columnas mostradas asociadas a la tabla.
+   */
+  sincronizarListaColumVisiblesEmpresas(): void {
+    this.displayedColumnsEmpresas = this.selectColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+  }
 
+  /**
+   * Evento de drag&drop para reordenar las columnas visibles de la tabla de Empresas
+   * @param event
+   */
+  dropColumnsEmpresas(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumnsEmpresas, event.previousIndex, event.currentIndex);
+  }
 
 
   /**

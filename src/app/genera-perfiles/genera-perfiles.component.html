@@ -144,16 +144,16 @@
     </div>
     <div class="caja" *ngIf="personaGenerada">
       <label>Login:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.login)" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.login))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="login">{{personaGenerada.login}}</span>
+        <span class="login">{{personaGenerada.login | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" *ngIf="personaGenerada">
       <label>Email:</label>
-      <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.email)" style="margin-left: 10px;"
+      <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.email))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
-        <span class="email">{{personaGenerada.email}}</span>
+        <span class="email">{{personaGenerada.email | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
@@ -418,17 +418,21 @@
   <!--  *ngIf="personaGenerada || (listaPersonasGeneradasOriginal?.length && listaPersonasGeneradasOriginal.length > 0)" -->
   <div [hidden]="!((listaPersonasGeneradasOriginal.length && listaPersonasGeneradasOriginal.length > 0))">
     <div class="table-responsive">
-      <table mat-table #sortPersonas="matSort" [dataSource]="listaPersonasGeneradas" matSort  (matSortChange)="sortDataPersonas($event)">
+      <table mat-table #sortPersonas="matSort" [dataSource]="listaPersonasGeneradas"
+        matSort  (matSortChange)="sortDataPersonas($event)"
+        cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsPersonas($event)">
 
         <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
           https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
          -->
         <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaPersonas">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+          <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
+            {{col.label}}
             <button mat-icon-button (click)="$event.stopPropagation(); openFilterPersonas(col.key); ">
               <mat-icon>search</mat-icon>
             </button>
             <input class="filtroCabeceraTabla" #inputSearchPersonas type="text" hidden id="{{col.key}}-filterPersonas"
+              (click)="$event.stopPropagation()"
               (blur)="filterDataPersonas(col.key, inputSearchPersonas.value); closeFilterPersonas(col.key)" />
           </th>
           <td mat-cell *matCellDef="let personaGenerada">
@@ -779,8 +783,8 @@
         </ng-container>
         -->
 
-        <tr mat-header-row *matHeaderRowDef="getDisplayedColumnsPersonas()"></tr>
-        <tr mat-row *matRowDef="let row; columns: getDisplayedColumnsPersonas();"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsPersonas"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsPersonas;"></tr>
       </table>
 
     </div>
@@ -834,17 +838,21 @@
    <!-- Empresas cuando estamos generando una lista -->
    <div [hidden]="!((listaEmpresasGeneradasOriginal.length && listaEmpresasGeneradasOriginal.length > 0))">
     <div class="table-responsive">
-      <table mat-table #sortEmpresas="matSort" [dataSource]="listaEmpresasGeneradas" matSort  (matSortChange)="sortDataEmpresas($event)">
+      <table mat-table #sortEmpresas="matSort" [dataSource]="listaEmpresasGeneradas"
+        matSort  (matSortChange)="sortDataEmpresas($event)"
+        cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsEmpresas($event)">
 
         <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
           https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
          -->
         <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaEmpresas">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+          <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
+            {{col.label}}
             <button mat-icon-button (click)="$event.stopPropagation(); openFilterEmpresas(col.key); ">
               <mat-icon>search</mat-icon>
             </button>
             <input class="filtroCabeceraTabla" #inputSearchEmpresas type="text" hidden id="{{col.key}}-filterEmpresas"
+              (click)="$event.stopPropagation()"
               (blur)="filterDataEmpresas(col.key, inputSearchEmpresas.value); closeFilterEmpresas(col.key)" />
           </th>
           <td mat-cell *matCellDef="let empresaGenerada">
@@ -889,8 +897,8 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="getDisplayedColumnsEmpresas()"></tr>
-        <tr mat-row *matRowDef="let row; columns: getDisplayedColumnsEmpresas();"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsEmpresas"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsEmpresas;"></tr>
       </table>
     </div>
 

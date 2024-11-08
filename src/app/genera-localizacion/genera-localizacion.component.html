@@ -14,17 +14,21 @@
           </button>
 
           <div [hidden]="!((ccaaGeneradoOriginal.length && ccaaGeneradoOriginal.length > 0))">
-            <table mat-table #sortCcaaGenerado="matSort" [dataSource]="ccaaGenerado" matSort  (matSortChange)="announceSortChange($event)">
+            <table mat-table #sortCcaaGenerado="matSort" [dataSource]="ccaaGenerado"
+              matSort  (matSortChange)="announceSortChange($event)"
+              cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsCCAA($event)">
 
               <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
                 https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaCcaaGenerado">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+                <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
+                  {{col.label}}
                   <button mat-icon-button (click)="$event.stopPropagation(); openFilterCCAA(col.key); ">
                     <mat-icon>search</mat-icon>
                   </button>
                   <input class="filtroCabeceraTabla" #inputSearchCCAA type="text" hidden id="{{col.key}}-filterCCAA"
+                    (click)="$event.stopPropagation()"
                     (blur)="filterDataCCAA(col.columna, inputSearchCCAA.value); closeFilterCCAA(col.key)" />
                 </th>
                 <td mat-cell *matCellDef="let ccaa">
@@ -47,8 +51,8 @@
                 </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumnsProvinGenerado"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsCcaaGenerado"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsCcaaGenerado;"></tr>
             </table>
 
             <!-- Acciones, y paginador -->
@@ -96,17 +100,21 @@
           </button>
 
           <div [hidden]="!((provinGeneradoOriginal.length && provinGeneradoOriginal.length > 0))">
-            <table mat-table #sortProvinGenerado="matSort" [dataSource]="provinGenerado" matSort  (matSortChange)="announceSortChange($event)">
+            <table mat-table #sortProvinGenerado="matSort" [dataSource]="provinGenerado"
+              matSort  (matSortChange)="announceSortChange($event)"
+              cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsProvincia($event)">
 
               <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
                 https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaProvinGenerado">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+                <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
+                  {{col.label}}
                   <button mat-icon-button (click)="$event.stopPropagation(); openFilterProvincia(col.key); ">
                     <mat-icon>search</mat-icon>
                   </button>
                   <input class="filtroCabeceraTabla" #inputSearchProvincia type="text" hidden id="{{col.key}}-filterProvincia"
+                    (click)="$event.stopPropagation()"
                     (blur)="filterDataProvincia(col.columna, inputSearchProvincia.value); closeFilterProvincia(col.key)" />
                 </th>
                 <td mat-cell *matCellDef="let provincia">
@@ -179,17 +187,21 @@
           </button>
 
           <div [hidden]="!((muniGeneradoOriginal.length && muniGeneradoOriginal.length > 0))">
-            <table mat-table #sortMuniGenerado="matSort" [dataSource]="muniGenerado" matSort  (matSortChange)="announceSortChange($event)">
+            <table mat-table #sortMuniGenerado="matSort" [dataSource]="muniGenerado"
+              matSort  (matSortChange)="announceSortChange($event)"
+              cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsMunicipio($event)">
 
               <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
                 https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaMuniGenerado">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+                <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
+                  {{col.label}}
                   <button mat-icon-button (click)="$event.stopPropagation(); openFilterMunicipio(col.key); ">
                     <mat-icon>search</mat-icon>
                   </button>
                   <input class="filtroCabeceraTabla" #inputSearchMunicipio type="text" hidden id="{{col.key}}-filterMunicipio"
+                    (click)="$event.stopPropagation()"
                     (blur)="filterDataMunicipio(col.columna, inputSearchMunicipio.value); closeFilterMunicipio(col.key)" />
                 </th>
                 <td mat-cell *matCellDef="let municipio">
@@ -212,8 +224,8 @@
                 </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumnsProvinGenerado"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumnsProvinGenerado;"></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsMuniGenerado"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsMuniGenerado;"></tr>
             </table>
 
             <!-- Acciones, y paginador -->
@@ -307,17 +319,26 @@
 
         <div [hidden]="!((direccionGeneradoOriginal.length && direccionGeneradoOriginal.length > 0))">
           <div class="table-responsive">
-            <table mat-table #sortDireccionGenerado="matSort" [dataSource]="direccionGenerado" matSort (matSortChange)="sortDataDirecciones($event)">
+            <table mat-table #sortDireccionGenerado="matSort" [dataSource]="direccionGenerado"
+              matSort (matSortChange)="sortDataDirecciones($event)"
+              cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsDirecciones($event)">
 
               <!-- Opcion de parametrizar columna y mostrar por tipo en vez de hacerlo por cada columna
                 https://muhimasri.com/blogs/create-an-editable-dynamic-table-using-angular-material/
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaDireccionGenerado">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.label}}
+                <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
+                  {{col.label}}
+                  <!-- "$event.stopPropagation()" en ambos buton y input de filtro, evita que se autoejecute el
+                    sort al pulsar en ellos  dado que todo el th esta bajo la mat-sort-header.
+                    De esta forma solo se ejecuta al pulsar sobre el la etiqueta de la cabecera.
+                    Referencia: https://stackoverflow.com/questions/60451233/prevent-sort-on-click-into-input-in-angular-mattable
+                  -->
                   <button mat-icon-button (click)="$event.stopPropagation(); openFilterDirecciones(col.key); ">
                     <mat-icon>search</mat-icon>
                   </button>
                   <input class="filtroCabeceraTabla" #inputSearchDireccion type="text" hidden id="{{col.key}}-filterDireccion"
+                    (click)="$event.stopPropagation()"
                     (blur)="filterDataDirecciones(col.columna, inputSearchDireccion.value); closeFilterDirecciones(col.key)" />
                 </th>
                 <td mat-cell *matCellDef="let direccion">
@@ -346,8 +367,8 @@
                 </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="getDisplayedColumnsDireccionGenerado()"></tr>
-              <tr mat-row *matRowDef="let row; columns: getDisplayedColumnsDireccionGenerado();"></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsDireccionGenerado"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsDireccionGenerado;"></tr>
             </table>
           </div>
 
