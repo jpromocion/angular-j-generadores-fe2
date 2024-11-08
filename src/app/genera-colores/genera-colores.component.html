@@ -66,11 +66,11 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar Color</mat-card-header>
         <mat-card-content>
-          <button type="button"  mat-fab aria-label="Generar un color aleatorio" (click)="onClickBotonGenerarColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar un color aleatorio" (click)="onClickBotonGenerarColor()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="color != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar listas" (click)="onClickLimpiarColor()"
+          <button type="button" *ngIf="color != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar listas" (click)="onClickLimpiarColor()"
             matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -110,12 +110,12 @@
             <mat-icon matSuffix matTooltip="Color en hexadcimal (iniciado con # o sin él)">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Conversión hexadecimal  a RGB" (click)="onClickBotonConvertirHexaRGB()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión hexadecimal  a RGB" (click)="onClickBotonConvertirHexaRGB()"
             matTooltip="Pulsar para convertir" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
-          <button type="button" *ngIf="convertHexaRgb != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarConvertirHexaRGB()"
+          <button type="button" *ngIf="convertHexaRgb != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarConvertirHexaRGB()"
             matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -151,12 +151,12 @@
             <input matInput id="gradosValor" type="number" placeholder="182" [(ngModel)]="convertRgbAzulParam">
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Conversión RGB a hexadecimal" (click)="onClickBotonConvertirRGBHexa()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión RGB a hexadecimal" (click)="onClickBotonConvertirRGBHexa()"
             matTooltip="Pulsar para convertir" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
-          <button type="button" *ngIf="convertRgbHexa != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarConvertirRGBHexa()"
+          <button type="button" *ngIf="convertRgbHexa != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarConvertirRGBHexa()"
             matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -184,11 +184,11 @@
             <input matSliderThumb [(ngModel)]="aclaraColorCantidad">
           </mat-slider>
 
-          <button type="button"  mat-fab aria-label="Aclara color" (click)="onClickBotonAclararColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Aclara color" (click)="onClickBotonAclararColor()"
             matTooltip="Pulsar para aclarar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="colorAclarado != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarAclararColor()"
+          <button type="button" *ngIf="colorAclarado != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarAclararColor()"
             matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -220,11 +220,11 @@
             <input matSliderThumb [(ngModel)]="oscureceColorCantidad">
           </mat-slider>
 
-          <button type="button"  mat-fab aria-label="Oscurecer color" (click)="onClickBotonOscurecerColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Oscurecer color" (click)="onClickBotonOscurecerColor()"
             matTooltip="Pulsar para oscurecer" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="colorOscurecido != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarOscurecerColor()"
+          <button type="button" *ngIf="colorOscurecido != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarOscurecerColor()"
             matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -284,11 +284,11 @@
 
           </div>
 
-          <button type="button"  mat-fab aria-label="Transformar color" (click)="onClickBotonTransformarColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Transformar color" (click)="onClickBotonTransformarColor()"
             matTooltip="Pulsar para aplicar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="colorTransformado != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarTransformarColor()"
+          <button type="button" *ngIf="colorTransformado != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarTransformarColor()"
             matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -316,11 +316,11 @@
 
           <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color".</em></small></p>
 
-          <button type="button"  mat-fab aria-label="Invertir color" (click)="onClickBotonInvertirColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Invertir color" (click)="onClickBotonInvertirColor()"
             matTooltip="Pulsar para invertir" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="colorInvertir != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarInvertirColor()"
+          <button type="button" *ngIf="colorInvertir != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarInvertirColor()"
             matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -352,11 +352,11 @@
             <input matSliderThumb [(ngModel)]="alphaColorCantidad">
           </mat-slider>
 
-          <button type="button"  mat-fab aria-label="Alpha color" (click)="onClickBotonAlphaColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Alpha color" (click)="onClickBotonAlphaColor()"
             matTooltip="Pulsar para alpha" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="colorAlphaHex != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarAlphaColor()"
+          <button type="button" *ngIf="colorAlphaHex != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarAlphaColor()"
             matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -392,11 +392,11 @@
             <input matSliderThumb [(ngModel)]="mezclaColorCantidad">
           </mat-slider>
 
-          <button type="button"  mat-fab aria-label="Mezclar color" (click)="onClickBotonMezclarColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Mezclar color" (click)="onClickBotonMezclarColor()"
             matTooltip="Pulsar para mezclar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="colorMezclado != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarMezclarColor()"
+          <button type="button" *ngIf="colorMezclado != ''" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarMezclarColor()"
             matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -432,16 +432,16 @@
             <input matSliderThumb [(ngModel)]="gradienteCantidad">
           </mat-slider>
 
-          <button type="button"  mat-fab aria-label="Gradiente color" (click)="onClickBotonGradienteColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Gradiente color" (click)="onClickBotonGradienteColor()"
             matTooltip="Pulsar para gradientes" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaGradiente?.length && listaGradiente.length > 0" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarGradienteColor()"
+          <button type="button" *ngIf="listaGradiente?.length && listaGradiente.length > 0" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarGradienteColor()"
             matTooltip="Pulsar para limpiar el gradiente" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <button type="button" *ngIf="listaGradiente?.length && listaGradiente.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonGradiente()"
+          <button type="button" *ngIf="listaGradiente?.length && listaGradiente.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonGradiente()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -493,16 +493,16 @@
             <input matSliderThumb [(ngModel)]="monocromaticoCantidad">
           </mat-slider>
 
-          <button type="button"  mat-fab aria-label="Monocromático color" (click)="onClickBotonMonocromaticoColor()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Monocromático color" (click)="onClickBotonMonocromaticoColor()"
             matTooltip="Pulsar para monocromáticos" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaMonocromaticos?.length && listaMonocromaticos.length > 0" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab aria-label="Limpiar" (click)="onClickLimpiarMonocromaticoColor()"
+          <button type="button" *ngIf="listaMonocromaticos?.length && listaMonocromaticos.length > 0" style="margin-left: 5px; margin-bottom: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar" (click)="onClickLimpiarMonocromaticoColor()"
             matTooltip="Pulsar para limpiar el monocromático" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <button type="button" *ngIf="listaMonocromaticos?.length && listaMonocromaticos.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonMonocromatico()"
+          <button type="button" *ngIf="listaMonocromaticos?.length && listaMonocromaticos.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonMonocromatico()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>

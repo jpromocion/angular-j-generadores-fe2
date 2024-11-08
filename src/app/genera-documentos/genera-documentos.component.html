@@ -15,15 +15,15 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar NIFs</mat-card-header>
         <mat-card-content>
-          <button type="button"  mat-fab aria-label="Generar una lista de NIFs" (click)="onClickBotonGenerarListaNif()"
+          <button type="button" mat-fab class="botonRotatorio" aria-label="Generar una lista de NIFs" (click)="onClickBotonGenerarListaNif()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista NIFs" (click)="onClickLimpiarListaNif()"
+          <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar lista NIFs" (click)="onClickLimpiarListaNif()"
             matTooltip="Pulsar para limpiar la lista de NIFs" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonNifs()"
+          <button type="button" *ngIf="listaNifs?.length && listaNifs.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonNifs()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -47,15 +47,15 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar NIEs</mat-card-header>
         <mat-card-content>
-          <button type="button"  mat-fab aria-label="Generar una lista de NIEs" (click)="onClickBotonGenerarListaNie()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar una lista de NIEs" (click)="onClickBotonGenerarListaNie()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista NIEs" (click)="onClickLimpiarListaNie()"
+          <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar lista NIEs" (click)="onClickLimpiarListaNie()"
             matTooltip="Pulsar para limpiar la lista de NIEs" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonNies()"
+          <button type="button" *ngIf="listaNies?.length && listaNies.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonNies()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -79,15 +79,15 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar Pasaportes</mat-card-header>
         <mat-card-content>
-          <button type="button"  mat-fab aria-label="Generar una lista de Pasaportes" (click)="onClickBotonGenerarListaPasaporte()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar una lista de Pasaportes" (click)="onClickBotonGenerarListaPasaporte()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaPasaportes?.length && listaPasaportes.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista Pasaportes" (click)="onClickLimpiarListaPasaporte()"
+          <button type="button" *ngIf="listaPasaportes?.length && listaPasaportes.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar lista Pasaportes" (click)="onClickLimpiarListaPasaporte()"
             matTooltip="Pulsar para limpiar la lista de Pasaportes" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="listaPasaportes?.length && listaPasaportes.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPasaporte()"
+          <button type="button" *ngIf="listaPasaportes?.length && listaPasaportes.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonPasaporte()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -119,15 +119,15 @@
               }
             </mat-select>
           </mat-form-field>
-          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar una lista de CIFs" (click)="onClickBotonGenerarListaCif()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar una lista de CIFs" (click)="onClickBotonGenerarListaCif()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar lista CIFs" (click)="onClickLimpiarListaCif()"
+          <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar lista CIFs" (click)="onClickLimpiarListaCif()"
             matTooltip="Pulsar para limpiar la lista de CIFs" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonCifs()"
+          <button type="button" *ngIf="listaCifs?.length && listaCifs.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonCifs()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -157,7 +157,7 @@
               <input matInput id="nifValidar" type="text" placeholder="91000750P" [(ngModel)]="nifValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un NIF" (click)="onClickValidarNif()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un NIF" (click)="onClickValidarNif()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -189,7 +189,7 @@
               <input matInput id="nieValidar" type="text" placeholder="X6203099E" [(ngModel)]="nieValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un NIE" (click)="onClickValidarNie()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un NIE" (click)="onClickValidarNie()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -221,7 +221,7 @@
               <input matInput id="cifValidar" type="text" placeholder="J92456805" [(ngModel)]="cifValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un CIF" (click)="onClickValidarCif()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un CIF" (click)="onClickValidarCif()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -255,7 +255,7 @@
                 style="text-transform:uppercase" maxlength="10">
               <mat-icon matSuffix matTooltip="Número de pasaporte completo con el dígito de control incluido.">help</mat-icon>
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un pasaporte" (click)="onClickValidarPasaporte()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un pasaporte" (click)="onClickValidarPasaporte()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -289,7 +289,7 @@
                 style="text-transform:uppercase" maxlength="9">
               <mat-icon matSuffix matTooltip="Número de pasaporte sin el dígito de control.">help</mat-icon>
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un pasaporte" (click)="onClickCalcularDCPasaporte()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un pasaporte" (click)="onClickCalcularDCPasaporte()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>refresh</mat-icon>
             </button>

@@ -24,16 +24,16 @@
             </mat-select>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
             matTooltip="Pulsar para limpiar los tipos" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -68,16 +68,16 @@
             </mat-select>
           </mat-form-field>
 
-          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarTelefono()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarTelefono()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTelefono()"
+          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarTelefono()"
             matTooltip="Pulsar para limpiar los teléfonos" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonTelefono()"
+          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonTelefono()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -116,16 +116,16 @@
 
           <mat-checkbox [(ngModel)]="passEspecial">Especial</mat-checkbox>
 
-          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar password" (click)="onClickBotonGenerarPassword()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar password" (click)="onClickBotonGenerarPassword()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPassword()"
+          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarPassword()"
             matTooltip="Pulsar para limpiar los passwords" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPassword()"
+          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonPassword()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -183,16 +183,16 @@
             <mat-icon matSuffix matTooltip="Opcional. Sufijo a añadir en todo código promocional en la forma 'sufix-'.">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarPromocionales()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarPromocionales()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPromocionales()"
+          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarPromocionales()"
             matTooltip="Pulsar para limpiar los códigos promocionales" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPromocionales()"
+          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonPromocionales()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -228,16 +228,16 @@
             </mat-select>
           </mat-form-field>
 
-          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar referencia" (click)="onClickBotonGenerarRefCatastral()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar referencia" (click)="onClickBotonGenerarRefCatastral()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarRefCatastral()"
+          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarRefCatastral()"
             matTooltip="Pulsar para limpiar las referencias" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonRefCatastral()"
+          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonRefCatastral()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -270,7 +270,7 @@
               <input matInput id="refCatasValidar" type="text" placeholder="31044Z932050006628FU" [(ngModel)]="refCatasValidar"
                 style="text-transform:uppercase" maxlength="20">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar una Ref. catastral" (click)="onClickValidaRefCatastral()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar una Ref. catastral" (click)="onClickValidaRefCatastral()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -307,16 +307,16 @@
             </mat-select>
           </mat-form-field>
 
-          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar CUPS" (click)="onClickBotonGenerarCups()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar CUPS" (click)="onClickBotonGenerarCups()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarCups()"
+          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarCups()"
             matTooltip="Pulsar para limpiar los CUPS" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonCups()"
+          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonCups()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -349,7 +349,7 @@
               <input matInput id="cupsValidar" type="text" placeholder="ES0223678468476634WK" [(ngModel)]="cupsValidar"
                 style="text-transform:uppercase" maxlength="22">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un CUPS" (click)="onClickValidaCups()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un CUPS" (click)="onClickValidaCups()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -383,7 +383,7 @@
               <input matInput id="leiValidar" type="text" placeholder="9598009DZMHWCT7D0W77" [(ngModel)]="leiValidar"
                 style="text-transform:uppercase" maxlength="20">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un LEI" (click)="onClickValidaLei()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un LEI" (click)="onClickValidaLei()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -417,7 +417,7 @@
               <input matInput id="isinValidar" type="text" placeholder="ES055XBM8IE4" [(ngModel)]="isinValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un ISIN" (click)="onClickValidaIsin()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un ISIN" (click)="onClickValidaIsin()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
@@ -450,7 +450,7 @@
               <input matInput id="nssValidar" type="text" placeholder="047063802539" [(ngModel)]="nssValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un NSS" (click)="onClickValidaNss()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un NSS" (click)="onClickValidaNss()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>

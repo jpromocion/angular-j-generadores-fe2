@@ -38,7 +38,7 @@
         <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
       </mat-form-field>
 
-      <button type="button"  mat-fab style=" margin-left: 10px;" aria-label="Generar un perfil" (click)="onClickBotonGenerarPerfil()"
+      <button type="button"  mat-fab class="botonRotatorio" style=" margin-left: 10px;" aria-label="Generar un perfil" (click)="onClickBotonGenerarPerfil()"
         matTooltip="Pulsar para generar" matTooltipPosition="below">
         <mat-icon>refresh</mat-icon>
       </button>
@@ -791,15 +791,15 @@
 
     <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
     <div style="float: left;margin-top:5px;">
-      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPersonas()"
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPersonas()"
         matTooltip="Pulsar para limpiar las personas" matTooltipPosition="below">
         <mat-icon>delete</mat-icon>
       </button>
-      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosPersonas()"
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosPersonas()"
         matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
         <mat-icon>cleaning_services</mat-icon>
       </button>
-      <button type="button" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonPersonas()"
+      <button type="button" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonPersonas()"
         matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
         <mat-icon>description</mat-icon>
       </button>
@@ -904,15 +904,15 @@
 
     <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
     <div style="float: left;margin-top:5px;">
-      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarEmpresas()"
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarEmpresas()"
         matTooltip="Pulsar para limpiar las empresas" matTooltipPosition="below">
         <mat-icon>delete</mat-icon>
       </button>
-      <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosEmpresas()"
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosEmpresas()"
         matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
         <mat-icon>cleaning_services</mat-icon>
       </button>
-      <button type="button" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonEmpresas()"
+      <button type="button" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonEmpresas()"
         matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
         <mat-icon>description</mat-icon>
       </button>

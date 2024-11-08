@@ -27,16 +27,16 @@
           <!-- NOTA: los botones de esta pestaña fecha... no estan cogiendo la clase mat-accent que deberian llevar el mat-fab
             para pintarse lila... y no un violeta... no he conseguido saber porque, aplico color="accent" lo fuerza
            -->
-          <button type="button" mat-fab color="accent" style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" mat-fab color="accent" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
             matTooltip="Pulsar para limpiar los tipos" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" mat-fab color="accent" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -87,12 +87,12 @@
             </mat-form-field>
             <ngx-mat-timepicker color="accent" #pickerHoraNacimiento></ngx-mat-timepicker>
 
-            <button type="button"  mat-fab color="accent" style="margin-left: 5px;" aria-label="Calcular edad" (click)="onClickBotonEdad()"
+            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular edad" (click)="onClickBotonEdad()"
               matTooltip="Pulsar para calcular" matTooltipPosition="below">
               <mat-icon>calculate</mat-icon>
             </button>
 
-            <button type="button" *ngIf="edadRes" style="margin-left: 5px;"  mat-fab color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarEdad()"
+            <button type="button" *ngIf="edadRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarEdad()"
               matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
@@ -257,12 +257,12 @@
             <ngx-mat-timepicker color="accent" #pickerHoraDifParam2></ngx-mat-timepicker>
           </div>
 
-          <button type="button"  mat-fab color="accent" style="margin-left: 5px;" aria-label="Calcular diferencia" (click)="onClickBotonDiferencia()"
+          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular diferencia" (click)="onClickBotonDiferencia()"
             matTooltip="Pulsar para calcular" matTooltipPosition="below">
             <mat-icon>calculate</mat-icon>
           </button>
 
-          <button type="button" *ngIf="difRes" style="margin-left: 5px;"  mat-fab color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarDiferencia()"
+          <button type="button" *ngIf="difRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarDiferencia()"
             matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -384,12 +384,12 @@
               <mat-datepicker #pickerFecDiaSemanaParam disabled="false"></mat-datepicker>
             </mat-form-field>
 
-            <button type="button"  mat-fab color="accent" style="margin-left: 5px;" aria-label="Calcular día" (click)="onClickBotonDiaSemana()"
+            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular día" (click)="onClickBotonDiaSemana()"
               matTooltip="Pulsar para calcular" matTooltipPosition="below">
               <mat-icon>calculate</mat-icon>
             </button>
 
-            <button type="button" *ngIf="diaSemanaRes != ''" style="margin-left: 5px;"  mat-fab color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarDiaSemana()"
+            <button type="button" *ngIf="diaSemanaRes != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarDiaSemana()"
               matTooltip="Pulsar para limpiar" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
@@ -478,12 +478,12 @@
 
 
 
-          <button type="button"  mat-fab color="accent" style="margin-left: 5px;" aria-label="Calcular operación" (click)="onClickBotonOperar()"
+          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular operación" (click)="onClickBotonOperar()"
             matTooltip="Pulsar para calcular" matTooltipPosition="below">
             <mat-icon>calculate</mat-icon>
           </button>
 
-          <button type="button" *ngIf="fechaOperarRes && horaOperarRes != ''" style="margin-left: 5px;"  mat-fab color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarOperar()"
+          <button type="button" *ngIf="fechaOperarRes && horaOperarRes != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarOperar()"
             matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -524,12 +524,12 @@
             <mat-icon matSuffix matTooltip="Tiempo UNIX UTC">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonUTCFecha()"
+          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonUTCFecha()"
             matTooltip="Pulsar para transformar" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
-          <button type="button" *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != '' && fechaUTCResTimUnix && horaUTCResTimUnix != ''" style="margin-left: 5px;"  mat-fab color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarUTCFecha()"
+          <button type="button" *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != '' && fechaUTCResTimUnix && horaUTCResTimUnix != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarUTCFecha()"
             matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -605,12 +605,12 @@
             </mat-form-field>
             <ngx-mat-timepicker color="accent" #pickerparamHoraLocal></ngx-mat-timepicker>
 
-            <button type="button"  mat-fab color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonFechaUTC()"
+            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonFechaUTC()"
               matTooltip="Pulsar para transformar" matTooltipPosition="below">
               <mat-icon>sync_alt</mat-icon>
             </button>
 
-            <button type="button" *ngIf="timeUnixRes" style="margin-left: 5px;"  mat-fab color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarFechaUTC()"
+            <button type="button" *ngIf="timeUnixRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarFechaUTC()"
               matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
@@ -639,12 +639,12 @@
             <input matInput id="pascuaParamEjercicio" type="number"  placeholder="2024" [(ngModel)]="pascuaParamEjercicio">
           </mat-form-field>
 
-          <button type="button"  mat-fab color="accent" style="margin-left: 5px;" aria-label="Generar datos de pascua" (click)="onClickBotonGenerarPascua()"
+          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Generar datos de pascua" (click)="onClickBotonGenerarPascua()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="pascuaRes" style="margin-left: 5px;"  mat-fab color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarPascua()"
+          <button type="button" *ngIf="pascuaRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarPascua()"
             matTooltip="Pulsar para limpiar la pascua" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>

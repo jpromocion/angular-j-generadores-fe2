@@ -233,3 +233,21 @@ mat-header-cell {
   margin-left: 5px;
   margin-right: 5px;
 }
+
+
+//Clase a asociar a un botón angular matarial, donde queremos que el icono
+//de dentro se ponga a rotar al situar el hover sobre el
+// ".mat-mdc-fab:hover .mat-icon {": lo hariamos rotar para todos... perot tenemos botones en la aplicacion donde no
+//  queremos esto (como los de la calculadora)
+.botonRotatorio:hover .mat-icon {
+  animation: rotate 5s linear infinite; //creamos la animación
+}
+//definimos la animacion de rotar 360 grados
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

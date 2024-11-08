@@ -24,16 +24,16 @@
             </mat-select>
           </mat-form-field>
 
-          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
             matTooltip="Pulsar para limpiar los caracteres" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
@@ -65,7 +65,7 @@
               <input matInput id="bastidorValidar" type="text" placeholder="2GDF4C11981518224" [(ngModel)]="bastidorValidar"
                 style="text-transform:uppercase" maxlength="40">
             </mat-form-field>
-            <button type="button" mat-fab aria-label="Validar un Bastidor" (click)="onClickValidarBastidor()"
+            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un Bastidor" (click)="onClickValidarBastidor()"
               matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>

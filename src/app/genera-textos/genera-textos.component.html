@@ -48,12 +48,12 @@
     </div>
 
     <div class="caja c5">
-      <button type="button"  mat-fab aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
+      <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
         matTooltip="Pulsar para generar" matTooltipPosition="below">
         <mat-icon>refresh</mat-icon>
       </button>
 
-      <button type="button" *ngIf="textoGenerado" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
+      <button type="button" *ngIf="textoGenerado" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
         matTooltip="Pulsar para limpiar los caracteres" matTooltipPosition="below">
         <mat-icon>delete</mat-icon>
       </button>

@@ -8,7 +8,7 @@
       <mat-card appearance="outlined">
         <mat-card-header>CCAA</mat-card-header>
         <mat-card-content>
-          <button type="button"  mat-fab aria-label="Generar CCAAs" (click)="onClickBotonGenerarCCAA()"
+          <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar CCAAs" (click)="onClickBotonGenerarCCAA()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
@@ -57,15 +57,15 @@
 
             <!-- Acciones, y paginador -->
             <div style="float: left;">
-              <button type="button" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarCCAA()"
+              <button type="button" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarCCAA()"
                 matTooltip="Pulsar para limpiar el CCAA" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosCCAA()"
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosCCAA()"
                 matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
                 <mat-icon>cleaning_services</mat-icon>
               </button>
-              <button type="button"  style="margin-left: 5px;"  mat-fab aria-label="Exportar a Excel" (click)="exportJsonCCAA()"
+              <button type="button"  style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonCCAA()"
                 matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
@@ -94,7 +94,7 @@
             <input matInput id="provinCodCCAA" type="text"  maxlength="2" placeholder="01" [(ngModel)]="provinCodCCAA">
           </mat-form-field>
 
-          <button type="button" mat-fab style="margin-left: 5px;" aria-label="Generar Provincias" (click)="onClickBotonGeneraProvincias()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar Provincias" (click)="onClickBotonGeneraProvincias()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
@@ -144,15 +144,15 @@
 
             <!-- Acciones, y paginador -->
             <div style="float: left;">
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarProvincias()"
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarProvincias()"
                 matTooltip="Pulsar para limpiar el provincias" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosProvincia()"
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosProvincia()"
                 matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
                 <mat-icon>cleaning_services</mat-icon>
               </button>
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonProvincias()"
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonProvincias()"
                 matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
@@ -181,7 +181,7 @@
             <input matInput id="muniCodProvin" type="text"  maxlength="2" placeholder="04" [(ngModel)]="muniCodProvin">
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar Municipios" (click)="onClickBotonGeneraMunicipios()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar Municipios" (click)="onClickBotonGeneraMunicipios()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
@@ -230,15 +230,15 @@
 
             <!-- Acciones, y paginador -->
             <div style="float: left;">
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarMunicipios()"
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarMunicipios()"
                 matTooltip="Pulsar para limpiar el municipios" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosMunicipio()"
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosMunicipio()"
                 matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
                 <mat-icon>cleaning_services</mat-icon>
               </button>
-              <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonMunicipios()"
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonMunicipios()"
                 matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
@@ -311,7 +311,7 @@
             <mat-button-toggle value="c">Camel case</mat-button-toggle>
           </mat-button-toggle-group>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar domicilios" (click)="onClickBotonGeneraDomicilios()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar domicilios" (click)="onClickBotonGeneraDomicilios()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
@@ -374,15 +374,15 @@
 
           <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
           <div style="float: left;margin-top:5px;">
-            <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDomicilios()"
+            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDomicilios()"
               matTooltip="Pulsar para limpiar las direcciones" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
-            <button type="button" mat-fab style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosDomicilios()"
+            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosDomicilios()"
               matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
               <mat-icon>cleaning_services</mat-icon>
             </button>
-            <button type="button" mat-fab style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonDomicilios()"
+            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonDomicilios()"
               matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
               <mat-icon>description</mat-icon>
             </button>

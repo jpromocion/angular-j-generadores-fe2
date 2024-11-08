@@ -32,12 +32,12 @@
           <span *ngIf="codifica64Entrada && codifica64Entrada == 'archivo' && nombreArchivoBase64 != ''">{{nombreArchivoBase64}}</span>
 
           <div>
-            <button type="button"  mat-fab aria-label="Codificar base64" (click)="onClickBotonCodificarBase64()"
+            <button type="button"  mat-fab class="botonRotatorio" aria-label="Codificar base64" (click)="onClickBotonCodificarBase64()"
               matTooltip="Pulsar para codificar" matTooltipPosition="below">
               <mat-icon>code</mat-icon>
             </button>
 
-            <button type="button" *ngIf="textoCodificadoBase64" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarBase64()"
+            <button type="button" *ngIf="textoCodificadoBase64" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarBase64()"
               matTooltip="Pulsar para limpiar codificado" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
@@ -76,12 +76,12 @@
           </mat-form-field>
 
           <div>
-            <button type="button"  mat-fab aria-label="Decodificar base64" (click)="onClickBotonDecodificarBase64()"
+            <button type="button"  mat-fab class="botonRotatorio" aria-label="Decodificar base64" (click)="onClickBotonDecodificarBase64()"
               matTooltip="Pulsar para decodificar" matTooltipPosition="below">
               <mat-icon>code</mat-icon>
             </button>
 
-            <button type="button" *ngIf="textoDecodificadoBase64" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarDecoBase64()"
+            <button type="button" *ngIf="textoDecodificadoBase64" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarDecoBase64()"
               matTooltip="Pulsar para limpiar decodificado" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
@@ -119,12 +119,12 @@
           <span *ngIf="nombreArchivoHash != ''">{{nombreArchivoHash}}</span>
 
           <div>
-            <button type="button"  mat-fab aria-label="Obtener hash" (click)="onClickBotonHash()"
+            <button type="button"  mat-fab class="botonRotatorio" aria-label="Obtener hash" (click)="onClickBotonHash()"
               matTooltip="Pulsar para obtener hash" matTooltipPosition="below">
               <mat-icon>code</mat-icon>
             </button>
 
-            <button type="button" *ngIf="textoHash" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarHash()"
+            <button type="button" *ngIf="textoHash" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarHash()"
               matTooltip="Pulsar para limpiar hash" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
@@ -151,7 +151,7 @@
           <span *ngIf="nombreArchivosZip != ''">{{nombreArchivosZip}}</span>
 
           <div>
-            <button type="button"  mat-fab aria-label="Generar zip" (click)="onClickBotonZip()"
+            <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar zip" (click)="onClickBotonZip()"
               matTooltip="Pulsar para generar zip" matTooltipPosition="below">
               <mat-icon>refresh</mat-icon>
             </button>

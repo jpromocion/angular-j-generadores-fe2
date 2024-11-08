@@ -1,0 +1,30 @@
+
+//Buscamos que los enlaces del about, tengan un efecto de fondo sobre un gradiente que va cambiando de color
+a{
+  position: relative; //es lo que hace que el gradiente se fije solo al enlace
+  padding: 5px 5px;
+  color: white; //por defecto en enlace la letra es un rosa... se confunde con los colores del gradiente
+}
+//definimos un elemento detras (z-index: -1) del enlace que sera el gradiente en si
+//de contenido vacio, posicion absoluta para coger el tamaño del a
+a::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffabf3, #5b005b); //se define el gradiente linear y los colores por los que pasara
+  background-size: 800%;
+  border-radius: 10px;
+  filter: blur(8px); //filtro desenfoque
+  animation: glowing 20s linear infinite; //animacion que utiilizara, se creara
+}
+
+//animacion definda
+@keyframes glowing {
+  0% { background-position: 0 0; } //posicion inicial
+  50% { background-position: 400% 0; } //a mitad de animacion la posicion sera 400% para que se vea el cambio de color
+  100% { background-position: 0 0; } //al final de la animacion volvera a la posicion inicial
+}

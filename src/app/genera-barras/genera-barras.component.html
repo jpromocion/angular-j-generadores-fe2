@@ -50,12 +50,12 @@
               <mat-icon matSuffix matTooltip="Texto a fijar en parte inferior. Opcional.">help</mat-icon>
             </mat-form-field>
 
-            <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarQr()"
+            <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarQr()"
               matTooltip="Pulsar para generar" matTooltipPosition="below">
               <mat-icon>refresh</mat-icon>
             </button>
 
-            <button type="button" *ngIf="imagenQr != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarQr()"
+            <button type="button" *ngIf="imagenQr != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarQr()"
               matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
@@ -84,12 +84,12 @@
             </textarea>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarPdf147()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarPdf147()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="imagenPdf147 != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarPdf147()"
+          <button type="button" *ngIf="imagenPdf147 != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarPdf147()"
             matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -119,12 +119,12 @@
             <mat-icon matSuffix matTooltip="Código numérico de 13 dígitos comenzado por '0'.">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarEan()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarEan()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="imagenEan != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarEan()"
+          <button type="button" *ngIf="imagenEan != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarEan()"
             matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -152,12 +152,12 @@
             <mat-icon matSuffix matTooltip="Código alfanúmerico de máximo 80 carácteres.">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarCode128()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarCode128()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="imagenCode128 != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarCode128()"
+          <button type="button" *ngIf="imagenCode128 != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarCode128()"
             matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -186,12 +186,12 @@
             <mat-icon matSuffix matTooltip="Código numérico de 12 dígitos. Puedes omitir el último que es el dígito de control, y lo generará por debajo.">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarUpcA()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarUpcA()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="imagenUpcA != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarUpcA()"
+          <button type="button" *ngIf="imagenUpcA != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarUpcA()"
             matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -218,12 +218,12 @@
             <mat-icon matSuffix matTooltip="Código numérico de 8 dígitos.">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarUpcE()"
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar código" (click)="onClickBotonGenerarUpcE()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="imagenUpcE != ''" style="margin-left: 5px;"  mat-fab aria-label="Limpiar resultado" (click)="onClickLimpiarUpcE()"
+          <button type="button" *ngIf="imagenUpcE != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarUpcE()"
             matTooltip="Pulsar para limpiar código de barras" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
