@@ -24,7 +24,7 @@ import { Pascua } from '../core/models/pascua';
 @Component({
   selector: 'app-genera-fechas',
   standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
+  imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,MatDatepickerModule,MatNativeDateModule,
     NgxMatTimepickerModule],
   templateUrl: './genera-fechas.component.html',

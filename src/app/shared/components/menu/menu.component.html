@@ -17,7 +17,10 @@
         routerLinkActive
         [activated]="link.isActive"
       >
-      <mat-icon>{{ getIconoRuta(item.path || '')}}</mat-icon>
+      <!--NOTA: fijamos la clase tambien con una funcion, dado que buscamos rotar el icono solo del menu seleccionado
+        cambiado la clase asociada
+      -->
+      <mat-icon class="{{ getIconClass(item.path ?? '') }}">{{ getIconoRuta(item.path ?? '')}}</mat-icon>
         {{ item.title }}
       </a>
       }

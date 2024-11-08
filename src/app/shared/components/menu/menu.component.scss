@@ -54,3 +54,20 @@ mat-sidenav-content {
     padding: 8px;
   }
 }
+
+
+
+
+//Buscamos que el icono de cada opción de menú, se gire 45 grados cuando estemos
+//situados en la opcion correspondiente
+// -iconmenu: clase para asociar a todas las opciones con una transición de 0.5s al icono. necesario fijar el tiempo
+//    o lo haria inmeditamente y queda tosco.
+// -rotado: clase adicional a iconmenu solo para el icono de la opción actual que lo va a rotar 45º
+.iconmenu {
+  transition: all .5s;
+}
+
+.iconmenu.rotado {
+  transform: rotate(45deg);
+}
+

@@ -58,9 +58,25 @@ export class MenuComponent {
 
   constructor() {}
 
+  /**
+   *
+   * @param ruta Recuperar el icono que corresponde segun la página centra situada
+   * @returns
+   */
   getIconoRuta(ruta: string): string {
     const icono = this.iconosRuta.find(i => i.path === ruta);
     return icono ? icono.icon : '';
+  }
+
+  /**
+   * Recuperar la clase de icono que aplicar al icono asociado a la opcion de menu
+   * buscando hacer la rotacion del icono si la ruta esta activa
+   * @param ruta
+   * @returns
+   */
+  getIconClass(ruta: string): string {
+    const isActive = window.location.pathname.includes(ruta);
+    return isActive ? 'iconmenu rotado' : 'iconmenu';
   }
 
 }
