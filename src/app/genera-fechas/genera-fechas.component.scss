@@ -1,13 +1,13 @@
 .grid-layout{
   display: grid;
   grid-template-columns: auto auto;
-  margin: 10px;
+  gap: 5px;
 }
 
 .caja{
   width: auto;
   height: auto;
-  margin: 5px;
+  //margin: 5px;
 }
 
 .c5{
@@ -19,12 +19,12 @@
 .grid-layout-edad{
   display: grid;
   grid-template-columns: auto auto;
-  margin: 10px;
+  gap: 5px;
 }
 
 .grid-layout-pascua{
   display: grid;
   grid-template-columns: auto auto;
-  margin: 10px;
+  gap: 5px;
 }
 

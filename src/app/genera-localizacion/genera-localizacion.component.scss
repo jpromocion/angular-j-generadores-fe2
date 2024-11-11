@@ -1,14 +1,14 @@
 .grid-layout{
   display: grid;
   grid-template-columns: auto;
-  margin: 10px;
+  gap: 5px;
 }
 
 
 .caja{
   width: auto;
   height: auto;
-  margin: 5px;
+  //margin: 5px;
 }
 
 
