@@ -214,8 +214,13 @@
   //sombrear de negro la parte inferior para evitar cortes... no es necesario
   //mask-image: linear-gradient(black 80%, transparent);
   box-shadow: 0px 10px 10px #bb77fa;
+  //hacemos que la imagen este en gris... hasta que nos situemos sobre ella
+  filter: grayscale(100%);
 }
 
+.neon img:hover {
+  filter: grayscale(0%);
+}
 
 .neon:hover {
   background: #bb77fa;
