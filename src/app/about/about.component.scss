@@ -1,10 +1,7 @@
 
-.seccionCentrada{
-  justify-content: center;
-  text-align: center;
-}
 
 
+/** wrapperLogo: encerramos una estructura donde configuremos un tooltip personalizado por css */
 //wrapperLogo: encerramos una estructura donde configuremos un tooltip personalizado por css
 //que aparece por transiccion al situarnos sobre el campo mostrando el nombre de la red social
 //y haciendo cambiar el color del icono y del tooltip a un color semejante a la red social.
@@ -105,23 +102,23 @@
 
 
 
-.wrapperLogo .facebook:hover span,
-.wrapperLogo .facebook:hover .tooltip,
-.wrapperLogo .facebook:hover .tooltip:before {
-    background: #3B5999;
-}
+// .wrapperLogo .facebook:hover span,
+// .wrapperLogo .facebook:hover .tooltip,
+// .wrapperLogo .facebook:hover .tooltip:before {
+//     background: #3B5999;
+// }
 
-.wrapperLogo .twitter:hover span,
-.wrapperLogo .twitter:hover .tooltip,
-.wrapperLogo .twitter:hover .tooltip:before {
-    background: #46C1F6;
-}
+// .wrapperLogo .twitter:hover span,
+// .wrapperLogo .twitter:hover .tooltip,
+// .wrapperLogo .twitter:hover .tooltip:before {
+//     background: #46C1F6;
+// }
 
-.wrapperLogo .instagram:hover span,
-.wrapperLogo .instagram:hover .tooltip,
-.wrapperLogo .instagram:hover .tooltip:before {
-    background: #e1306c;
-}
+// .wrapperLogo .instagram:hover span,
+// .wrapperLogo .instagram:hover .tooltip,
+// .wrapperLogo .instagram:hover .tooltip:before {
+//     background: #e1306c;
+// }
 
 .wrapperLogo .github:hover span,
 .wrapperLogo .github:hover .tooltip,
@@ -129,11 +126,11 @@
     background: #333;
 }
 
-.wrapperLogo .youtube:hover span,
-.wrapperLogo .youtube:hover .tooltip,
-.wrapperLogo .youtube:hover .tooltip:before {
-    background: #DE463B;
-}
+// .wrapperLogo .youtube:hover span,
+// .wrapperLogo .youtube:hover .tooltip,
+// .wrapperLogo .youtube:hover .tooltip:before {
+//     background: #DE463B;
+// }
 
 .wrapperLogo .linkedin:hover span,
 .wrapperLogo .linkedin:hover .tooltip,
@@ -147,14 +144,13 @@
     background: rgb(214, 213, 213);
 }
 
+/** FIN wrapperLogo: encerramos una estructura donde configuremos un tooltip personalizado por css */
 
 
 
 
 
-
-
-//efectoCircular: Buscamos que los enlaces del about, tengan un efecto de fondo sobre un gradiente que va cambiando de color
+/** efectoCircular: Buscamos que los enlaces del about, tengan un efecto de fondo sobre un gradiente que va cambiando de color */
 .efectoCircular a{
   position: relative; //es lo que hace que el gradiente se fije solo al enlace
   padding: 5px 5px;
@@ -183,6 +179,7 @@
   50% { background-position: 400% 0; } //a mitad de animacion la posicion sera 400% para que se vea el cambio de color
   100% { background-position: 0 0; } //al final de la animacion volvera a la posicion inicial
 }
+/** FIN efectoCircular: Buscamos que los enlaces del about, tengan un efecto de fondo sobre un gradiente que va cambiando de color */
 
 
 
@@ -192,9 +189,7 @@
 
 
 
-
-
-//neon: efecto de neon en el icoino central de futurama
+/** neon: efecto de neon en el icoino central de futurama */
 .neon {
   position: relative;
   display: inline-block;
@@ -234,14 +229,13 @@
   -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
-/* Esto seriqa si tuivieras varios elementos y quisieras ir cambiadno el color del neon en cada uno de ellos rotativamente
-.neon:nth-child(1) {
-  filter: hue-rotate(270deg);
-}
-.neon:nth-child(2) {
-  filter: hue-rotate(110deg);
-}
-*/
+// Esto seriqa si tuivieras varios elementos y quisieras ir cambiadno el color del neon en cada uno de ellos rotativamente
+// .neon:nth-child(1) {
+//   filter: hue-rotate(270deg);
+// }
+// .neon:nth-child(2) {
+//   filter: hue-rotate(110deg);
+// }
 
 
 //permite definir 4 lineas formando un cuadrado alrededor que tendrán una transicion de linea dinamica
@@ -329,3 +323,216 @@ a span:nth-child(4) {
   }
 }
 */
+/** FIN neon: efecto de neon en el icoino central de futurama */
+
+
+
+/** COMPARTIR REDES SOCIALES COMBO APERTURA GLOW */
+.card-social-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.card-social-share-btn {
+  position: absolute;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  //background-color: #fff;
+  background-color: black;
+  //color: black;
+  color: white;
+  //border: 1px solid rgba(128, 128, 128, 0.705);
+  border-radius: 50%;
+  transition: .2s ease-in-out;
+  scale: .8;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 10px 10px #bb77fa;
+}
+
+
+.card-social-share-btn:hover {
+  background: #f1f1f1;
+  scale: .9;
+}
+
+.card-social-up {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.card-social-down {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.card-social-card1 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  //background: white;
+  background: rgb(218, 218, 218);
+  border-radius: 90px 5px 5px 5px;
+  //box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: #bb77fa 0px 2px 5px -1px, #bb77fa 0px 1px 3px -1px;
+  transition: 300ms cubic-bezier(0.73, -0.18, 0.02, 1.46);
+}
+
+// .card-social-instagram {
+//   margin-top: 1.5em;
+//   margin-left: 1.2em;
+//   fill: #cc39a4;
+// }
+.card-social-linkedin {
+  margin-top: 1.5em;
+  margin-left: 1.2em;
+  fill: #0e76a8;
+}
+
+.card-social-card2 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  //background: white;
+  background: rgb(218, 218, 218);
+  border-radius: 5px 90px 5px 5px;
+  //box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: #bb77fa 0px 2px 5px -1px, #bb77fa 0px 1px 3px -1px;
+  transition: 300ms cubic-bezier(0.76, -0.19, 0.15, 1.17);
+}
+
+
+.card-social-github {
+  // margin-top: -.6em;
+  // margin-left: 1.2em;
+  margin-top: 1.5em;
+  margin-left: -.9em;
+}
+
+
+.card-social-card3 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  //background: white;
+  background: rgb(218, 218, 218);
+  border-radius: 5px 5px 5px 90px;
+  //box-shadow:rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: #bb77fa 0px 2px 5px -1px, #bb77fa 0px 1px 3px -1px;
+  transition: 300ms cubic-bezier(0.72,-0.26, 0.02, 1.46);
+}
+
+// .card-social-twitter {
+//   // margin-top: 1.5em;
+//   // margin-left: -.9em;
+//   margin-top: -.6em;
+//   margin-left: 1.2em;
+//   fill: #03A9F4;
+// }
+.card-social-email {
+  margin-top: -.6em;
+  margin-left: 1.2em;
+}
+
+.card-social-card4 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  //background: white;
+  background: rgb(218, 218, 218);
+  border-radius: 5px 5px 90px 5px;
+  //box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: #bb77fa 0px 2px 5px -1px, #bb77fa 0px 1px 3px -1px;
+  transition: 300ms cubic-bezier(1, -0.31, 0.02, 1.46);
+
+}
+
+.card-social-discord {
+  margin-top: -.9em;
+  margin-left: -1.2em;
+  fill: #8c9eff;
+}
+
+.card-social-card1[data-toggle1="true"] {
+  transform: translateY(50px) translateX(60px) scale(0);
+}
+
+.card-social-card2[data-toggle2="true"] {
+  transform: translateY(50px) translateX(-60px) scale(0);
+}
+
+.card-social-card3[data-toggle3="true"] {
+  transform: translateY(-50px) translateX(60px) scale(0);
+}
+
+.card-social-card4[data-toggle4="true"] {
+  transform: translateY(-50px) translateX(-60px) scale(0);
+}
+
+
+.card-social-card1:hover {
+  cursor: pointer;
+  scale: 1.1;
+  //background-color: #cc39a4;
+  background-color: #0e76a8;
+}
+
+// .card-social-card1:hover .card-social-instagram {
+//   fill: white;
+// }
+.card-social-card1:hover .card-social-linkedin {
+  fill: white;
+}
+
+.card-social-card2:hover {
+  cursor: pointer;
+  scale: 1.1;
+  //background-color: #03A9F4;
+  background-color: rgb(39, 39, 39);
+}
+
+// .card-social-card2:hover .card-social-twitter {
+//   fill: white;
+// }
+.card-social-card2:hover .card-social-email {
+  fill: white;
+}
+
+.card-social-card3:hover {
+  cursor: pointer;
+  scale: 1.1;
+  //background-color: #03A9F4;
+  background-color: rgb(167, 167, 167);
+}
+
+.card-social-card3:hover .card-social-github {
+  fill: white;
+}
+
+.card-social-card4:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #8c9eff;
+}
+
+.card-social-card4:hover .card-social-discord {
+  fill: white;
+}
+
+/** FIN COMPARTIR REDES SOCIALES COMBO APERTURA GLOW */
