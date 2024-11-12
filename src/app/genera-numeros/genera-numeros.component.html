@@ -22,7 +22,7 @@
     <div class="caja c1">
       <mat-card appearance="outlined">
         <mat-card-header>Número aleatorio</mat-card-header>
-        <mat-card-content>
+        <mat-card-content >
 
           <mat-form-field style="width: 250px !important;margin-left: 5px;">
             <mat-label>Mínimo</mat-label>
@@ -75,9 +75,9 @@
     </div>
 
     <div class="caja c2">
-      <mat-card appearance="outlined">
+      <mat-card appearance="outlined" class="caja-fondo-moneda">
         <mat-card-header>Moneda</mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="caja-desenfocada">
 
           <mat-form-field style="width: 80px !important;margin-left: 5px;">
             <mat-label>Cara</mat-label>
@@ -124,9 +124,9 @@
     </div>
 
     <div class="caja c3">
-      <mat-card appearance="outlined">
+      <mat-card appearance="outlined" class="caja-fondo-dados">
         <mat-card-header>Dado</mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="caja-desenfocada">
 
           <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar lanzamientos de dado" (click)="onClickBotonGenerarDado()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
@@ -216,7 +216,7 @@
 
           <div class="grid-layout-calculadora" >
             <div class="boton-calculadora pantalla">
-              <mat-form-field style="width: 300px !important;margin-left: 5px;">
+              <mat-form-field style="width: 300px !important;margin-left: 10px; margin-top: 10px;">
                 <mat-label>Pantalla</mat-label>
                 <input matInput id="calculadoraPantalla" type="text" [(ngModel)]="calculadoraPantalla" readonly="true" style="text-align: end;" (click)="onSelectDato(calculadoraPantalla)">
               </mat-form-field>
@@ -381,10 +381,11 @@
               <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('cosh')"
                 matTooltip="Coseno hiperbólico" matTooltipPosition="below">cosh</button>
             </div>
-            <div class="boton-calculadora">
+            <div class="boton-calculadora" style="margin-bottom: 10px;">
               <button mat-mini-fab type="button" style="margin-left: 5px;" (click)="onClickBotonCalculadora('tanh')"
                 matTooltip="Tangente hiperbólica" matTooltipPosition="below">tanh</button>
             </div>
+
 
           </div>
 

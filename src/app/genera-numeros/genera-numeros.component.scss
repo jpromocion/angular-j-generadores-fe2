@@ -1,3 +1,19 @@
+
+
+.caja-fondo-dados{
+  background: url("/fondo_dados.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+.caja-fondo-moneda{
+  background: url("/moneda.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
 .grid-layout{
   display: grid;
   grid-template-columns: auto auto;

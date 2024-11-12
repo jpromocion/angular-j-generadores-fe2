@@ -257,3 +257,8 @@ mat-header-cell {
   justify-content: center;
   text-align: center;
 }
+
+//Mostrar un elemento desenfocando la imagen de fndo que tiene el elemento padre contenedor
+.caja-desenfocada{
+  backdrop-filter: blur(15px);
+}
