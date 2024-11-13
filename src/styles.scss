@@ -262,3 +262,28 @@ mat-header-cell {
 .caja-desenfocada{
   backdrop-filter: blur(15px);
 }
+
+
+//Simula la transicion angular de "entradaLateralAnimation" definida en el base-genera.component.ts
+//pero con CSS puro, en aquellos lugares donde no se puede utilizar ngIf, sino [hidden], el item
+//no se quita del DOM como hace ngIf, sigue con la visibilidada cambiada, por ello aplicamos
+//esta clase css en vez de la animación de angular.
+// Referencia: https://stackoverflow.com/questions/65792976/make-a-transition-with-a-hidden-element
+//Pero: si el emento al entrar es oculto... pasa que al entrar se ve la animacion quitandolo... mmmm
+//not good
+//NOTA: Finalmente esto era para las tablas de perfiles... y si funcionan *ngIf!!! no se porque se
+//puso hidden... yo creo que estaria mal la comprnacion de los *ngIf y por eso pense que no funcionaba
+//en su momento. De todas formas dejo esto aqui para saber de otra forma de transicionar por css
+.entradaLateralAnimationCSS {
+  transition: transform 1s, opacity 1s ease-in-out;
+}
+.entradaLateralAnimationCSS[hidden] {
+  display: block;
+  visibility: visible;
+  transform: translateX(100%);
+  opacity: 0;
+}
+.entradaLateralAnimationCSS:not([hidden]) {
+  transform: translateX(0);
+  opacity: 1;
+}

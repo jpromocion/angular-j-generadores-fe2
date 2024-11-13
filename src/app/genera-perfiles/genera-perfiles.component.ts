@@ -15,6 +15,7 @@ import {Sort} from '@angular/material/sort';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {CdkDragDrop,CdkDrag, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef } from '@angular/core';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
@@ -443,6 +444,12 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   //inyeccion de dependencia para utilizar el servicio de generacion de datos bancarios
   private profilesService: ProfilesService = inject(ProfilesService);
 
+  //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+  // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+  // se vean actualizados.
+  changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+
 
   constructor() {
     super();
@@ -452,21 +459,32 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     console.log("prueba");
   }
 
+  inicializarPaginadoresSortsPersonas(): void {
+    this.inicializarLabelsPaginador(this.paginatorPersonas);
+    this.listaPersonasGeneradas.paginator = this.paginatorPersonas;
+    this.listaPersonasGeneradas.sort = this.sortPersonas;
+  }
+
+  inicializarPaginadoresSortsEmpresas(): void {
+    this.inicializarLabelsPaginador(this.paginatorEmpresas);
+    this.listaEmpresasGeneradas.paginator = this.paginatorEmpresas;
+    this.listaEmpresasGeneradas.sort = this.sortEmpresas;
+  }
+
+  inicializarPaginadoresSortsTablas(): void {
+    this.inicializarPaginadoresSortsPersonas();
+
+    this.inicializarPaginadoresSortsEmpresas();
+
+  }
+
 
   ngAfterViewInit() {
-    //this.inicializarLabelsPaginador(this.paginatorPagina.toArray()[0]);
-    this.inicializarLabelsPaginador(this.paginatorPersonas);
-    //this.inicializarLabelsPaginador(this.paginatorPagina.toArray()[1]);
-    this.inicializarLabelsPaginador(this.paginatorEmpresas);
+    //con el hidden valia con inializar todas aqui... pero con el ngIf es necesario
+    //incilizar cada elemento cuando se genera la tabla, dado que ngIf saca/mete del DOM
+    //los objetos.
+    this.inicializarPaginadoresSortsTablas();
 
-    //ASiociar el paginador. por defecto aqui, pero en nuestro caso deberemos hacerlo tambien donde obtenemos los datos
-    //this.listaPersonasGeneradas.paginator = this.paginatorPagina.toArray()[0];
-    this.listaPersonasGeneradas.paginator = this.paginatorPersonas;
-    //this.listaEmpresasGeneradas.paginator = this.paginatorPagina.toArray()[1];
-    this.listaEmpresasGeneradas.paginator = this.paginatorEmpresas;
-
-    this.listaPersonasGeneradas.sort = this.sortPersonas;
-    this.listaEmpresasGeneradas.sort = this.sortEmpresas;
   }
 
 
@@ -494,11 +512,23 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     } else {
       this.profilesService.getPerson(resultados, sexoparam)
       .subscribe(personas => {
-        this.listaPersonasGeneradas.data = personas;
+        //this.listaPersonasGeneradas.data = personas;
+        this.listaPersonasGeneradas = new MatTableDataSource(personas);
         this.listaPersonasGeneradasOriginal = personas;
-        //this.listaPersonasGeneradas.paginator = this.paginatorPagina.toArray()[0];
-        this.listaPersonasGeneradas.paginator = this.paginatorPersonas;
-        this.listaPersonasGeneradas.sort = this.sortPersonas;
+
+        //cuando se utilizaba hidden para ocultar la tabla, el paginator y sort funcionan
+        //sin problema.
+        //Al cambiar a ngIf... esta directiva quita/pone en el DOM el objeto, y el paginator y sort
+        //dejan de funcionar.
+        //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+        // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+        // se vean actualizados.
+        this.changeDetectorRef.detectChanges();
+
+        // this.listaPersonasGeneradas.paginator = this.paginatorPersonas;
+        // this.listaPersonasGeneradas.sort = this.sortPersonas;
+        //como quita/pone pom es necesario inicializarlo todo de nuevo
+        this.inicializarPaginadoresSortsPersonas();
         if (this.listaPersonasGeneradas && this.listaPersonasGeneradas.data.length > 0) {
           this.openSnackBar('Lista Personas generadas', 'GenerarPersonas');
         }
@@ -521,11 +551,23 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     } else {
       this.profilesService.getCompany(resultados)
       .subscribe(empresa => {
-          this.listaEmpresasGeneradas.data = empresa;
+          //this.listaEmpresasGeneradas.data = empresa;
+          this.listaEmpresasGeneradas = new MatTableDataSource(empresa);
           this.listaEmpresasGeneradasOriginal = empresa;
-          //this.listaEmpresasGeneradas.paginator = this.paginatorPagina.toArray()[1];
-          this.listaEmpresasGeneradas.paginator = this.paginatorEmpresas;
-          this.listaEmpresasGeneradas.sort = this.sortEmpresas;
+
+          //cuando se utilizaba hidden para ocultar la tabla, el paginator y sort funcionan
+          //sin problema.
+          //Al cambiar a ngIf... esta directiva quita/pone en el DOM el objeto, y el paginator y sort
+          //dejan de funcionar.
+          //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+          // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+          // se vean actualizados.
+          this.changeDetectorRef.detectChanges();
+
+          // this.listaEmpresasGeneradas.paginator = this.paginatorEmpresas;
+          // this.listaEmpresasGeneradas.sort = this.sortEmpresas;
+          //como quita/pone pom es necesario inicializarlo todo de nuevo
+          this.inicializarPaginadoresSortsEmpresas();
           if (this.listaEmpresasGeneradas && this.listaEmpresasGeneradas.data.length > 0) {
             this.openSnackBar('Lista Empresas generadas', 'GenerarEmpresas');
           }

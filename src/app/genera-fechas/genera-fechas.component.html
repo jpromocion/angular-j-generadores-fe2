@@ -32,16 +32,20 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" mat-fab class="botonRotatorio" color="accent" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
+            *ngIf="textoGenerado?.length && textoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
             matTooltip="Pulsar para limpiar los tipos" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" mat-fab class="botonRotatorio" color="accent" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
+            *ngIf="textoGenerado?.length && textoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="textoGenerado?.length && textoGenerado.length > 0" >
             @for (texto of textoGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -92,14 +96,15 @@
               <mat-icon>calculate</mat-icon>
             </button>
 
-            <button type="button" *ngIf="edadRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarEdad()"
+            <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="edadRes"
+              style="margin-left: 5px;" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarEdad()"
               matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
 
           </div>
 
-          <div *ngIf="edadRes" style="margin-top: 5px;">
+          <div [@entradaLateralAnimation] *ngIf="edadRes" style="margin-top: 5px;">
             <div class="grid-layout-edad">
 
               <div class="caja">
@@ -262,12 +267,13 @@
             <mat-icon>calculate</mat-icon>
           </button>
 
-          <button type="button" *ngIf="difRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarDiferencia()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation] *ngIf="difRes"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDiferencia()"
             matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <div *ngIf="difRes" style="margin-top: 5px;">
+          <div [@entradaLateralAnimation] *ngIf="difRes" style="margin-top: 5px;">
             <div class="grid-layout-edad">
 
               <div class="caja">
@@ -389,15 +395,16 @@
               <mat-icon>calculate</mat-icon>
             </button>
 
-            <button type="button" *ngIf="diaSemanaRes != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarDiaSemana()"
+            <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation] *ngIf="diaSemanaRes != ''"
+              style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDiaSemana()"
               matTooltip="Pulsar para limpiar" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
 
           </div>
 
-          <div>
-            <mat-form-field style="width: 200px !important;margin-left: 5px;"  *ngIf="diaSemanaRes != ''">
+          <div >
+            <mat-form-field style="width: 200px !important;margin-left: 5px;" [@entradaLateralAnimation] *ngIf="diaSemanaRes != ''">
               <mat-label>Día semana</mat-label>
               <input matInput id="in_diaSemanaRes" type="text" [(ngModel)]="diaSemanaRes" readonly="true" (click)="onSelectDato(diaSemanaRes)">
             </mat-form-field>
@@ -483,12 +490,13 @@
             <mat-icon>calculate</mat-icon>
           </button>
 
-          <button type="button" *ngIf="fechaOperarRes && horaOperarRes != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarOperar()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation] *ngIf="fechaOperarRes && horaOperarRes != ''"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarOperar()"
             matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <div *ngIf="fechaOperarRes && horaOperarRes != ''">
+          <div [@entradaLateralAnimation] *ngIf="fechaOperarRes && horaOperarRes != ''">
             <mat-form-field>
               <mat-label>Fecha resultado</mat-label>
               <input matInput id="in_fechaOperarRes" [matDatepicker]="pickerFecOperarRes" [(ngModel)]="fechaOperarRes" readonly="true"
@@ -524,17 +532,19 @@
             <mat-icon matSuffix matTooltip="Tiempo UNIX UTC">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonUTCFecha()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonUTCFecha()"
             matTooltip="Pulsar para transformar" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
-          <button type="button" *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != '' && fechaUTCResTimUnix && horaUTCResTimUnix != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarUTCFecha()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
+            *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != '' && fechaUTCResTimUnix && horaUTCResTimUnix != ''"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarUTCFecha()"
             matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <div  *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != ''">
+          <div [@entradaLateralAnimation] *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != ''">
             <mat-form-field>
               <mat-label>Fecha local</mat-label>
               <input matInput id="in_fechaLocalResTimUnix" [matDatepicker]="pickerFecLocalResTimUnix" [(ngModel)]="fechaLocalResTimUnix" readonly="true"
@@ -553,7 +563,7 @@
 
           </div>
 
-          <div  *ngIf="fechaUTCResTimUnix && horaUTCResTimUnix != ''">
+          <div [@entradaLateralAnimation]  *ngIf="fechaUTCResTimUnix && horaUTCResTimUnix != ''">
             <mat-form-field>
               <mat-label>Fecha UTC</mat-label>
               <input matInput id="in_fechaUTCResTimUnix" [matDatepicker]="pickerFecUTCResTimUnix" [(ngModel)]="fechaUTCResTimUnix" readonly="true"
@@ -605,19 +615,20 @@
             </mat-form-field>
             <ngx-mat-timepicker color="accent" #pickerparamHoraLocal></ngx-mat-timepicker>
 
-            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonFechaUTC()"
+            <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonFechaUTC()"
               matTooltip="Pulsar para transformar" matTooltipPosition="below">
               <mat-icon>sync_alt</mat-icon>
             </button>
 
-            <button type="button" *ngIf="timeUnixRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarFechaUTC()"
+            <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
+              *ngIf="timeUnixRes" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarFechaUTC()"
               matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
 
           </div>
 
-          <div *ngIf="timeUnixRes">
+          <div [@entradaLateralAnimation] *ngIf="timeUnixRes">
             <button mat-flat-button id="btnResTimeUnix" type="button" (click)="onSelectDato(timeUnixRes.toString())"
             matTooltip="Pulsar para copiar" matTooltipPosition="below">
               <span class="unix">{{timeUnixRes}}</span>
@@ -639,17 +650,18 @@
             <input matInput id="pascuaParamEjercicio" type="number"  placeholder="2024" [(ngModel)]="pascuaParamEjercicio">
           </mat-form-field>
 
-          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Generar datos de pascua" (click)="onClickBotonGenerarPascua()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Generar datos de pascua" (click)="onClickBotonGenerarPascua()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="pascuaRes" style="margin-left: 5px;"  mat-fab class="botonRotatorio" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarPascua()"
+          <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
+            *ngIf="pascuaRes" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPascua()"
             matTooltip="Pulsar para limpiar la pascua" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <div *ngIf="pascuaRes" style="margin-top: 5px;">
+          <div [@entradaLateralAnimation] *ngIf="pascuaRes" style="margin-top: 5px;">
             <div class="grid-layout-pascua">
 
               <div class="caja">

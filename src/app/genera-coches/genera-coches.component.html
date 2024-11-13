@@ -29,16 +29,20 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation]
+            *ngIf="textoGenerado?.length && textoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
             matTooltip="Pulsar para limpiar los caracteres" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation]
+            *ngIf="textoGenerado?.length && textoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="textoGenerado?.length && textoGenerado.length > 0" >
             @for (texto of textoGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -70,18 +74,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="bastidorValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="bastidorValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="bastidorValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="bastidorValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>

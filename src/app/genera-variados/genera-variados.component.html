@@ -24,21 +24,23 @@
             </mat-select>
           </mat-form-field>
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="textoGenerado?.length && textoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
             matTooltip="Pulsar para limpiar los tipos" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="textoGenerado?.length && textoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="textoGenerado?.length && textoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="textoGenerado?.length && textoGenerado.length > 0">
             @for (texto of textoGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -73,16 +75,18 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarTelefono()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="tlfGenerado?.length && tlfGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTelefono()"
             matTooltip="Pulsar para limpiar los teléfonos" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="tlfGenerado?.length && tlfGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonTelefono()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="tlfGenerado?.length && tlfGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTelefono()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="tlfGenerado?.length && tlfGenerado.length > 0">
             @for (texto of tlfGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -121,16 +125,18 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarPassword()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="passGenerado?.length && passGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPassword()"
             matTooltip="Pulsar para limpiar los passwords" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="passGenerado?.length && passGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonPassword()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="passGenerado?.length && passGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonPassword()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="passGenerado?.length && passGenerado.length > 0">
             @for (texto of passGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -183,21 +189,23 @@
             <mat-icon matSuffix matTooltip="Opcional. Sufijo a añadir en todo código promocional en la forma 'sufix-'.">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarPromocionales()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar teléfono" (click)="onClickBotonGenerarPromocionales()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarPromocionales()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="promoGenerado?.length && promoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPromocionales()"
             matTooltip="Pulsar para limpiar los códigos promocionales" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="promoGenerado?.length && promoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonPromocionales()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="promoGenerado?.length && promoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonPromocionales()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="promoGenerado?.length && promoGenerado.length > 0">
             @for (texto of promoGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -233,16 +241,18 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarRefCatastral()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarRefCatastral()"
             matTooltip="Pulsar para limpiar las referencias" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonRefCatastral()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonRefCatastral()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="refCatasGeneradas?.length && refCatasGeneradas.length > 0">
             @for (texto of refCatasGeneradas; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -275,18 +285,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="refCatasValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="refCatasValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="refCatasValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="refCatasValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>
@@ -312,16 +318,18 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarCups()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarCups()"
             matTooltip="Pulsar para limpiar los CUPS" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonCups()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonCups()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="cupsGeneradas?.length && cupsGeneradas.length > 0">
             @for (texto of cupsGeneradas; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -354,18 +362,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="cupsValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="cupsValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="cupsValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="cupsValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>
@@ -388,18 +392,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="leiValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="leiValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="leiValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="leiValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>
@@ -422,18 +422,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="isinValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="isinValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="isinValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="isinValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>
@@ -455,18 +451,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="nssValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="nssValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="nssValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="nssValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>

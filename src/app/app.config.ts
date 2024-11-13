@@ -9,7 +9,9 @@ import {provideMomentDateAdapter} from '@angular/material-moment-adapter';
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
     //Par autilizar nuestra API rest: https://angular.dev/guide/http/setup
-    provideHttpClient(), provideAnimationsAsync(),
+    provideHttpClient(),
+    //Para utilizar las animaciones en los componentes angular
+    provideAnimationsAsync(),
     //Para la internacionalizacion de fechas formato español: DD/MM/YYYY
     //Y el provideMomentDateAdapter requerido para que el calendario muestre el Lunes
     //como primir dia al configura el locale para "es"

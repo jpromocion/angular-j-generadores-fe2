@@ -44,49 +44,55 @@
       </button>
     </div>
 
-    <div class="caja c5" *ngIf="personaGenerada || (listaPersonasGeneradasOriginal?.length && listaPersonasGeneradasOriginal.length > 0) || empresaGenerada || (listaEmpresasGeneradasOriginal?.length && listaEmpresasGeneradasOriginal.length > 0)" style="margin-top: 10px;">
+
+
+  </div>
+
+  <!--Grid par ael caso de la persona unica-->
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
+
+    <div class="caja cpDir" style="margin-top: 10px;">
       <div class="divBox">
-        <h3>Perfil generado</h3>
+        <h3>Persona generada</h3>
       </div>
     </div>
 
-    <!--Grid par ael caso de la persona unica-->
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>NIF: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nif)" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="nif">{{personaGenerada.nif}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>NIE: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nie)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="nie">{{personaGenerada.nie}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>NSS: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nss)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="nss">{{personaGenerada.nss}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Pasaporte: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.pasaporte)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="pasaporte">{{personaGenerada.pasaporte}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Sexo: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.genero))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="genero">{{ personaGenerada.genero | caseTransformer: tipoLetra }}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Fecha nacimiento (edad): </label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.fechaNacimiento)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -98,28 +104,28 @@
         </button>
     </div>
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Nombre: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombre))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="nombre">{{personaGenerada.nombre | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>1º Apellido: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.apellido1))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="nombre">{{personaGenerada.apellido1 | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>2º Apellido: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.apellido2))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="nombre">{{personaGenerada.apellido2 | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Nombre completo</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombreCompleto))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -128,28 +134,28 @@
     </div>
 
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Teléfono movil:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.telefonoMovil)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="telefono">{{personaGenerada.telefonoMovil}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Teléfono fijo:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.telefonoFijo)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="telefono">{{personaGenerada.telefonoFijo}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Login:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.login))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="login">{{personaGenerada.login | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Email:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.email))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -158,14 +164,14 @@
     </div>
 
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Password:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.password)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="password">{{personaGenerada.password}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>CCAA:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineCcaa)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -176,7 +182,7 @@
           <span class="ccaa">{{personaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Provincia:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineProvincia)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -187,7 +193,7 @@
           <span class="provincia">{{personaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Municipio:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineMunicipio)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -199,14 +205,14 @@
         </button>
     </div>
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Cod. Postal:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.codPostal)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="codigoPostal">{{personaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
-    <div class="caja cpDir" *ngIf="personaGenerada">
+    <div class="caja cpDir" >
       <label>Dirección:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -214,7 +220,7 @@
       </button>
     </div>
 
-    <div class="caja cpDir" *ngIf="personaGenerada">
+    <div class="caja cpDir" >
       <label>Dirección completa:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -222,7 +228,7 @@
       </button>
     </div>
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Ref. catastral:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -230,14 +236,14 @@
       </button>
     </div>
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>IBAN:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.iban)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="iban">{{personaGenerada.iban}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>BIC (SWIFT):</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.bic)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -245,28 +251,28 @@
       </button>
     </div>
 
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Num tarjeta:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.tarjetaCredito)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="tarjetaCredito">{{personaGenerada.tarjetaCredito}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Tipo tar.:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.tipoTarjeta))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="tipoTarjeta">{{personaGenerada.tipoTarjeta | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>Expiración:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.expiracionCredito)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="expiracionCredito">{{personaGenerada.expiracionCredito}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="personaGenerada">
+    <div class="caja" >
       <label>CVC:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.cvc)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -274,25 +280,32 @@
       </button>
     </div>
 
+  </div>
 
+  <!--Grid par ael caso de la empresa unica-->
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
 
+    <div class="caja cpDir" style="margin-top: 10px;">
+      <div class="divBox">
+        <h3>Persona generada</h3>
+      </div>
+    </div>
 
-    <!--Grid par ael caso de la empresa-->
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>CIF: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.cif)" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="cif">{{empresaGenerada.cif}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Razón social: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.nombre))" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="nombre">{{empresaGenerada.nombre | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Fecha constitución: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.fechaCreacion)" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -300,14 +313,14 @@
       </button>
     </div>
 
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>CNAE: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.cnae)" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="cnae">{{empresaGenerada.cnae}}</span>
       </button>
     </div>
-    <div class="caja cpDir" *ngIf="empresaGenerada">
+    <div class="caja cpDir" >
       <label>Actividad: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.actividad))" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -315,28 +328,28 @@
       </button>
     </div>
 
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Email: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.email))" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="email">{{empresaGenerada.email | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Pág. Web: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.paginaWeb))" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="web">{{empresaGenerada.paginaWeb | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Teléfono: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.telefono)" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="telefono">{{empresaGenerada.telefono}}</span>
       </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Fax: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.fax)" style="margin-left: 10px; "
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -344,7 +357,7 @@
       </button>
     </div>
 
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>CCAA:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineCcaa)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -355,7 +368,7 @@
           <span class="ccaa">{{empresaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Provincia:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineProvincia)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -366,7 +379,7 @@
           <span class="provincia">{{empresaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Municipio:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineMunicipio)" style="margin-left: 10px;"
         matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -378,14 +391,14 @@
         </button>
     </div>
 
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Cod. Postal:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.codPostal)" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
         <span class="codigoPostal">{{empresaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
-    <div class="caja cpDir" *ngIf="empresaGenerada">
+    <div class="caja cpDir" >
       <label>Dirección:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -393,7 +406,7 @@
       </button>
     </div>
 
-    <div class="caja cpDir" *ngIf="empresaGenerada">
+    <div class="caja cpDir" >
       <label>Dirección completa:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -401,7 +414,7 @@
       </button>
     </div>
 
-    <div class="caja" *ngIf="empresaGenerada">
+    <div class="caja" >
       <label>Ref. catastral:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"
       matTooltip="Pulsar para copiar" matTooltipPosition="below">
@@ -412,11 +425,27 @@
 
   </div>
 
-
-
   <!-- Personas cuando estamos generando una lista -->
-  <!--  *ngIf="personaGenerada || (listaPersonasGeneradasOriginal?.length && listaPersonasGeneradasOriginal.length > 0)" -->
-  <div [hidden]="!((listaPersonasGeneradasOriginal.length && listaPersonasGeneradasOriginal.length > 0))">
+  <!--  Porque utilizar [hidden] en vez de ngIf: hidden oculta los elementos pero en el DOM estan siempre, ngIf los elimina del DOM.
+      -Si uitilizamos ngIf -> dejan de funcionar MatSort y MatPaginator
+      -Con [hidden] en vez, es un workaround para que funcione MatSort y MatPaginator sin problemas.
+    https://stackoverflow.com/questions/56028775/mat-paginator-breaks-when-mat-table-is-inside-of-ngif
+    https://stackoverflow.com/questions/64065278/material-pagination-does-not-work-when-inside-ngif/64077319
+    Ahora bien con [hidden] las animaciones de entrada y salida no funcionan ([@entradaLateralAnimation]), porque no sale/entra del DOM.
+    1) Utilizar [hidden] con animaciones css. Bien... pero tiene un problema, que al entrar a la pagina se ve como desaparecen las tablas vacias...
+        class="entradaLateralAnimationCSS" [hidden]="!((listaPersonasGeneradasOriginal.length && listaPersonasGeneradasOriginal.length > 0))"
+    2) https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+      Utilizar en ts el ChangeDetectorRef cada vez que se genera la tabla de nuevo, para forzar la actualizacion correcta de los elementos.
+      Debera re-inicilizarse el paginador y el sort siempre.
+    -> utilizamos la segunda
+  -->
+  <div [@entradaLateralAnimation] *ngIf="listaPersonasGeneradasOriginal.length && listaPersonasGeneradasOriginal.length > 0" >
+    <div style="margin-top: 10px;">
+      <div class="divBox">
+        <h3>Personas generadas</h3>
+      </div>
+    </div>
+
     <div class="table-responsive">
       <table mat-table #sortPersonas="matSort" [dataSource]="listaPersonasGeneradas"
         matSort  (matSortChange)="sortDataPersonas($event)"
@@ -836,7 +865,13 @@
 
 
    <!-- Empresas cuando estamos generando una lista -->
-   <div [hidden]="!((listaEmpresasGeneradasOriginal.length && listaEmpresasGeneradasOriginal.length > 0))">
+   <div [@entradaLateralAnimation] *ngIf="listaEmpresasGeneradasOriginal.length && listaEmpresasGeneradasOriginal.length > 0" >
+    <div style="margin-top: 10px;">
+      <div class="divBox">
+        <h3>Empresas generadas</h3>
+      </div>
+    </div>
+
     <div class="table-responsive">
       <table mat-table #sortEmpresas="matSort" [dataSource]="listaEmpresasGeneradas"
         matSort  (matSortChange)="sortDataEmpresas($event)"

@@ -47,16 +47,18 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="aleatorioGenerado?.length && aleatorioGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarAleatorios()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="aleatorioGenerado?.length && aleatorioGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarAleatorios()"
             matTooltip="Pulsar para limpiar los números aleatorios" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="aleatorioGenerado?.length && aleatorioGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonAleatorios()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="aleatorioGenerado?.length && aleatorioGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonAleatorios()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="aleatorioGenerado?.length && aleatorioGenerado.length > 0">
             @for (texto of aleatorioGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -96,16 +98,18 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="monedaGenerado?.length && monedaGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarMoneda()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="monedaGenerado?.length && monedaGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarMoneda()"
             matTooltip="Pulsar para limpiar los lanzamientos de moneda" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="monedaGenerado?.length && monedaGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonMoneda()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="monedaGenerado?.length && monedaGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonMoneda()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="monedaGenerado?.length && monedaGenerado.length > 0" >
             @for (texto of monedaGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -133,16 +137,18 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button id="btGenerarDado" type="button" *ngIf="dadoGenerado?.length && dadoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarDado()"
+          <button id="btGenerarDado" type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="dadoGenerado?.length && dadoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDado()"
             matTooltip="Pulsar para limpiar los lanzamientos de dado" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="dadoGenerado?.length && dadoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonDado()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="dadoGenerado?.length && dadoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonDado()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="dadoGenerado?.length && dadoGenerado.length > 0" >
             @for (texto of dadoGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -177,21 +183,23 @@
             <mat-icon matSuffix matTooltip="Desviación estándar (σ) es una medida de la dispersión o variabilidad de los valores alrededor de la media (μ) de la distribución. Indica cuánto se desvían los valores generados de la media, y una desviación estándar mayor implica una mayor dispersión de los datos, mientras que una desviación estándar menor implica que los valores están más agrupados cerca de la media.">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar aleatorio Gaussiano" (click)="onClickBotonGenerarGaussiano()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar aleatorio Gaussiano" (click)="onClickBotonGenerarGaussiano()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <button type="button" *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarGaussiano()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarGaussiano()"
             matTooltip="Pulsar para limpiar los números aleatorios Gaussiano" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonGaussiano()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonGaussiano()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0" >
             @for (texto of gaussianoGenerado; track texto) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -426,12 +434,13 @@
             <mat-icon>calculate</mat-icon>
           </button>
 
-          <button type="button" *ngIf="proporcionResultado != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarProporcion()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="proporcionResultado != ''"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarProporcion()"
             matTooltip="Pulsar para limpiar proporción calculada" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <div>
+          <div [@entradaLateralAnimation] *ngIf="proporcionResultado != ''">
             <mat-form-field style="width: 150px !important;margin-left: 5px;">
               <mat-label>X</mat-label>
               <input matInput id="proporcionResultado" type="text" [(ngModel)]="proporcionResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(proporcionResultado)">
@@ -456,36 +465,38 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field style="width: 250px !important;margin-left: 5px;" *ngIf="areaSelectedTipo != ''">
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" [@encogimientoAnimation] *ngIf="areaSelectedTipo != ''">
             <mat-label>{{areaLabelA}}</mat-label>
             <input matInput id="areaA" type="number"  placeholder="0" [(ngModel)]="areaA">
             <mat-icon matSuffix matTooltip="Según cada forma implica un valor: 'cuadrado': Longitud de lado, 'rectangulo': Ancho, 'triangulo': Base, 'paralelogramo': Base, 'trapezoide': Base superior (corta/menor), 'circulo': Radio, 'elipse': Eje corto o menor (similar al radio en círculos)">help</mat-icon>
           </mat-form-field>
 
-          <mat-form-field style="width: 250px !important;margin-left: 5px;" *ngIf="areaSelectedTipo == 'rectangulo' || areaSelectedTipo == 'triangulo' || areaSelectedTipo == 'paralelogramo' || areaSelectedTipo == 'trapezoide' || areaSelectedTipo == 'elipse'">
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" [@encogimientoAnimation]
+            *ngIf="areaSelectedTipo == 'rectangulo' || areaSelectedTipo == 'triangulo' || areaSelectedTipo == 'paralelogramo' || areaSelectedTipo == 'trapezoide' || areaSelectedTipo == 'elipse'">
             <mat-label>{{areaLabelB}}</mat-label>
             <input matInput id="areaB" type="number"  placeholder="0" [(ngModel)]="areaB">
             <mat-icon matSuffix matTooltip="Según cada forma implica un valor: 'rectangulo': Alto, 'triangulo': Altura vertical, 'paralelogramo': Altura vertical, 'trapezoide': Base inferior (larga/mayor), 'elipse': Eje largo o mayor (similar al radio en círculos)">help</mat-icon>
           </mat-form-field>
 
-          <mat-form-field style="width: 250px !important;margin-left: 5px;" *ngIf="areaSelectedTipo == 'trapezoide'">
+          <mat-form-field style="width: 250px !important;margin-left: 5px;" [@encogimientoAnimation] *ngIf="areaSelectedTipo == 'trapezoide'">
             <mat-label>{{areaLabelC}}</mat-label>
             <input matInput id="areaC" type="number"  placeholder="0" [(ngModel)]="areaC">
             <mat-icon matSuffix matTooltip="Según cada forma implica un valor: 'trapezoide': Altura vertical">help</mat-icon>
           </mat-form-field>
 
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Calcular área" (click)="onClickBotonArea()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Calcular área" (click)="onClickBotonArea()"
             matTooltip="Pulsar para calcular" matTooltipPosition="below">
             <mat-icon>calculate</mat-icon>
           </button>
 
-          <button type="button" *ngIf="areaResultado != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarArea()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="areaResultado != ''"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarArea()"
             matTooltip="Pulsar para limpiar área calculada" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
-          <div>
+          <div [@entradaLateralAnimation] *ngIf="areaResultado != ''" >
             <mat-form-field style="width: 150px !important;margin-left: 5px;">
               <mat-label>Área</mat-label>
               <input matInput id="areaResultado" type="text" [(ngModel)]="areaResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(areaResultado)">
@@ -518,7 +529,8 @@
             <mat-icon>sync_alt</mat-icon>
           </button>
 
-          <button type="button" *ngIf="gradosResultado != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarGrados()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="gradosResultado != ''" style="margin-left: 5px;"
+            aria-label="Limpiar resultado" (click)="onClickLimpiarGrados()"
             matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -557,12 +569,13 @@
             <mat-icon matSuffix matTooltip="Base a la que convertir">help</mat-icon>
           </mat-form-field>
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión de base" (click)="onClickBotonBase()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión de base" (click)="onClickBotonBase()"
             matTooltip="Pulsar para convertir" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
-          <button type="button" *ngIf="baseResultado != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarBase()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="baseResultado != ''"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarBase()"
             matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
@@ -595,12 +608,13 @@
           </mat-button-toggle-group>
 
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión arábigo-romano" (click)="onClickBotonArabigo()"
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión arábigo-romano" (click)="onClickBotonArabigo()"
             matTooltip="Pulsar para convertir" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
-          <button type="button" *ngIf="arabigoResultado != ''" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarArabigo()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="arabigoResultado != ''"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarArabigo()"
             matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>

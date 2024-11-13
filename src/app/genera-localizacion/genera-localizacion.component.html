@@ -13,7 +13,10 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <div [hidden]="!((ccaaGeneradoOriginal.length && ccaaGeneradoOriginal.length > 0))">
+          <!--
+          [hidden]="!((ccaaGeneradoOriginal.length && ccaaGeneradoOriginal.length > 0))"
+          -->
+          <div [@entradaLateralAnimation] *ngIf="ccaaGeneradoOriginal && ccaaGeneradoOriginal.length && ccaaGeneradoOriginal.length > 0">
             <table mat-table #sortCcaaGenerado="matSort" [dataSource]="ccaaGenerado"
               matSort  (matSortChange)="announceSortChange($event)"
               cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsCCAA($event)">
@@ -99,7 +102,8 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <div [hidden]="!((provinGeneradoOriginal.length && provinGeneradoOriginal.length > 0))">
+          <!-- [hidden]="!((provinGeneradoOriginal.length && provinGeneradoOriginal.length > 0))" -->
+          <div [@entradaLateralAnimation] *ngIf="provinGeneradoOriginal && provinGeneradoOriginal.length && provinGeneradoOriginal.length > 0">
             <table mat-table #sortProvinGenerado="matSort" [dataSource]="provinGenerado"
               matSort  (matSortChange)="announceSortChange($event)"
               cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsProvincia($event)">
@@ -186,7 +190,8 @@
             <mat-icon>refresh</mat-icon>
           </button>
 
-          <div [hidden]="!((muniGeneradoOriginal.length && muniGeneradoOriginal.length > 0))">
+          <!-- [hidden]="!((muniGeneradoOriginal.length && muniGeneradoOriginal.length > 0))" -->
+          <div [@entradaLateralAnimation] *ngIf="muniGeneradoOriginal && muniGeneradoOriginal.length && muniGeneradoOriginal.length > 0" >
             <table mat-table #sortMuniGenerado="matSort" [dataSource]="muniGenerado"
               matSort  (matSortChange)="announceSortChange($event)"
               cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumnsMunicipio($event)">
@@ -317,7 +322,8 @@
           </button>
         </div>
 
-        <div [hidden]="!((direccionGeneradoOriginal.length && direccionGeneradoOriginal.length > 0))">
+        <!-- [hidden]="!((direccionGeneradoOriginal.length && direccionGeneradoOriginal.length > 0))" -->
+        <div [@entradaLateralAnimation] *ngIf="direccionGeneradoOriginal && direccionGeneradoOriginal.length && direccionGeneradoOriginal.length > 0">
           <div class="table-responsive">
             <table mat-table #sortDireccionGenerado="matSort" [dataSource]="direccionGenerado"
               matSort (matSortChange)="sortDataDirecciones($event)"

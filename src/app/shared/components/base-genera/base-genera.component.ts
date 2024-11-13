@@ -11,6 +11,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {Sort} from '@angular/material/sort';
 import { CaseTransformerPipe } from '../../pipes/case-transformer.pipe';
+import {trigger, state,  style,  animate,  transition} from '@angular/animations';
 
 @Component({
   selector: 'app-base-genera',
@@ -18,7 +19,42 @@ import { CaseTransformerPipe } from '../../pipes/case-transformer.pipe';
   imports: [CaseTransformerPipe],
   //templateUrl: './base-genera.component.html',
   //styleUrl: './base-genera.component.scss'
-  template: ''
+  template: '',
+  animations: [
+    trigger(
+      'entradaLateralAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('1s', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('1s', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    ),
+    trigger(
+      'encogimientoAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ height: '0', opacity: 0 }),
+            animate('1s ease-out',
+                    style({ height: '*', opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({ height: '*', opacity: 1 }),
+            animate('1s ease-in',
+                    style({ height: '0', opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ],
 })
 export class BaseGeneraComponent implements OnInit  {
 

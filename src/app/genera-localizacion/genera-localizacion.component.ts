@@ -18,6 +18,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import {Sort} from '@angular/material/sort';
 import {CdkDragDrop,CdkDrag, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef } from '@angular/core';
 import { MiscService } from '../core/services/misc.service';
 import { Ccaa } from '../core/models/ccaa';
 import { Provincia } from '../core/models/provincia';
@@ -252,6 +253,11 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   //inyeccion de dependencia para utilizar el servicio de generacion de miscelanea
   private miscService: MiscService = inject(MiscService);
 
+  //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+  // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+  // se vean actualizados.
+  changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+
   constructor() {
     super();
   }
@@ -261,23 +267,48 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
 
   }
 
-
-  ngAfterViewInit() {
+  inicializarPaginadoresSortsCcaa(): void {
     this.inicializarLabelsPaginador(this.paginatorCcaaGenerado);
     this.ccaaGenerado.paginator = this.paginatorCcaaGenerado;
     this.ccaaGenerado.sort = this.sortCcaaGenerado;
+  }
 
+  inicializarPaginadoresSortsProvincias(): void {
     this.inicializarLabelsPaginador(this.paginatorProvinGenerado);
     this.provinGenerado.paginator = this.paginatorProvinGenerado;
     this.provinGenerado.sort = this.sortProvinGenerado;
+  }
 
+  inicializarPaginadoresSortsMunicipios(): void {
     this.inicializarLabelsPaginador(this.paginatorMuniGenerado);
     this.muniGenerado.paginator = this.paginatorMuniGenerado;
     this.muniGenerado.sort = this.sortMuniGenerado;
+  }
 
+  inicializarPaginadoresSortsDirecciones(): void {
     this.inicializarLabelsPaginador(this.paginatorDireccionGenerado);
     this.direccionGenerado.paginator = this.paginatorDireccionGenerado;
     this.direccionGenerado.sort = this.sortDireccionGenerado;
+  }
+
+
+
+  inicializarPaginadoresSortsTablas(): void {
+    this.inicializarPaginadoresSortsCcaa();
+
+    this.inicializarPaginadoresSortsProvincias();
+
+    this.inicializarPaginadoresSortsMunicipios();
+
+    this.inicializarPaginadoresSortsDirecciones();
+  }
+
+
+  ngAfterViewInit() {
+    //con el hidden valia con inializar todas aqui... pero con el ngIf es necesario
+    //incilizar cada elemento cuando se genera la tabla, dado que ngIf saca/mete del DOM
+    //los objetos.
+    this.inicializarPaginadoresSortsTablas();
   }
 
 
@@ -296,10 +327,23 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     // });
     this.miscService.getCcaa()
     .subscribe(ccaa => {
-      this.ccaaGenerado.data = ccaa;
+      //this.ccaaGenerado.data = ccaa;
+      this.ccaaGenerado = new MatTableDataSource(ccaa);
       this.ccaaGeneradoOriginal = ccaa;
-      this.ccaaGenerado.paginator = this.paginatorCcaaGenerado;
-      this.ccaaGenerado.sort = this.sortCcaaGenerado;
+
+      //cuando se utilizaba hidden para ocultar la tabla, el paginator y sort funcionan
+      //sin problema.
+      //Al cambiar a ngIf... esta directiva quita/pone en el DOM el objeto, y el paginator y sort
+      //dejan de funcionar.
+      //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+      // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+      // se vean actualizados.
+      this.changeDetectorRef.detectChanges();
+
+      //this.ccaaGenerado.paginator = this.paginatorCcaaGenerado;
+      //this.ccaaGenerado.sort = this.sortCcaaGenerado;
+      //como quita/pone pom es necesario inicializarlo todo de nuevo
+      this.inicializarPaginadoresSortsCcaa();
       if (this.ccaaGenerado && this.ccaaGenerado.data.length > 0) {
         this.openSnackBar('Lista CCAA', 'GenerarCCAA');
       }
@@ -416,24 +460,32 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
    * Invocamos la operacion del servicio para obtener una lista de provicnias
    */
   getProvincias(idccaa: string): void {
-    // this.miscService.getProvincias(idccaa)
-    // .subscribe(provin => {
-    //   this.provinGenerado = provin;
-    //   if (this.provinGenerado && this.provinGenerado.length > 0) {
-    //     this.openSnackBar('Lista Provincias', 'GenerarProvincias');
-    //   }
-    // });
     this.miscService.getProvincias(idccaa)
     .subscribe(provin => {
-      this.provinGenerado.data = provin;
+      //this.provinGenerado.data = provin;
+      this.provinGenerado = new MatTableDataSource(provin);
       this.provinGeneradoOriginal = provin;
-      this.provinGenerado.paginator = this.paginatorProvinGenerado;
-      this.provinGenerado.sort = this.sortProvinGenerado;
+
+      //cuando se utilizaba hidden para ocultar la tabla, el paginator y sort funcionan
+      //sin problema.
+      //Al cambiar a ngIf... esta directiva quita/pone en el DOM el objeto, y el paginator y sort
+      //dejan de funcionar.
+      //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+      // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+      // se vean actualizados.
+      this.changeDetectorRef.detectChanges();
+
+      //this.provinGenerado.paginator = this.paginatorProvinGenerado;
+      //this.provinGenerado.sort = this.sortProvinGenerado;
+      //como quita/pone pom es necesario inicializarlo todo de nuevo
+      this.inicializarPaginadoresSortsProvincias();
       if (this.provinGenerado && this.provinGenerado.data.length > 0) {
         this.openSnackBar('Lista Provincias', 'GenerarProvincias');
       }
     });
   }
+
+
 
   /**
   * Generamos un tipo seleccionado aleatorio
@@ -562,15 +614,31 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     // });
     this.miscService.getMunicipios(idprovin)
     .subscribe(muni => {
-      this.muniGenerado.data = muni;
+      //this.muniGenerado.data = muni;
+      this.muniGenerado = new MatTableDataSource(muni);
       this.muniGeneradoOriginal = muni;
-      this.muniGenerado.paginator = this.paginatorMuniGenerado;
-      this.muniGenerado.sort = this.sortMuniGenerado;
+
+      //cuando se utilizaba hidden para ocultar la tabla, el paginator y sort funcionan
+      //sin problema.
+      //Al cambiar a ngIf... esta directiva quita/pone en el DOM el objeto, y el paginator y sort
+      //dejan de funcionar.
+      //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+      // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+      // se vean actualizados.
+      this.changeDetectorRef.detectChanges();
+
+      // this.muniGenerado.paginator = this.paginatorMuniGenerado;
+      // this.muniGenerado.sort = this.sortMuniGenerado;
+      //como quita/pone pom es necesario inicializarlo todo de nuevo
+      this.inicializarPaginadoresSortsMunicipios();
       if (this.muniGenerado && this.muniGenerado.data.length > 0) {
         this.openSnackBar('Lista Municipios', 'GenerarMunicipios');
       }
     });
   }
+
+
+
 
   /**
   * Generamos un tipo seleccionado aleatorio
@@ -692,10 +760,23 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.miscService.getAddress(resultados, ineccaa, ineprovincia, inemunicipio)
     .subscribe(direccion => {
       if (direccion){
-        this.direccionGenerado.data = direccion;
+        //this.direccionGenerado.data = direccion;
+        this.direccionGenerado = new MatTableDataSource(direccion);
         this.direccionGeneradoOriginal = direccion;
-        this.direccionGenerado.paginator = this.paginatorDireccionGenerado;
-        this.direccionGenerado.sort = this.sortDireccionGenerado;
+
+        //cuando se utilizaba hidden para ocultar la tabla, el paginator y sort funcionan
+        //sin problema.
+        //Al cambiar a ngIf... esta directiva quita/pone en el DOM el objeto, y el paginator y sort
+        //dejan de funcionar.
+        //Referencia: https://codehandbook.org/mat-paginator-not-working-inside-ngif/
+        // Se utiliza el ChangeDetectorRef para forzar la actualizacion del DOM y que el paginator y sort
+        // se vean actualizados.
+        this.changeDetectorRef.detectChanges();
+
+        // this.direccionGenerado.paginator = this.paginatorDireccionGenerado;
+        // this.direccionGenerado.sort = this.sortDireccionGenerado;
+      //como quita/pone pom es necesario inicializarlo todo de nuevo
+      this.inicializarPaginadoresSortsDirecciones();
         if (this.direccionGenerado && this.direccionGenerado.data.length > 0) {
           this.openSnackBar('Lista domicilios generados', 'GenerarDomicilios');
         }

@@ -18,9 +18,10 @@
 }
 
 
+//En este caso no fijamos un numero de columnas, dejamos que se auto fijen segun el tamaño disponible de la pantalla
 .grid-layout-gradiente{
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
 }
 

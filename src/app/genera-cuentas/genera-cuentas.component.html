@@ -21,15 +21,17 @@
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaIban?.length && listaIban.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar listas" (click)="onClickLimpiarListaIBAN()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaIban?.length && listaIban.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar listas" (click)="onClickLimpiarListaIBAN()"
             matTooltip="Pulsar para limpiar la lista de IBANs" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="listaIban?.length && listaIban.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonIban()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaIban?.length && listaIban.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonIban()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="listaIban?.length && listaIban.length > 0" >
             @for (iban of listaIban; track iban) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -65,15 +67,17 @@
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
-          <button type="button" *ngIf="listaTarjeta?.length && listaTarjeta.length > 0" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar listas" (click)="onClickLimpiarListaTarjetas()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaTarjeta?.length && listaTarjeta.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar listas" (click)="onClickLimpiarListaTarjetas()"
             matTooltip="Pulsar para limpiar la lista de Tarjetas" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
-          <button type="button" *ngIf="listaTarjeta?.length && listaTarjeta.length > 0" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonTarjetas()"
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaTarjeta?.length && listaTarjeta.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTarjetas()"
             matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
-          <mat-list>
+          <mat-list [@entradaLateralAnimation] *ngIf="listaTarjeta?.length && listaTarjeta.length > 0" >
             @for (tarjetaGenerado of listaTarjeta; track tarjetaGenerado) {
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
@@ -116,18 +120,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="ibanValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="ibanValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="ibanValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="ibanValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>
@@ -148,18 +148,14 @@
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
-              <div *ngIf="tarjetaValidarOk == 'OK'">
-                <button type="button" class="btn-success"
-                  matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
-                  <mat-icon>done_all</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="tarjetaValidarOk == 'ERROR'">
-                <button type="button" class="btn-danger"
-                  matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </div>
+              <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="tarjetaValidarOk == 'OK'"
+                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                <mat-icon>done_all</mat-icon>
+              </button>
+              <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="tarjetaValidarOk == 'ERROR'"
+                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
           </div>
         </mat-card-content>
