@@ -300,3 +300,11 @@ mat-header-cell {
   opacity: 1;
 }
 
+
+//mat-mdc-card: es la clase base de los card de angular material
+//le vanmos a aplicar un sombreado suave a todos los card de la aplicacion
+.mat-mdc-card{
+  //#ffabf3
+  box-shadow: 1px 1px 3px #5f00c0 !important; //Si se quisiera tambien por arriba er izquierda, -10px -10px 20px yellow;
+}
+
