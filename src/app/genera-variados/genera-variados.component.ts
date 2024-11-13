@@ -1,11 +1,10 @@
 import { Component, inject, OnInit} from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSelectModule} from '@angular/material/select';
@@ -18,7 +17,7 @@ import { MiscService } from '../core/services/misc.service';
 @Component({
   selector: 'app-genera-variados',
   standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
+  imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule],
   templateUrl: './genera-variados.component.html',
   styleUrl: './genera-variados.component.scss'
@@ -324,13 +323,27 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
    * Invocamos la operacion del servicio para obtener una lista de telefonos
    */
   getTelefono(resultados: number, tipo: string): void {
-    this.miscService.getPhonenumber(resultados, tipo)
-    .subscribe(cadena => {
-      this.tlfGenerado = cadena;
-      if (this.tlfGenerado && this.tlfGenerado.length > 0){
-        this.openSnackBar('Teléfonos generados', 'GenerarTelefono');
-      }
-    });
+
+    //metemos la pantalla bloqueando con el simbolo de carga -> utilizamos este de ejemplo
+    this.activarPantallaCarga();
+    //para probar que se ve la carga -> espera unos segundos
+    //setTimeout(() => {
+      // Continue with the rest of the code
+
+      this.miscService.getPhonenumber(resultados, tipo)
+      .subscribe(cadena => {
+
+        //independentiemente de que tengamos resultado o sea error, quitamos la pantalla de carga
+        this.desactivarPantallaCarga();
+
+        this.tlfGenerado = cadena;
+        if (this.tlfGenerado && this.tlfGenerado.length > 0){
+          this.openSnackBar('Teléfonos generados', 'GenerarTelefono');
+        }
+      });
+
+    //}, 3000);
+
   }
 
   /**

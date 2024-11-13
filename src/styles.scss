@@ -308,3 +308,84 @@ mat-header-cell {
   box-shadow: 1px 1px 3px #5f00c0 !important; //Si se quisiera tambien por arriba er izquierda, -10px -10px 20px yellow;
 }
 
+
+
+
+
+// Vamos a configurar una burbuja para poner en momentos de espera con un panal overlay por delante
+// que bloquee cualquier accion.... y en el centro una burbujita de colores todos monos
+// https://www.youtube.com/shorts/3ivC5HHGZo0
+// NOTA: en verdad solo lo utilizamos de ejemplo en Variados -> genrar telefono. Dado que aqui nos suscribimos
+// a la espera de respuesta del servicio rest, para que actualice automaticamente los objetos en el DOM por debajo...
+// y mientras poder seguir utilizando la pagina... ¿porq ibamos a querer una pantalla bloqueante de espoera?
+.blub-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+.blub {
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  z-index: 9999;
+}
+
+.blub .blub-1, .blub-2, .blub-3{
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 5px 5px rgba(0,0,0, 0.5);
+  opacity: 0.5;
+  transform: scale(.8);
+  animation: blub 1.5s ease-in-out infinite;
+}
+
+
+.blub .blub-1 {
+  background: #7d69db;
+  width: 150px;
+  height: 150px;
+}
+
+.blub .blub-2{
+  top: calc(15px);
+  left: calc(15px);
+  width: calc(120px);
+  height: calc(120px);
+  background: #4f34ce;
+  animation-delay: 0.2s;
+}
+
+.blub .blub-3{
+  top: calc(30px);
+  left: calc(30px);
+  width: calc(90px);
+  height: calc(90px);
+  background: #432bb3;
+  animation-delay: 0.4s;
+}
+
+@keyframes blub {
+  0% {
+    opacity:  0.5;
+    transform: scale(.8);
+    box-shadow: 0 2px 2px rgba(0,0,0, 0.1);
+  }
+  75% {
+    opacity:  1;
+    transform: scale(1);
+    box-shadow: 0 10px 15px rgba(0,0,0, 0.3);
+  }
+  100% {
+    opacity:  0.5;
+    transform: scale(.8);
+    box-shadow: 0 2px 2px rgba(0,0,0, 0.2);
+  }
+}

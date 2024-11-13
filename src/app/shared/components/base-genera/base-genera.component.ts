@@ -161,5 +161,33 @@ export class BaseGeneraComponent implements OnInit  {
   }
 
 
+  /**
+   * activa la pantalla de carga bloqueante
+   */
+  activarPantallaCarga(): void {
+    const cargando = document.getElementById('cargando');
+    const cargandoBurbuja = document.getElementById('cargando-burbuja');
+    if (cargando) {
+      cargando.classList.add('blub-overlay');
+    }
+    if (cargandoBurbuja){
+      cargandoBurbuja.classList.add('blub');
+    }
+  }
+
+  /**
+    * desactiva la pantalla de carga bloqueante
+   */
+  desactivarPantallaCarga(): void {
+    const cargando = document.getElementById('cargando');
+    const cargandoBurbuja = document.getElementById('cargando-burbuja');
+    if (cargando) {
+      cargando.classList.remove('blub-overlay');
+    }
+    if (cargandoBurbuja){
+      cargandoBurbuja.classList.remove('blub');
+    }
+
+  }
 
 }

@@ -1,3 +1,14 @@
 <app-menu>
   <router-outlet />
 </app-menu>
+
+<!-- Fijamos el div de la burbuja de carga con fondo bloqueantre para cuando se utilice
+  Afectara a toda la seccion que el menu ha cargado... no al menu
+ -->
+<div id="cargando" class="no-blub-overlay">
+  <div id="cargando-burbuja" class="no-blub">
+    <div class="blub-1"></div>
+    <div class="blub-2"></div>
+    <div class="blub-3"></div>
+  </div>
+</div>
