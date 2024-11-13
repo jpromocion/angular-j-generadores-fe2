@@ -252,6 +252,18 @@ mat-header-cell {
   }
 }
 
+
+//mat-mdc-button-base es la clase base de los botones de angular material.
+//Vamos a hacer que mientras se pulsa un boton, siempre se vea encogido de tamaño
+.mat-mdc-button-base{
+  transition: all 0.2s ease;
+}
+.mat-mdc-button-base:active{
+  transform: scale(0.9);
+}
+
+
+
 //Centrar contenido
 .seccionCentrada{
   justify-content: center;
@@ -287,3 +299,4 @@ mat-header-cell {
   transform: translateX(0);
   opacity: 1;
 }
+
