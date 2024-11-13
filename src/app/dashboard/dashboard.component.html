@@ -1,17 +1,21 @@
-<h2>Principal</h2>
 
 <div class="grid-container">
 
 
-    <!--EL item para rellenar el api-key con el que funcionaran todas las invocaciones-->
-  <mat-form-field style="margin-left: 20px;width: 420px !important;">
-    <mat-label>API-Key</mat-label>
-    <input matInput id="apiKey" [type]="visibilityApiKey ? 'password' : 'text'" [(ngModel)]="apiKey" maxlength="100" (input)="cambioValorApiKey($event)" >
-    <mat-icon matSuffix (click)="visibilityApiKey = !visibilityApiKey">{{visibilityApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>
-    <mat-icon matSuffix matTooltip="Introduzca la api-key para la comunicación con el servicio REST">help</mat-icon>
-    <mat-hint>Introduzca la api-key para la comunicación con el servicio REST</mat-hint>
-  </mat-form-field>
+  <div class="box">
 
-<app-messages style="margin-top: 20px;"></app-messages>
+    <h2>Principal</h2>
+      <!--EL item para rellenar el api-key con el que funcionaran todas las invocaciones-->
+    <mat-form-field style="margin-left: 20px;width: 420px !important;">
+      <mat-label>API-Key</mat-label>
+      <input matInput id="apiKey" [type]="visibilityApiKey ? 'password' : 'text'" [(ngModel)]="apiKey" maxlength="100" (input)="cambioValorApiKey($event)" >
+      <mat-icon matSuffix (click)="visibilityApiKey = !visibilityApiKey">{{visibilityApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-icon matSuffix matTooltip="Introduzca la api-key para la comunicación con el servicio REST">help</mat-icon>
+      <mat-hint>Introduzca la api-key para la comunicación con el servicio REST</mat-hint>
+    </mat-form-field>
+
+    <app-messages style="margin-top: 20px;"></app-messages>
+
+  </div>
 
 </div>
