@@ -71,3 +71,11 @@ mat-sidenav-content {
   transform: rotate(45deg);
 }
 
+//resaltarMenu: buscamos que el texto del menú se haga mas grande al pasar el raton
+.resaltarMenu{
+  transition: font-size 0.8s;
+}
+
+.resaltarMenu:hover {
+  font-size: 1.3em;
+}
