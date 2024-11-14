@@ -17,7 +17,7 @@
             </mat-button-toggle-group>
           </div>
 
-          <mat-form-field style="width: 100% !important;margin-top: 10px;margin-left: 5px;" *ngIf="codifica64Entrada && codifica64Entrada == 'texto'">
+          <mat-form-field style="width: 100% !important;margin-top: 10px;margin-left: 5px;" [@encogimientoAnimation] *ngIf="codifica64Entrada && codifica64Entrada == 'texto'">
             <mat-label>Valor a codificar</mat-label>
             <textarea matInput id="textoABase64" type="text" [(ngModel)]="textoABase64" rows="6">
             </textarea>
@@ -27,9 +27,9 @@
            Alternativa: https://stackoverflow.com/questions/52622061/how-to-use-input-type-file-in-angular-material
           -->
           <!-- <input type="file" *ngIf="codifica64Entrada && codifica64Entrada == 'archivo'" (change)="handleSubirFileCodifica64($event)"/> -->
-          <button type="button" mat-raised-button *ngIf="codifica64Entrada && codifica64Entrada == 'archivo'" (click)="fileInputParamCodiBase64.click()">Elegir archivo</button>
+          <button type="button" mat-raised-button  [@entradaLateralAnimation] *ngIf="codifica64Entrada && codifica64Entrada == 'archivo'" (click)="fileInputParamCodiBase64.click()">Elegir archivo</button>
           <input #fileInputParamCodiBase64 type="file" hidden (change)="handleSubirFileCodifica64($event)" id="fileParamCodiBase64">
-          <span *ngIf="codifica64Entrada && codifica64Entrada == 'archivo' && nombreArchivoBase64 != ''">{{nombreArchivoBase64}}</span>
+          <span [@encogimientoAnimation] *ngIf="codifica64Entrada && codifica64Entrada == 'archivo' && nombreArchivoBase64 != ''">{{nombreArchivoBase64}}</span>
 
           <div>
             <button type="button" mat-fab class="botonRotatorio" aria-label="Codificar base64" (click)="onClickBotonCodificarBase64()"
@@ -118,7 +118,7 @@
 
           <button type="button" mat-raised-button (click)="fileParamHashInput.click()" style="margin-top: 10px;margin-left: 5px;">Elegir archivo</button>
           <input #fileParamHashInput type="file" hidden (change)="handleSubirFileHash($event)" id="fileParamHash">
-          <span *ngIf="nombreArchivoHash != ''">{{nombreArchivoHash}}</span>
+          <span [@encogimientoAnimation] *ngIf="nombreArchivoHash != ''">{{nombreArchivoHash}}</span>
 
           <div>
             <button type="button" mat-fab class="botonRotatorio" aria-label="Obtener hash" (click)="onClickBotonHash()"
@@ -151,12 +151,12 @@
 
           <button type="button" mat-raised-button (click)="fileParamZipInput.click()" style="margin-top: 10px;margin-left: 5px;">Elegir archivo/s</button>
           <input #fileParamZipInput type="file" hidden (change)="handleSubirFilesZip($event)" id="fileParamZip" multiple="multiple">
-          <span *ngIf="nombreArchivosZip != ''">{{nombreArchivosZip}}</span>
+          <span [@encogimientoAnimation] *ngIf="nombreArchivosZip != ''">{{nombreArchivosZip}}</span>
 
           <div>
-            <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar zip" (click)="onClickBotonZip()"
+            <button id="btnDescargarZip" type="button" mat-fab class="botonRotatorio" aria-label="Generar zip" (click)="onClickBotonZip()"
               matTooltip="Pulsar para generar zip" matTooltipPosition="below">
-              <mat-icon>download</mat-icon>
+              <mat-icon id="iconoDescargarZip">download</mat-icon>
             </button>
           </div>
 

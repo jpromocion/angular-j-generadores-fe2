@@ -1,11 +1,10 @@
 import { Component, inject, OnInit} from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSelectModule} from '@angular/material/select';
@@ -20,7 +19,7 @@ import { Tipohash } from '../core/models/tipohash';
 @Component({
   selector: 'app-genera-archivos',
   standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
+  imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule],
   templateUrl: './genera-archivos.component.html',
   styleUrl: './genera-archivos.component.scss'
@@ -315,24 +314,42 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
    * Invocamos la operacion del servicio para obtener un archivo decodificado de base64
    */
   postZip(files: File[]): void {
-    this.archivoGeneradoZip = undefined;
-    this.filesService.postZip(files)
-    .subscribe(archivo => {
-      if (archivo.size > 0) {
-        this.archivoGeneradoZip = new File([archivo], 'comprimido.zip', {type: 'application/zip'});
-        //ahora lo descargamos
-        saveAs(archivo, 'comprimido.zip');
-        this.openSnackBar('Generado zip', 'GeneradoZip');
-      } else{
-        this.archivoGeneradoZip = undefined;
-      }
-    });
+    //cambiar el icono de iconoDescargarZip y la clase al boton para la animacion
+    const btnDescargarZip = document.getElementById('btnDescargarZip');
+    const iconoDescargarZip = document.getElementById('iconoDescargarZip');
+    btnDescargarZip!.classList.remove('botonRotatorio');
+    btnDescargarZip!.classList.add('botonAparicionLateral');
+    iconoDescargarZip!.innerText = 'more_horiz';
+
+    //setTimeout(() => {
+      this.archivoGeneradoZip = undefined;
+      this.filesService.postZip(files)
+      .subscribe(archivo => {
+        if (archivo.size > 0) {
+          this.archivoGeneradoZip = new File([archivo], 'comprimido.zip', {type: 'application/zip'});
+          //ahora lo descargamos
+          saveAs(archivo, 'comprimido.zip');
+          this.openSnackBar('Generado zip', 'GeneradoZip');
+
+          //restablecer el icono y clase del boton
+          iconoDescargarZip!.innerText = 'download';
+          btnDescargarZip!.classList.remove('botonAparicionLateral');
+          btnDescargarZip!.classList.add('botonRotatorio');
+
+        } else{
+          this.archivoGeneradoZip = undefined;
+        }
+      });
+
+    //}, 5000);
   }
 
   /**
   * Generar zip
   */
   onClickBotonZip(): void {
+
+
     this.textoDecodificadoBase64 = '';
     //comprobamos que tenga algo
     if (this.archivosZip.length <= 0) {

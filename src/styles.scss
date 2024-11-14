@@ -252,6 +252,24 @@ mat-header-cell {
   }
 }
 
+//Clase para asociar a un boton, donde queremois que el icono de dentro se ponga a
+//moverse lateralmente de forma infinita
+//NOTA: pensado para sustituir en un boton de desarcarga mientras se esta haciendo el proceso
+.botonAparicionLateral .mat-icon {
+  animation: slideInOut 3s linear infinite;
+}
+
+@keyframes slideInOut {
+  0%, 100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(90%);
+    opacity: 1;
+  }
+}
+
 
 //mat-mdc-button-base es la clase base de los botones de angular material.
 //Vamos a hacer que mientras se pulsa un boton, siempre se vea encogido de tamaño
