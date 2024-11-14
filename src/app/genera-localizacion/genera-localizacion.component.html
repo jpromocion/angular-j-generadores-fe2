@@ -279,47 +279,113 @@
         <p style="margin-left: 10px;"><small><em>Genera un domicilio completamente aleatorio en CCAA, Provincia, Municipio, o selecciona en los bloques anterires una CCAA y provincia para generarlos dirigidos.</em></small></p>
         <p style="margin-left: 10px;"><small><em>Adicionalmente en este bloque podrás filtrar por el Municipio concreto de una provincia sobre el que generar.</em></small></p>
 
-        <div>
-          <mat-form-field style="width: 200px !important;">
-            <mat-label>Cod. CCAA</mat-label>
-            <input matInput id="provinCodCCAADomi" type="text"  maxlength="2"  [(ngModel)]="provinCodCCAA" readonly="true">
-            <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Provincias'.">help</mat-icon>
-          </mat-form-field>
-
-          <mat-form-field style="width: 200px !important;margin-left: 5px;">
-            <mat-label>Cod. Provincia</mat-label>
-            <input matInput id="muniCodProvinDomi" type="text"  maxlength="2"  [(ngModel)]="muniCodProvin" readonly="true">
-            <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Municipios'.">help</mat-icon>
-          </mat-form-field>
-
-          <mat-form-field style="width: 200px !important;margin-left: 5px;">
-            <mat-label>Cod. Municipio</mat-label>
-            <input matInput id="direccionParamCodMuni" type="text"  maxlength="3" placeholder="001" [(ngModel)]="direccionParamCodMuni">
-            <mat-icon matSuffix matTooltip="Este valor si debe ser rellenado si se quiere filtrar las direcciones por municipio. El código de municipio está relacionado con la provincia, por lo que no tiene sentido por si solo. Puede copiarlo de uno de los resultados del bloque 'Municipios' tras filtrar una provincia.">help</mat-icon>
-          </mat-form-field>
-
-          <mat-form-field style="width: 150px !important;margin-left: 5px;">
-            <mat-label>Num. generaciones</mat-label>
-            <input matInput id="direccionParamNumGenerar" type="number"  min="1" max="1000" placeholder="Número de generaciones" [(ngModel)]="direccionParamNumGenerar">
-            <mat-icon matSuffix matTooltip="Número de domicilios a obtener.">help</mat-icon>
-          </mat-form-field>
-
+        <div class="grid-parametros-direccion">
+          <div class="caja">
+            <mat-form-field style="width: 200px !important;">
+              <mat-label>Cod. CCAA</mat-label>
+              <input matInput id="provinCodCCAADomi" type="text"  maxlength="2"  [(ngModel)]="provinCodCCAA" readonly="true">
+              <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Provincias'.">help</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="caja">
+            <mat-form-field style="width: 200px !important;">
+              <mat-label>Cod. Provincia</mat-label>
+              <input matInput id="muniCodProvinDomi" type="text"  maxlength="2"  [(ngModel)]="muniCodProvin" readonly="true">
+              <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Municipios'.">help</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="caja">
+            <mat-form-field style="width: 200px !important;">
+              <mat-label>Cod. Municipio</mat-label>
+              <input matInput id="direccionParamCodMuni" type="text"  maxlength="3" placeholder="001" [(ngModel)]="direccionParamCodMuni">
+              <mat-icon matSuffix matTooltip="Este valor si debe ser rellenado si se quiere filtrar las direcciones por municipio. El código de municipio está relacionado con la provincia, por lo que no tiene sentido por si solo. Puede copiarlo de uno de los resultados del bloque 'Municipios' tras filtrar una provincia.">help</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="caja">
+            <mat-form-field style="width: 150px !important;">
+              <mat-label>Num. generaciones</mat-label>
+              <input matInput id="direccionParamNumGenerar" type="number"  min="1" max="1000" placeholder="Número de generaciones" [(ngModel)]="direccionParamNumGenerar">
+              <mat-icon matSuffix matTooltip="Número de domicilios a obtener.">help</mat-icon>
+            </mat-form-field>
+          </div>
         </div>
 
-        <div>
-          <label>Tipo letra: </label>
-          <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"
-            style="margin-left: 10px;">
-            <mat-button-toggle value="s">Sin formato</mat-button-toggle>
-            <mat-button-toggle value="M">Mayúsculas</mat-button-toggle>
-            <mat-button-toggle value="m">Minúsculas</mat-button-toggle>
-            <mat-button-toggle value="c">Camel case</mat-button-toggle>
-          </mat-button-toggle-group>
+        <div class="grid-parametros-direOpcional">
+          <div class="caja">
+            <label>¿Km?: </label>
+            <mat-button-toggle-group name="direccionParamKm" [(ngModel)]="direccionParamKm"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
+              <mat-button-toggle value="y">Si</mat-button-toggle>
+              <mat-button-toggle value="n">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="caja">
+            <label>¿Bloque?: </label>
+            <mat-button-toggle-group name="direccionParamBloque" [(ngModel)]="direccionParamBloque"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
+              <mat-button-toggle value="y">Si</mat-button-toggle>
+              <mat-button-toggle value="n">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="caja">
+            <label>¿Portal?: </label>
+            <mat-button-toggle-group name="direccionParamPortal" [(ngModel)]="direccionParamPortal"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
+              <mat-button-toggle value="y">Si</mat-button-toggle>
+              <mat-button-toggle value="n">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="caja">
+            <label>¿Escalera?: </label>
+            <mat-button-toggle-group name="direccionParamEscalera" [(ngModel)]="direccionParamEscalera"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
+              <mat-button-toggle value="y">Si</mat-button-toggle>
+              <mat-button-toggle value="n">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar domicilios" (click)="onClickBotonGeneraDomicilios()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
-            <mat-icon>refresh</mat-icon>
-          </button>
+        <div class="grid-parametros-direOpcional">
+          <div class="caja">
+            <label>Planta?: </label>
+            <mat-button-toggle-group name="direccionParamPlanta" [(ngModel)]="direccionParamPlanta"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="y">Si</mat-button-toggle>
+              <mat-button-toggle value="n">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="caja">
+            <label>¿Puerta?: </label>
+            <mat-button-toggle-group name="direccionParamPuerta" [(ngModel)]="direccionParamPuerta"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="y">Si</mat-button-toggle>
+              <mat-button-toggle value="n">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+
+        <div class="grid-parametros-direccion-tipoLetra">
+          <div class="caja">
+            <label>Tipo letra: </label>
+            <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"
+              style="margin-left: 10px;">
+              <mat-button-toggle value="s">Sin formato</mat-button-toggle>
+              <mat-button-toggle value="M">Mayúsculas</mat-button-toggle>
+              <mat-button-toggle value="m">Minúsculas</mat-button-toggle>
+              <mat-button-toggle value="c">Camel case</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <div class="caja">
+            <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar domicilios" (click)="onClickBotonGeneraDomicilios()"
+              matTooltip="Pulsar para generar" matTooltipPosition="below">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
         </div>
 
         <!-- [hidden]="!((direccionGeneradoOriginal.length && direccionGeneradoOriginal.length > 0))" -->

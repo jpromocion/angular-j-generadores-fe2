@@ -230,7 +230,13 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
 
   //direccion completa
   direccionParamCodMuni: string = '';
-  direccionParamNumGenerar: number = 10;
+  direccionParamNumGenerar: number = 5;
+  direccionParamKm: string = '';
+  direccionParamBloque: string = '';
+  direccionParamPortal: string = '';
+  direccionParamEscalera: string = '';
+  direccionParamPlanta: string = 'y';
+  direccionParamPuerta: string = 'y';
   // - direccionGenerado: va a contener los datos visibles en la tabla, de forma que se actualiza al aplicar filtros por columna.
   // - direccionGeneradoOriginal: va a contener los datos originales de la ultima vez que se accedio a la API rest,
   //   de forma que no se modifica por la aplicacion de filtros por columna, y permite restablecer los datos al quitar
@@ -756,8 +762,10 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   /**
    * Invocamos la operacion del servicio para obtener una lista de direciciones
    */
-  getDirecciones(resultados: number = 1, ineccaa: string = '', ineprovincia: string = '', inemunicipio: string = ''): void {
-    this.miscService.getAddress(resultados, ineccaa, ineprovincia, inemunicipio)
+  getDirecciones(resultados: number = 1, ineccaa: string = '', ineprovincia: string = '', inemunicipio: string = '',
+    km: string = '', bloque: string = '', portal: string = '', escalera: string = '',
+		planta: string = '', puerta: string = ''): void {
+    this.miscService.getAddress(resultados, ineccaa, ineprovincia, inemunicipio, km, bloque, portal, escalera, planta, puerta)
     .subscribe(direccion => {
       if (direccion){
         //this.direccionGenerado.data = direccion;
@@ -794,7 +802,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     if (this.direccionParamCodMuni != '' && this.muniCodProvin == '') {
       this.openSnackBar('El municipio debe seleccionarse con un código de provincia.','ErrorDomicilios');
     } else{
-      this.getDirecciones(this.direccionParamNumGenerar, this.provinCodCCAA, this.muniCodProvin, this.direccionParamCodMuni);
+      this.getDirecciones(this.direccionParamNumGenerar, this.provinCodCCAA, this.muniCodProvin, this.direccionParamCodMuni,
+        this.direccionParamKm, this.direccionParamBloque, this.direccionParamPortal, this.direccionParamEscalera,
+        this.direccionParamPlanta, this.direccionParamPuerta);
     }
 
   }

@@ -12,3 +12,23 @@
 }
 
 
+.grid-parametros-direOpcional{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 5px;
+  margin: 5px;
+}
+
+.grid-parametros-direccion{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 5px;
+  margin: 5px;
+}
+
+.grid-parametros-direccion-tipoLetra{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5px;
+  margin: 5px;
+}

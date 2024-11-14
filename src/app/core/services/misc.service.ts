@@ -334,7 +334,9 @@ export class MiscService {
    * Interfaz: GET /misc/address
    * @returns Lista de Direcciones
    */
-  getAddress(resultados: number = 1, ineccaa: string = '', ineprovincia: string = '', inemunicipio: string = ''): Observable<DireccionCompleta[]> {
+  getAddress(resultados: number = 1, ineccaa: string = '', ineprovincia: string = '', inemunicipio: string = '',
+    km: string = '', bloque: string = '', portal: string = '', escalera: string = '',
+		planta: string = '', puerta: string = ''): Observable<DireccionCompleta[]> {
     //fijamos la api-key del servicio de datos conexion
     this.fijarApiKeyServicio();
 
@@ -350,6 +352,30 @@ export class MiscService {
 
     if (inemunicipio != '') {
       urlfinal = urlfinal + '&inemunicipio=' + inemunicipio;
+    }
+
+    if (km != '') {
+      urlfinal = urlfinal + '&km=' + km;
+    }
+
+    if (bloque != '') {
+      urlfinal = urlfinal + '&bloque=' + bloque;
+    }
+
+    if (portal != '') {
+      urlfinal = urlfinal + '&portal=' + portal;
+    }
+
+    if (escalera != '') {
+      urlfinal = urlfinal + '&escalera=' + escalera;
+    }
+
+    if (planta != '') {
+      urlfinal = urlfinal + '&planta=' + planta;
+    }
+
+    if (puerta != '') {
+      urlfinal = urlfinal + '&puerta=' + puerta;
     }
 
     return this.http.get<DireccionCompleta[]>(urlfinal, {
