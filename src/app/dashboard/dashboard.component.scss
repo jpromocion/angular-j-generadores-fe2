@@ -10,13 +10,14 @@
   mask-image: radial-gradient(circle at center, black 30%, transparent);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 .box {
   width: 500px;
   height: 250px;
   border: 2px solid #625d5d;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
