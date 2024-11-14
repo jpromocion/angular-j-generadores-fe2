@@ -20,8 +20,17 @@ Tendrá un menú lateral (ocultable por tamaño pantalla) cargandose en la parte
 ![Generador perfiles](/screenshots/generador_perfil.png)
 - Textos: Ataca la API REST para la generación de textos aleatorios.
 ![Generador textos](/screenshots/generador_textos.png)
+- Números: Ataca la API REST para la generación/operaciones de números en diversas condiciones.
+![Generador numeros](/screenshots/generar_numeros.png)
+- Fechas: Ataca la API REST para la generación/operaciones de fechas.
 - Vehículos: Ataca la API REST para la generación de tipos de mátricula y número de bastidos, así como la validación de un número de bastidor.
-- Localización: Ataca la API REST para recuperar CCAA, Provincias, Municipios de España.
+- Localización: Ataca la API REST para recuperar CCAA, Provincias, Municipios de España y el generador aleatorio de direcciones.
+![Generador localización](/screenshots/generar_localizacion.png)
+- Cod. Barras: Ataca la API REST para generar códigos de barra/QR.
+![Generador barras](/screenshots/generar_cod_barras.png)
+- Archivos: Ataca la API REST para operaciones sobre archivos: base64, hash, zip.
+- Colores: Ataca la API REST para generación/operaciones sobre colores.
+![Generador colores](/screenshots/generar_color.png)
 - Variados: Ataca la API REST para generaciones variadas: emails, teléfonos, passwords, códigos promocionales, etc...
 ![Generador variados](/screenshots/generador_variados.png)
 - Acerca de: Página about info.
