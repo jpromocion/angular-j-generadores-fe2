@@ -1,16 +1,16 @@
-import { Component, inject, OnInit} from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { Component, inject, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {NgIf} from '@angular/common';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { VehicleService } from '../core/services/vehicle.service';
 
@@ -18,17 +18,20 @@ import { VehicleService } from '../core/services/vehicle.service';
 @Component({
   selector: 'app-genera-coches',
   standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule],
+  imports: [FormsModule, ReactiveFormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule,
+    MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule,
+    MatCardModule, MatAutocompleteModule],
   templateUrl: './genera-coches.component.html',
   styleUrl: './genera-coches.component.scss'
 })
 export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit {
 
   //filtros
-  selectedTipoGenera: string = '';
+  //selectedTipoGenera: string = '';
+  @ViewChild('selectedTipoGeneraIn') selectedTipoGeneraIn: ElementRef<HTMLInputElement> = inject(ElementRef);
+  selectedTipoGeneraFC = new FormControl('');
   tiposGenera: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo de generación.'},
+    //{valor: '', nombre: 'Seleccionar un tipo de generación.'},
     {valor: 't', nombre: 'Turismo'},
     {valor: 'c', nombre: 'Ciclomotor'},
     {valor: 'r', nombre: 'Remolque'},
@@ -40,6 +43,7 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
     {valor: 'd', nombre: 'Diplomática'},
     {valor: 'vin', nombre: 'Nº Bastidor'}
   ];
+  tiposGeneraFiltrado: Array<any> = [];
   numGenerar: number = 1;
 
   textoGenerado: string[] = [];
@@ -67,8 +71,8 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
   /**
    * Invocamos la operacion del servicio para obtener una lista de caracteres aleatorios
    */
-  getMatricula(resultados: number): void {
-      this.vehicleService.getPlatenumber(resultados, this.selectedTipoGenera)
+  getMatricula(resultados: number, tipo: string = ''): void {
+      this.vehicleService.getPlatenumber(resultados, tipo)
       .subscribe(cadena => {
         this.textoGenerado = cadena;
         if (this.textoGenerado && this.textoGenerado.length > 0){
@@ -92,13 +96,41 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
 
 
   /**
+   * El metodo encargado de filtrar la lista de opciones de tipos de generacion cuando se va rellenando algo.
+   * Utiliza el valor provisional rellenado recuperando de #selectedTipoGeneraIn a traves de su mapeado aqui
+   * selectedTipoGeneraIn. NOTA: recordemos que "[formControl]="selectedTipoGeneraFC"" llevaria el valor final
+   * seleccionado, pero en este metodo neccesitamos la entrada que el usuario esta rellenando... que es distinto
+   */
+  filterTiposGenera(): void {
+    //obtenemos el valor rellenado por usuario del campo en si
+    const filterValue = this.selectedTipoGeneraIn.nativeElement.value.toLowerCase();
+    //cargamos la lista filtrada tiposGeneraFiltrado, filtrando siempore de la original tiposGenera el valor rellenado
+    //NOTA: sobre la columna "nombre" que es lo que se muestra.
+    this.tiposGeneraFiltrado = this.tiposGenera.filter(o => o.nombre.toLowerCase().includes(filterValue));
+  }
+
+  /**
+   * Al no ser el origen una lista de string simple, sino un objeto compuesto: valor, nombre. Este metodo
+   * se encarga de para el valor ya seleccionado, mostrar solo el nombre asociado a ese objeto.
+   * @param tipo
+   * @returns
+   */
+  displayTiposGenera(tipo: any): string {
+    return tipo && tipo.nombre ? tipo.nombre : '';
+  }
+
+
+  /**
   * Generamos un tipo matricula aleatorio
   */
   onClickBotonGenerarTexto(): void {
-    if (this.selectedTipoGenera == '') {
+    //let codigoTipoSeleccionado = this.selectedTipoGenera;
+    let codigoTipoSeleccionado = (<any>this.selectedTipoGeneraFC?.value)?.valor;
+
+    if (!codigoTipoSeleccionado || codigoTipoSeleccionado == '') {
       this.openSnackBar('Debe seleccionar un tipo de matrícula.','Cerrar');
-    } else if (this.selectedTipoGenera != 'vin') {
-      this.getMatricula(this.numGenerar);
+    } else if (codigoTipoSeleccionado != 'vin') {
+      this.getMatricula(this.numGenerar, codigoTipoSeleccionado);
     } else {
       this.getBastidor(this.numGenerar);
     }

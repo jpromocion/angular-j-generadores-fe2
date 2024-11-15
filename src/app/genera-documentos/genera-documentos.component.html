@@ -117,6 +117,7 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar CIFs</mat-card-header>
         <mat-card-content>
+          <!-- cambiamos a autocompletado -> ver detalles en variados -> seleccionar tipo generacion
           <mat-form-field style="width: 350px !important; margin-left: 5px;">
             <mat-label>Seleccionar tipo sociedad</mat-label>
             <mat-select [(ngModel)]="selectedSociedad">
@@ -125,6 +126,24 @@
               }
             </mat-select>
           </mat-form-field>
+          -->
+          <form>
+            <mat-form-field style="width: 350px !important; margin-left: 5px;">
+              <mat-label>Seleccionar tipo sociedad</mat-label>
+              <input #selectedSociedadIn matInput type="text"
+                placeholder="Seleccionar ..."
+                [matAutocomplete]="auto"
+                [formControl]="selectedSociedadFC"
+                (input)="filterTiposSociedad()"
+                (focus)="filterTiposSociedad()">
+              <mat-autocomplete requireSelection #auto="matAutocomplete" [displayWith]="displayTiposSociedad">
+                @for (tipo of tiposSociedadesFiltrado; track tipo) {
+                  <mat-option [value]="tipo">{{tipo.nombre}}</mat-option>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+
           <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar una lista de CIFs" (click)="onClickBotonGenerarListaCif()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>

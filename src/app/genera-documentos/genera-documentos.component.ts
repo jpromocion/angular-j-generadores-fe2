@@ -1,6 +1,6 @@
-import { Component, OnInit, inject, Input } from '@angular/core';
+import { Component, OnInit, inject, ElementRef, ViewChild } from '@angular/core';
 import {NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 //necesario  para tooltips de bootstrap, al cambiar a angular material es innecesario
 //import * as bootstrap from 'bootstrap';
 import {MatIconModule} from '@angular/material/icon';
@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatListModule} from '@angular/material/list';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { DoiService } from '../core/services/doi.service';
 
@@ -22,8 +23,8 @@ declare var $: any;
 @Component({
   selector: 'app-genera-documentos',
   standalone: true,
-  imports: [FormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,MatGridListModule,
-    MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule],
+  imports: [FormsModule, ReactiveFormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,
+    MatGridListModule, MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,MatAutocompleteModule],
   templateUrl: './genera-documentos.component.html',
   styleUrl: './genera-documentos.component.scss',
 })
@@ -51,12 +52,13 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   listaPasaportes: string[] = [];
 
 
-  selectedSociedad: string = '';
-
   numGenerar: number = 1;
 
+  //selectedSociedad: string = '';
+  @ViewChild('selectedSociedadIn') selectedSociedadIn: ElementRef<HTMLInputElement> = inject(ElementRef);
+  selectedSociedadFC = new FormControl('');
   tiposSociedades: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo concreto para generar solo este tipo.'},
+    //{valor: '', nombre: 'Seleccionar un tipo concreto para generar solo este tipo.'},
     {valor: 'A', nombre: 'A. Sociedades anónimas.'},
     {valor: 'B', nombre: 'B. Sociedades de responsabilidad limitada.'},
     {valor: 'C', nombre: 'C. Sociedades colectivas.'},
@@ -75,6 +77,7 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     {valor: 'V', nombre: 'V. Sociedad Agraria de Transformación.'},
     {valor: 'W', nombre: 'W. Establecimientos permanentes de entidades no residentes en España'}
   ];
+  tiposSociedadesFiltrado: Array<any> = [];
 
 
 
@@ -89,7 +92,7 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
 
   override ngOnInit(): void {
   //  this.getNifs();
-  this.selectedSociedad = this.tiposSociedades[0].valor;
+  //this.selectedSociedad = this.tiposSociedades[0].valor;
   this.numGenerar = 1;
 
   //Incluir tooltips en la pagina
@@ -101,6 +104,31 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   //Forma para utilizar el tooltip de bootstrap
   //const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   //const tooltipList = Array.from(tooltipTriggerList).map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  }
+
+
+  /**
+   * El metodo encargado de filtrar la lista de opciones de tipos de sociedad cuando se va rellenando algo.
+   * Utiliza el valor provisional rellenado recuperando de #selectedSociedadIn a traves de su mapeado aqui
+   * selectedSociedadIn. NOTA: recordemos que "[formControl]="selectedSociedadFC"" llevaria el valor final
+   * seleccionado, pero en este metodo neccesitamos la entrada que el usuario esta rellenando... que es distinto
+   */
+  filterTiposSociedad(): void {
+    //obtenemos el valor rellenado por usuario del campo en si
+    const filterValue = this.selectedSociedadIn.nativeElement.value.toLowerCase();
+    //cargamos la lista filtrada tiposGeneraFiltrado, filtrando siempore de la original tiposGenera el valor rellenado
+    //NOTA: sobre la columna "nombre" que es lo que se muestra.
+    this.tiposSociedadesFiltrado = this.tiposSociedades.filter(o => o.nombre.toLowerCase().includes(filterValue));
+  }
+
+  /**
+   * Al no ser el origen una lista de string simple, sino un objeto compuesto: valor, nombre. Este metodo
+   * se encarga de para el valor ya seleccionado, mostrar solo el nombre asociado a ese objeto.
+   * @param tipo
+   * @returns
+   */
+  displayTiposSociedad(tipo: any): string {
+    return tipo && tipo.nombre ? tipo.nombre : '';
   }
 
 
@@ -160,6 +188,14 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
    * Invocamos la operacion del servicio para obtener una lista de cifs aleatorios
    */
   getCifs(resultados: number): void {
+    //let codigoTipoSeleccionado = this.selectedSociedad;
+    let codigoTipoSeleccionado = (<any>this.selectedSociedadFC?.value)?.valor;
+    //sino se ha seleccionado nada, se rellena cadena vacio para quye el servicio genere
+    //uno cualquiera
+    if (!codigoTipoSeleccionado) {
+      codigoTipoSeleccionado = '';
+    }
+
     // if (resultados == 1) {
     //   this.doiService.getCif(resultados, this.selectedSociedad)
     //   .subscribe(cifs => {
@@ -169,7 +205,7 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     //     }
     //   });
     // } else{
-      this.doiService.getCif(resultados, this.selectedSociedad)
+      this.doiService.getCif(resultados, codigoTipoSeleccionado)
       .subscribe(cifs => {
         this.listaCifs = cifs;
         if (this.listaCifs && this.listaCifs.length > 0) {

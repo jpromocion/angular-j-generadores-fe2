@@ -15,6 +15,7 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar tipo seleccionado</mat-card-header>
         <mat-card-content>
+          <!-- Vamos a sustituir el tipico combo select, por un campo de autocompletado
           <mat-form-field style="width: 400px;margin-left: 5px;">
             <mat-label>Seleccionar tipo generación</mat-label>
             <mat-select [(ngModel)]="selectedTipoGenera">
@@ -23,6 +24,38 @@
               }
             </mat-select>
           </mat-form-field>
+          -->
+          <!--
+            Combo con autocompletado mat-autocomplete:
+            -#selectedTipoGeneraIn para asociar el input directo a un ElementRef
+            -formControl: es la forma en que asocairemos el valor seleccionado a un item tipo FormControl. Sustituye al ngModel, que esta deprecated en un form control.
+              OJO: aqui lleva el objeto entero seleccionado, no solo el codigo.
+            -input, focus -> filterTiposGenera -> el metodo encargado de filtrar la lista de opciones cuando se va rellenando algo. Utiliza el valor provisional rellenado recuperando de #selectedTipoGeneraIn
+            -requireSelection: es lo que hace que sino se selecciona una opcion, se borre el campo rellenado y se deja a nulo la seleccion.
+            -displayWith -> displayTiposGenera -> https://medium.com/@nirmalkumarsahoo/mat-auto-complete-handle-object-b2132da7e4c8
+              Tenemos en cuenta este enlace para este caso donde la lista de objetos no es un string simple, sino un
+              objeto compuesto, y por eso necesita este metodo para decirle que del objeto seleccionado "selectedTipoGeneraFC" solo debera mostrar
+              aqui el campo "nombre" y no el objeto en si.
+            -por lo demas el for es el mismo que en el select pero:
+              -recorremos relamente tiposGeneraFiltrado en vez de tiposGenera, que es donde iremos filtrando segun rellene el usuario
+              -donde al value le asignamos el objeto entero tipo, no solo el valor.
+          -->
+          <form>
+            <mat-form-field style="width: 400px;margin-left: 5px;">
+              <mat-label>Seleccionar tipo generación</mat-label>
+              <input #selectedTipoGeneraIn matInput type="text"
+                placeholder="Seleccionar ..."
+                [matAutocomplete]="auto"
+                [formControl]="selectedTipoGeneraFC"
+                (input)="filterTiposGenera()"
+                (focus)="filterTiposGenera()">
+              <mat-autocomplete requireSelection #auto="matAutocomplete" [displayWith]="displayTiposGenera">
+                @for (tipo of tiposGeneraFiltrado; track tipo) {
+                  <mat-option [value]="tipo">{{tipo.nombre}}</mat-option>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
 
           <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">

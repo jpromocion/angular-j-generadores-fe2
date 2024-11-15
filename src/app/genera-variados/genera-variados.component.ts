@@ -1,6 +1,6 @@
-import { Component, inject, OnInit} from '@angular/core';
+import { Component, inject, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -11,14 +11,16 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { MiscService } from '../core/services/misc.service';
 
 @Component({
   selector: 'app-genera-variados',
   standalone: true,
-  imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule],
+  imports: [FormsModule,ReactiveFormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
+    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
+    MatAutocompleteModule],
   templateUrl: './genera-variados.component.html',
   styleUrl: './genera-variados.component.scss'
 })
@@ -27,9 +29,16 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   numGenerar: number = 1;
 
   //tipos generales
-  selectedTipoGenera: string = '';
+  //antigua valor para un combo normal y corriente asociando por ngModel el valor del seleccionado
+  //selectedTipoGenera: string = '';
+  //Cuando cambiamos a combo con autocompletado:
+  // -selectedTipoGeneraIn: utilizamos esta forma de asociar un elemento donde en el html se le pone #selectedTipoGeneraIn y utilizar para filtrar
+  // -selectedTipoGeneraFC: FormControl para asociar el valor seleccionado con este metodo (ngModel esta deprecated para el formControl). En este caso fija el objeto completo seleccionado
+  // -tiposGeneraFiltrado: sera la lista donde se ira cargando las opciones de tiposGenera filtradas cuando se vaya rellenando algo
+  @ViewChild('selectedTipoGeneraIn') selectedTipoGeneraIn: ElementRef<HTMLInputElement> = inject(ElementRef);
+  selectedTipoGeneraFC = new FormControl('');
   tiposGenera: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo de generación.'},
+    //{valor: '', nombre: 'Seleccionar un tipo de generación.'},
     {valor: 'em', nombre: 'Email'},
     {valor: 'ci', nombre: 'Ciudad'},
     {valor: 'cp', nombre: 'Cod. Postal'},
@@ -39,6 +48,7 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     {valor: 'isi', nombre: 'ISIN - International Securities Identification Numbering'},
     {valor: 'nss', nombre: 'NSS - Número Seguridad Social'},
   ];
+  tiposGeneraFiltrado: Array<any> = [];
   textoGenerado: string[] = [];
 
 
@@ -231,27 +241,55 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   }
 
   /**
+   * El metodo encargado de filtrar la lista de opciones de tipos de generacion cuando se va rellenando algo.
+   * Utiliza el valor provisional rellenado recuperando de #selectedTipoGeneraIn a traves de su mapeado aqui
+   * selectedTipoGeneraIn. NOTA: recordemos que "[formControl]="selectedTipoGeneraFC"" llevaria el valor final
+   * seleccionado, pero en este metodo neccesitamos la entrada que el usuario esta rellenando... que es distinto
+   */
+  filterTiposGenera(): void {
+    //obtenemos el valor rellenado por usuario del campo en si
+    const filterValue = this.selectedTipoGeneraIn.nativeElement.value.toLowerCase();
+    //cargamos la lista filtrada tiposGeneraFiltrado, filtrando siempore de la original tiposGenera el valor rellenado
+    //NOTA: sobre la columna "nombre" que es lo que se muestra.
+    this.tiposGeneraFiltrado = this.tiposGenera.filter(o => o.nombre.toLowerCase().includes(filterValue));
+  }
+
+  /**
+   * Al no ser el origen una lista de string simple, sino un objeto compuesto: valor, nombre. Este metodo
+   * se encarga de para el valor ya seleccionado, mostrar solo el nombre asociado a ese objeto.
+   * @param tipo
+   * @returns
+   */
+  displayTiposGenera(tipo: any): string {
+    return tipo && tipo.nombre ? tipo.nombre : '';
+  }
+
+  /**
   * Generamos un tipo seleccionado aleatorio
   */
   onClickBotonGenerarTipo(): void {
     this.textoGenerado = [];
-    if (this.selectedTipoGenera == '') {
+
+    //let codigoTipoSeleccionado = this.selectedTipoGenera;
+    let codigoTipoSeleccionado = (<any>this.selectedTipoGeneraFC?.value)?.valor;
+
+    if (!codigoTipoSeleccionado || codigoTipoSeleccionado == '') {
       this.openSnackBar('Debe seleccionar un tipo de generación.','Cerrar');
-    } else if (this.selectedTipoGenera == 'em') {
+    } else if (codigoTipoSeleccionado == 'em') {
       this.getEmail(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'ci') {
+    } else if (codigoTipoSeleccionado == 'ci') {
       this.getCiudad(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'cp') {
+    } else if (codigoTipoSeleccionado == 'cp') {
       this.getCodPostal(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'im') {
+    } else if (codigoTipoSeleccionado == 'im') {
       this.getImei(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'ui') {
+    } else if (codigoTipoSeleccionado == 'ui') {
       this.getUuid(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'lei') {
+    } else if (codigoTipoSeleccionado == 'lei') {
       this.getLei(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'isi') {
+    } else if (codigoTipoSeleccionado == 'isi') {
       this.getIsin(this.numGenerar);
-    } else if (this.selectedTipoGenera == 'nss') {
+    } else if (codigoTipoSeleccionado == 'nss') {
       this.getNss(this.numGenerar);
     }
 
@@ -581,5 +619,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
       }
     });
   }
+
+
+
 
 }

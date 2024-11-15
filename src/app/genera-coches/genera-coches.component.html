@@ -15,6 +15,7 @@
       <mat-card appearance="outlined" class="caja-fondo-coche">
         <mat-card-header>Generar Vehículo</mat-card-header>
         <mat-card-content class="caja-desenfocada">
+          <!-- cambiamos a autocompletado -> ver detalles en variados -> seleccionar tipo generacion
           <mat-form-field style="width: 330px;margin-left: 5px;">
             <mat-label>Seleccionar tipo generación</mat-label>
             <mat-select [(ngModel)]="selectedTipoGenera">
@@ -23,6 +24,23 @@
               }
             </mat-select>
           </mat-form-field>
+          -->
+          <form>
+            <mat-form-field style="width: 330px;margin-left: 5px;">
+              <mat-label>Seleccionar tipo generación</mat-label>
+              <input #selectedTipoGeneraIn matInput type="text"
+                placeholder="Seleccionar ..."
+                [matAutocomplete]="auto"
+                [formControl]="selectedTipoGeneraFC"
+                (input)="filterTiposGenera()"
+                (focus)="filterTiposGenera()">
+              <mat-autocomplete requireSelection #auto="matAutocomplete" [displayWith]="displayTiposGenera">
+                @for (tipo of tiposGeneraFiltrado; track tipo) {
+                  <mat-option [value]="tipo">{{tipo.nombre}}</mat-option>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
 
           <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
             matTooltip="Pulsar para generar" matTooltipPosition="below">
