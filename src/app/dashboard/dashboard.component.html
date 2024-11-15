@@ -1,8 +1,13 @@
 
 <div class="grid-container">
 
-
-  <div class="box slide-in-elliptic-top-fwd">
+  <!--matRipple: mete una especia de sombra en el click sobre esta zona-->
+  <div class="box slide-in-elliptic-top-fwd"
+    matRipple
+    [matRippleCentered]="centered"
+    [matRippleDisabled]="disabled"
+    [matRippleUnbounded]="unbounded"
+    [matRippleRadius]="radius" >
 
     <h2>Principal</h2>
       <!--EL item para rellenar el api-key con el que funcionaran todas las invocaciones-->

@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
-import { AsyncPipe } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatRippleModule} from '@angular/material/core';
 import { MessagesComponent } from '../shared/components/messages/messages.component';
 import { DatosConexionService } from '../core/services/datos-conexion.service';
 
@@ -19,7 +19,6 @@ import { DatosConexionService } from '../core/services/datos-conexion.service';
   styleUrl: './dashboard.component.scss',
   standalone: true,
   imports: [
-    AsyncPipe,
     MatGridListModule,
     MatMenuModule,
     MatIconModule,
@@ -28,12 +27,18 @@ import { DatosConexionService } from '../core/services/datos-conexion.service';
     FormsModule,
     MatInputModule,
     MatTooltipModule,
-    MessagesComponent
+    MessagesComponent,
+    MatRippleModule
   ]
 })
 export class DashboardComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
 
+  //para el sombreado del matripper
+  centered = false;
+  disabled = false;
+  unbounded = false;
+  radius: number = 50;
 
   apiKey: string = '';
   visibilityApiKey = true;
