@@ -1,3 +1,4 @@
+@use '../../styles' as stylesGeneral;
 
 //Buscamos poner el panel de datos en un panel con marco y que degrade la imagen que ponemos de fondo
 .grid-container {
@@ -6,13 +7,42 @@
   background-size: cover;
   width: 100%;
   height: 100vh;
-  //degradadmos imagen para que se integre mejor con el fondo
-  mask-image: radial-gradient(circle at center, black 30%, transparent);
+  //degradadmos imagen para que se integre mejor con el fondo aplicando el color negro de base
+  mask-image: radial-gradient(circle at center, transparent 30%, #161215 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  //aplicamos un filtro a la imagen para aplicarle el color rosita y no se sienta tan distinto de la aplicaicon
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: stylesGeneral.$color-lila-texto-menu;
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+
+  }
+  //para aplicar asi el efecto zoom... pero crea unas barras horizontal/vertical en el navegador -> no gusta
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: inherit;
+  //   z-index: -1;
+  //   animation: kenburns-top-right 3s ease-out both;
+  // }
 }
+
+
+
 .box {
   width: 500px;
   height: 250px;
@@ -26,6 +56,7 @@
   backdrop-filter: blur(15px);
   background: transparent;
   min-width: 10%;
+  box-shadow: 5px 5px 10px stylesGeneral.$color-lila-base-menu !important;
   @media (min-width: 768px) {
     margin-left: 20%;
   }

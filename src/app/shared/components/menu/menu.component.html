@@ -1,13 +1,13 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
-    class="sidenav"
+    class="sidenav fondoMenu"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Menú</mat-toolbar>
+    <mat-toolbar class="fondoMenu textoMenu">Menú</mat-toolbar>
     <mat-nav-list class="flip-in-hor-bottom">
       @for (item of rootRoutes; track $index) {
       <a
@@ -16,19 +16,20 @@
         #link="routerLinkActive"
         routerLinkActive
         [activated]="link.isActive"
+        class="{{ getMenuSeleClass(item.path ?? '') }}"
       >
         <!--NOTA: fijamos la clase tambien con una funcion, dado que buscamos rotar el icono solo del menu seleccionado
           cambiado la clase asociada
         -->
-        <div style="display: flex; align-items: center;">
+        <div class="textoMenu resaltarMenu" style="display: flex; align-items: center;">
           <mat-icon class="{{ getIconClass(item.path ?? '') }}">{{ getIconoRuta(item.path ?? '')}}</mat-icon>
-          <span class="resaltarMenu" style="margin-left: 2px;">{{ item.title }}</span>
+          <span  style="margin-left: 2px;">{{ item.title }}</span>
         </div>
       </a>
       }
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content >
     <mat-toolbar color="primary">
       @if (isHandset$ | async) {
       <button

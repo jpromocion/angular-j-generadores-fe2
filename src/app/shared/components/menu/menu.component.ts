@@ -79,4 +79,9 @@ export class MenuComponent {
     return isActive ? 'iconmenu rotado' : 'iconmenu';
   }
 
+  getMenuSeleClass(ruta: string): string {
+    const isActive = window.location.pathname.includes(ruta);
+    return isActive ? 'opcionmenuactiva' : '';
+  }
+
 }
