@@ -287,7 +287,7 @@
 
     <div class="caja cpDir" style="margin-top: 10px;">
       <div class="divBox">
-        <h3>Persona generada</h3>
+        <h3>Empresa generada</h3>
       </div>
     </div>
 
@@ -442,7 +442,7 @@
   <div [@entradaLateralAnimation] *ngIf="listaPersonasGeneradasOriginal.length && listaPersonasGeneradasOriginal.length > 0" >
     <div style="margin-top: 10px;">
       <div class="divBox">
-        <h3>Personas generadas</h3>
+        <div [matBadge]="badgetPersonasGenradas" matBadgeOverlap="false"><h3>Personas generada</h3></div>
       </div>
     </div>
 
@@ -868,7 +868,7 @@
    <div [@entradaLateralAnimation] *ngIf="listaEmpresasGeneradasOriginal.length && listaEmpresasGeneradasOriginal.length > 0" >
     <div style="margin-top: 10px;">
       <div class="divBox">
-        <h3>Empresas generadas</h3>
+        <div [matBadge]="badgetEmpresasGeneradas" matBadgeOverlap="false"><h3>Empresas generadas</h3></div>
       </div>
     </div>
 

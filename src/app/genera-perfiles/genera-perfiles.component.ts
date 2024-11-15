@@ -16,6 +16,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {CdkDragDrop,CdkDrag, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import { ChangeDetectorRef } from '@angular/core';
+import {MatBadgeModule} from '@angular/material/badge';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
@@ -30,7 +31,7 @@ import { DireccionCompleta } from '../core/models/direccion-completa';
   standalone: true,
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,MatGridListModule, CaseTransformerPipe,
     MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
-    MatSelectModule, CdkDropList, CdkDrag],
+    MatSelectModule, CdkDropList, CdkDrag, MatBadgeModule],
   templateUrl: './genera-perfiles.component.html',
   styleUrl: './genera-perfiles.component.scss'
 })
@@ -413,6 +414,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   @ViewChild('paginatorPersonas') paginatorPersonas!: MatPaginator;
   //@ViewChildren(MatPaginator) paginatorPagina = new QueryList<MatPaginator>();
   @ViewChild('sortPersonas') sortPersonas!: MatSort;
+  badgetPersonasGenradas: number = 0;
 
   //cuando generamos varias empresas
   listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
@@ -422,6 +424,8 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   //@ViewChild(MatPaginator) paginatorEmpresas!: MatPaginator;
   @ViewChild('paginatorEmpresas') paginatorEmpresas!: MatPaginator;
   @ViewChild('sortEmpresas') sortEmpresas!: MatSort;
+  badgetEmpresasGeneradas: number = 0;
+
 
   //seleccionar columnas a mostrar en tabla personas:
   //-Lista de todas las opciones posibles para el combo.
@@ -512,6 +516,8 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     } else {
       this.profilesService.getPerson(resultados, sexoparam)
       .subscribe(personas => {
+        this.badgetPersonasGenradas = 0;
+
         //this.listaPersonasGeneradas.data = personas;
         this.listaPersonasGeneradas = new MatTableDataSource(personas);
         this.listaPersonasGeneradasOriginal = personas;
@@ -530,6 +536,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
         //como quita/pone pom es necesario inicializarlo todo de nuevo
         this.inicializarPaginadoresSortsPersonas();
         if (this.listaPersonasGeneradas && this.listaPersonasGeneradas.data.length > 0) {
+          this.badgetPersonasGenradas = this.listaPersonasGeneradas.data.length;
           this.openSnackBar('Lista Personas generadas', 'GenerarPersonas');
         }
     });
@@ -551,6 +558,8 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     } else {
       this.profilesService.getCompany(resultados)
       .subscribe(empresa => {
+          this.badgetEmpresasGeneradas = 0;
+
           //this.listaEmpresasGeneradas.data = empresa;
           this.listaEmpresasGeneradas = new MatTableDataSource(empresa);
           this.listaEmpresasGeneradasOriginal = empresa;
@@ -569,6 +578,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
           //como quita/pone pom es necesario inicializarlo todo de nuevo
           this.inicializarPaginadoresSortsEmpresas();
           if (this.listaEmpresasGeneradas && this.listaEmpresasGeneradas.data.length > 0) {
+            this.badgetEmpresasGeneradas = this.listaEmpresasGeneradas.data.length;
             this.openSnackBar('Lista Empresas generadas', 'GenerarEmpresas');
           }
       });
