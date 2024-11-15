@@ -31,16 +31,20 @@
   </mat-sidenav>
   <mat-sidenav-content >
     <mat-toolbar color="primary">
-      @if (isHandset$ | async) {
+      <!--Este if sirve para que el boton del menu solo se muestre en pantalla pequeña...
+        Sinceramente, prefiero que este siempre, y lo muestres o ocultes si quieres tambien
+        en una pantalla grande -> me mola mas
+      -->
+      <!-- @if (isHandset$ | async) { -->
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
       >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon class="textoMenu" aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      }
+      <!--}-->
       <span>
         <h1>{{title}}
         <a href="https://github.com/jpromocion/" target="_blank">jpromocion</a>
