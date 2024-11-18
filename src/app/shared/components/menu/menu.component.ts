@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { routes } from '../../../app.routes';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ComprameCafeComponent } from '../comprame-cafe/comprame-cafe.component';
 
 @Component({
   selector: 'app-menu',
@@ -24,7 +25,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     MatIconModule,
     AsyncPipe,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    ComprameCafeComponent
   ]
 })
 export class MenuComponent {

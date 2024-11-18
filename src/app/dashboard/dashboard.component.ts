@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatRippleModule} from '@angular/material/core';
 import { MessagesComponent } from '../shared/components/messages/messages.component';
+import {ComprameCafeComponent} from '../shared/components/comprame-cafe/comprame-cafe.component';
 import { DatosConexionService } from '../core/services/datos-conexion.service';
 import { environment } from '../../environments/environment';
 
@@ -29,7 +30,8 @@ import { environment } from '../../environments/environment';
     MatInputModule,
     MatTooltipModule,
     MessagesComponent,
-    MatRippleModule
+    MatRippleModule,
+    ComprameCafeComponent
   ]
 })
 export class DashboardComponent implements OnInit {

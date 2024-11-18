@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { version } from '../../../package.json';
 import { DemoService } from '../core/services/demo.service';
+import {ComprameCafeComponent} from '../shared/components/comprame-cafe/comprame-cafe.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, ComprameCafeComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })

@@ -1,0 +1,6 @@
+@use '../../../../styles.scss' as stylesGeneral;
+
+.botonCafe{
+  color: stylesGeneral.$color-lila-texto-menu;
+  box-shadow: 0px 10px 10px stylesGeneral.$color-lila-texto-menu;
+}
