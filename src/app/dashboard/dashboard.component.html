@@ -11,7 +11,7 @@
 
     <h2>Principal</h2>
       <!--EL item para rellenar el api-key con el que funcionaran todas las invocaciones-->
-    <mat-form-field style="margin-left: 20px;width: 420px !important;">
+    <mat-form-field style="min-width: 200px;width: auto !important;">
       <mat-label>API-Key</mat-label>
       <input matInput id="apiKey" [type]="visibilityApiKey ? 'password' : 'text'" [(ngModel)]="apiKey" maxlength="100" (input)="cambioValorApiKey($event)" >
       <mat-icon matSuffix (click)="visibilityApiKey = !visibilityApiKey">{{visibilityApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>

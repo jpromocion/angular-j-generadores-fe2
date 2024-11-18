@@ -44,10 +44,11 @@
 
 
 .box {
-  width: 500px;
+  width: auto;
   height: auto;
   border: 2px solid #625d5d;
   margin-top: 10%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
