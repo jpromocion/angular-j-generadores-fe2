@@ -40,6 +40,11 @@ EXPOSE 80
 # Levantamos NGINX server
 CMD ["nginx", "-g", "daemon off;"]
 
+#Mostrar en consola la variable entorno API_REST_PROD que deberia definir el alojador
+RUN echo "[JPROMOCION] NG_APP_API_REST_PROD env variable es:"
+RUN echo $NG_APP_API_REST_PROD
+
+
 
 #####################################################################
 #Esto seria para construirla... y desplegarlo como en local con ng serve

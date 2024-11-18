@@ -12,7 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatRippleModule} from '@angular/material/core';
 import { MessagesComponent } from '../shared/components/messages/messages.component';
 import { DatosConexionService } from '../core/services/datos-conexion.service';
-//import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   apiKey: string = '';
   visibilityApiKey = true;
 
-  //prueba = environment.apiUrl;
+  prueba = environment.apiUrl;
 
 
   //inyectamos el servicio de datos conexion, para fijar la api-key cuando la rellenen
