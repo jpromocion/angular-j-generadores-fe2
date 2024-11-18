@@ -102,6 +102,38 @@ ng generate environments
 - Luego rellenamos en los ficheros de entorno lo que necesitamos. Ver documentación Angular
 
 
+### Instalar inclusión variables entorno sistema en aplicación.
+
+[@ngx-env/builder](https://www.npmjs.com/package/@ngx-env/builder)
+[Explicación adicional ngx-env/builder](https://dev.to/dimeloper/managing-environment-variables-in-angular-apps-14gn)
+
+Buscamos parametrizar la url de ataque de la API rest cuando despleguemos en producción (de forma que podamos alojar en sistios distintos.)
+
+Instalamos con:
+```
+ng add @ngx-env/builder
+```
+- Se acepta configuración que incluye el "env.d.ts"
+- En "env.d.ts" añadimos la variable de entorno "NG_APP_API_REST_PROD" -> "readonly NG_APP_API_REST_PROD: string;"
+
+
+Modificamos el environment.ts para que la variable "apiUrl" coja "import.meta.env.NG_APP_API_REST_PROD".
+El sistema donde se despligue para producción deberá tener la variable de entorno NG_APP_API_REST_PROD con la url donde este desplegada la API REST que atacar.
+
+En environment.development.ts dejamos apiUrl contra localhost directo, en vez de variable entorno, de esta forma en local es irrelevante esto.
+
+Se puede crear un .env directamente en la raíz del proyecto con
+```
+# Simular en local utiliza la API rest desplegada en produccion (render o railway) con variable de entorno -> @ngx-env/builder
+# Desplegado en su proveedor en el entonro de produccion, sera dicho entorno el que tenga el .env con la variable de entorno.
+# En local el enviroment.development.ts apunta a la url en produccion sin necesidad de usar @ngx-env/builder
+# NG_APP_API_REST_PROD=https://rest-j-generadores.onrender.com/generadores
+NG_APP_API_REST_PROD=https://rest-j-generadores-production.up.railway.app/generadores
+```
+
+Para que si desplegamos en local pero con la configuración de producción `ng serve --configuration=production`, podamos probar en local contra la API rest seleccionada de producción concreta.
+
+
 ### Instalar generador excel.
 
 Instalamos con:
@@ -148,9 +180,9 @@ npm install @angular/material-moment-adapter --force
 
 
 
-## Docker - Render
+## Docker - Render o Railway
 
-Se incluye un Dockerfile que permite desplegar la aplicación en Render:
+Se incluye un Dockerfile que permite desplegar la aplicación en Render o en Railway:
 - Define el contenedor:
 	- Carga una maquina preconfigurada de Alphine Linux con lo necesario para nodejs pero solo para construir nuesta aplicación.
 	- Le instala el cliente angular.
@@ -164,6 +196,28 @@ Se incluye un Dockerfile que permite desplegar la aplicación en Render:
 	- Levanta el servidor Nginx
 
 > NOTA: en Dockerfile esta comentada la configuración para lanzarlo como `ng serve`, como se haría en un entorno de desarrollo, aunque con la configuración de producción.
+
+### Variable entorno para API rest url producción para uso de multiples-alojadores
+
+Adicional para uso de variable entorno del alojador, de forma que podamos desplegar en Render y en Railway a la par, y que cada uno de ellos apunte a la url de API rest que cada uno ha levantado tambien en su alojamiento distinto:
+- El alojador, deberá definir para el despliegue de esta aplicación angular una enviroment variable de nombre NG_APP_API_REST_PROD con la url correspondiente de su API rest (Ver [Render Enviroment variables](https://docs.render.com/configure-environment-variables) o [Railway Enviroment variables](https://docs.railway.com/reference/environments):
+  - Render: https://rest-j-generadores.onrender.com/generadores
+  - Railway: https://rest-j-generadores-production.up.railway.app/generadores
+- Nuesto Dockerfile lo modificamos para (Ver [Railway inyectar Enviroment variables en build docker](https://docs.railway.com/guides/dockerfiles)):
+```
+#Injectar la variable de entorno definida en el alojador (en este caso Railway)
+ARG NG_APP_API_REST_PROD
+#Mostrar en consola la variable entorno
+RUN echo "[JPROMOCION] NG_APP_API_REST_PROD env variable es:"
+RUN echo $NG_APP_API_REST_PROD
+```
+
+  - Con ARG inyecta la variable de entorno del alojador en nuestra build de dockerfile. Luego simplemente la mostramos para ver que coge el valor.
+  - Con esto, cuando se vaya a hacer el `ng build --configuration=production` con la configuración de producción, va a cargar el @ngx-env/builder rellenando la variable entorno dentro de NG_APP_API_REST_PROD, cogiendo correctamente la NG_APP_API_REST_PROD que hemos cargado en el docker desde las definidas por el alojador, sin necesidad de modificar nada más en los comandos.
+  - COmo es la configuración de producción, utilizará `environment.ts` donde la "apiUrl" si es sustituida por "NG_APP_API_REST_PROD"
+
+> NOTA: en el dashboard (principal) esta comentado un input "mostrarApiUrlPorAsegurar" para ver la url cargada en la "apiUrl" para asegurar.
+
 
 
 

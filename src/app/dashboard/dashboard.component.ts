@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   apiKey: string = '';
   visibilityApiKey = true;
 
-  prueba = environment.apiUrl;
+  mostrarApiUrlPorAsegurar = environment.apiUrl;
 
 
   //inyectamos el servicio de datos conexion, para fijar la api-key cuando la rellenen
