@@ -122,7 +122,7 @@ El sistema donde se despligue para producción deberá tener la variable de ento
 
 En environment.development.ts dejamos apiUrl contra localhost directo, en vez de variable entorno, de esta forma en local es irrelevante esto.
 
-Se puede crear un .env directamente en la raíz del proyecto con
+Se puede crear un .env directamente en la raíz del proyecto con:
 ```
 # Simular en local utiliza la API rest desplegada en produccion (render o railway) con variable de entorno -> @ngx-env/builder
 # Desplegado en su proveedor en el entonro de produccion, sera dicho entorno el que tenga el .env con la variable de entorno.
@@ -130,8 +130,8 @@ Se puede crear un .env directamente en la raíz del proyecto con
 # NG_APP_API_REST_PROD=https://rest-j-generadores.onrender.com/generadores
 NG_APP_API_REST_PROD=https://rest-j-generadores-production.up.railway.app/generadores
 ```
-
-Para que si desplegamos en local pero con la configuración de producción `ng serve --configuration=production`, podamos probar en local contra la API rest seleccionada de producción concreta.
+  - Para que si desplegamos en local pero con la configuración de producción `ng serve --configuration=production`, podamos probar en local contra la API rest seleccionada de producción concreta.
+  - Pero en principio no es necesario para desplegar en desarrollo, dado que el enviroment.development.ts no utiliza variable de entorno, sino que asigna la url de API con el localhost directamente.
 
 
 ### Instalar generador excel.
