@@ -1,5 +1,5 @@
 import { Component, OnInit, inject} from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -19,7 +19,7 @@ import { NumberService } from '../core/services/number.service';
 @Component({
   selector: 'app-genera-numeros',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
+  imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
     MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule],
   templateUrl: './genera-numeros.component.html',
   styleUrl: './genera-numeros.component.scss'

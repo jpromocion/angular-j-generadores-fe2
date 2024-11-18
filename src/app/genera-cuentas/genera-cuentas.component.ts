@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 //necesario  para tooltips de bootstrap, al cambiar a angular material es innecesario
 //import * as bootstrap from 'bootstrap';
@@ -21,7 +21,8 @@ import { Tarjeta } from '../core/models/tarjeta';
 @Component({
   selector: 'app-genera-cuentas',
   standalone: true,
-  imports: [NgFor, FormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,MatGridListModule,MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule],
+  imports: [FormsModule, NgIf, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule, MatGridListModule,
+    MatInputModule, MatSelectModule, MatFormFieldModule, MatListModule],
   templateUrl: './genera-cuentas.component.html',
   styleUrl: './genera-cuentas.component.scss'
 })

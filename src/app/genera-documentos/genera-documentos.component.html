@@ -10,7 +10,9 @@
         <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
       </mat-form-field>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c1">
       <mat-card appearance="outlined">
         <mat-card-header>Generar NIFs</mat-card-header>
@@ -128,7 +130,7 @@
           </mat-form-field>
           -->
           <form>
-            <mat-form-field style="width: 350px !important; margin-left: 5px;">
+            <mat-form-field style="width: 100% !important; margin-left: 5px;">
               <mat-label>Seleccionar tipo sociedad</mat-label>
               <input #selectedSociedadIn matInput type="text"
                 placeholder="Seleccionar ..."
@@ -174,12 +176,15 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+
+  <div class="grid-layout">
     <div class="caja c4">
       <mat-card appearance="outlined">
         <mat-card-header>Validar NIF</mat-card-header>
         <mat-card-content>
           <div class="divBox">
-            <mat-form-field style="width: 150px !important;">
+            <mat-form-field style="min-width: 150px !important; width: auto !important;">
               <mat-label>NIF a comprobar</mat-label>
               <input matInput id="nifValidar" type="text" placeholder="91000750P" [(ngModel)]="nifValidar"
                 style="text-transform:uppercase" maxlength="12">
@@ -207,7 +212,7 @@
         <mat-card-header>Validar NIE</mat-card-header>
         <mat-card-content>
           <div class="divBox">
-            <mat-form-field style="width: 150px !important;">
+            <mat-form-field style="min-width: 150px !important; width: auto !important;">
               <mat-label>NIE a comprobar</mat-label>
               <input matInput id="nieValidar" type="text" placeholder="X6203099E" [(ngModel)]="nieValidar"
                 style="text-transform:uppercase" maxlength="12">
@@ -235,7 +240,7 @@
         <mat-card-header>Validar CIF</mat-card-header>
         <mat-card-content>
           <div class="divBox">
-            <mat-form-field  style="width: 150px !important;">
+            <mat-form-field  style="min-width: 150px !important; width: auto !important;">
               <mat-label>CIF a comprobar</mat-label>
               <input matInput id="cifValidar" type="text" placeholder="J92456805" [(ngModel)]="cifValidar"
                 style="text-transform:uppercase" maxlength="12">
@@ -264,7 +269,7 @@
         <mat-card-header>Validar Pasaporte</mat-card-header>
         <mat-card-content>
           <div class="divBox">
-            <mat-form-field style="width: 250px !important;">
+            <mat-form-field style="min-width: 200px !important; width: auto !important;">
               <mat-label>Pasaporte a comprobar</mat-label>
               <input matInput id="pasaporteValidar" type="text" placeholder="AAC0568227" [(ngModel)]="pasaporteValidar"
                 style="text-transform:uppercase" maxlength="10">
@@ -288,13 +293,15 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c7">
       <mat-card appearance="outlined">
         <mat-card-header>Calcular DC Pasaporte</mat-card-header>
         <mat-card-content>
           <div class="divBox" >
-            <mat-form-field style="width: 250px !important;">
+            <mat-form-field style="min-width: 150px !important; width: auto !important;">
               <mat-label>Pasaporte sin DC</mat-label>
               <input matInput id="pasaporteCalcular" type="text" placeholder="AAC056822" [(ngModel)]="pasaporteCalcular"
                 style="text-transform:uppercase" maxlength="9">

@@ -10,7 +10,9 @@
         <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
       </mat-form-field>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c1">
       <mat-card appearance="outlined">
         <mat-card-header>Generar tipo seleccionado</mat-card-header>
@@ -41,7 +43,7 @@
               -donde al value le asignamos el objeto entero tipo, no solo el valor.
           -->
           <form>
-            <mat-form-field style="width: 400px;margin-left: 5px;">
+            <mat-form-field style="min-width: 250px;;width: 80%;margin-left: 5px;">
               <mat-label>Seleccionar tipo generación</mat-label>
               <input #selectedTipoGeneraIn matInput type="text"
                 placeholder="Seleccionar ..."
@@ -94,7 +96,7 @@
       <mat-card appearance="outlined">
         <mat-card-header>Generar Teléfonos</mat-card-header>
         <mat-card-content>
-          <mat-form-field style="width: 330px;margin-left: 5px;">
+          <mat-form-field style="width: auto;margin-left: 5px;">
             <mat-label>Seleccionar tipo teléfono</mat-label>
             <mat-select [(ngModel)]="selectedTipoTelefono">
               @for (tipo of tiposTelefono; track tipo) {
@@ -186,7 +188,9 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c4">
       <mat-card appearance="outlined">
         <mat-card-header>Generar Códigos promocionales</mat-card-header>
@@ -255,7 +259,9 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c5">
       <mat-card appearance="outlined">
         <mat-card-header>Generar referencias catastrales</mat-card-header>

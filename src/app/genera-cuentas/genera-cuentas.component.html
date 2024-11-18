@@ -12,6 +12,9 @@
       </mat-form-field>
     </div>
 
+  </div>
+
+  <div class="grid-layout">
 
     <div class="caja c1">
       <mat-card appearance="outlined">
@@ -33,29 +36,38 @@
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaIban?.length && listaIban.length > 0" >
             @for (iban of listaIban; track iban) {
-              <mat-list-item>
-                <div style="margin-top: 2%; margin-bottom: 2%;">
-                  <button mat-flat-button type="button" (click)="onSelectDato(iban.iban)"  style="margin-left: 20px;"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="iban">{{iban.iban}}</span>
-                  </button>
-                  <button mat-flat-button type="button" (click)="onSelectDato(iban.ibanFormateado)"  style="margin-left: 20px;"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="iban">{{iban.ibanFormateado}}</span>
-                  </button>
-                  <mat-divider></mat-divider>
-                </div>
-              </mat-list-item>
+                <mat-list-item style="height: auto;">
+                  <div class="grid-layout-resul-iban">
+                    <div class="caja">
+                      <button mat-flat-button type="button" (click)="onSelectDato(iban.iban)"  style="margin-left: 20px;"
+                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        <span class="iban">{{iban.iban}}</span>
+                      </button>
+                    </div>
+                    <div class="caja">
+                      <button mat-flat-button type="button" (click)="onSelectDato(iban.ibanFormateado)"  style="margin-left: 20px;"
+                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        <span class="iban">{{iban.ibanFormateado}}</span>
+                      </button>
+                    </div>
+                    <div class="caja cpDiv">
+                      <mat-divider></mat-divider>
+                    </div>
+                  </div>
+                </mat-list-item>
             }
           </mat-list>
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+
+  <div class="grid-layout">
     <div class="caja c2">
       <mat-card appearance="outlined">
         <mat-card-header>Generar Tarjetas</mat-card-header>
         <mat-card-content>
-          <mat-form-field style="width: 250px !important; margin-left: 5px;">
+          <mat-form-field style="min-width: 250px !important; width: auto !important; margin-left: 5px;">
             <mat-label>Seleccionar tipo tarjeta</mat-label>
             <mat-select [(ngModel)]="selectedTarjetaTipo">
               @for (tipo of tiposTarjetas; track tipo) {
@@ -79,25 +91,35 @@
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaTarjeta?.length && listaTarjeta.length > 0" >
             @for (tarjetaGenerado of listaTarjeta; track tarjetaGenerado) {
-              <mat-list-item>
-                <div style="margin-top: 2%; margin-bottom: 2%;">
-                  <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjeta)" style="margin-left: 20px;"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="tarjeta">{{tarjetaGenerado.tarjeta}}</span>
-                  </button>
-                  <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjetaFormateada)" style="margin-left: 20px;"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="tarjetaFormateada">{{tarjetaGenerado.tarjetaFormateada}}</span>
-                  </button>
-                  <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.expiracionCredito)" style="margin-left: 20px;"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="expiracionCredito">{{tarjetaGenerado.expiracionCredito}}</span>
-                  </button>
-                  <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.cvc)" style="margin-left: 20px;"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="cvc">{{tarjetaGenerado.cvc}}</span>
-                  </button>
-                  <mat-divider></mat-divider>
+              <mat-list-item style="height: auto;">
+                <div class="grid-layout-resul-tarjeta">
+                  <div class="caja">
+                    <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjeta)" style="margin-left: 20px;"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="tarjeta">{{tarjetaGenerado.tarjeta}}</span>
+                    </button>
+                  </div>
+                  <div class="caja">
+                    <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjetaFormateada)" style="margin-left: 20px;"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="tarjetaFormateada">{{tarjetaGenerado.tarjetaFormateada}}</span>
+                    </button>
+                  </div>
+                  <div class="caja">
+                    <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.expiracionCredito)" style="margin-left: 20px;"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="expiracionCredito">{{tarjetaGenerado.expiracionCredito}}</span>
+                    </button>
+                  </div>
+                  <div class="caja">
+                    <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.cvc)" style="margin-left: 20px;"
+                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      <span class="cvc">{{tarjetaGenerado.cvc}}</span>
+                    </button>
+                  </div>
+                  <div class="caja cpDivCuenta">
+                    <mat-divider></mat-divider>
+                  </div>
                 </div>
               </mat-list-item>
             }
@@ -105,12 +127,15 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+
+  <div class="grid-layout">
     <div class="caja c3">
       <mat-card appearance="outlined">
         <mat-card-header>Validar IBAN</mat-card-header>
         <mat-card-content>
-          <div class="divBox">
-            <mat-form-field style="width: 270px !important;">
+          <div>
+            <mat-form-field style="min-width: 220px !important; width: auto !important;">
               <mat-label>IBAN a comprobar</mat-label>
               <input matInput id="ibanValidar" type="text" placeholder="ES0920007083880013231063" [(ngModel)]="ibanValidar"
                 style="text-transform:uppercase;" maxlength="35">
@@ -137,8 +162,8 @@
       <mat-card appearance="outlined">
         <mat-card-header>Validar Tarjeta</mat-card-header>
         <mat-card-content>
-          <div class="divBox">
-            <mat-form-field style="width: 270px !important;">
+          <div >
+            <mat-form-field style="min-width: 150px !important; width: auto !important;">
               <mat-label>Tarjeta a comprobar</mat-label>
               <input matInput id="tarjetaValidar" type="text" placeholder="4846891122550579" [(ngModel)]="tarjetaValidar"
                 style="text-transform:uppercase" size="12">

@@ -1,7 +1,9 @@
 .grid-layout{
   display: grid;
-  grid-template-columns: auto auto;
-  gap: 5px;
+  //grid-template-columns: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 
@@ -12,6 +14,6 @@
 }
 
 
-.c0{
-  grid-column: 1 / span 2;
-}
+// .c0{
+//   grid-column: 1 / span 2;
+// }

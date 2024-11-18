@@ -1,12 +1,14 @@
 <h2 class="tracking-in-expand">Perfil</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
-  <div class="grid-layout">
+  <div class="grid-layout-param">
 
     <div class="caja c0">
       <h3>Filtros</h3>
     </div>
+  </div>
 
+  <div class="grid-layout-param">
     <div class="caja c1">
       <label>Tipo perfil: </label>
       <mat-button-toggle-group name="tipoperfil" aria-label="Tipo perfil" [(ngModel)]="tipoPerfil"  style="margin-left: 10px;">
@@ -31,7 +33,9 @@
         <mat-button-toggle value="c">Camel case</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
+  </div>
 
+  <div class="grid-layout-param">
     <div class="caja c4">
       <mat-form-field style="width: 150px !important;">
         <mat-label>Num. generaciones</mat-label>
@@ -56,7 +60,9 @@
         <h3>Persona generada</h3>
       </div>
     </div>
+  </div>
 
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja" >
       <label>NIF: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nif)" style="margin-left: 10px; "
@@ -212,6 +218,9 @@
         <span class="codigoPostal">{{personaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
+  </div>
+
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja cpDir" >
       <label>Dirección:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
@@ -219,7 +228,9 @@
         <span class="direccion">{{personaGenerada.direccion.direccionAMedio | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
+  </div>
 
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja cpDir" >
       <label>Dirección completa:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
@@ -227,7 +238,9 @@
         <span class="direccion">{{personaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
+  </div>
 
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja" >
       <label>Ref. catastral:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"
@@ -290,7 +303,8 @@
         <h3>Empresa generada</h3>
       </div>
     </div>
-
+  </div>
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja" >
       <label>CIF: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.cif)" style="margin-left: 10px; "
@@ -320,6 +334,9 @@
         <span class="cnae">{{empresaGenerada.cnae}}</span>
       </button>
     </div>
+  </div>
+
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja cpDir" >
       <label>Actividad: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.actividad))" style="margin-left: 10px; "
@@ -327,7 +344,9 @@
         <span class="actividad">{{empresaGenerada.actividad | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
+  </div>
 
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja" >
       <label>Email: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.email))" style="margin-left: 10px; "
@@ -398,6 +417,9 @@
         <span class="codigoPostal">{{empresaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
+  </div>
+
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja cpDir" >
       <label>Dirección:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
@@ -405,7 +427,9 @@
         <span class="direccion">{{empresaGenerada.direccion.direccionAMedio| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
+  </div>
 
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja cpDir" >
       <label>Dirección completa:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
@@ -413,7 +437,9 @@
         <span class="direccion">{{empresaGenerada.direccion.direccionCompleta| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
+  </div>
 
+  <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja" >
       <label>Ref. catastral:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"

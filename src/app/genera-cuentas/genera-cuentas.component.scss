@@ -1,8 +1,12 @@
 .grid-layout{
   display: grid;
-  grid-template-columns: auto auto;
-  gap: 5px;
+  //grid-template-columns: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
 }
+
+
 
 
 .caja{
@@ -11,6 +15,59 @@
   //margin: 5px;
 }
 
-.c0{
+
+// .c0{
+//   grid-column: 1 / span 2;
+// }
+
+.grid-layout-resul-iban{
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5px;
+  margin-top: 5px; margin-bottom: 5px;
+}
+//en tamaños pequeños, solo una columa de datos
+@media (max-width: 700px) {
+  .grid-layout-resul-iban {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.cpDiv{
   grid-column: 1 / span 2;
 }
+@media (max-width: 700px) {
+  .cpDiv {
+    grid-column: 1 / span 1;
+  }
+}
+
+
+.grid-layout-resul-tarjeta{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 5px;
+  margin-top: 5px; margin-bottom: 5px;
+}
+//en tamaños pequeños, solo una columa de datos
+@media (max-width: 750px) {
+  .grid-layout-resul-tarjeta {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.cpDivCuenta{
+  grid-column: 1 / span 4;
+}
+@media (max-width: 750px) {
+  .cpDivCuenta {
+    grid-column: 1 / span 1;
+  }
+}
+
+
+
+
+

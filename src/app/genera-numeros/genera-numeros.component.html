@@ -18,7 +18,9 @@
       </mat-form-field>
 
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c1">
       <mat-card appearance="outlined">
         <mat-card-header>Número aleatorio</mat-card-header>
@@ -76,6 +78,60 @@
       </mat-card>
     </div>
 
+    <div class="caja c4">
+      <mat-card appearance="outlined">
+        <mat-card-header>Número aleatorio (Gaussiano)</mat-card-header>
+        <mat-card-content>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;">
+            <mat-label>Media</mat-label>
+            <input matInput id="gaussianoMedia" type="number"  placeholder="0" [(ngModel)]="gaussianoMedia">
+            <mat-icon matSuffix matTooltip="Media (μ) es el valor promedio esperado de la distribución. Representa el punto central alrededor del cual los valores generados por la distribución se agrupan. En términos más formales, es el parámetro de localización de la distribución normal, y se calcula como la suma de todos los valores dividida por el número de valores.">help</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field style="width: 150px !important;margin-left: 5px;">
+            <mat-label>Desv. estandar</mat-label>
+            <input matInput id="gaussianoDesviacion" type="number"  placeholder="1" [(ngModel)]="gaussianoDesviacion">
+            <mat-icon matSuffix matTooltip="Desviación estándar (σ) es una medida de la dispersión o variabilidad de los valores alrededor de la media (μ) de la distribución. Indica cuánto se desvían los valores generados de la media, y una desviación estándar mayor implica una mayor dispersión de los datos, mientras que una desviación estándar menor implica que los valores están más agrupados cerca de la media.">help</mat-icon>
+          </mat-form-field>
+
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar aleatorio Gaussiano" (click)="onClickBotonGenerarGaussiano()"
+            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+          </button>
+
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarGaussiano()"
+            matTooltip="Pulsar para limpiar los números aleatorios Gaussiano" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0"
+            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonGaussiano()"
+            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <mat-icon>description</mat-icon>
+          </button>
+
+          <mat-list [@entradaLateralAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0" >
+            @for (texto of gaussianoGenerado; track texto) {
+              <mat-list-item>
+                <div style="margin-top: 2%; margin-bottom: 2%;">
+                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
+                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    <span class="numero">{{texto}}</span>
+                  </button>
+                  <mat-divider></mat-divider>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+
+  <div class="grid-layout">
     <div class="caja c2">
       <mat-card appearance="outlined" class="caja-fondo-moneda">
         <mat-card-header>Moneda</mat-card-header>
@@ -166,56 +222,9 @@
       </mat-card>
     </div>
 
-    <div class="caja c4">
-      <mat-card appearance="outlined">
-        <mat-card-header>Número aleatorio (Gaussiano)</mat-card-header>
-        <mat-card-content>
+  </div>
 
-          <mat-form-field style="width: 150px !important;margin-left: 5px;">
-            <mat-label>Media</mat-label>
-            <input matInput id="gaussianoMedia" type="number"  placeholder="0" [(ngModel)]="gaussianoMedia">
-            <mat-icon matSuffix matTooltip="Media (μ) es el valor promedio esperado de la distribución. Representa el punto central alrededor del cual los valores generados por la distribución se agrupan. En términos más formales, es el parámetro de localización de la distribución normal, y se calcula como la suma de todos los valores dividida por el número de valores.">help</mat-icon>
-          </mat-form-field>
-
-          <mat-form-field style="width: 150px !important;margin-left: 5px;">
-            <mat-label>Desv. estandar</mat-label>
-            <input matInput id="gaussianoDesviacion" type="number"  placeholder="1" [(ngModel)]="gaussianoDesviacion">
-            <mat-icon matSuffix matTooltip="Desviación estándar (σ) es una medida de la dispersión o variabilidad de los valores alrededor de la media (μ) de la distribución. Indica cuánto se desvían los valores generados de la media, y una desviación estándar mayor implica una mayor dispersión de los datos, mientras que una desviación estándar menor implica que los valores están más agrupados cerca de la media.">help</mat-icon>
-          </mat-form-field>
-
-          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar aleatorio Gaussiano" (click)="onClickBotonGenerarGaussiano()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
-            <mat-icon>refresh</mat-icon>
-          </button>
-
-          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarGaussiano()"
-            matTooltip="Pulsar para limpiar los números aleatorios Gaussiano" matTooltipPosition="below">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonGaussiano()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
-            <mat-icon>description</mat-icon>
-          </button>
-
-          <mat-list [@entradaLateralAnimation] *ngIf="gaussianoGenerado?.length && gaussianoGenerado.length > 0" >
-            @for (texto of gaussianoGenerado; track texto) {
-              <mat-list-item>
-                <div style="margin-top: 2%; margin-bottom: 2%;">
-                  <button mat-flat-button type="button" (click)="onSelectDato(texto)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
-                    <span class="numero">{{texto}}</span>
-                  </button>
-                  <mat-divider></mat-divider>
-                </div>
-              </mat-list-item>
-            }
-          </mat-list>
-
-        </mat-card-content>
-      </mat-card>
-    </div>
+  <div class="grid-layout">
 
     <div class="caja c5">
       <mat-card appearance="outlined">
@@ -450,7 +459,9 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c7">
       <mat-card appearance="outlined">
         <mat-card-header>Calcular Área</mat-card-header>
@@ -465,7 +476,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field style="width: 250px !important;margin-left: 5px;" [@encogimientoAnimation] *ngIf="areaSelectedTipo != ''">
+          <mat-form-field style="min-width: 150px !important; width: auto !important;margin-left: 5px;" [@encogimientoAnimation] *ngIf="areaSelectedTipo != ''">
             <mat-label>{{areaLabelA}}</mat-label>
             <input matInput id="areaA" type="number"  placeholder="0" [(ngModel)]="areaA">
             <mat-icon matSuffix matTooltip="Según cada forma implica un valor: 'cuadrado': Longitud de lado, 'rectangulo': Ancho, 'triangulo': Base, 'paralelogramo': Base, 'trapezoide': Base superior (corta/menor), 'circulo': Radio, 'elipse': Eje corto o menor (similar al radio en círculos)">help</mat-icon>
@@ -512,7 +523,7 @@
         <mat-card-header>Grados <-> Radianes</mat-card-header>
         <mat-card-content>
 
-          <mat-form-field style="width: 250px !important;margin-left: 5px;" >
+          <mat-form-field style="min-width: 150px !important; width: auto !important;margin-left: 5px;" >
             <mat-label>Grados/radianes</mat-label>
             <input matInput id="gradosValor" type="number"  placeholder="0" [(ngModel)]="gradosValor">
             <mat-icon matSuffix matTooltip="Grados/radianes (según check marcado)">help</mat-icon>
@@ -545,7 +556,9 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c9">
       <mat-card appearance="outlined">
         <mat-card-header>Conversor de base</mat-card-header>
@@ -581,7 +594,7 @@
           </button>
 
           <div>
-            <mat-form-field style="width: 400px !important;margin-left: 5px;">
+            <mat-form-field style="min-width: 250px !important; width: auto !important;margin-left: 5px;">
               <mat-label>Convertido</mat-label>
               <input matInput id="baseResultado" type="text" [(ngModel)]="baseResultado" readonly="true" style="text-align: end;" (click)="onSelectDato(baseResultado)">
             </mat-form-field>

@@ -1,7 +1,23 @@
+.grid-layout-param{
+  display: grid;
+  //grid-template-columns: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .grid-layout{
   display: grid;
   grid-template-columns: auto auto;
+  //grid-template-columns: repeat(auto-, minmax(200px, 1fr));
   gap: 5px;
+  margin-bottom: 5px;
+}
+//en tamaños pequeños, solo una columa de datos
+@media (max-width: 600px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 
@@ -11,19 +27,19 @@
   //margin: 5px;
 }
 
-.c0{
-  grid-column: 1 / span 2;
-}
+// .c0{
+//   grid-column: 1 / span 2;
+// }
 
-.c3{
-  grid-column: 1 / span 2;
-}
+// .c3{
+//   grid-column: 1 / span 2;
+// }
 
-.c4{
-  grid-column: 1 / span 2;
-}
+// .c4{
+//   grid-column: 1 / span 2;
+// }
 
 
-.cpDir{
-  grid-column: 1 / span 2;
-}
+// .cpDir{
+//   grid-column: 1 / span 2;
+// }

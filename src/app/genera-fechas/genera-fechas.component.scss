@@ -1,7 +1,9 @@
 .grid-layout{
   display: grid;
-  grid-template-columns: auto auto;
-  gap: 5px;
+  //grid-template-columns: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .caja{
@@ -10,9 +12,9 @@
   //margin: 5px;
 }
 
-.c5{
-  grid-column: 1 / span 2;
-}
+// .c5{
+//   grid-column: 1 / span 2;
+// }
 
 
 

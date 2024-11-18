@@ -1,11 +1,13 @@
 .grid-layout{
   display: grid;
-  grid-template-columns: auto auto;
-  //una forma de que se auto colocarran con un minimo tamaño a mostrar
-  //en la practica acaba tambien reduciendo a dos columnas en el minimo... y tal como lo tenemos
-  //es mas manejable
-  //grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 5px;
+  //Cambiamos a aplicacion de columnas automatizadas por tamaño para mejorar ajuste de pantalla en movil
+  //  -Quitramoes los span de algunas columnas
+  //  -En su lugar si queremoss asegurar un salto abajo de una parte, creamos div grid-layout distintos
+  //   y asi es seguro que saltan abajo
+  //grid-template-columns: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 
@@ -19,9 +21,10 @@
   //text-align: center;
 }
 
-.c0{
-  grid-column: 1 / span 2;
-}
+
+// .c0{
+//   grid-column: 1 / span 2;
+// }
 
 
 

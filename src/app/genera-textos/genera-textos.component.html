@@ -7,7 +7,9 @@
     <div class="caja c0">
       <h3>Filtros</h3>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c1">
       <label>Idioma: </label>
       <mat-button-toggle-group name="idioma" aria-label="idioma" [(ngModel)]="idioma" style="margin-left: 10px;">
@@ -25,7 +27,9 @@
         <mat-button-toggle value="p">Párrafos</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c3">
       <mat-form-field style="width: 250px !important;">
         <mat-label>Cantidad(carac./palabra./parraf.)</mat-label>
@@ -46,7 +50,9 @@
         <mat-button-toggle value="c">Camel case</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c5">
       <button type="button" mat-fab class="botonRotatorio" aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
         matTooltip="Pulsar para generar" matTooltipPosition="below">
@@ -59,7 +65,9 @@
         <mat-icon>delete</mat-icon>
       </button>
     </div>
+  </div>
 
+  <div class="grid-layout">
     <div class="caja c6">
       <mat-form-field [@encogimientoAnimation] *ngIf="textoGenerado" style="margin-top: 10px;margin-left: 20px; width: 100%;">
         <mat-label>Texto generado</mat-label>

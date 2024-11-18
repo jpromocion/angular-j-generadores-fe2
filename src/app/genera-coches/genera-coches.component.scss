@@ -8,8 +8,10 @@
 
 .grid-layout{
   display: grid;
-  grid-template-columns: auto;
-  gap: 5px;
+  //grid-template-columns: auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 

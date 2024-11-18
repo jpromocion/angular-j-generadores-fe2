@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 //necesario  para tooltips de bootstrap, al cambiar a angular material es innecesario
 //import * as bootstrap from 'bootstrap';
@@ -22,7 +22,7 @@ import { Color } from '../core/models/color';
 @Component({
   selector: 'app-genera-colores',
   standalone: true,
-  imports: [NgFor, FormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,MatGridListModule,MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,
+  imports: [FormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,MatGridListModule,MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,
     ColorPickerModule,MatSliderModule],
   templateUrl: './genera-colores.component.html',
   styleUrl: './genera-colores.component.scss'
