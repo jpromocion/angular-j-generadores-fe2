@@ -4,6 +4,13 @@
 #PASO 1: Contenedor donde se construye la aplicacion
 FROM node:alpine AS builder
 
+#Injectar la variable de entorno definida en el alojador (en este caso Railway)
+ARG NG_APP_API_REST_PROD
+#Mostrar en consola la variable entorno
+RUN echo "[JPROMOCION] NG_APP_API_REST_PROD env variable es:"
+RUN echo $NG_APP_API_REST_PROD
+
+
 RUN npm install -g @angular/cli
 
 WORKDIR /usr/src/app
@@ -40,9 +47,7 @@ EXPOSE 80
 # Levantamos NGINX server
 CMD ["nginx", "-g", "daemon off;"]
 
-#Mostrar en consola la variable entorno API_REST_PROD que deberia definir el alojador
-RUN echo "[JPROMOCION] NG_APP_API_REST_PROD env variable es:"
-RUN echo $NG_APP_API_REST_PROD
+
 
 
 
