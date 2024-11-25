@@ -12,7 +12,7 @@ export const routes: Routes = [
       import('./dashboard/dashboard.component').then(
         (c) => c.DashboardComponent
       ),
-      title: 'Principal'
+      title: 'generadores.jpromocion.menu.principal'
   },
   {
     path: 'genera-documentos',
@@ -20,7 +20,7 @@ export const routes: Routes = [
       import('./genera-documentos/genera-documentos.component').then(
         (c) => c.GeneraDocumentosComponent
       ),
-      title: 'Documentos'
+      title: 'generadores.jpromocion.menu.documentos'
   },
   {
     path: 'genera-cuentas',
@@ -28,7 +28,7 @@ export const routes: Routes = [
       import('./genera-cuentas/genera-cuentas.component').then(
         (c) => c.GeneraCuentasComponent
       ),
-      title: 'Bancario'
+      title: 'generadores.jpromocion.menu.bancario'
   },
   {
     path: 'genera-perfiles',
@@ -36,7 +36,7 @@ export const routes: Routes = [
       import('./genera-perfiles/genera-perfiles.component').then(
         (c) => c.GeneraPerfilesComponent
       ),
-      title: 'Perfiles'
+      title: 'generadores.jpromocion.menu.perfiles'
   },
   {
     path: 'genera-textos',
@@ -44,7 +44,7 @@ export const routes: Routes = [
       import('./genera-textos/genera-textos.component').then(
         (c) => c.GeneraTextosComponent
       ),
-      title: 'Textos'
+      title: 'generadores.jpromocion.menu.textos'
   },
   {
     path: 'genera-numeros',
@@ -52,7 +52,7 @@ export const routes: Routes = [
       import('./genera-numeros/genera-numeros.component').then(
         (c) => c.GeneraNumerosComponent
       ),
-      title: 'Números'
+      title: 'generadores.jpromocion.menu.numeros'
   },
   {
     path: 'genera-fechas',
@@ -60,7 +60,7 @@ export const routes: Routes = [
       import('./genera-fechas/genera-fechas.component').then(
         (c) => c.GeneraFechasComponent
       ),
-      title: 'Fechas'
+      title: 'generadores.jpromocion.menu.fechas'
   },
   {
     path: 'genera-coches',
@@ -68,7 +68,7 @@ export const routes: Routes = [
       import('./genera-coches/genera-coches.component').then(
         (c) => c.GeneraCochesComponent
       ),
-      title: 'Vehículos'
+      title: 'generadores.jpromocion.menu.vehiculos'
   },
   {
     path: 'genera-localizacion',
@@ -76,7 +76,7 @@ export const routes: Routes = [
       import('./genera-localizacion/genera-localizacion.component').then(
         (c) => c.GeneraLocalizacionComponent
       ),
-      title: 'Localización'
+      title: 'generadores.jpromocion.menu.localizacion'
   },
   {
     path: 'genera-barras',
@@ -84,7 +84,7 @@ export const routes: Routes = [
       import('./genera-barras/genera-barras.component').then(
         (c) => c.GeneraBarrasComponent
       ),
-      title: 'Cod. Barras'
+      title: 'generadores.jpromocion.menu.codbarras'
   },
   {
     path: 'genera-archivos',
@@ -92,7 +92,7 @@ export const routes: Routes = [
       import('./genera-archivos/genera-archivos.component').then(
         (c) => c.GeneraArchivosComponent
       ),
-      title: 'Archivos'
+      title: 'generadores.jpromocion.menu.archivos'
   },
   {
     path: 'genera-colores',
@@ -100,7 +100,7 @@ export const routes: Routes = [
       import('./genera-colores/genera-colores.component').then(
         (c) => c.GeneraColoresComponent
       ),
-      title: 'Colores'
+      title: 'generadores.jpromocion.menu.colores'
   },
   {
     path: 'genera-variados',
@@ -108,7 +108,7 @@ export const routes: Routes = [
       import('./genera-variados/genera-variados.component').then(
         (c) => c.GeneraVariadosComponent
       ),
-      title: 'Variados'
+      title: 'generadores.jpromocion.menu.variados'
   },
   {
     path: 'about',
@@ -116,6 +116,6 @@ export const routes: Routes = [
       import('./about/about.component').then(
         (c) => c.AboutComponent
       ),
-      title: 'Acerca de'
+      title: 'generadores.jpromocion.menu.acercade'
   },
 ];

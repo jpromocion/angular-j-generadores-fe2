@@ -11,7 +11,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {Sort} from '@angular/material/sort';
 import { CaseTransformerPipe } from '../../pipes/case-transformer.pipe';
-import {trigger, state,  style,  animate,  transition} from '@angular/animations';
+import {trigger, style,  animate,  transition} from '@angular/animations';
 
 @Component({
   selector: 'app-base-genera',

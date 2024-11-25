@@ -14,6 +14,8 @@ import { MessagesComponent } from '../shared/components/messages/messages.compon
 import {ComprameCafeComponent} from '../shared/components/comprame-cafe/comprame-cafe.component';
 import { DatosConexionService } from '../core/services/datos-conexion.service';
 import { environment } from '../../environments/environment';
+import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,10 +33,11 @@ import { environment } from '../../environments/environment';
     MatTooltipModule,
     MessagesComponent,
     MatRippleModule,
-    ComprameCafeComponent
+    ComprameCafeComponent,
+    TranslateModule
   ]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends BaseGeneraComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
 
   //para el sombreado del matripper
@@ -75,7 +78,7 @@ export class DashboardComponent implements OnInit {
   );
 
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     //cargamos la api-key del servicio actual
     this.apiKey = this.datosConexionService.getApiKey();
   }

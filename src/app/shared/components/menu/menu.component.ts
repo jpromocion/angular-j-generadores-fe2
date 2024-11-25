@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, EventEmitter, Output } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,6 +11,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { routes } from '../../../app.routes';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ComprameCafeComponent } from '../comprame-cafe/comprame-cafe.component';
+import { TranslateModule } from '@ngx-translate/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-menu',
@@ -26,11 +28,15 @@ import { ComprameCafeComponent } from '../comprame-cafe/comprame-cafe.component'
     AsyncPipe,
     RouterLink,
     RouterLinkActive,
-    ComprameCafeComponent
+    ComprameCafeComponent,
+    TranslateModule
   ]
 })
 export class MenuComponent {
   title = 'Generadores de';
+
+  //Para poder invocar la funcion useLanguage del componente padre app
+  @Output("useLanguagePadre") useLanguagePadre: EventEmitter<any> = new EventEmitter();
 
   private breakpointObserver = inject(BreakpointObserver);
   rootRoutes = routes.filter(r=>r.path);
@@ -58,7 +64,10 @@ export class MenuComponent {
     { path: 'genera-fechas', icon: 'calendar_month' },
   ];
 
-  constructor() {}
+  constructor(private translate: TranslateService) {
+    //inyectamos el TranslateService, porque necesitaremos saber en getBanderaClass el lenguaje actual
+
+  }
 
   /**
    *
@@ -84,6 +93,18 @@ export class MenuComponent {
   getMenuSeleClass(ruta: string): string {
     const isActive = window.location.pathname.includes(ruta);
     return isActive ? 'opcionmenuactiva' : '';
+  }
+
+  /**
+   * Invocaremos al procedimiento padre de app-component que cambnia el idioma
+   * @param idioma
+   */
+  cambiarIdioma(idioma: string){
+    this.useLanguagePadre.emit(idioma);
+  }
+
+  getBanderaClass(lenguaje: string): string {
+    return this.translate.currentLang != lenguaje ? 'idiomaNoSele' : '';
   }
 
 }

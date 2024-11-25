@@ -1,6 +1,6 @@
 {
   "name": "angular-j-generadores-fe2",
-  "version": "1.9.1",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,6 +21,9 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@colsen1991/ngx-translate-extract-marker": "^3.0.1",
+    "@ngx-translate/core": "^16.0.3",
+    "@ngx-translate/http-loader": "^16.0.0",
     "file-saver": "^2.0.5",
     "ngx-color-picker": "^17.0.0",
     "ngx-mat-timepicker": "^18.0.0",

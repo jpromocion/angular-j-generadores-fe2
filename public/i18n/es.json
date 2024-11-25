@@ -1,0 +1,27 @@
+{
+  "generadores": {
+    "jpromocion":{
+      "titulo": "Generadores de",
+      "menu":{
+        "titulo": "Menú",
+        "principal": "Principal",
+        "documentos": "Documentos",
+        "bancario": "Bancario",
+        "perfiles": "Perfiles",
+        "textos": "Textos",
+        "numeros": "Números",
+        "fechas": "Fechas",
+        "vehiculos": "Vehículos",
+        "localizacion": "Localización",
+        "codbarras": "Cod. Barras",
+        "archivos": "Archivos",
+        "colores": "Colores",
+        "variados": "Variados",
+        "acercade": "Acerca de"
+      },
+      "compramecafe":{
+        "boton": "¡¡Compramé un café!!"
+      }
+    }
+  }
+}

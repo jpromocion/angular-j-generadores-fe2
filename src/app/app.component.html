@@ -1,4 +1,11 @@
-<app-menu>
+<!--
+<div>
+  <span>Switch languages at runtime: </span>
+  <button (click)="useLanguage('es')">es</button>
+  <button (click)="useLanguage('en')">en</button>
+</div>
+-->
+<app-menu (useLanguagePadre)="useLanguage($event)">
   <router-outlet />
 </app-menu>
 

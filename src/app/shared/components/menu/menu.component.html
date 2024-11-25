@@ -7,7 +7,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar class="fondoMenu textoMenu">Menú</mat-toolbar>
+    <mat-toolbar class="fondoMenu textoMenu">{{ 'generadores.jpromocion.menu.titulo' | translate }}</mat-toolbar>
     <mat-nav-list class="flip-in-hor-bottom">
       @for (item of rootRoutes; track $index) {
       <a
@@ -23,7 +23,7 @@
         -->
         <div class="textoMenu resaltarMenu" style="display: flex; align-items: center;">
           <mat-icon class="{{ getIconClass(item.path ?? '') }}">{{ getIconoRuta(item.path ?? '')}}</mat-icon>
-          <span  style="margin-left: 2px;">{{ item.title }}</span>
+          <span  style="margin-left: 2px;">{{ (item.title ? item.title.toString() : '') | translate }}</span>
         </div>
       </a>
       }
@@ -48,10 +48,14 @@
         <mat-icon class="textoMenu" aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <!--}-->
-      <span>
-        <h1>{{title}}
+      <span class="divTituloIdioma">
+        <h1>{{ 'generadores.jpromocion.titulo' | translate }}
         <a href="https://github.com/jpromocion/" target="_blank">jpromocion</a>
         </h1>
+        <span style="display: flex;flex-direction: row; gap: 10px;">
+          <img src="/bandera_es.png" class="{{ getBanderaClass('es') }}" style="height: 25px; width: 25px;" alt="es" (click)="cambiarIdioma('es')">
+          <img src="/bandera_gb.png" class="{{ getBanderaClass('en') }}" style="height: 25px; width: 25px;" alt="en" (click)="cambiarIdioma('en')">
+        </span>
       </span>
     </mat-toolbar>
     <div class="sidenav-scroll-wrapper">

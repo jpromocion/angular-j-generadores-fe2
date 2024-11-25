@@ -1,0 +1,27 @@
+{
+  "generadores": {
+    "jpromocion":{
+      "titulo": "Generators of",
+      "menu":{
+        "titulo": "Menu",
+        "principal": "Main",
+        "documentos": "Documents",
+        "bancario": "Banking",
+        "perfiles": "Profiles",
+        "textos": "Texts",
+        "numeros": "Numbers",
+        "fechas": "Dates",
+        "vehiculos": "Vehicles",
+        "localizacion": "Location",
+        "codbarras": "Bar Code",
+        "archivos": "Files",
+        "colores": "Colors",
+        "variados": "Various",
+        "acercade": "About"
+      },
+      "compramecafe":{
+        "boton": "Buy me a coffee!!"
+      }
+    }
+  }
+}
