@@ -16,7 +16,7 @@ import {trigger, style,  animate,  transition} from '@angular/animations';
 @Component({
   selector: 'app-base-genera',
   standalone: true,
-  imports: [CaseTransformerPipe],
+  imports: [],
   //templateUrl: './base-genera.component.html',
   //styleUrl: './base-genera.component.scss'
   template: '',
