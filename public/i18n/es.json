@@ -50,7 +50,8 @@
             "tooltip": "Pulsar para copiar"
           },
           "limpiar": {
-            "tooltip": "Pulsar para copiar"
+            "label": "Limpiar generado",
+            "tooltip": "Pulsar para limpiar"
           },
           "exportarexcel": {
             "label": "Exportar a Excel",
@@ -139,6 +140,30 @@
           "pasaportesindc": {
             "label": "Pasaporte sin DC",
             "tooltip": "Número de pasaporte sin el dígito de control."
+          }
+        }
+      },
+      "bancario":{
+        "titulo": "Elementos bancarios",
+        "frame": {
+          "generariban": "Generar IBANs",
+          "generartarjeta": "Generar Tarjetas",
+          "validariban": "Validar IBAN",
+          "validartarjeta": "Validar Tarjeta"
+        },
+        "boton": {
+
+        },
+        "entrada":{
+          "tipotarjeta": {
+            "label": "Seleccionar tipo tarjeta",
+            "placeholder": "Seleccionar un tipo concreto para generar solo este tipo."
+          },
+          "ibanvalidar": {
+            "label": "IBAN a comprobar"
+          },
+          "tarjetavalidar": {
+            "label": "Tarjeta a comprobar"
           }
         }
       }

@@ -1,4 +1,4 @@
-<h2 class="tracking-in-expand">Elementos bancarios</h2>
+<h2 class="tracking-in-expand">{{ 'generadores.jpromocion.bancario.titulo' | translate }}</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
 
@@ -7,8 +7,8 @@
 
     <div class="caja c0">
       <mat-form-field style="width: 150px !important;">
-        <mat-label>Num. generaciones</mat-label>
-        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+        <mat-label>{{ 'generadores.jpromocion.generarcomunes.numgeneraciones.label' | translate }}</mat-label>
+        <input matInput id="numGenera" type="number"  min="2" max="1000" [(ngModel)]="numGenerar">
       </mat-form-field>
     </div>
 
@@ -18,20 +18,24 @@
 
     <div class="caja c1">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar IBANs</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.bancario.frame.generariban' | translate }}</mat-card-header>
         <mat-card-content>
           <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar una lista de IBANs" (click)="onClickBotonGenerarListaIban()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaIban?.length && listaIban.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar listas" (click)="onClickLimpiarListaIBAN()"
-            matTooltip="Pulsar para limpiar la lista de IBANs" matTooltipPosition="below">
+            style="margin-left: 5px;"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            (click)="onClickLimpiarListaIBAN()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaIban?.length && listaIban.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonIban()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            (click)="exportJsonIban()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaIban?.length && listaIban.length > 0" >
@@ -40,13 +44,13 @@
                   <div class="grid-layout-resul-iban">
                     <div class="caja">
                       <button mat-flat-button type="button" (click)="onSelectDato(iban.iban)"  style="margin-left: 20px;"
-                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                         <span class="iban">{{iban.iban}}</span>
                       </button>
                     </div>
                     <div class="caja">
                       <button mat-flat-button type="button" (click)="onSelectDato(iban.ibanFormateado)"  style="margin-left: 20px;"
-                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                         <span class="iban">{{iban.ibanFormateado}}</span>
                       </button>
                     </div>
@@ -65,28 +69,34 @@
   <div class="grid-layout">
     <div class="caja c2">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar Tarjetas</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.bancario.frame.generartarjeta' | translate }}</mat-card-header>
         <mat-card-content>
           <mat-form-field style="min-width: 250px !important; width: auto !important; margin-left: 5px;">
-            <mat-label>Seleccionar tipo tarjeta</mat-label>
-            <mat-select [(ngModel)]="selectedTarjetaTipo">
+            <mat-label>{{ 'generadores.jpromocion.bancario.entrada.tipotarjeta.label' | translate }}</mat-label>
+            <mat-select [(ngModel)]="selectedTarjetaTipo"
+              placeholder="{{ 'generadores.jpromocion.bancario.entrada.tipotarjeta.placeholder' | translate }}">
               @for (tipo of tiposTarjetas; track tipo) {
                 <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
               }
             </mat-select>
           </mat-form-field>
-          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar una lista de Tarjetas" (click)="onClickBotonGenerarListaTarjetas()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"
+            (click)="onClickBotonGenerarListaTarjetas()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaTarjeta?.length && listaTarjeta.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar listas" (click)="onClickLimpiarListaTarjetas()"
-            matTooltip="Pulsar para limpiar la lista de Tarjetas" matTooltipPosition="below">
+            style="margin-left: 5px;"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            (click)="onClickLimpiarListaTarjetas()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaTarjeta?.length && listaTarjeta.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTarjetas()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            (click)="exportJsonTarjetas()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaTarjeta?.length && listaTarjeta.length > 0" >
@@ -95,25 +105,25 @@
                 <div class="grid-layout-resul-tarjeta">
                   <div class="caja">
                     <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjeta)" style="margin-left: 20px;"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                       <span class="tarjeta">{{tarjetaGenerado.tarjeta}}</span>
                     </button>
                   </div>
                   <div class="caja">
                     <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.tarjetaFormateada)" style="margin-left: 20px;"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                       <span class="tarjetaFormateada">{{tarjetaGenerado.tarjetaFormateada}}</span>
                     </button>
                   </div>
                   <div class="caja">
                     <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.expiracionCredito)" style="margin-left: 20px;"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                       <span class="expiracionCredito">{{tarjetaGenerado.expiracionCredito}}</span>
                     </button>
                   </div>
                   <div class="caja">
                     <button mat-flat-button type="button" (click)="onSelectDato(tarjetaGenerado.cvc)" style="margin-left: 20px;"
-                    matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                    matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                       <span class="cvc">{{tarjetaGenerado.cvc}}</span>
                     </button>
                   </div>
@@ -132,25 +142,27 @@
   <div class="grid-layout">
     <div class="caja c3">
       <mat-card appearance="outlined">
-        <mat-card-header>Validar IBAN</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.bancario.frame.validariban' | translate }}</mat-card-header>
         <mat-card-content>
           <div>
             <mat-form-field style="min-width: 220px !important; width: auto !important;">
-              <mat-label>IBAN a comprobar</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.bancario.entrada.ibanvalidar.label' | translate }}</mat-label>
               <input matInput id="ibanValidar" type="text" placeholder="ES0920007083880013231063" [(ngModel)]="ibanValidar"
                 style="text-transform:uppercase;" maxlength="35">
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un IBAN" (click)="onClickValidarIban()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio" (click)="onClickValidarIban()"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
               <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="ibanValidarOk == 'OK'"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadook.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameSiInternacionalizado())">
                 <mat-icon>done_all</mat-icon>
               </button>
               <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="ibanValidarOk == 'ERROR'"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadoko.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameNoInternacionalizado())">
                 <mat-icon>close</mat-icon>
               </button>
             </div>
@@ -160,25 +172,27 @@
     </div>
     <div class="caja c4">
       <mat-card appearance="outlined">
-        <mat-card-header>Validar Tarjeta</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.bancario.frame.validartarjeta' | translate }}</mat-card-header>
         <mat-card-content>
           <div >
             <mat-form-field style="min-width: 150px !important; width: auto !important;">
-              <mat-label>Tarjeta a comprobar</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.bancario.entrada.tarjetavalidar.label' | translate }}</mat-label>
               <input matInput id="tarjetaValidar" type="text" placeholder="4846891122550579" [(ngModel)]="tarjetaValidar"
                 style="text-transform:uppercase" size="12">
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar una Tarjeta" (click)="onClickValidarTarjeta()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio" (click)="onClickValidarTarjeta()"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
               <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="tarjetaValidarOk == 'OK'"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadook.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameSiInternacionalizado())">
                 <mat-icon>done_all</mat-icon>
               </button>
               <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="tarjetaValidarOk == 'ERROR'"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadoko.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameNoInternacionalizado())">
                 <mat-icon>close</mat-icon>
               </button>
             </div>

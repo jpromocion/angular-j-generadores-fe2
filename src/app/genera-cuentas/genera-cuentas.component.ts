@@ -16,13 +16,14 @@ import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.
 import { BankService } from '../core/services/bank.service';
 import { Cuenta } from '../core/models/cuenta';
 import { Tarjeta } from '../core/models/tarjeta';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-genera-cuentas',
   standalone: true,
   imports: [FormsModule, NgIf, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule, MatGridListModule,
-    MatInputModule, MatSelectModule, MatFormFieldModule, MatListModule],
+    MatInputModule, MatSelectModule, MatFormFieldModule, MatListModule, TranslateModule],
   templateUrl: './genera-cuentas.component.html',
   styleUrl: './genera-cuentas.component.scss'
 })
@@ -44,7 +45,7 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
 
   selectedTarjetaTipo: string = '';
   tiposTarjetas: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo concreto para generar solo este tipo.'},
+    //{valor: '', nombre: 'Seleccionar un tipo concreto para generar solo este tipo.'},
     {valor: 'americanexpress', nombre: 'American Express'},
     {valor: 'visa', nombre: 'Visa'},
     {valor: 'mastercard', nombre: 'Mastercard'},
@@ -62,7 +63,7 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
   }
 
   override ngOnInit(): void {
-    this.selectedTarjetaTipo = this.tiposTarjetas[0].valor;
+    this.selectedTarjetaTipo = '';
     this.numGenerar = 1;
 
     //necesario  para tooltips de bootstrap, al cambiar a angular material es innecesario

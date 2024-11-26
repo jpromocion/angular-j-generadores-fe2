@@ -50,6 +50,7 @@
             "tooltip": "Click to copy"
           },
           "limpiar": {
+            "label": "Clear generated",
             "tooltip": "Click to clear"
           },
           "exportarexcel": {
@@ -139,6 +140,30 @@
           "pasaportesindc": {
             "label": "Passport without DC",
             "tooltip": "Passport number without the control digit."
+          }
+        }
+      },
+      "bancario": {
+        "titulo": "Banking Elements",
+        "frame": {
+          "generariban": "Generate IBANs",
+          "generartarjeta": "Generate Cards",
+          "validariban": "Validate IBAN",
+          "validartarjeta": "Validate Card"
+        },
+        "boton": {
+
+        },
+        "entrada": {
+          "tipotarjeta": {
+            "label": "Select card type",
+            "placeholder": "Select a specific type to generate only this type."
+          },
+          "ibanvalidar": {
+            "label": "IBAN to check"
+          },
+          "tarjetavalidar": {
+            "label": "Card to check"
           }
         }
       }
