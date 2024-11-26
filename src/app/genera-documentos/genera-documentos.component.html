@@ -1,4 +1,4 @@
-<h2 class="tracking-in-expand">Documentos</h2>
+<h2 class="tracking-in-expand">{{ 'generadores.jpromocion.menu.documentos' | translate }}</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
 
@@ -6,8 +6,8 @@
 
     <div class="caja c0">
       <mat-form-field style="width: 150px !important;">
-        <mat-label>Num. generaciones</mat-label>
-        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+        <mat-label>{{ 'generadores.jpromocion.generarcomunes.numgeneraciones.label' | translate }}</mat-label>
+        <input matInput id="numGenera" type="number"  min="2" max="1000" [(ngModel)]="numGenerar">
       </mat-form-field>
     </div>
   </div>
@@ -15,20 +15,25 @@
   <div class="grid-layout">
     <div class="caja c1">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar NIFs</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.generarnif' | translate }}</mat-card-header>
         <mat-card-content>
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Generar una lista de NIFs" (click)="onClickBotonGenerarListaNif()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" attr.aria-label="{{ 'generadores.jpromocion.documentos.frame.generarnif' | translate }}"
+            (click)="onClickBotonGenerarListaNif()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaNifs?.length && listaNifs.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar lista NIFs" (click)="onClickLimpiarListaNif()"
-            matTooltip="Pulsar para limpiar la lista de NIFs" matTooltipPosition="below">
+            style="margin-left: 5px;"
+            attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.limpiarnif.label' | translate }}"
+            (click)="onClickLimpiarListaNif()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaNifs?.length && listaNifs.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonNifs()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            (click)="exportJsonNifs()"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaNifs?.length && listaNifs.length > 0">
@@ -36,7 +41,7 @@
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
                   <button mat-flat-button type="button" (click)="onSelectDato(nif)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="nif">{{nif}}</span>
                   </button>
                   <mat-divider></mat-divider>
@@ -49,20 +54,23 @@
     </div>
     <div class="caja c2">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar NIEs</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.generarnie' | translate }}</mat-card-header>
         <mat-card-content>
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Generar una lista de NIEs" (click)="onClickBotonGenerarListaNie()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonGenerarListaNie()"
+          attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.generarnie.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaNies?.length && listaNies.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar lista NIEs" (click)="onClickLimpiarListaNie()"
-            matTooltip="Pulsar para limpiar la lista de NIEs" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarListaNie()"
+            attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.limpiarnie.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaNies?.length && listaNies.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonNies()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="exportJsonNies()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaNies?.length && listaNies.length > 0">
@@ -70,7 +78,7 @@
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
                   <button mat-flat-button type="button" (click)="onSelectDato(nie)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="nie">{{nie}}</span>
                   </button>
                   <mat-divider></mat-divider>
@@ -83,20 +91,23 @@
     </div>
     <div class="caja c2_1">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar Pasaportes</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.generarpasaporte' | translate }}</mat-card-header>
         <mat-card-content>
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Generar una lista de Pasaportes" (click)="onClickBotonGenerarListaPasaporte()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonGenerarListaPasaporte()"
+            attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.generarpasapor.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaPasaportes?.length && listaPasaportes.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar lista Pasaportes" (click)="onClickLimpiarListaPasaporte()"
-            matTooltip="Pulsar para limpiar la lista de Pasaportes" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarListaPasaporte()"
+            attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.limpiarpasapor.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaPasaportes?.length && listaPasaportes.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonPasaporte()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="exportJsonPasaporte()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaPasaportes?.length && listaPasaportes.length > 0">
@@ -104,7 +115,7 @@
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
                   <button mat-flat-button type="button" (click)="onSelectDato(pasaporte)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="pasaporte">{{pasaporte}}</span>
                   </button>
                   <mat-divider></mat-divider>
@@ -117,7 +128,7 @@
     </div>
     <div class="caja c3">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar CIFs</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.generarcif' | translate }}</mat-card-header>
         <mat-card-content>
           <!-- cambiamos a autocompletado -> ver detalles en variados -> seleccionar tipo generacion
           <mat-form-field style="width: 350px !important; margin-left: 5px;">
@@ -131,9 +142,9 @@
           -->
           <form>
             <mat-form-field style="width: 100% !important; margin-left: 5px;">
-              <mat-label>Seleccionar tipo sociedad</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.documentos.entrada.tipocif.label' | translate }}</mat-label>
               <input #selectedSociedadIn matInput type="text"
-                placeholder="Seleccionar ..."
+                placeholder="{{ 'generadores.jpromocion.documentos.entrada.tipocif.placeholder' | translate }}"
                 [matAutocomplete]="auto"
                 [formControl]="selectedSociedadFC"
                 (input)="filterTiposSociedad()"
@@ -146,18 +157,21 @@
             </mat-form-field>
           </form>
 
-          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar una lista de CIFs" (click)="onClickBotonGenerarListaCif()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickBotonGenerarListaCif()"
+            attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.generarcif.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaCifs?.length && listaCifs.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar lista CIFs" (click)="onClickLimpiarListaCif()"
-            matTooltip="Pulsar para limpiar la lista de CIFs" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarListaCif()"
+            attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.limpiarcif.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaCifs?.length && listaCifs.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonCifs()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="exportJsonCifs()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
           <mat-list [@entradaLateralAnimation] *ngIf="listaCifs?.length && listaCifs.length > 0">
@@ -165,7 +179,7 @@
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
                   <button mat-flat-button type="button" (click)="onSelectDato(cif)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="cif">{{cif}}</span>
                   </button>
                   <mat-divider></mat-divider>
@@ -181,25 +195,28 @@
   <div class="grid-layout">
     <div class="caja c4">
       <mat-card appearance="outlined">
-        <mat-card-header>Validar NIF</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.validarnif' | translate }}</mat-card-header>
         <mat-card-content>
           <div class="divBox">
             <mat-form-field style="min-width: 150px !important; width: auto !important;">
-              <mat-label>NIF a comprobar</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.documentos.entrada.nifvalidar.label' | translate }}</mat-label>
               <input matInput id="nifValidar" type="text" placeholder="91000750P" [(ngModel)]="nifValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un NIF" (click)="onClickValidarNif()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio" (click)="onClickValidarNif()"
+              attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.validarnif.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
               <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="nifValidarOk == 'OK'"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadook.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameSiInternacionalizado())">
                 <mat-icon>done_all</mat-icon>
               </button>
               <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="nifValidarOk == 'ERROR'"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadoko.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameNoInternacionalizado())">
                 <mat-icon>close</mat-icon>
               </button>
             </div>
@@ -209,25 +226,29 @@
     </div>
     <div class="caja c5">
       <mat-card appearance="outlined">
-        <mat-card-header>Validar NIE</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.validarnie' | translate }}</mat-card-header>
         <mat-card-content>
           <div class="divBox">
             <mat-form-field style="min-width: 150px !important; width: auto !important;">
-              <mat-label>NIE a comprobar</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.documentos.entrada.nievalidar.label' | translate }}</mat-label>
               <input matInput id="nieValidar" type="text" placeholder="X6203099E" [(ngModel)]="nieValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un NIE" (click)="onClickValidarNie()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio"
+              attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.validarnie.label' | translate }}"
+              (click)="onClickValidarNie()"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
               <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="nieValidarOk == 'OK'"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadook.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameSiInternacionalizado())">
                 <mat-icon>done_all</mat-icon>
               </button>
               <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="nieValidarOk == 'ERROR'"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadoko.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameNoInternacionalizado())">
                 <mat-icon>close</mat-icon>
               </button>
             </div>
@@ -237,25 +258,29 @@
     </div>
     <div class="caja c6">
       <mat-card appearance="outlined">
-        <mat-card-header>Validar CIF</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.validarcif' | translate }}</mat-card-header>
         <mat-card-content>
           <div class="divBox">
             <mat-form-field  style="min-width: 150px !important; width: auto !important;">
-              <mat-label>CIF a comprobar</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.documentos.entrada.cifvalidar.label' | translate }}</mat-label>
               <input matInput id="cifValidar" type="text" placeholder="J92456805" [(ngModel)]="cifValidar"
                 style="text-transform:uppercase" maxlength="12">
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un CIF" (click)="onClickValidarCif()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio"
+              attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.validarcif.label' | translate }}"
+              (click)="onClickValidarCif()"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
               <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="cifValidarOk == 'OK'"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadook.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameSiInternacionalizado())">
                 <mat-icon>done_all</mat-icon>
               </button>
               <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="cifValidarOk == 'ERROR'"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadoko.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameNoInternacionalizado())">
                 <mat-icon>close</mat-icon>
               </button>
             </div>
@@ -266,26 +291,30 @@
 
     <div class="caja c7">
       <mat-card appearance="outlined">
-        <mat-card-header>Validar Pasaporte</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.validarpasaporte' | translate }}</mat-card-header>
         <mat-card-content>
           <div class="divBox">
             <mat-form-field style="min-width: 200px !important; width: auto !important;">
-              <mat-label>Pasaporte a comprobar</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.documentos.entrada.pasaporvalidar.label' | translate }}</mat-label>
               <input matInput id="pasaporteValidar" type="text" placeholder="AAC0568227" [(ngModel)]="pasaporteValidar"
                 style="text-transform:uppercase" maxlength="10">
               <mat-icon matSuffix matTooltip="Número de pasaporte completo con el dígito de control incluido.">help</mat-icon>
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un pasaporte" (click)="onClickValidarPasaporte()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio"
+              attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.validarpasapor.label' | translate }}"
+              (click)="onClickValidarPasaporte()"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
               <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="pasaporteValidarOk == 'OK'"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadook.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameSiInternacionalizado())">
                 <mat-icon>done_all</mat-icon>
               </button>
               <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="pasaporteValidarOk == 'ERROR'"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadoko.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameNoInternacionalizado())">
                 <mat-icon>close</mat-icon>
               </button>
             </div>
@@ -298,22 +327,24 @@
   <div class="grid-layout">
     <div class="caja c7">
       <mat-card appearance="outlined">
-        <mat-card-header>Calcular DC Pasaporte</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.documentos.frame.calculardcpasaporte' | translate }}</mat-card-header>
         <mat-card-content>
           <div class="divBox" >
             <mat-form-field style="min-width: 150px !important; width: auto !important;">
-              <mat-label>Pasaporte sin DC</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.documentos.entrada.pasaportesindc.label' | translate }}</mat-label>
               <input matInput id="pasaporteCalcular" type="text" placeholder="AAC056822" [(ngModel)]="pasaporteCalcular"
                 style="text-transform:uppercase" maxlength="9">
-              <mat-icon matSuffix matTooltip="Número de pasaporte sin el dígito de control.">help</mat-icon>
+              <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.documentos.entrada.pasaportesindc.tooltip' | translate }}">help</mat-icon>
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un pasaporte" (click)="onClickCalcularDCPasaporte()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio"
+              attr.aria-label="{{ 'generadores.jpromocion.documentos.boton.calculardcpasapor.label' | translate }}"
+              (click)="onClickCalcularDCPasaporte()"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>refresh</mat-icon>
             </button>
             <div [@entradaLateralAnimation] *ngIf="pasaporteCalcularDC && pasaporteCalcularDC != ''" style="margin-left: 5px;" >
               <button mat-flat-button type="button" (click)="onSelectDato(pasaporteCalcularDC)"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below" style="height: 55px;">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below" style="height: 55px;">
                 <span class="dc">{{pasaporteCalcularDC}}</span>
               </button>
             </div>

@@ -2,6 +2,7 @@
   "generadores": {
     "jpromocion":{
       "titulo": "Generadores de",
+      "titulocompleto": "Generadores de jpromocion",
       "menu":{
         "titulo": "Menú",
         "principal": "Principal",
@@ -21,6 +22,125 @@
       },
       "compramecafe":{
         "boton": "¡¡Compramé un café!!"
+      },
+      "acercade":{
+        "version": "Versión",
+        "autor": "Autor",
+        "infocontacto": "Información de contacto",
+        "enviaremail": "Enviar email"
+      },
+      "principal":{
+        "apikey":{
+          "label": "API-Key",
+          "tooltip": "Introduzca la api-key para la comunicación con el servicio REST"
+        }
+      },
+      "generarcomunes":{
+        "numgeneraciones": {
+          "label": "Num. generaciones"
+        },
+        "boton": {
+          "generar": {
+            "tooltip": "Pulsar para generar"
+          },
+          "validar": {
+            "tooltip": "Pulsar para validar"
+          },
+          "copiar": {
+            "tooltip": "Pulsar para copiar"
+          },
+          "limpiar": {
+            "tooltip": "Pulsar para copiar"
+          },
+          "exportarexcel": {
+            "label": "Exportar a Excel",
+            "tooltip": "Pulsar para exportar excel"
+          },
+          "validadook": {
+            "label": "Si",
+            "tooltip": "Si"
+          },
+          "validadoko": {
+            "label": "No",
+            "tooltip": "No"
+          }
+        }
+      },
+      "documentos":{
+        "frame": {
+          "generarnif": "Generar NIFs",
+          "generarnie": "Generar NIEs",
+          "generarpasaporte": "Generar Pasaportes",
+          "generarcif": "Generar CIFs",
+          "validarnif": "Validar NIF",
+          "validarnie": "Validar NIE",
+          "validarcif": "Validar CIF",
+          "validarpasaporte": "Validar Pasaporte",
+          "calculardcpasaporte": "Calcular DC Pasaporte"
+        },
+        "boton": {
+          "generarnif":{
+            "label": "Generar una lista de NIFs"
+          },
+          "limpiarnif":{
+            "label": "Limpiar lista NIFs"
+          },
+          "generarnie":{
+            "label": "Generar una lista de NIEs"
+          },
+          "limpiarnie":{
+            "label": "Limpiar lista NIEs"
+          },
+          "generarpasapor":{
+            "label": "Generar una lista de Pasaportes"
+          },
+          "limpiarpasapor":{
+            "label": "Limpiar lista Pasaportes"
+          },
+          "generarcif":{
+            "label": "Generar una lista de CIFs"
+          },
+          "limpiarcif":{
+            "label": "Limpiar lista CIFs"
+          },
+          "validarnif":{
+            "label": "Validar un NIF"
+          },
+          "validarnie":{
+            "label": "Validar un NIE"
+          },
+          "validarcif":{
+            "label": "Validar un CIF"
+          },
+          "validarpasapor":{
+            "label": "Validar un Pasaporte"
+          },
+          "calculardcpasapor":{
+            "label": "Calcular dígito control pasaporte"
+          }
+        },
+        "entrada":{
+          "tipocif": {
+            "label": "Seleccionar tipo sociedad",
+            "placeholder": "Seleccionar ..."
+          },
+          "nifvalidar": {
+            "label": "NIF a comprobar"
+          },
+          "nievalidar": {
+            "label": "NIE a comprobar"
+          },
+          "cifvalidar": {
+            "label": "CIF a comprobar"
+          },
+          "pasaporvalidar": {
+            "label": "Pasaporte a comprobar"
+          },
+          "pasaportesindc": {
+            "label": "Pasaporte sin DC",
+            "tooltip": "Número de pasaporte sin el dígito de control."
+          }
+        }
       }
     }
   }

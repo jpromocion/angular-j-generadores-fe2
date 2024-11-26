@@ -15,7 +15,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { DoiService } from '../core/services/doi.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 
 declare var $: any;
@@ -24,7 +24,8 @@ declare var $: any;
   selector: 'app-genera-documentos',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,
-    MatGridListModule, MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,MatAutocompleteModule],
+    MatGridListModule, MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,MatAutocompleteModule,
+    TranslateModule],
   templateUrl: './genera-documentos.component.html',
   styleUrl: './genera-documentos.component.scss',
 })

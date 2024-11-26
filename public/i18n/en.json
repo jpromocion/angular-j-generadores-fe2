@@ -1,8 +1,9 @@
 {
   "generadores": {
-    "jpromocion":{
+    "jpromocion": {
       "titulo": "Generators of",
-      "menu":{
+      "titulocompleto": "Generators of jpromocion",
+      "menu": {
         "titulo": "Menu",
         "principal": "Main",
         "documentos": "Documents",
@@ -19,8 +20,127 @@
         "variados": "Various",
         "acercade": "About"
       },
-      "compramecafe":{
+      "compramecafe": {
         "boton": "Buy me a coffee!!"
+      },
+      "acercade": {
+        "version": "Version",
+        "autor": "Author",
+        "infocontacto": "Contact Information",
+        "enviaremail": "Send email"
+      },
+      "principal": {
+        "apikey": {
+          "label": "API-Key",
+          "tooltip": "Enter the API key for communication with the REST service"
+        }
+      },
+      "generarcomunes": {
+        "numgeneraciones": {
+          "label": "Num. generations"
+        },
+        "boton": {
+          "generar": {
+            "tooltip": "Click to generate"
+          },
+          "validar": {
+            "tooltip": "Click to validate"
+          },
+          "copiar": {
+            "tooltip": "Click to copy"
+          },
+          "limpiar": {
+            "tooltip": "Click to clear"
+          },
+          "exportarexcel": {
+            "label": "Export to Excel",
+            "tooltip": "Click to export to Excel"
+          },
+          "validadook": {
+            "label": "Yes",
+            "tooltip": "Yes"
+          },
+          "validadoko": {
+            "label": "No",
+            "tooltip": "No"
+          }
+        }
+      },
+      "documentos": {
+        "frame": {
+          "generarnif": "Generate NIFs",
+          "generarnie": "Generate NIEs",
+          "generarpasaporte": "Generate Passports",
+          "generarcif": "Generate CIFs",
+          "validarnif": "Validate NIF",
+          "validarnie": "Validate NIE",
+          "validarcif": "Validate CIF",
+          "validarpasaporte": "Validate Passport",
+          "calculardcpasaporte": "Calculate Passport DC"
+        },
+        "boton": {
+          "generarnif": {
+            "label": "Generate a list of NIFs"
+          },
+          "limpiarnif": {
+            "label": "Clear NIF list"
+          },
+          "generarnie": {
+            "label": "Generate a list of NIEs"
+          },
+          "limpiarnie": {
+            "label": "Clear NIE list"
+          },
+          "generarpasapor": {
+            "label": "Generate a list of Passports"
+          },
+          "limpiarpasapor": {
+            "label": "Clear Passport list"
+          },
+          "generarcif": {
+            "label": "Generate a list of CIFs"
+          },
+          "limpiarcif": {
+            "label": "Clear CIF list"
+          },
+          "validarnif": {
+            "label": "Validate a NIF"
+          },
+          "validarnie": {
+            "label": "Validate a NIE"
+          },
+          "validarcif": {
+            "label": "Validate a CIF"
+          },
+          "validarpasapor": {
+            "label": "Validate a Passport"
+          },
+          "calculardcpasapor": {
+            "label": "Calculate passport control digit"
+          }
+        },
+        "entrada": {
+          "tipocif": {
+            "label": "Select company type",
+            "placeholder": "Select ..."
+          },
+          "nifvalidar": {
+            "label": "NIF to check"
+          },
+          "nievalidar": {
+            "label": "NIE to check"
+          },
+          "cifvalidar": {
+            "label": "CIF to check"
+          },
+          "pasaporvalidar": {
+            "label": "Passport to check"
+          },
+          "pasaportesindc": {
+            "label": "Passport without DC",
+            "tooltip": "Passport number without the control digit."
+          }
+        }
       }
     }
   }

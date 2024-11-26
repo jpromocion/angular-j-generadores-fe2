@@ -12,6 +12,8 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {Sort} from '@angular/material/sort';
 import { CaseTransformerPipe } from '../../pipes/case-transformer.pipe';
 import {trigger, style,  animate,  transition} from '@angular/animations';
+import {TranslateService} from "@ngx-translate/core";
+import { marker as _ } from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-base-genera',
@@ -76,6 +78,8 @@ export class BaseGeneraComponent implements OnInit  {
   //inyeccion de dependencia para utilizar el servicio de liveAnnouncer para ordenar
   _liveAnnouncer = inject(LiveAnnouncer);
 
+  translate = inject(TranslateService);
+
   constructor() { }
 
   ngOnInit(): void {
@@ -103,6 +107,22 @@ export class BaseGeneraComponent implements OnInit  {
       this.clipboard.copy(dato);
       this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
     }
+  }
+
+  /**
+   * Devuelve el si del lenguaje activo
+   * @returns
+   */
+  dameSiInternacionalizado(): string {
+    return this.translate.instant(_('generadores.jpromocion.generarcomunes.boton.validadook.label'));
+  }
+
+  /**
+   * Devuelve el no del lenguaje activo
+   * @returns
+   */
+  dameNoInternacionalizado(): string {
+    return this.translate.instant(_('generadores.jpromocion.generarcomunes.boton.validadoko.label'));
   }
 
   /**

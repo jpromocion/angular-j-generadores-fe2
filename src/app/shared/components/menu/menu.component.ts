@@ -104,7 +104,7 @@ export class MenuComponent {
   }
 
   getBanderaClass(lenguaje: string): string {
-    return this.translate.currentLang != lenguaje ? 'idiomaNoSele' : '';
+    return this.translate.currentLang != lenguaje ? 'idiomaNoSele' : 'idiomaSele';
   }
 
 }
