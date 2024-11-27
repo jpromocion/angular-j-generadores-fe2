@@ -42,6 +42,13 @@
         "entrada": {
           "columnasvisibles": {
             "label": "Visible columns"
+          },
+          "tipoletra": {
+            "label": "Letter type",
+            "valors": "No format",
+            "valormay": "Uppercase",
+            "valormin": "Lowercase",
+            "valorc": "Camel case"
           }
         },
         "paginador": {
@@ -213,13 +220,6 @@
             "valora": "Both",
             "valorh": "Male",
             "valorm": "Female"
-          },
-          "tipoletra": {
-            "label": "Letter type",
-            "valors": "No format",
-            "valormay": "Uppercase",
-            "valormin": "Lowercase",
-            "valorc": "Camel case"
           }
         },
         "salida": {
@@ -358,6 +358,37 @@
             "refcatastral": {
               "label": "Cadastral ref."
             }
+          }
+        }
+      },
+      "texto": {
+        "boton": {
+          "generartexto": {
+            "label": "Generate characters"
+          }
+        },
+        "entrada": {
+          "idioma": {
+            "label": "Language",
+            "valorsp": "Spanish",
+            "valorlt": "Latin",
+            "valoreng": "English"
+          },
+          "tipotexto": {
+            "label": "Type",
+            "valorc": "Characters",
+            "valorw": "Words",
+            "valorp": "Paragraphs"
+          },
+          "cantidad": {
+            "label": "Quantity (char./word/para.)",
+            "placeholder": "Number of characters, words or paragraphs to generate",
+            "tooltip": "If the type is 'Characters', it will be the number of characters to generate, if the type is 'Words', it will be the number of words to generate, and if it is 'Paragraphs', it will be the number of paragraphs to generate"
+          }
+        },
+        "salida": {
+          "textogenerado": {
+            "label": "Generated text"
           }
         }
       }

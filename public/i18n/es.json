@@ -42,6 +42,13 @@
         "entrada": {
           "columnasvisibles": {
             "label": "Columnas visibles"
+          },
+          "tipoletra": {
+            "label": "Tipo letra",
+            "valors": "Sin formato",
+            "valormay": "Mayúsculas",
+            "valormin": "Minúsculas",
+            "valorc": "Camel case"
           }
         },
         "paginador": {
@@ -213,13 +220,6 @@
             "valora": "Ámbos",
             "valorh": "Hombre",
             "valorm": "Mujer"
-          },
-          "tipoletra": {
-            "label": "Tipo letra",
-            "valors": "Sin formato",
-            "valormay": "Mayúsculas",
-            "valormin": "Minúsculas",
-            "valorc": "Camel case"
           }
         },
         "salida":{
@@ -358,6 +358,37 @@
             "refcatastral": {
               "label": "Ref. catastral"
             }
+          }
+        }
+      },
+      "texto":{
+        "boton": {
+          "generartexto":{
+            "label": "Generar caracteres"
+          }
+        },
+        "entrada":{
+          "idioma": {
+            "label": "Idioma",
+            "valorsp": "Castellano",
+            "valorlt": "Latín",
+            "valoreng": "Inglés"
+          },
+          "tipotexto": {
+            "label": "Tipo",
+            "valorc": "Carácteres",
+            "valorw": "Palabras",
+            "valorp": "Párrafos"
+          },
+          "cantidad": {
+            "label": "Cantidad(carac./palabra./parraf.)",
+            "placeholder": "Número de carácteres, palabras o párrafos a generar",
+            "tooltip": "Si el tipo es 'Carácteres' será el número de carácteres a generar, si el tipo es 'Palabras' será el número de palabras a generar, y si es 'Párrafos' será el número de párrafos a generar"
+          }
+        },
+        "salida":{
+          "textogenerado": {
+            "label": "Texto generado"
           }
         }
       }

@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, AfterViewInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule, MatButtonToggleChange} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
@@ -10,13 +10,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { TextosService } from '../core/services/textos.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-genera-textos',
   standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
-    MatFormFieldModule,MatInputModule],
+  imports: [ FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
+    MatFormFieldModule,MatInputModule, TranslateModule],
   templateUrl: './genera-textos.component.html',
   styleUrl: './genera-textos.component.scss'
 })
