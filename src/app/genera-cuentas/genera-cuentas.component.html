@@ -21,22 +21,22 @@
         <mat-card-header>{{ 'generadores.jpromocion.bancario.frame.generariban' | translate }}</mat-card-header>
         <mat-card-content>
           <button type="button"  mat-fab class="botonRotatorio"
-            attr.aria-label="{{ 'generadores.jpromocion.bancario.boton.generariban.label' | translate }}"
             (click)="onClickBotonGenerarListaIban()"
+            attr.aria-label="{{ 'generadores.jpromocion.bancario.boton.generariban.label' | translate }}"
             matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaIban?.length && listaIban.length > 0"
             style="margin-left: 5px;"
-            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
             (click)="onClickLimpiarListaIBAN()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
             matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaIban?.length && listaIban.length > 0"
             style="margin-left: 5px;"
-            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
             (click)="exportJsonIban()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
             matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>

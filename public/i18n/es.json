@@ -37,7 +37,8 @@
       },
       "generarcomunes":{
         "numgeneraciones": {
-          "label": "Num. generaciones"
+          "label": "Num. generaciones",
+          "tooltip": "En aquellas generaciones que devuelven una lista, se indica el número de resultados a obtener."
         },
         "entrada": {
           "columnasvisibles": {
@@ -49,6 +50,10 @@
             "valormay": "Mayúsculas",
             "valormin": "Minúsculas",
             "valorc": "Camel case"
+          },
+          "decimales": {
+            "label": "Decimales",
+            "tooltip": "En aquellas generaciones que devuelven un número con parte decimal, se indica el número de posiciones decimales a mostrar en el retorno."
           }
         },
         "paginador": {
@@ -92,6 +97,12 @@
           "validadoko": {
             "label": "No",
             "tooltip": "No"
+          },
+          "calcular": {
+            "tooltip": "Pulsar para calcular"
+          },
+          "convertir": {
+            "tooltip": "Pulsar para convertir"
           }
         }
       },
@@ -389,6 +400,229 @@
         "salida":{
           "textogenerado": {
             "label": "Texto generado"
+          }
+        }
+      },
+      "numeros":{
+        "frame": {
+          "aleatorio": "Número aleatorio",
+          "gaussiano": "Número aleatorio (Gaussiano)",
+          "moneda": "Moneda",
+          "dado": "Dado",
+          "calculadora": "Calculadora",
+          "regla3": "Regla de 3 (Proporción)",
+          "calculararea": "Calcular Área",
+          "gradosrad": "Grados <-> Radianes",
+          "conversorbase": "Conversor de base",
+          "arabigoromano": "Arábigo <-> Romano"
+        },
+        "boton": {
+          "generaraleatorio":{
+            "label": "Generar aleatorios"
+          },
+          "generargaussiano":{
+            "label": "Generar aleatorio Gaussiano"
+          },
+          "generarmoneda":{
+            "label": "Generar lanzamientos moneda"
+          },
+          "generardado":{
+            "label": "Generar lanzamientos de dado"
+          },
+          "calcularregla3":{
+            "label": "Calcular X"
+          },
+          "convertirgrados":{
+            "label": "Conversión grados-radianes"
+          },
+          "convertirbase":{
+            "label": "Conversión de base"
+          },
+          "convertirarabigoromano":{
+            "label": "Conversión arábigo-romano"
+          }
+        },
+        "entrada":{
+          "aleatoriominimo": {
+            "label": "Mínimo",
+            "tooltip": "Valor inferior de los generables."
+          },
+          "aleatoriomaximo": {
+            "label": "Máximo",
+            "tooltip": "Valor superior de los generables."
+          },
+          "aleatoriodecimales": {
+            "label": "¿Decimales?"
+          },
+          "aleatoriorepetir": {
+            "label": "¿Repetir?"
+          },
+          "gaussianomedia": {
+            "label": "Media",
+            "tooltip": "Media (μ) es el valor promedio esperado de la distribución. Representa el punto central alrededor del cual los valores generados por la distribución se agrupan. En términos más formales, es el parámetro de localización de la distribución normal, y se calcula como la suma de todos los valores dividida por el número de valores."
+          },
+          "gaussianodeviado": {
+            "label": "Desv. estandar",
+            "tooltip": "Desviación estándar (σ) es una medida de la dispersión o variabilidad de los valores alrededor de la media (μ) de la distribución. Indica cuánto se desvían los valores generados de la media, y una desviación estándar mayor implica una mayor dispersión de los datos, mientras que una desviación estándar menor implica que los valores están más agrupados cerca de la media."
+          },
+          "monedacara": {
+            "label": "Cara",
+            "tooltip": "Simbolo cara"
+          },
+          "monedacruz": {
+            "label": "Cruz",
+            "tooltip": "Simbolo cruz"
+          },
+          "calculadorapantalla": {
+            "label": "Pantalla"
+          },
+          "calculadorapotencia": {
+            "tooltip": "Potencia"
+          },
+          "calculadoraporcentaje": {
+            "tooltip": "Porcentaje"
+          },
+          "calculadoraresto": {
+            "tooltip": "Resto (módulo)"
+          },
+          "calculadorafactorial": {
+            "tooltip": "Factorial (solo un número)"
+          },
+          "calculadoralog": {
+            "tooltip": "Logaritmo (base 10) (solo un número)"
+          },
+          "calculadoraln": {
+            "tooltip": "Logaritmo Neperiano/Natural (base e) (solo un número)"
+          },
+          "calculadoralog2": {
+            "tooltip": "Logaritmo (base 10) (solo un número)"
+          },
+          "calculadoralogx": {
+            "tooltip": "Logaritmo en base X (indicada en el segundo operador)"
+          },
+          "calculadoraraiz": {
+            "tooltip": "Raíz cuadrada"
+          },
+          "calculadoraraizcubica": {
+            "tooltip": "Raíz cúbica"
+          },
+          "calculadoraraizn": {
+            "tooltip": "Raíz a N"
+          },
+          "calculadoraseno": {
+            "tooltip": "Seno"
+          },
+          "calculadoracoseno": {
+            "tooltip": "Coseno"
+          },
+          "calculadoratangente": {
+            "tooltip": "Tangente"
+          },
+          "calculadoracotangente": {
+            "tooltip": "Cotangente"
+          },
+          "calculadorasecante": {
+            "tooltip": "Secante"
+          },
+          "calculadoracosecante": {
+            "tooltip": "Cosecante"
+          },
+          "calculadoraarcoseno": {
+            "tooltip": "Arcoseno"
+          },
+          "calculadoraarcocoseno": {
+            "tooltip": "Arcocoseno"
+          },
+          "calculadoraarcotangente": {
+            "tooltip": "Arcotangente"
+          },
+          "calculadorasenohiperbolico": {
+            "tooltip": "Seno hiperbólico"
+          },
+          "calculadoracosenohiperbolico": {
+            "tooltip": "Coseno hiperbólico"
+          },
+          "calculadoratangentehiperbolica": {
+            "tooltip": "Tangente hiperbólica"
+          },
+          "regla3a": {
+            "tooltip": "Valor de 'a' en regla de 3."
+          },
+          "regla3b": {
+            "tooltip": "Valor de 'b' en regla de 3."
+          },
+          "regla3c": {
+            "tooltip": "Valor de 'c' en regla de 3."
+          },
+          "areafigura": {
+            "label": "Seleccionar figura trigonométrica",
+            "placeholder": "Seleccionar un tipo de figura."
+          },
+          "areaa": {
+            "label": "Valor A",
+            "labellado": "Longitud de lado",
+            "labelancho": "Ancho",
+            "labelbase": "Base",
+            "labelbasesuperior": "Base superior (corta/menor)",
+            "labelradio": "Radio",
+            "labelejecorto": "Eje corto/menor (similar al radio)",
+            "tooltip": "Según cada forma implica un valor: 'cuadrado': Longitud de lado, 'rectangulo': Ancho, 'triangulo': Base, 'paralelogramo': Base, 'trapezoide': Base superior (corta/menor), 'circulo': Radio, 'elipse': Eje corto o menor (similar al radio en círculos)"
+          },
+          "areab": {
+            "label": "Valor B",
+            "labelalto": "Alto",
+            "labelaltovertical": "Altura vertical",
+            "labelbaseinferior": "Base inferior (larga/mayor)",
+            "labelejelargo": "Eje largo/mayor (similar al radio)",
+            "tooltip": "Según cada forma implica un valor: 'rectangulo': Alto, 'triangulo': Altura vertical, 'paralelogramo': Altura vertical, 'trapezoide': Base inferior (larga/mayor), 'elipse': Eje largo o mayor (similar al radio en círculos)"
+          },
+          "areac": {
+            "label": "Valor C",
+            "labelaltovertical": "Altura vertical",
+            "tooltip": "Según cada forma implica un valor: 'trapezoide': Altura vertical"
+          },
+          "gradosrad": {
+            "label": "Grados/radianes",
+            "tooltip": "Grados/radianes (según check marcado)"
+          },
+          "grados": {
+            "label": "Grados"
+          },
+          "radianes": {
+            "label": "Radianes"
+          },
+          "basenumero": {
+            "label": "Número",
+            "tooltip": "Número a convertir"
+          },
+          "basebase": {
+            "label": "Base",
+            "tooltip": "Base actual del número"
+          },
+          "basenueva": {
+            "label": "Base nueva",
+            "tooltip": "Base a la que convertir"
+          },
+          "arabigonumero": {
+            "label": "Número",
+            "tooltip": "Arábigo/romano según marcado"
+          },
+          "arabigo": {
+            "label": "Arábigo"
+          },
+          "romano": {
+            "label": "Romano"
+          }
+        },
+        "salida":{
+          "gradosradconvertido": {
+            "label": "Convertido"
+          },
+          "baseconvertido": {
+            "label": "Convertido"
+          },
+          "arabigoconvertido": {
+            "label": "Convertido"
           }
         }
       }

@@ -15,12 +15,15 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { NumberService } from '../core/services/number.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-numeros',
   standalone: true,
   imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
-    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule],
+    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule,
+    TranslateModule],
   templateUrl: './genera-numeros.component.html',
   styleUrl: './genera-numeros.component.scss'
 })
@@ -67,7 +70,7 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   //area
   areaSelectedTipo: string = '';
   areaTiposArea: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo de figura.'},
+    //{valor: '', nombre: 'Seleccionar un tipo de figura.'},
     {valor: 'cuadrado', nombre: 'Cuadrado'},
     {valor: 'rectangulo', nombre: 'Rectángulo'},
     {valor: 'triangulo', nombre: 'Triángulo'},
@@ -79,9 +82,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   areaA: number = 0;
   areaB: number = 0;
   areaC: number = 0;
-  areaLabelA: string = 'Valor A';
-  areaLabelB: string = 'Valor B';
-  areaLabelC: string = 'Valor C';
+  areaLabelA: string = '';
+  areaLabelB: string = '';
+  areaLabelC: string = '';
   areaResultado: string = '';
 
   //grados-radianes
@@ -109,7 +112,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   }
 
   override ngOnInit(): void {
-
+    this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.label'));
+    this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.label'));
+    this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
   }
 
 
@@ -572,44 +577,44 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     //cambiamos las label de los campos de valor
     switch (nuevoValor) {
       case 'cuadrado':
-        this.areaLabelA = 'Longitud de lado';
-        this.areaLabelB = 'Valor B';
-        this.areaLabelC = 'Valor C';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.labellado'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.label'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
         break;
       case 'rectangulo':
-        this.areaLabelA = 'Ancho';
-        this.areaLabelB = 'Alto';
-        this.areaLabelC = 'Valor C';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.labelancho'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.labelalto'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
         break;
       case 'triangulo':
-        this.areaLabelA = 'Base';
-        this.areaLabelB = 'Altura vertical';
-        this.areaLabelC = 'Valor C';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.labelbase'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.labelaltovertical'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
         break;
       case 'paralelogramo':
-        this.areaLabelA = 'Base';
-        this.areaLabelB = 'Altura vertical';
-        this.areaLabelC = 'Valor C';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.labelbase'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.labelaltovertical'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
         break;
       case 'trapezoide':
-        this.areaLabelA = 'Base superior (corta/menor)';
-        this.areaLabelB = 'Base inferior (larga/mayor)';
-        this.areaLabelC = 'Altura vertical';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.labelbasesuperior'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.labelbaseinferior'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.labelaltovertical'));;
         break;
       case 'circulo':
-        this.areaLabelA = 'Radio';
-        this.areaLabelB = 'Valor B';
-        this.areaLabelC = 'Valor C';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.labelradio'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.label'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
         break;
       case 'elipse':
-        this.areaLabelA = 'Eje corto/menor (similar al radio)';
-        this.areaLabelB = 'Eje largo/mayor (similar al radio)';
-        this.areaLabelC = 'Valor C';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.labelejecorto'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.labelejelargo'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
         break;
       default:
-        this.areaLabelA = 'Valor A';
-        this.areaLabelB = 'Valor B';
-        this.areaLabelC = 'Valor C';
+        this.areaLabelA = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areaa.label'));
+        this.areaLabelB = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areab.label'));
+        this.areaLabelC = this.translate.instant(marker('generadores.jpromocion.numeros.entrada.areac.label'));
     }
   }
 
