@@ -13,7 +13,7 @@ import {Sort} from '@angular/material/sort';
 import { CaseTransformerPipe } from '../../pipes/case-transformer.pipe';
 import {trigger, style,  animate,  transition} from '@angular/animations';
 import {TranslateService} from "@ngx-translate/core";
-import { marker as _ } from '@colsen1991/ngx-translate-extract-marker';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-base-genera',
@@ -114,7 +114,7 @@ export class BaseGeneraComponent implements OnInit  {
    * @returns
    */
   dameSiInternacionalizado(): string {
-    return this.translate.instant(_('generadores.jpromocion.generarcomunes.boton.validadook.label'));
+    return this.translate.instant(marker('generadores.jpromocion.generarcomunes.boton.validadook.label'));
   }
 
   /**
@@ -122,7 +122,7 @@ export class BaseGeneraComponent implements OnInit  {
    * @returns
    */
   dameNoInternacionalizado(): string {
-    return this.translate.instant(_('generadores.jpromocion.generarcomunes.boton.validadoko.label'));
+    return this.translate.instant(marker('generadores.jpromocion.generarcomunes.boton.validadoko.label'));
   }
 
   /**
@@ -137,19 +137,26 @@ export class BaseGeneraComponent implements OnInit  {
   * Inicializamos los labels del paginador para tablas
   */
   inicializarLabelsPaginador(paginator:MatPaginator): void {
-    paginator._intl.itemsPerPageLabel = 'Elementos por página';
-    paginator._intl.firstPageLabel = 'Primera página';
-    paginator._intl.lastPageLabel = 'Última página';
-    paginator._intl.nextPageLabel = 'Siguiente página';
-    paginator._intl.previousPageLabel = 'Página anterior';
+
+    this.translate.instant(marker('generadores.jpromocion.generarcomunes.paginador.label'));
+
+
+    paginator._intl.itemsPerPageLabel = this.translate.instant(marker('generadores.jpromocion.generarcomunes.paginador.elementos'));
+    paginator._intl.firstPageLabel = this.translate.instant(marker('generadores.jpromocion.generarcomunes.paginador.primera'));
+    paginator._intl.lastPageLabel = this.translate.instant(marker('generadores.jpromocion.generarcomunes.paginador.ultima'));
+    paginator._intl.nextPageLabel = this.translate.instant(marker('generadores.jpromocion.generarcomunes.paginador.siguiente'));
+    paginator._intl.previousPageLabel = this.translate.instant(marker('generadores.jpromocion.generarcomunes.paginador.anterior'));
+    let palabrade = this.translate.instant(marker('generadores.jpromocion.generarcomunes.paginador.de'));
     paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
       if (length === 0 || pageSize === 0) {
-        return `0 de ${length}`;
+        //return `0 de ${length}`;
+        return `0 ${palabrade} ${length}`;
       }
       length = Math.max(length, 0);
       const startIndex = page * pageSize;
       const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-      return `${startIndex + 1} - ${endIndex} de ${length}`;
+      //return `${startIndex + 1} - ${endIndex} de ${length}`;
+      return `${startIndex + 1} - ${endIndex} ${palabrade} ${length}`;
     }
   }
 

@@ -39,6 +39,23 @@
         "numgeneraciones": {
           "label": "Num. generations"
         },
+        "entrada": {
+          "columnasvisibles": {
+            "label": "Visible columns"
+          }
+        },
+        "paginador": {
+          "label": "Select pagination",
+          "elementos": "Items per page",
+          "primera": "First page",
+          "ultima": "Last page",
+          "siguiente": "Next page",
+          "anterior": "Previous page",
+          "de": "of"
+        },
+        "frame": {
+          "filtros": "Filters"
+        },
         "boton": {
           "generar": {
             "tooltip": "Click to generate"
@@ -52,6 +69,10 @@
           "limpiar": {
             "label": "Clear generated",
             "tooltip": "Click to clear"
+          },
+          "limpiarfiltros": {
+            "label": "Clear filters",
+            "tooltip": "Clear applied filters reverting to original data"
           },
           "exportarexcel": {
             "label": "Export to Excel",
@@ -152,7 +173,9 @@
           "validartarjeta": "Validate Card"
         },
         "boton": {
-
+          "generariban":{
+            "label": "Generate a list of IBANs"
+          }
         },
         "entrada": {
           "tipotarjeta": {
@@ -164,6 +187,177 @@
           },
           "tarjetavalidar": {
             "label": "Card to check"
+          }
+        }
+      },
+      "perfil": {
+        "frame": {
+          "personagenerada": "Generated person",
+          "personasgeneradas": "Generated persons",
+          "empresagenerada": "Generated company",
+          "empresasgeneradas": "Generated companies"
+        },
+        "boton": {
+          "generarperfil": {
+            "label": "Generate a profile"
+          }
+        },
+        "entrada": {
+          "tipoperfil": {
+            "label": "Profile type",
+            "valorp": "Person",
+            "valore": "Company"
+          },
+          "sexo": {
+            "label": "Gender",
+            "valora": "Both",
+            "valorh": "Male",
+            "valorm": "Female"
+          },
+          "tipoletra": {
+            "label": "Letter type",
+            "valors": "No format",
+            "valormay": "Uppercase",
+            "valormin": "Lowercase",
+            "valorc": "Camel case"
+          }
+        },
+        "salida": {
+          "persona": {
+            "nif": {
+              "label": "NIF"
+            },
+            "nie": {
+              "label": "NIE"
+            },
+            "nss": {
+              "label": "NSS"
+            },
+            "pasaporte": {
+              "label": "Passport"
+            },
+            "sexo": {
+              "label": "Gender"
+            },
+            "fechanacimiento": {
+              "label": "Birth date (age)"
+            },
+            "nombre": {
+              "label": "First name"
+            },
+            "apellido1": {
+              "label": "First surname"
+            },
+            "apellido2": {
+              "label": "Second surname"
+            },
+            "nombrecompleto": {
+              "label": "Full name"
+            },
+            "telefonomovil": {
+              "label": "Mobile phone"
+            },
+            "telefonofijo": {
+              "label": "Landline"
+            },
+            "login": {
+              "label": "Login"
+            },
+            "email": {
+              "label": "Email"
+            },
+            "password": {
+              "label": "Password"
+            },
+            "ccaa": {
+              "label": "CCAA"
+            },
+            "provincia": {
+              "label": "Province"
+            },
+            "municipio": {
+              "label": "Municipality"
+            },
+            "cp": {
+              "label": "Postal code"
+            },
+            "direccion": {
+              "label": "Address"
+            },
+            "direccioncompleta": {
+              "label": "Full address"
+            },
+            "refcatastral": {
+              "label": "Cadastral ref."
+            },
+            "iban": {
+              "label": "IBAN"
+            },
+            "bic": {
+              "label": "BIC (SWIFT)"
+            },
+            "tarjeta": {
+              "label": "Card number"
+            },
+            "tipotarjeta": {
+              "label": "Card type"
+            },
+            "expiracion": {
+              "label": "Expiration"
+            },
+            "cvc": {
+              "label": "CVC"
+            }
+          },
+          "empresa": {
+            "cif": {
+              "label": "CIF"
+            },
+            "razonsocial": {
+              "label": "Company name"
+            },
+            "fechaconstitucion": {
+              "label": "Incorporation date"
+            },
+            "cnae": {
+              "label": "CNAE"
+            },
+            "actividad": {
+              "label": "Activity"
+            },
+            "email": {
+              "label": "Email"
+            },
+            "paginaweb": {
+              "label": "Website"
+            },
+            "telefono": {
+              "label": "Phone"
+            },
+            "fax": {
+              "label": "Fax"
+            },
+            "ccaa": {
+              "label": "CCAA"
+            },
+            "provincia": {
+              "label": "Province"
+            },
+            "municipio": {
+              "label": "Municipality"
+            },
+            "cp": {
+              "label": "Postal code"
+            },
+            "direccion": {
+              "label": "Address"
+            },
+            "direccioncompleta": {
+              "label": "Full address"
+            },
+            "refcatastral": {
+              "label": "Cadastral ref."
+            }
           }
         }
       }

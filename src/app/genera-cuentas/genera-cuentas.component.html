@@ -20,7 +20,9 @@
       <mat-card appearance="outlined">
         <mat-card-header>{{ 'generadores.jpromocion.bancario.frame.generariban' | translate }}</mat-card-header>
         <mat-card-content>
-          <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar una lista de IBANs" (click)="onClickBotonGenerarListaIban()"
+          <button type="button"  mat-fab class="botonRotatorio"
+            attr.aria-label="{{ 'generadores.jpromocion.bancario.boton.generariban.label' | translate }}"
+            (click)="onClickBotonGenerarListaIban()"
             matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>

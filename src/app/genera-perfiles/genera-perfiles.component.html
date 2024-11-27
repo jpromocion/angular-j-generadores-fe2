@@ -1,36 +1,36 @@
-<h2 class="tracking-in-expand">Perfil</h2>
+<h2 class="tracking-in-expand">{{ 'generadores.jpromocion.menu.perfiles' | translate }}</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
   <div class="grid-layout-param">
 
     <div class="caja c0">
-      <h3>Filtros</h3>
+      <h3>{{ 'generadores.jpromocion.generarcomunes.frame.filtros' | translate }}</h3>
     </div>
   </div>
 
   <div class="grid-layout-param">
     <div class="caja c1">
-      <label>Tipo perfil: </label>
+      <label>{{ 'generadores.jpromocion.perfil.entrada.tipoperfil.label' | translate }}: </label>
       <mat-button-toggle-group name="tipoperfil" aria-label="Tipo perfil" [(ngModel)]="tipoPerfil"  style="margin-left: 10px;">
-        <mat-button-toggle value="p">Persona</mat-button-toggle>
-        <mat-button-toggle value="e">Empresa</mat-button-toggle>
+        <mat-button-toggle value="p">{{ 'generadores.jpromocion.perfil.entrada.tipoperfil.valorp' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="e">{{ 'generadores.jpromocion.perfil.entrada.tipoperfil.valore' | translate }}</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
     <div class="caja c2">
-      <label style="margin-left: 5px;">Sexo: </label>
+      <label style="margin-left: 5px;">{{ 'generadores.jpromocion.perfil.entrada.sexo.label' | translate }}: </label>
       <mat-button-toggle-group name="genero" aria-label="Genero persona" [(ngModel)]="sexoSeleccionado"  style="margin-left: 10px;">
-        <mat-button-toggle value="a">Ámbos</mat-button-toggle>
-        <mat-button-toggle value="h">Hombre</mat-button-toggle>
-        <mat-button-toggle value="m">Mujer</mat-button-toggle>
+        <mat-button-toggle value="a">{{ 'generadores.jpromocion.perfil.entrada.sexo.valora' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="h">{{ 'generadores.jpromocion.perfil.entrada.sexo.valorh' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="m">{{ 'generadores.jpromocion.perfil.entrada.sexo.valorm' | translate }}</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
     <div class="caja c3">
-      <label style="margin-left: 5px;">Tipo letra: </label>
+      <label style="margin-left: 5px;">{{ 'generadores.jpromocion.perfil.entrada.tipoletra.label' | translate }}: </label>
       <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"  style="margin-left: 10px;">
-        <mat-button-toggle value="s">Sin formato</mat-button-toggle>
-        <mat-button-toggle value="M">Mayúsculas</mat-button-toggle>
-        <mat-button-toggle value="m">Minúsculas</mat-button-toggle>
-        <mat-button-toggle value="c">Camel case</mat-button-toggle>
+        <mat-button-toggle value="s">{{ 'generadores.jpromocion.perfil.entrada.tipoletra.valors' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="M">{{ 'generadores.jpromocion.perfil.entrada.tipoletra.valormay' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="m">{{ 'generadores.jpromocion.perfil.entrada.tipoletra.valormin' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="c">{{ 'generadores.jpromocion.perfil.entrada.tipoletra.valorc' | translate }}</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </div>
@@ -38,12 +38,14 @@
   <div class="grid-layout-param">
     <div class="caja c4">
       <mat-form-field style="width: 150px !important;">
-        <mat-label>Num. generaciones</mat-label>
-        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+        <mat-label>{{ 'generadores.jpromocion.generarcomunes.numgeneraciones.label' | translate }}</mat-label>
+        <input matInput id="numGenera" type="number"  min="2" max="1000" [(ngModel)]="numGenerar">
       </mat-form-field>
 
-      <button type="button"  mat-fab class="botonRotatorio" style=" margin-left: 10px;" aria-label="Generar un perfil" (click)="onClickBotonGenerarPerfil()"
-        matTooltip="Pulsar para generar" matTooltipPosition="below">
+      <button type="button"  mat-fab class="botonRotatorio" style=" margin-left: 10px;"
+        attr.aria-label="{{ 'generadores.jpromocion.perfil.boton.generarperfil.label' | translate }}"
+        (click)="onClickBotonGenerarPerfil()"
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>refresh</mat-icon>
       </button>
     </div>
@@ -57,164 +59,164 @@
 
     <div class="caja cpDir" style="margin-top: 10px;">
       <div class="divBox">
-        <h3>Persona generada</h3>
+        <h3>{{ 'generadores.jpromocion.perfil.frame.personagenerada' | translate }}</h3>
       </div>
     </div>
   </div>
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja" >
-      <label>NIF: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.nif.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nif)" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nif">{{personaGenerada.nif}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>NIE: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.nie.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nie)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nie">{{personaGenerada.nie}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>NSS: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.nss.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nss)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nss">{{personaGenerada.nss}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Pasaporte: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.pasaporte.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.pasaporte)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="pasaporte">{{personaGenerada.pasaporte}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Sexo: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.sexo.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.genero))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="genero">{{ personaGenerada.genero | caseTransformer: tipoLetra }}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Fecha nacimiento (edad): </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.fechanacimiento.label' | translate }}: </label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.fechaNacimiento)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="fecha">{{personaGenerada.fechaNacimiento}}</span>
         </button>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.edad)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="edad">{{personaGenerada.edad}}</span>
         </button>
     </div>
 
     <div class="caja" >
-      <label>Nombre: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.nombre.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombre))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nombre">{{personaGenerada.nombre | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>1º Apellido: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.apellido1.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.apellido1))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nombre">{{personaGenerada.apellido1 | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>2º Apellido: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.apellido2.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.apellido2))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nombre">{{personaGenerada.apellido2 | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Nombre completo</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.nombrecompleto.label' | translate }}</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombreCompleto))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nombre">{{personaGenerada.nombreCompleto | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
 
     <div class="caja" >
-      <label>Teléfono movil:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.telefonomovil.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.telefonoMovil)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="telefono">{{personaGenerada.telefonoMovil}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Teléfono fijo:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.telefonofijo.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.telefonoFijo)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="telefono">{{personaGenerada.telefonoFijo}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Login:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.login.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.login))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="login">{{personaGenerada.login | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Email:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.email.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.email))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="email">{{personaGenerada.email | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
 
     <div class="caja" >
-      <label>Password:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.password.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.password)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="password">{{personaGenerada.password}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>CCAA:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.ccaa.label' | translate }}:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineCcaa)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="ccaaIne">{{personaGenerada.direccion.ineCcaa}}</span>
         </button>
         <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.ccaa))" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="ccaa">{{personaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" >
-      <label>Provincia:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.provincia.label' | translate }}:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineProvincia)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="provinciaIne">{{personaGenerada.direccion.ineProvincia}}</span>
         </button>
         <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.provincia))" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="provincia">{{personaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" >
-      <label>Municipio:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.municipio.label' | translate }}:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.ineMunicipio)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="municipioIne">{{personaGenerada.direccion.ineMunicipio}}</span>
         </button>
         <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.municipio))" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="municipio">{{personaGenerada.direccion.municipio| caseTransformer: tipoLetra}}</span>
         </button>
     </div>
 
     <div class="caja" >
-      <label>Cod. Postal:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.cp.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.codPostal)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="codigoPostal">{{personaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
@@ -222,9 +224,9 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja cpDir" >
-      <label>Dirección:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.direccion.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="direccion">{{personaGenerada.direccion.direccionAMedio | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
@@ -232,9 +234,9 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja cpDir" >
-      <label>Dirección completa:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.direccioncompleta.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="direccion">{{personaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
@@ -242,53 +244,53 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="personaGenerada">
     <div class="caja" >
-      <label>Ref. catastral:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.refcatastral.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="iban">{{personaGenerada.direccion.referenciaCatastral | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
 
     <div class="caja" >
-      <label>IBAN:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.iban.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.iban)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="iban">{{personaGenerada.iban}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>BIC (SWIFT):</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.bic.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.bic)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="bic">{{personaGenerada.bic}}</span>
       </button>
     </div>
 
     <div class="caja" >
-      <label>Num tarjeta:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.tarjeta.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.tarjetaCredito)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="tarjetaCredito">{{personaGenerada.tarjetaCredito}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Tipo tar.:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.tipotarjeta.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.tipoTarjeta))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="tipoTarjeta">{{personaGenerada.tipoTarjeta | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Expiración:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.expiracion.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.expiracionCredito)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="expiracionCredito">{{personaGenerada.expiracionCredito}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>CVC:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.persona.cvc.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.cvc)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="cvc">{{personaGenerada.cvc}}</span>
       </button>
     </div>
@@ -300,37 +302,37 @@
 
     <div class="caja cpDir" style="margin-top: 10px;">
       <div class="divBox">
-        <h3>Empresa generada</h3>
+        <h3>{{ 'generadores.jpromocion.perfil.frame.empresagenerada' | translate }}</h3>
       </div>
     </div>
   </div>
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja" >
-      <label>CIF: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.cif.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.cif)" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="cif">{{empresaGenerada.cif}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Razón social: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.razonsocial.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.nombre))" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="nombre">{{empresaGenerada.nombre | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Fecha constitución: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.fechaconstitucion.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.fechaCreacion)" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="fecha">{{empresaGenerada.fechaCreacion}}</span>
       </button>
     </div>
 
     <div class="caja" >
-      <label>CNAE: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.cnae.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.cnae)" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="cnae">{{empresaGenerada.cnae}}</span>
       </button>
     </div>
@@ -338,9 +340,9 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja cpDir" >
-      <label>Actividad: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.actividad.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.actividad))" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="actividad">{{empresaGenerada.actividad | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
@@ -348,72 +350,72 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja" >
-      <label>Email: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.email.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.email))" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="email">{{empresaGenerada.email | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Pág. Web: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.paginaweb.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.paginaWeb))" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="web">{{empresaGenerada.paginaWeb | caseTransformer: tipoLetra}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Teléfono: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.telefono.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.telefono)" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="telefono">{{empresaGenerada.telefono}}</span>
       </button>
     </div>
     <div class="caja" >
-      <label>Fax: </label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.fax.label' | translate }}: </label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.fax)" style="margin-left: 10px; "
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="telefono">{{empresaGenerada.fax}}</span>
       </button>
     </div>
 
     <div class="caja" >
-      <label>CCAA:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.ccaa.label' | translate }}:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineCcaa)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="ccaaIne">{{empresaGenerada.direccion.ineCcaa}}</span>
         </button>
         <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.ccaa))" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="ccaa">{{empresaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" >
-      <label>Provincia:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.provincia.label' | translate }}:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineProvincia)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="provinciaIne">{{empresaGenerada.direccion.ineProvincia}}</span>
         </button>
         <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.provincia))" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="provincia">{{empresaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
     <div class="caja" >
-      <label>Municipio:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.municipio.label' | translate }}:</label>
         <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.ineMunicipio)" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="municipioIne">{{empresaGenerada.direccion.ineMunicipio}}</span>
         </button>
         <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.municipio))" style="margin-left: 10px;"
-        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
           <span class="municipio">{{empresaGenerada.direccion.municipio | caseTransformer: tipoLetra}}</span>
         </button>
     </div>
 
     <div class="caja" >
-      <label>Cod. Postal:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.cp.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(empresaGenerada.direccion.codPostal)" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="codigoPostal">{{empresaGenerada.direccion.codPostal}}</span>
       </button>
     </div>
@@ -421,9 +423,9 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja cpDir" >
-      <label>Dirección:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.direccion.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionAMedio))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="direccion">{{empresaGenerada.direccion.direccionAMedio| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
@@ -431,9 +433,9 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja cpDir" >
-      <label>Dirección completa:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.direccioncompleta.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.direccionCompleta))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="direccion">{{empresaGenerada.direccion.direccionCompleta| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
@@ -441,9 +443,9 @@
 
   <div class="grid-layout" [@entradaLateralAnimation] *ngIf="empresaGenerada">
     <div class="caja" >
-      <label>Ref. catastral:</label>
+      <label>{{ 'generadores.jpromocion.perfil.salida.empresa.refcatastral.label' | translate }}:</label>
       <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada.direccion.referenciaCatastral))" style="margin-left: 10px;"
-      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
         <span class="catastral">{{empresaGenerada.direccion.referenciaCatastral| caseTransformer: tipoLetra}}</span>
       </button>
     </div>
@@ -468,7 +470,7 @@
   <div [@entradaLateralAnimation] *ngIf="listaPersonasGeneradasOriginal.length && listaPersonasGeneradasOriginal.length > 0" >
     <div style="margin-top: 10px;">
       <div class="divBox">
-        <div [matBadge]="badgetPersonasGenradas" matBadgeOverlap="false"><h3>Personas generada</h3></div>
+        <div [matBadge]="badgetPersonasGenradas" matBadgeOverlap="false"><h3>{{ 'generadores.jpromocion.perfil.frame.personasgeneradas' | translate }}</h3></div>
       </div>
     </div>
 
@@ -482,7 +484,7 @@
          -->
         <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaPersonas">
           <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
-            {{col.label}}
+            {{ col.label | translate }}
             <button mat-icon-button (click)="$event.stopPropagation(); openFilterPersonas(col.key); ">
               <mat-icon>search</mat-icon>
             </button>
@@ -498,13 +500,13 @@
               -->
               <div *ngSwitchCase="'button'">
                 <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(personaGenerada[col.columna], col.caseSensitive))"
-                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{personaGenerada[col.columna] | caseTransformer: tipoLetra }}</span>
                   <span *ngIf="!col.caseSensitive">{{personaGenerada[col.columna]}}</span>
                 </button>
                 <button *ngIf="personaGenerada[col.columna2] && personaGenerada[col.columna2] != ''"
                   mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(personaGenerada[col.columna2], col.caseSensitive))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{personaGenerada[col.columna2] | caseTransformer: tipoLetra }}</span>
                   <span *ngIf="!col.caseSensitive">{{personaGenerada[col.columna2]}}</span>
                 </button>
@@ -514,13 +516,13 @@
               -->
               <div *ngSwitchCase="'subobjeto'">
                 <button mat-flat-button [ngClass]="col.clase"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada[col.columna]?.[col.subpropiedad], col.caseSensitive))"
-                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{personaGenerada[col.columna]?.[col.subpropiedad] | caseTransformer: tipoLetra}}</span>
                   <span *ngIf="!col.caseSensitive">{{personaGenerada[col.columna]?.[col.subpropiedad]}}</span>
                 </button>
                 <button *ngIf="personaGenerada[col.columna2]"
                   mat-flat-button [ngClass]="col.clase"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada[col.columna2]?.[col.subpropiedad2], col.caseSensitive))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{personaGenerada[col.columna2]?.[col.subpropiedad2] | caseTransformer: tipoLetra}}</span>
                   <span *ngIf="!col.caseSensitive">{{personaGenerada[col.columna2]?.[col.subpropiedad2]}}</span>
                 </button>
@@ -537,7 +539,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>NIF</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nif)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="nif">{{personaGenerada.nif}}</span>
             </button>
           </td>
@@ -547,7 +549,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>NIE</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nie)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="nie">{{personaGenerada.nie}}</span>
             </button>
           </td>
@@ -557,7 +559,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>NSS</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.nss)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="nss">{{personaGenerada.nss}}</span>
             </button>
           </td>
@@ -567,7 +569,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Pasaporte</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.pasaporte)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="pasaporte">{{personaGenerada.pasaporte}}</span>
             </button>
           </td>
@@ -577,7 +579,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Sexo</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.genero))"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="genero">{{ personaGenerada.genero | caseTransformer: tipoLetra }}</span>
             </button>
           </td>
@@ -588,11 +590,11 @@
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.fechaNacimiento)"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="fecha">{{personaGenerada.fechaNacimiento}}</span>
               </button>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.edad)"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="edad">{{personaGenerada.edad}}</span>
               </button>
             </div>
@@ -603,7 +605,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombre))"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="nombre">{{personaGenerada.nombre | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -613,7 +615,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>1º Apellido</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.apellido1))"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="nombre">{{personaGenerada.apellido1 | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -623,7 +625,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>2º Apellido</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.apellido2))"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="nombre">{{personaGenerada.apellido2 | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -633,7 +635,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre completo</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button type="button" (click)="onSelectDato(transformaTexto(personaGenerada.nombreCompleto))" class="botonFlatGrande"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="nombre">{{personaGenerada.nombreCompleto | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -643,7 +645,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Teléfono movil</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.telefonoMovil)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="telefono">{{personaGenerada.telefonoMovil}}</span>
             </button>
           </td>
@@ -653,7 +655,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Teléfono fijo</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.telefonoFijo)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="telefono">{{personaGenerada.telefonoFijo}}</span>
             </button>
           </td>
@@ -663,7 +665,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Login</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.login)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="login">{{personaGenerada.login}}</span>
             </button>
           </td>
@@ -673,7 +675,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.email)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="email">{{personaGenerada.email}}</span>
             </button>
           </td>
@@ -683,7 +685,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Password</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.password)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="password">{{personaGenerada.password}}</span>
             </button>
           </td>
@@ -694,11 +696,11 @@
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.direccion.ineCcaa)"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="ccaaIne">{{personaGenerada.direccion.ineCcaa}}</span>
               </button>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.ccaa))"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="ccaa">{{personaGenerada.direccion.ccaa | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
@@ -710,11 +712,11 @@
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.direccion.ineProvincia)"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="provinciaIne">{{personaGenerada.direccion.ineProvincia}}</span>
               </button>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.provincia))"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="provincia">{{personaGenerada.direccion.provincia | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
@@ -726,11 +728,11 @@
           <td mat-cell *matCellDef="let personaGenerada">
             <div>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(personaGenerada.direccion.ineMunicipio)"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="municipioIne">{{personaGenerada.direccion.ineMunicipio}}</span>
               </button>
               <button mat-flat-button class="botonFlatReducido"  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.municipio))"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="municipio">{{personaGenerada.direccion.municipio | caseTransformer: tipoLetra}}</span>
               </button>
             </div>
@@ -741,7 +743,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod. Postal</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.direccion.codPostal)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="codigoPostal">{{personaGenerada.direccion.codPostal}}</span>
             </button>
           </td>
@@ -751,7 +753,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionAMedio))" class="botonFlatGrande"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="direccion">{{personaGenerada.direccion.direccionAMedio | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -761,7 +763,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección completa</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.direccionCompleta))" class="botonFlatGrande"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="direccion">{{personaGenerada.direccion.direccionCompleta | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -771,7 +773,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Ref. catastral</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.direccion.referenciaCatastral))"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="direccion">{{personaGenerada.direccion.referenciaCatastral | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -781,7 +783,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>IBAN</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.iban)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="iban">{{personaGenerada.iban}}</span>
             </button>
           </td>
@@ -791,7 +793,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>BIC (SWIFT)</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.bic)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="bic">{{personaGenerada.bic}}</span>
             </button>
           </td>
@@ -801,7 +803,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Num tarjeta</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.tarjetaCredito)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="tarjetaCredito">{{personaGenerada.tarjetaCredito}}</span>
             </button>
           </td>
@@ -811,7 +813,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo tar</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(transformaTexto(personaGenerada.tipoTarjeta))"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="tipoTarjeta">{{personaGenerada.tipoTarjeta | caseTransformer: tipoLetra}}</span>
             </button>
           </td>
@@ -821,7 +823,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Expiración</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.expiracionCredito)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="expiracionCredito">{{personaGenerada.expiracionCredito}}</span>
             </button>
           </td>
@@ -831,7 +833,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CVC</th>
           <td mat-cell *matCellDef="let personaGenerada">
             <button mat-flat-button  type="button" (click)="onSelectDato(personaGenerada.cvc)"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="cvc">{{personaGenerada.cvc}}</span>
             </button>
           </td>
@@ -846,20 +848,26 @@
 
     <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
     <div style="float: left;margin-top:5px;">
-      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPersonas()"
-        matTooltip="Pulsar para limpiar las personas" matTooltipPosition="below">
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+        (click)="onClickLimpiarPersonas()"
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>delete</mat-icon>
       </button>
-      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosPersonas()"
-        matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
+        (click)="onClickLimpiarFiltrosPersonas()"
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>cleaning_services</mat-icon>
       </button>
-      <button type="button" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonPersonas()"
-        matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+      <button type="button" style="margin-left: 5px;" mat-fab class="botonRotatorio"
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+        (click)="exportJsonPersonas()"
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>description</mat-icon>
       </button>
       <mat-form-field style="margin-left: 5px; width: 350px !important;">
-        <mat-label>Columnas visibles</mat-label>
+        <mat-label>{{ 'generadores.jpromocion.generarcomunes.entrada.columnasvisibles.label' | translate }}</mat-label>
         <mat-select multiple [(ngModel)]="selectColumnasPersonas">
           @for (columna of listaColumnasPersonas; track columna) {
             <mat-option #matOptionColumPersonas [value]="columna"
@@ -881,7 +889,7 @@
       <mat-paginator #paginatorPersonas="matPaginator"
         [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons
-        aria-label="Seleccionar páginación">
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.paginador.label' | translate }}">
       </mat-paginator>
     </div>
 
@@ -894,7 +902,7 @@
    <div [@entradaLateralAnimation] *ngIf="listaEmpresasGeneradasOriginal.length && listaEmpresasGeneradasOriginal.length > 0" >
     <div style="margin-top: 10px;">
       <div class="divBox">
-        <div [matBadge]="badgetEmpresasGeneradas" matBadgeOverlap="false"><h3>Empresas generadas</h3></div>
+        <div [matBadge]="badgetEmpresasGeneradas" matBadgeOverlap="false"><h3>{{ 'generadores.jpromocion.perfil.frame.empresasgeneradas' | translate }}</h3></div>
       </div>
     </div>
 
@@ -908,7 +916,7 @@
          -->
         <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaEmpresas">
           <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
-            {{col.label}}
+            {{ col.label | translate }}
             <button mat-icon-button (click)="$event.stopPropagation(); openFilterEmpresas(col.key); ">
               <mat-icon>search</mat-icon>
             </button>
@@ -924,13 +932,13 @@
               -->
               <div *ngSwitchCase="'button'">
                 <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(empresaGenerada[col.columna], col.caseSensitive))"
-                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{empresaGenerada[col.columna] | caseTransformer: tipoLetra }}</span>
                   <span *ngIf="!col.caseSensitive">{{empresaGenerada[col.columna]}}</span>
                 </button>
                 <button *ngIf="empresaGenerada[col.columna2] && empresaGenerada[col.columna2] != ''"
                   mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(empresaGenerada[col.columna2], col.caseSensitive))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{empresaGenerada[col.columna2] | caseTransformer: tipoLetra }}</span>
                   <span *ngIf="!col.caseSensitive">{{empresaGenerada[col.columna2]}}</span>
                 </button>
@@ -940,13 +948,13 @@
               -->
               <div *ngSwitchCase="'subobjeto'">
                 <button mat-flat-button [ngClass]="col.clase"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada[col.columna]?.[col.subpropiedad], col.caseSensitive))"
-                matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{empresaGenerada[col.columna]?.[col.subpropiedad] | caseTransformer: tipoLetra}}</span>
                   <span *ngIf="!col.caseSensitive">{{empresaGenerada[col.columna]?.[col.subpropiedad]}}</span>
                 </button>
                 <button *ngIf="empresaGenerada[col.columna2]"
                   mat-flat-button [ngClass]="col.clase"  type="button" (click)="onSelectDato(transformaTexto(empresaGenerada[col.columna2]?.[col.subpropiedad2], col.caseSensitive))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                   <span *ngIf="col.caseSensitive">{{empresaGenerada[col.columna2]?.[col.subpropiedad2] | caseTransformer: tipoLetra}}</span>
                   <span *ngIf="!col.caseSensitive">{{empresaGenerada[col.columna2]?.[col.subpropiedad2]}}</span>
                 </button>
@@ -965,20 +973,26 @@
 
     <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
     <div style="float: left;margin-top:5px;">
-      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarEmpresas()"
-        matTooltip="Pulsar para limpiar las empresas" matTooltipPosition="below">
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+        (click)="onClickLimpiarEmpresas()"
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>delete</mat-icon>
       </button>
-      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosEmpresas()"
-        matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+      <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
+        (click)="onClickLimpiarFiltrosEmpresas()"
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>cleaning_services</mat-icon>
       </button>
-      <button type="button" style="margin-left: 5px;" mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonEmpresas()"
-        matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+      <button type="button" style="margin-left: 5px;" mat-fab class="botonRotatorio"
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+        (click)="exportJsonEmpresas()"
+        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>description</mat-icon>
       </button>
       <mat-form-field style="margin-left: 5px; width: 350px !important;">
-        <mat-label>Columnas visibles</mat-label>
+        <mat-label>{{ 'generadores.jpromocion.generarcomunes.entrada.columnasvisibles.label' | translate }}</mat-label>
         <mat-select multiple [(ngModel)]="selectColumnasEmpresas">
           @for (columna of listaColumnasEmpresas; track columna) {
             <mat-option #matOptionColumEmpresas [value]="columna"
@@ -994,7 +1008,7 @@
       <mat-paginator #paginatorEmpresas="matPaginator"
         [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons
-        aria-label="Seleccionar páginación">
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.paginador.label' | translate }}">
       </mat-paginator>
     </div>
 

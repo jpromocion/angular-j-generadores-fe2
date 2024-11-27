@@ -22,7 +22,7 @@ import { ProfilesService } from '../core/services/profiles.service';
 import { Persona } from '../core/models/persona';
 import { Empresa } from '../core/models/empresa';
 import { DireccionCompleta } from '../core/models/direccion-completa';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -31,7 +31,7 @@ import { DireccionCompleta } from '../core/models/direccion-completa';
   standalone: true,
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,MatGridListModule, CaseTransformerPipe,
     MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
-    MatSelectModule, CdkDropList, CdkDrag, MatBadgeModule],
+    MatSelectModule, CdkDropList, CdkDrag, MatBadgeModule, TranslateModule],
   templateUrl: './genera-perfiles.component.html',
   styleUrl: './genera-perfiles.component.scss'
 })
@@ -44,32 +44,32 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       key: "Nif",
       columna: "nif",
       type: "button",
-      label: "NIF"
+      label: "generadores.jpromocion.perfil.salida.persona.nif.label"
     },
     {
       key: "Nie",
       columna: "nie",
       type: "button",
-      label: "NIE"
+      label: "generadores.jpromocion.perfil.salida.persona.nie.label"
     },
     {
       key: "Nss",
       columna: "nss",
       type: "button",
-      label: "NSS"
+      label: "generadores.jpromocion.perfil.salida.persona.nss.label"
     },
     {
       key: "Pasaporte",
       columna: "pasaporte",
       type: "button",
-      label: "Pasaporte"
+      label: "generadores.jpromocion.perfil.salida.persona.pasaporte.label"
     },
     {
       key: "Genero",
       columna: "genero",
       type: "button",
       caseSensitive: true,
-      label: "Sexo"
+      label: "generadores.jpromocion.perfil.salida.persona.sexo.label"
     },
     {
       key: "Fecha_Nacimiento",
@@ -77,7 +77,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       type: "button",
       caseSensitive: true,
       clase: "botonFlatReducido",
-      label: "Fecha nacimiento (edad)",
+      label: "generadores.jpromocion.perfil.salida.persona.fechanacimiento.label",
       columna2: "edad",
     },
     {
@@ -86,7 +86,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
-      label: "Nombre"
+      label: "generadores.jpromocion.perfil.salida.persona.nombre.label"
     },
     {
       key: "Apellido_1",
@@ -94,7 +94,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
-      label: "1º Apellido"
+      label: "generadores.jpromocion.perfil.salida.persona.apellido1.label"
     },
     {
       key: "Apellido_2",
@@ -102,7 +102,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
-      label: "2º Apellido"
+      label: "generadores.jpromocion.perfil.salida.persona.apellido2.label"
     },
     {
       key: "Nombre_Completo",
@@ -110,39 +110,39 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
-      label: "Nombre completo"
+      label: "generadores.jpromocion.perfil.salida.persona.nombrecompleto.label"
     },
     {
       key: "Telefono_Movil",
       columna: "telefonoMovil",
       type: "button",
-      label: "Teléfono movil"
+      label: "generadores.jpromocion.perfil.salida.persona.telefonomovil.label"
     },
     {
       key: "Telefono_Fijo",
       columna: "telefonoFijo",
       type: "button",
-      label: "Teléfono fijo"
+      label: "generadores.jpromocion.perfil.salida.persona.telefonofijo.label"
     },
     {
       key: "Login",
       columna: "login",
       type: "button",
       caseSensitive: true,
-      label: "Login"
+      label: "generadores.jpromocion.perfil.salida.persona.login.label"
     },
     {
       key: "Email",
       columna: "email",
       type: "button",
       caseSensitive: true,
-      label: "Email"
+      label: "generadores.jpromocion.perfil.salida.persona.email.label"
     },
     {
       key: "Password",
       columna: "password",
       type: "button",
-      label: "Password"
+      label: "generadores.jpromocion.perfil.salida.persona.password.label"
     },
     {
       key: "CCAA",
@@ -151,7 +151,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatReducido",
       type: "subobjeto",
       caseSensitive: true,
-      label: "CCAA",
+      label: "generadores.jpromocion.perfil.salida.persona.ccaa.label",
       columna2: "direccion",
       subpropiedad2: "ccaa",
     },
@@ -162,7 +162,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatReducido",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Provincia",
+      label: "generadores.jpromocion.perfil.salida.persona.provincia.label",
       columna2: "direccion",
       subpropiedad2: "provincia",
     },
@@ -173,7 +173,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatReducido",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Municipio",
+      label: "generadores.jpromocion.perfil.salida.persona.municipio.label",
       columna2: "direccion",
       subpropiedad2: "municipio",
     },
@@ -183,7 +183,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       subpropiedad: "codPostal",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Cod. Postal"
+      label: "generadores.jpromocion.perfil.salida.persona.cp.label"
     },
     {
       key: "Direccion",
@@ -192,7 +192,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatGrande",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Dirección"
+      label: "generadores.jpromocion.perfil.salida.persona.direccion.label"
     },
     {
       key: "Dir_Completa",
@@ -201,7 +201,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatGrande",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Dirección completa"
+      label: "generadores.jpromocion.perfil.salida.persona.direccioncompleta.label"
     },
     {
       key: "Ref_Catastral",
@@ -209,44 +209,44 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       subpropiedad: "referenciaCatastral",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Ref. catastral"
+      label: "generadores.jpromocion.perfil.salida.persona.refcatastral.label"
     },
     {
       key: "Iban",
       columna: "iban",
       type: "button",
-      label: "IBAN"
+      label: "generadores.jpromocion.perfil.salida.persona.iban.label"
     },
     {
       key: "Bic",
       columna: "bic",
       type: "button",
-      label: "BIC (SWIFT)"
+      label: "generadores.jpromocion.perfil.salida.persona.bic.label"
     },
     {
       key: "Tarjeta",
       columna: "tarjetaCredito",
       type: "button",
-      label: "Num. tarjeta"
+      label: "generadores.jpromocion.perfil.salida.persona.tarjeta.label"
     },
     {
       key: "Tipo_Tarjeta",
       columna: "tipoTarjeta",
       type: "button",
       caseSensitive: true,
-      label: "Tipo tarj."
+      label: "generadores.jpromocion.perfil.salida.persona.tipotarjeta.label"
     },
     {
       key: "Expiracion",
       columna: "expiracionCredito",
       type: "button",
-      label: "Expiración"
+      label: "generadores.jpromocion.perfil.salida.persona.expiracion.label"
     },
     {
       key: "Cvc",
       columna: "cvc",
       type: "button",
-      label: "CVC"
+      label: "generadores.jpromocion.perfil.salida.persona.cvc.label"
     }
   ];
 
@@ -257,7 +257,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       key: "Cif",
       columna: "cif",
       type: "button",
-      label: "CIF"
+      label: "generadores.jpromocion.perfil.salida.empresa.cif.label"
     },
     {
       key: "Razón",
@@ -265,19 +265,19 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       type: "button",
       clase: "botonFlatGrande",
       caseSensitive: true,
-      label: "Razón social"
+      label: "generadores.jpromocion.perfil.salida.empresa.razonsocial.label"
     },
     {
       key: "Fecha_Constitución",
       columna: "fechaCreacion",
       type: "button",
-      label: "F. constitución"
+      label: "generadores.jpromocion.perfil.salida.empresa.fechaconstitucion.label"
     },
     {
       key: "Cnae",
       columna: "cnae",
       type: "button",
-      label: "CNAE"
+      label: "generadores.jpromocion.perfil.salida.empresa.cnae.label"
     },
     {
       key: "Actividad",
@@ -285,33 +285,33 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       type: "button",
       clase: "botonFlatGrande",
       caseSensitive: true,
-      label: "Actividad"
+      label: "generadores.jpromocion.perfil.salida.empresa.actividad.label"
     },
     {
       key: "Email",
       columna: "email",
       type: "button",
       caseSensitive: true,
-      label: "Email"
+      label: "generadores.jpromocion.perfil.salida.empresa.email.label"
     },
     {
       key: "Página_Web",
       columna: "paginaWeb",
       type: "button",
       caseSensitive: true,
-      label: "Pág. Web"
+      label: "generadores.jpromocion.perfil.salida.empresa.paginaweb.label"
     },
     {
       key: "Telefono",
       columna: "telefono",
       type: "button",
-      label: "Teléfono"
+      label: "generadores.jpromocion.perfil.salida.empresa.telefono.label"
     },
     {
       key: "Fax",
       columna: "fax",
       type: "button",
-      label: "Fax"
+      label: "generadores.jpromocion.perfil.salida.empresa.fax.label"
     },
     {
       key: "CCAA",
@@ -320,7 +320,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatReducido",
       type: "subobjeto",
       caseSensitive: true,
-      label: "CCAA",
+      label: "generadores.jpromocion.perfil.salida.empresa.ccaa.label",
       columna2: "direccion",
       subpropiedad2: "ccaa",
     },
@@ -331,7 +331,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatReducido",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Provincia",
+      label: "generadores.jpromocion.perfil.salida.empresa.provincia.label",
       columna2: "direccion",
       subpropiedad2: "provincia",
     },
@@ -342,7 +342,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatReducido",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Municipio",
+      label: "generadores.jpromocion.perfil.salida.empresa.municipio.label",
       columna2: "direccion",
       subpropiedad2: "municipio",
     },
@@ -352,7 +352,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       subpropiedad: "codPostal",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Cod. Postal"
+      label: "generadores.jpromocion.perfil.salida.empresa.cp.label"
     },
     {
       key: "Dirección",
@@ -361,7 +361,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatGrande",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Dirección"
+      label: "generadores.jpromocion.perfil.salida.empresa.direccion.label"
     },
     {
       key: "Dir_Completa",
@@ -370,7 +370,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       clase: "botonFlatGrande",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Dirección completa"
+      label: "generadores.jpromocion.perfil.salida.empresa.direccioncompleta.label"
     },
     {
       key: "Ref_Catastral",
@@ -378,7 +378,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       subpropiedad: "referenciaCatastral",
       type: "subobjeto",
       caseSensitive: true,
-      label: "Ref. catastral"
+      label: "generadores.jpromocion.perfil.salida.empresa.refcatastral.label"
     }
   ];
 

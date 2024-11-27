@@ -39,6 +39,23 @@
         "numgeneraciones": {
           "label": "Num. generaciones"
         },
+        "entrada": {
+          "columnasvisibles": {
+            "label": "Columnas visibles"
+          }
+        },
+        "paginador": {
+          "label": "Seleccionar páginación",
+          "elementos": "Elementos por página",
+          "primera": "Primera página",
+          "ultima": "Última página",
+          "siguiente": "Siguiente página",
+          "anterior": "Página anterior",
+          "de": "de"
+        },
+        "frame": {
+          "filtros": "Filtros"
+        },
         "boton": {
           "generar": {
             "tooltip": "Pulsar para generar"
@@ -52,6 +69,10 @@
           "limpiar": {
             "label": "Limpiar generado",
             "tooltip": "Pulsar para limpiar"
+          },
+          "limpiarfiltros": {
+            "label": "Limpiar filtros",
+            "tooltip": "Limpia filtros aplicados volviendo a los datos originales"
           },
           "exportarexcel": {
             "label": "Exportar a Excel",
@@ -152,7 +173,9 @@
           "validartarjeta": "Validar Tarjeta"
         },
         "boton": {
-
+          "generariban":{
+            "label": "Generar una lista de IBANs"
+          }
         },
         "entrada":{
           "tipotarjeta": {
@@ -164,6 +187,177 @@
           },
           "tarjetavalidar": {
             "label": "Tarjeta a comprobar"
+          }
+        }
+      },
+      "perfil":{
+        "frame": {
+          "personagenerada": "Persona generada",
+          "personasgeneradas": "Personas generadas",
+          "empresagenerada": "Empresa generada",
+          "empresasgeneradas": "Empresas generadas"
+        },
+        "boton": {
+          "generarperfil":{
+            "label": "Generar un perfil"
+          }
+        },
+        "entrada":{
+          "tipoperfil": {
+            "label": "Tipo perfil",
+            "valorp": "Persona",
+            "valore": "Empresa"
+          },
+          "sexo": {
+            "label": "Sexo",
+            "valora": "Ámbos",
+            "valorh": "Hombre",
+            "valorm": "Mujer"
+          },
+          "tipoletra": {
+            "label": "Tipo letra",
+            "valors": "Sin formato",
+            "valormay": "Mayúsculas",
+            "valormin": "Minúsculas",
+            "valorc": "Camel case"
+          }
+        },
+        "salida":{
+          "persona": {
+            "nif": {
+              "label": "NIF"
+            },
+            "nie": {
+              "label": "NIE"
+            },
+            "nss": {
+              "label": "NSS"
+            },
+            "pasaporte": {
+              "label": "Pasaporte"
+            },
+            "sexo": {
+              "label": "Sexo"
+            },
+            "fechanacimiento": {
+              "label": "Fecha nacimiento (edad)"
+            },
+            "nombre": {
+              "label": "Nombre"
+            },
+            "apellido1": {
+              "label": "1º Apellido"
+            },
+            "apellido2": {
+              "label": "2º Apellido"
+            },
+            "nombrecompleto": {
+              "label": "Nombre completo"
+            },
+            "telefonomovil": {
+              "label": "Teléfono móvil"
+            },
+            "telefonofijo": {
+              "label": "Teléfono fijo"
+            },
+            "login": {
+              "label": "Login"
+            },
+            "email": {
+              "label": "Email"
+            },
+            "password": {
+              "label": "Password"
+            },
+            "ccaa": {
+              "label": "CCAA"
+            },
+            "provincia": {
+              "label": "Provincia"
+            },
+            "municipio": {
+              "label": "Municipio"
+            },
+            "cp": {
+              "label": "Cod. postal"
+            },
+            "direccion": {
+              "label": "Dirección"
+            },
+            "direccioncompleta": {
+              "label": "Dirección completa"
+            },
+            "refcatastral": {
+              "label": "Ref. catastral"
+            },
+            "iban": {
+              "label": "IBAN"
+            },
+            "bic": {
+              "label": "BIC (SWIFT)"
+            },
+            "tarjeta": {
+              "label": "Núm. tarjeta"
+            },
+            "tipotarjeta": {
+              "label": "Tipo tar."
+            },
+            "expiracion": {
+              "label": "Expiración"
+            },
+            "cvc": {
+              "label": "CVC"
+            }
+          },
+          "empresa": {
+            "cif": {
+              "label": "CIF"
+            },
+            "razonsocial": {
+              "label": "Razón social"
+            },
+            "fechaconstitucion": {
+              "label": "Fecha constitución"
+            },
+            "cnae": {
+              "label": "CNAE"
+            },
+            "actividad": {
+              "label": "Actividad"
+            },
+            "email": {
+              "label": "Email"
+            },
+            "paginaweb": {
+              "label": "Pág. web"
+            },
+            "telefono": {
+              "label": "Teléfono"
+            },
+            "fax": {
+              "label": "Fax"
+            },
+            "ccaa": {
+              "label": "CCAA"
+            },
+            "provincia": {
+              "label": "Provincia"
+            },
+            "municipio": {
+              "label": "Municipio"
+            },
+            "cp": {
+              "label": "Cod. postal"
+            },
+            "direccion": {
+              "label": "Dirección"
+            },
+            "direccioncompleta": {
+              "label": "Dirección completa"
+            },
+            "refcatastral": {
+              "label": "Ref. catastral"
+            }
           }
         }
       }
