@@ -1064,7 +1064,143 @@
             "label": "Decoded text"
           }
         }
+      },
+      "colores": {
+        "textosfijos": {
+          "selector": {
+            "parrafo1": "In operations that work with 1 color, they will use the \"Main Color\".",
+            "parrafo2": "In operations that work with 2 colors, they will use the \"Main Color\" as color 1, and the \"Secondary Color\" as color 2."
+          },
+          "aclarar": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block."
+          },
+          "oscurecer": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block."
+          },
+          "matizar": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block."
+          },
+          "invertir": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block."
+          },
+          "alpha": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block."
+          },
+          "mezclar": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block as color 1 of the mix.",
+            "parrafo2": "Uses the \"Secondary Color\" from the \"Color Selector\" block as color 2 of the mix."
+          },
+          "gradiente": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block as color 1 of the gradient.",
+            "parrafo2": "Uses the \"Secondary Color\" from the \"Color Selector\" block as color 2 of the gradient."
+          },
+          "monocroma": {
+            "parrafo1": "Uses the \"Main Color\" from the \"Color Selector\" block."
+          }
+        },
+        "frame": {
+          "selector": "Color Selector",
+          "generar": "Generate Color",
+          "hexargb": "Hexadecimal -> RGB",
+          "rgbhexa": "RGB -> Hexadecimal",
+          "aclarar": "Lighten color",
+          "oscurecer": "Darken color",
+          "matizar": "Tint/Saturate/Brightness color",
+          "invertir": "Invert color",
+          "alpha": "Alpha color",
+          "mezclar": "Mix colors",
+          "gradiente": "Gradient colors",
+          "monocroma": "Monochromatic colors"
+        },
+        "boton": {
+          "generarcolor": {
+            "label": "Generate a random color"
+          },
+          "aclarar": {
+            "label": "Lighten color",
+            "tooltip": "Press to lighten"
+          },
+          "oscurecer": {
+            "label": "Darken color",
+            "tooltip": "Press to darken"
+          },
+          "matizar": {
+            "label": "Transform color",
+            "tooltip": "Press to apply"
+          },
+          "invertir": {
+            "label": "Invert color",
+            "tooltip": "Press to invert"
+          },
+          "alpha": {
+            "label": "Alpha color",
+            "tooltip": "Press for alpha"
+          },
+          "mezclar": {
+            "label": "Mix colors",
+            "tooltip": "Press to mix"
+          },
+          "gradiente": {
+            "label": "Get gradients",
+            "tooltip": "Press for gradients"
+          },
+          "monocroma": {
+            "label": "Get monochromatic colors",
+            "tooltip": "Press for monochromatic"
+          }
+        },
+        "entrada": {
+          "colorprincipal": {
+            "label": "Main color"
+          },
+          "colorsecundario": {
+            "label": "Secondary color"
+          },
+          "colorhexa": {
+            "label": "Hexadecimal color",
+            "tooltip": "Color in hexadecimal (starting with # or without it)"
+          },
+          "colorrojo": {
+            "label": "Red"
+          },
+          "colorverde": {
+            "label": "Green"
+          },
+          "colorazul": {
+            "label": "Blue"
+          },
+          "matiz": {
+            "label": "Hue"
+          },
+          "saturacion": {
+            "label": "Saturation"
+          },
+          "brillo": {
+            "label": "Brightness"
+          },
+          "porcintervienecolor": {
+            "label": "% color 2 intervention"
+          },
+          "numgradiente": {
+            "label": "Num. gradients to generate"
+          },
+          "numcolores": {
+            "label": "Num. colors"
+          }
+        },
+        "salida": {
+          "base64codi": {
+            "label": "Encoded in Base 64"
+          },
+          "rgb": {
+            "label": "RGB"
+          },
+          "hexadecimal": {
+            "label": "Hexadecimal"
+          }
+        }
       }
+
 
 
 

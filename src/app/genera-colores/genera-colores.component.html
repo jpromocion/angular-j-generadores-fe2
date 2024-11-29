@@ -1,4 +1,4 @@
-<h2 class="tracking-in-expand">Colores</h2>
+<h2 class="tracking-in-expand">{{ 'generadores.jpromocion.menu.colores' | translate }}</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
 
@@ -7,16 +7,16 @@
 
     <div class="caja c1">
       <mat-card appearance="outlined">
-        <mat-card-header>Selector de Color</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.selector' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>En operaciones que operen con 1 color, utilizarán el "Color principal".</em></small></p>
-          <p style="margin-left: 10px;"><small><em>En operaciones que operen con 2 colores, utilizarán el "Color principal" como color 1, y el "Color secundario" como color 2.</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.selector.parrafo1' | translate }}</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.selector.parrafo2' | translate }}</em></small></p>
 
           <div class="grid-layout-selector">
             <div class="caja">
 
-              <label>Color principal</label>
+              <label>{{ 'generadores.jpromocion.colores.entrada.colorprincipal.label' | translate }}</label>
               <!-- NOTA: vamos a desactivar siempre el alpha... porque no tenemos preparados servicios para actuar con el en medio
               ... de hecho hay servicios que se van a encargar saturar... desaturar... aclarar... oscurecer... y no tienen en cuenta el alpha
               -->
@@ -29,18 +29,18 @@
                 (colorPickerChange)="colorSele=$event;seleccionarColor($event)">
               </span>
               <button mat-flat-button type="button" *ngIf="colorSele && colorSele != ''" (click)="onSelectDato(colorSele)"  style="margin-top: 5px;"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="color">{{colorSele}}</span>
               </button>
               <button mat-flat-button type="button" *ngIf="colorSeleRgb && colorSeleRgb != ''" (click)="onSelectDato(colorSeleRgb)"  style="margin-top: 5px; margin-left: 5px;"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="color">{{colorSeleRgb}}</span>
               </button>
 
             </div>
 
             <div class="caja">
-              <label>Color secundario</label>
+              <label>{{ 'generadores.jpromocion.colores.entrada.colorsecundario.label' | translate }}</label>
               <span
                 [style.background]="colorSele2"
                 [cpToggle]="true"
@@ -49,7 +49,7 @@
                 [cpAlphaChannel]="'disabled'">
               </span>
               <button mat-flat-button type="button" *ngIf="colorSele2 && colorSele2 != ''" (click)="onSelectDato(colorSele2)"  style="margin-top: 5px;"
-              matTooltip="Pulsar para copiar" matTooltipPosition="below">
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                 <span class="color">{{colorSele2}}</span>
               </button>
             </div>
@@ -66,15 +66,17 @@
   <div class="grid-layout">
     <div class="caja c2">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar Color</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.generar' | translate }}</mat-card-header>
         <mat-card-content>
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Generar un color aleatorio" (click)="onClickBotonGenerarColor()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonGenerarColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.generarcolor.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="color != ''"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar listas" (click)="onClickLimpiarColor()"
-            matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -90,12 +92,12 @@
           </div>
           <button mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorObj"
             (click)="onSelectDato(colorObj.hex)"  style="margin-top: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{colorObj.hex}}</span>
           </button>
           <button mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorObj"
             (click)="onSelectDato(getColorRgb(colorObj))"  style="margin-top: 5px; margin-left: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{getColorRgb(colorObj)}}</span>
           </button>
 
@@ -110,29 +112,31 @@
 
     <div class="caja c3">
       <mat-card appearance="outlined">
-        <mat-card-header>Hexadecimal -> RGB</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.hexargb' | translate }}</mat-card-header>
         <mat-card-content>
 
           <mat-form-field style="width: 250px !important;margin-left: 5px;" >
-            <mat-label>Color Hexadecimal</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.colores.entrada.colorhexa.label' | translate }}</mat-label>
             <input matInput id="gradosValor" type="string"  placeholder="#f7557" [(ngModel)]="convertHexaParam">
-            <mat-icon matSuffix matTooltip="Color en hexadcimal (iniciado con # o sin él)">help</mat-icon>
+            <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.colores.entrada.colorhexa.tooltip' | translate }}">help</mat-icon>
           </mat-form-field>
 
-          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión hexadecimal  a RGB" (click)="onClickBotonConvertirHexaRGB()"
-            matTooltip="Pulsar para convertir" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"  (click)="onClickBotonConvertirHexaRGB()"
+          attr.aria-label="{{ 'generadores.jpromocion.numeros.boton.convertirgrados.label' | translate }}"
+          matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.convertir.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="convertHexaRgb != ''"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarConvertirHexaRGB()"
-            matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarConvertirHexaRGB()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
           <div>
             <mat-form-field [@entradaLateralAnimation] *ngIf="convertHexaRgb != ''" style="width: 200px !important;margin-left: 5px;">
-              <mat-label>RGB</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.colores.salida.rgb.label' | translate }}</mat-label>
               <input matInput id="convertHexaRgb" type="text" [(ngModel)]="convertHexaRgb" readonly="true" style="text-align: end;" (click)="onSelectDato(convertHexaRgb)">
             </mat-form-field>
           </div>
@@ -143,38 +147,40 @@
 
     <div class="caja c4">
       <mat-card appearance="outlined">
-        <mat-card-header>RGB -> Hexadecimal</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.rgbhexa' | translate }}</mat-card-header>
         <mat-card-content>
 
           <mat-form-field style="width: 100px !important;margin-left: 5px;" >
-            <mat-label>Rojo</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.colores.entrada.colorrojo.label' | translate }}</mat-label>
             <input matInput id="gradosValor" type="number" placeholder="121" [(ngModel)]="convertRgbRojoParam">
           </mat-form-field>
 
           <mat-form-field style="width: 100px !important;margin-left: 5px;" >
-            <mat-label>Verde</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.colores.entrada.colorverde.label' | translate }}</mat-label>
             <input matInput id="gradosValor" type="number" placeholder="114" [(ngModel)]="convertRgbVerdeParam">
           </mat-form-field>
 
           <mat-form-field style="width: 100px !important;margin-left: 5px;" >
-            <mat-label>Azul</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.colores.entrada.colorazul.label' | translate }}</mat-label>
             <input matInput id="gradosValor" type="number" placeholder="182" [(ngModel)]="convertRgbAzulParam">
           </mat-form-field>
 
-          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Conversión RGB a hexadecimal" (click)="onClickBotonConvertirRGBHexa()"
-            matTooltip="Pulsar para convertir" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"  (click)="onClickBotonConvertirRGBHexa()"
+          attr.aria-label="{{ 'generadores.jpromocion.numeros.boton.convertirgrados.label' | translate }}"
+          matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.convertir.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="convertRgbHexa != ''"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarConvertirRGBHexa()"
-            matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarConvertirRGBHexa()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
           <div>
             <mat-form-field [@entradaLateralAnimation] *ngIf="convertRgbHexa != ''" style="width: 200px !important;margin-left: 5px;">
-              <mat-label>Hexadecimal</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.colores.salida.hexadecimal.label' | translate }}</mat-label>
               <input matInput id="convertRgbHexa" type="text" [(ngModel)]="convertRgbHexa" readonly="true" style="text-align: end;" (click)="onSelectDato(convertRgbHexa)">
             </mat-form-field>
           </div>
@@ -186,22 +192,24 @@
 
     <div class="caja c5">
       <mat-card appearance="outlined">
-        <mat-card-header>Aclarar color</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.aclarar' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color".</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.aclarar.parrafo1' | translate }}</em></small></p>
 
           <mat-slider  style="width: 300px;" min="1" max="100" step="1" showTickMarks discrete>
             <input matSliderThumb [(ngModel)]="aclaraColorCantidad">
           </mat-slider>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Aclara color" (click)="onClickBotonAclararColor()"
-            matTooltip="Pulsar para aclarar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonAclararColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.aclarar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.aclarar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="colorAclarado != ''"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarAclararColor()"
-            matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarAclararColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -216,7 +224,7 @@
           </div>
           <button id="btColorAclarado" mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorAclarado"
             (click)="onSelectDato(colorAclarado)"  style="margin-top: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{colorAclarado}}</span>
           </button>
 
@@ -226,22 +234,24 @@
 
     <div class="caja c6">
       <mat-card appearance="outlined">
-        <mat-card-header>Ocurecer color</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.oscurecer' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color".</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.oscurecer.parrafo1' | translate }}</em></small></p>
 
           <mat-slider  style="width: 300px;" min="1" max="100" step="1" showTickMarks discrete>
             <input matSliderThumb [(ngModel)]="oscureceColorCantidad">
           </mat-slider>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Oscurecer color" (click)="onClickBotonOscurecerColor()"
-            matTooltip="Pulsar para oscurecer" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonOscurecerColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.oscurecer.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.oscurecer.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="colorOscurecido != ''"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarOscurecerColor()"
-            matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarOscurecerColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -256,7 +266,7 @@
           </div>
           <button id="btColorOscurecido" mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorOscurecido"
             (click)="onSelectDato(colorOscurecido)"  style="margin-top: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{colorOscurecido}}</span>
           </button>
 
@@ -270,15 +280,15 @@
 
     <div class="caja c7">
       <mat-card appearance="outlined">
-        <mat-card-header>Matizar/Saturar/Brillo color</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.matizar' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color".</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.matizar.parrafo1' | translate }}</em></small></p>
 
           <div class="grid-layout-transformacion">
             <div class="caja">
               <div>
-                <label>Matíz</label>
+                <label>{{ 'generadores.jpromocion.colores.entrada.matiz.label' | translate }}</label>
               </div>
               <mat-slider style="width: 200px;" min="-1" max="+1" step="0.01" showTickMarks discrete>
                 <input matSliderThumb [(ngModel)]="matizColorCantidad">
@@ -287,7 +297,7 @@
 
             <div class="caja">
               <div>
-                <label>Saturación</label>
+                <label>{{ 'generadores.jpromocion.colores.entrada.saturacion.label' | translate }}</label>
               </div>
               <mat-slider style="width: 200px;" min="-1" max="+1" step="0.01" showTickMarks discrete>
                 <input matSliderThumb [(ngModel)]="saturaColorCantidad">
@@ -296,7 +306,7 @@
 
             <div class="caja">
               <div>
-                <label>Brillo</label>
+                <label>{{ 'generadores.jpromocion.colores.entrada.brillo.label' | translate }}</label>
               </div>
               <mat-slider style="width: 200px;" min="0" max="100" step="1" showTickMarks discrete>
                 <input matSliderThumb [(ngModel)]="brilloColorCantidad">
@@ -305,13 +315,15 @@
 
           </div>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Transformar color" (click)="onClickBotonTransformarColor()"
-            matTooltip="Pulsar para aplicar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonTransformarColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.matizar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.matizar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="colorTransformado != ''"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarTransformarColor()"
-            matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;"  (click)="onClickLimpiarTransformarColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -326,7 +338,7 @@
           </div>
           <button id="btcolorTransformado" mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorTransformado"
             (click)="onSelectDato(colorTransformado)"  style="margin-top: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{colorTransformado}}</span>
           </button>
 
@@ -338,18 +350,20 @@
   <div class="grid-layout">
     <div class="caja c8">
       <mat-card appearance="outlined">
-        <mat-card-header>Invertir color</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.invertir' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color".</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.invertir.parrafo1' | translate }}</em></small></p>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Invertir color" (click)="onClickBotonInvertirColor()"
-            matTooltip="Pulsar para invertir" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonInvertirColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.invertir.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.invertir.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="colorInvertir != ''"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarInvertirColor()"
-            matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarInvertirColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -364,7 +378,7 @@
           </div>
           <button id="btcolorInvertir" mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorInvertir"
             (click)="onSelectDato(colorInvertir)"  style="margin-top: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{colorInvertir}}</span>
           </button>
 
@@ -374,22 +388,24 @@
 
     <div class="caja c9">
       <mat-card appearance="outlined">
-        <mat-card-header>Alpha color</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.alpha' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color".</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.alpha.parrafo1' | translate }}</em></small></p>
 
           <mat-slider  style="width: 300px;" min="0" max="100" step="1" showTickMarks discrete>
             <input matSliderThumb [(ngModel)]="alphaColorCantidad">
           </mat-slider>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Alpha color" (click)="onClickBotonAlphaColor()"
-            matTooltip="Pulsar para alpha" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio"  (click)="onClickBotonAlphaColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.alpha.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.alpha.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="colorAlphaHex != ''"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarAlphaColor()"
-            matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarAlphaColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -404,7 +420,7 @@
           </div>
           <button id="btcolorAlphaHex" mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorAlphaHex"
             (click)="onSelectDato(colorAlphaHex)"  style="margin-top: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{colorAlphaHex}}</span>
           </button>
 
@@ -414,26 +430,28 @@
 
     <div class="caja c10">
       <mat-card appearance="outlined">
-        <mat-card-header>Mezclar colores</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.mezclar' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color" como color 1 de la mezcla.</em></small></p>
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color secundario" del bloque "Selector de Color" como color 2 de la mezcla.</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.mezclar.parrafo1' | translate }}</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.mezclar.parrafo2' | translate }}</em></small></p>
 
           <div>
-            <label>% intervención color 2</label>
+            <label>{{ 'generadores.jpromocion.colores.entrada.porcintervienecolor.label' | translate }}</label>
           </div>
           <mat-slider style="width: 200px;" min="0" max="100" step="1" showTickMarks discrete>
             <input matSliderThumb [(ngModel)]="mezclaColorCantidad">
           </mat-slider>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Mezclar color" (click)="onClickBotonMezclarColor()"
-            matTooltip="Pulsar para mezclar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonMezclarColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.mezclar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.mezclar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="colorMezclado != ''"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarMezclarColor()"
-            matTooltip="Pulsar para limpiar el color" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarMezclarColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -448,7 +466,7 @@
           </div>
           <button id="btcolorMezclado" mat-flat-button type="button" [@encogimientoAnimation] *ngIf="colorMezclado"
             (click)="onSelectDato(colorMezclado)"  style="margin-top: 5px;"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
             <span class="color">{{colorMezclado}}</span>
           </button>
 
@@ -460,32 +478,35 @@
   <div class="grid-layout">
     <div class="caja c11">
       <mat-card appearance="outlined">
-        <mat-card-header>Gradiente colores</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.gradiente' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color" como color 1 del gradiente.</em></small></p>
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color secundario" del bloque "Selector de Color" como color 2 del gradiente.</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.gradiente.parrafo1' | translate }}</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.gradiente.parrafo2' | translate }}</em></small></p>
 
           <div>
-            <label>Num. gradientes a generar</label>
+            <label>{{ 'generadores.jpromocion.colores.entrada.numgradiente.label' | translate }}</label>
           </div>
           <mat-slider style="width: 80%;" min="1" max="500" step="1" showTickMarks discrete>
             <input matSliderThumb [(ngModel)]="gradienteCantidad">
           </mat-slider>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Gradiente color" (click)="onClickBotonGradienteColor()"
-            matTooltip="Pulsar para gradientes" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonGradienteColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.gradiente.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.gradiente.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaGradiente?.length && listaGradiente.length > 0"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarGradienteColor()"
-            matTooltip="Pulsar para limpiar el gradiente" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarGradienteColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaGradiente?.length && listaGradiente.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonGradiente()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;"  (click)="exportJsonGradiente()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
@@ -526,31 +547,34 @@
   <div class="grid-layout">
     <div class="caja c12">
       <mat-card appearance="outlined">
-        <mat-card-header>Colores monocromáticos</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.colores.frame.monocroma' | translate }}</mat-card-header>
         <mat-card-content>
 
-          <p style="margin-left: 10px;"><small><em>Utiliza el "Color principal" del bloque "Selector de Color".</em></small></p>
+          <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.colores.textosfijos.monocroma.parrafo1' | translate }}</em></small></p>
 
           <div>
-            <label>Num. colores</label>
+            <label>{{ 'generadores.jpromocion.colores.entrada.numcolores.label' | translate }}</label>
           </div>
           <mat-slider style="width: 80%;" min="1" max="500" step="1" showTickMarks discrete>
             <input matSliderThumb [(ngModel)]="monocromaticoCantidad">
           </mat-slider>
 
-          <button type="button" mat-fab class="botonRotatorio" aria-label="Monocromático color" (click)="onClickBotonMonocromaticoColor()"
-            matTooltip="Pulsar para monocromáticos" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" (click)="onClickBotonMonocromaticoColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.colores.boton.monocroma.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.colores.boton.monocroma.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaMonocromaticos?.length && listaMonocromaticos.length > 0"
-            style="margin-left: 5px; margin-bottom: 5px;" aria-label="Limpiar" (click)="onClickLimpiarMonocromaticoColor()"
-            matTooltip="Pulsar para limpiar el monocromático" matTooltipPosition="below">
+            style="margin-left: 5px; margin-bottom: 5px;" (click)="onClickLimpiarMonocromaticoColor()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaMonocromaticos?.length && listaMonocromaticos.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonMonocromatico()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="exportJsonMonocromatico()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 

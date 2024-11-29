@@ -17,13 +17,14 @@ import {MatSliderModule} from '@angular/material/slider';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { ColorService } from '../core/services/color.service';
 import { Color } from '../core/models/color';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-genera-colores',
   standalone: true,
   imports: [FormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,MatGridListModule,MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,
-    ColorPickerModule,MatSliderModule],
+    ColorPickerModule,MatSliderModule,TranslateModule],
   templateUrl: './genera-colores.component.html',
   styleUrl: './genera-colores.component.scss'
 })

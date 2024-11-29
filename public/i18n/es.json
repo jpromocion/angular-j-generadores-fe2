@@ -1064,6 +1064,141 @@
             "label": "Texto decodificado"
           }
         }
+      },
+      "colores":{
+        "textosfijos":{
+          "selector":{
+            "parrafo1": "En operaciones que operen con 1 color, utilizarán el \"Color principal\".",
+            "parrafo2": "En operaciones que operen con 2 colores, utilizarán el \"Color principal\" como color 1, y el \"Color secundario\" como color 2."
+          },
+          "aclarar":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
+          },
+          "oscurecer":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
+          },
+          "matizar":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
+          },
+          "invertir":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
+          },
+          "alpha":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
+          },
+          "mezclar":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\" como color 1 de la mezcla.",
+            "parrafo2": "Utiliza el \"Color secundario\" del bloque \"Selector de Color\" como color 2 de la mezcla."
+          },
+          "gradiente":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\" como color 1 de la gradiente.",
+            "parrafo2": "Utiliza el \"Color secundario\" del bloque \"Selector de Color\" como color 2 de la gradiente."
+          },
+          "monocroma":{
+            "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
+          }
+        },
+        "frame": {
+          "selector": "Selector de Color",
+          "generar": "Generar Color",
+          "hexargb": "Hexadecimal -> RGB",
+          "rgbhexa": "RGB -> Hexadecimal",
+          "aclarar": "Aclarar color",
+          "oscurecer": "Ocurecer color",
+          "matizar": "Matizar/Saturar/Brillo color",
+          "invertir": "Invertir color",
+          "alpha": "Alpha color",
+          "mezclar": "Mezclar colores",
+          "gradiente": "Gradiente colores",
+          "monocroma": "Colores monocromáticos"
+        },
+        "boton": {
+          "generarcolor":{
+            "label": "Generar un color aleatorio"
+          },
+          "aclarar":{
+            "label": "Aclara color",
+            "tooltip": "Pulsar para aclarar"
+          },
+          "oscurecer":{
+            "label": "Oscurecer color",
+            "tooltip": "Pulsar para oscurecer"
+          },
+          "matizar":{
+            "label": "Transformar color",
+            "tooltip": "Pulsar para aplicar"
+          },
+          "invertir":{
+            "label": "Invertir color",
+            "tooltip": "Pulsar para invertir"
+          },
+          "alpha":{
+            "label": "Alpha color",
+            "tooltip": "Pulsar para alpha"
+          },
+          "mezclar":{
+            "label": "Mezclar colores",
+            "tooltip": "Pulsar para mezclar"
+          },
+          "gradiente":{
+            "label": "Obtener gradientes",
+            "tooltip": "Pulsar para gradientes"
+          },
+          "monocroma":{
+            "label": "Obtener colores monocromáticos",
+            "tooltip": "Pulsar para monocromático"
+          }
+        },
+        "entrada":{
+          "colorprincipal": {
+            "label": "Color principal"
+          },
+          "colorsecundario": {
+            "label": "Color secundario"
+          },
+          "colorhexa": {
+            "label": "Color Hexadecimal",
+            "tooltip": "Color en hexadcimal (iniciado con # o sin él)"
+          },
+          "colorrojo": {
+            "label": "Rojo"
+          },
+          "colorverde": {
+            "label": "Verde"
+          },
+          "colorazul": {
+            "label": "Azul"
+          },
+          "matiz": {
+            "label": "Matiz"
+          },
+          "saturacion": {
+            "label": "Saturación"
+          },
+          "brillo": {
+            "label": "Brillo"
+          },
+          "porcintervienecolor": {
+            "label": "% intervención color 2"
+          },
+          "numgradiente": {
+            "label": "Num. gradientes a generar"
+          },
+          "numcolores": {
+            "label": "Num. colores"
+          }
+        },
+        "salida":{
+          "base64codi": {
+            "label": "Codificado en Base 64"
+          },
+          "rgb": {
+            "label": "RGB"
+          },
+          "hexadecimal": {
+            "label": "Hexadecimal"
+          }
+        }
       }
 
 
