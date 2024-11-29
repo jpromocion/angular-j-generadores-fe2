@@ -774,6 +774,29 @@
             "periodofin": "End"
           }
         }
+      },
+      "vehiculos": {
+        "frame": {
+          "generarvehiculo": "Generate Vehicle",
+          "validarbastidor": "Validate Chassis"
+        },
+        "boton": {
+          "generarvehiculo": {
+            "label": "Generate vehicle data"
+          },
+          "validarbastidor": {
+            "label": "Validate a Chassis"
+          }
+        },
+        "entrada": {
+          "tipovehiculo": {
+            "label": "Select generation type",
+            "placeholder": "Select ..."
+          },
+          "bastidor": {
+            "label": "Chassis to check"
+          }
+        }
       }
 
 

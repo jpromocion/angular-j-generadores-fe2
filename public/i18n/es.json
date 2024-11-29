@@ -774,7 +774,31 @@
             "periodofin": "Fin"
           }
         }
+      },
+      "vehiculos":{
+        "frame": {
+          "generarvehiculo": "Generar Vehículo",
+          "validarbastidor": "Validar Bastidor"
+        },
+        "boton": {
+          "generarvehiculo":{
+            "label": "Generar datos vehículo"
+          },
+          "validarbastidor":{
+            "label": "Validar un Bastidor"
+          }
+        },
+        "entrada":{
+          "tipovehiculo": {
+            "label": "Seleccionar tipo generación",
+            "placeholder": "Seleccionar ..."
+          },
+          "bastidor": {
+            "label": "Bastidor a comprobar"
+          }
+        }
       }
+
 
 
 

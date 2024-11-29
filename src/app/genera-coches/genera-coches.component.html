@@ -1,4 +1,4 @@
-<h2 class="tracking-in-expand">Vehículos</h2>
+<h2 class="tracking-in-expand">{{ 'generadores.jpromocion.menu.vehiculos' | translate }}</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
 
@@ -6,8 +6,8 @@
 
     <div class="caja c0">
       <mat-form-field style="width: 250px !important;">
-        <mat-label>Num. generaciones</mat-label>
-        <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+        <mat-label>{{ 'generadores.jpromocion.generarcomunes.numgeneraciones.label' | translate }}</mat-label>
+        <input matInput id="numGenera" type="number"  min="2" max="1000" [(ngModel)]="numGenerar">
       </mat-form-field>
     </div>
   </div>
@@ -15,7 +15,7 @@
   <div class="grid-layout">
     <div class="caja c1">
       <mat-card appearance="outlined" class="caja-fondo-coche">
-        <mat-card-header>Generar Vehículo</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.vehiculos.frame.generarvehiculo' | translate }}</mat-card-header>
         <mat-card-content class="caja-desenfocada">
           <!-- cambiamos a autocompletado -> ver detalles en variados -> seleccionar tipo generacion
           <mat-form-field style="width: 330px;margin-left: 5px;">
@@ -29,9 +29,9 @@
           -->
           <form>
             <mat-form-field style="width: 280px;margin-left: 5px;">
-              <mat-label>Seleccionar tipo generación</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.vehiculos.entrada.tipovehiculo.label' | translate }}</mat-label>
               <input #selectedTipoGeneraIn matInput type="text"
-                placeholder="Seleccionar ..."
+                placeholder="{{ 'generadores.jpromocion.vehiculos.entrada.tipovehiculo.placeholder' | translate }}"
                 [matAutocomplete]="auto"
                 [formControl]="selectedTipoGeneraFC"
                 (input)="filterTiposGenera()"
@@ -44,21 +44,24 @@
             </mat-form-field>
           </form>
 
-          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar caracteres" (click)="onClickBotonGenerarTexto()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickBotonGenerarTexto()"
+            attr.aria-label="{{ 'generadores.jpromocion.vehiculos.boton.generarvehiculo.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation]
             *ngIf="textoGenerado?.length && textoGenerado.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTexto()"
-            matTooltip="Pulsar para limpiar los caracteres" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarTexto()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation]
             *ngIf="textoGenerado?.length && textoGenerado.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="exportJsonTipos()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
@@ -67,7 +70,7 @@
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
                   <button mat-flat-button type="button" (click)="onSelectDato(texto)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="nif">{{texto}}</span>
                   </button>
                   <mat-divider></mat-divider>
@@ -81,25 +84,28 @@
 
     <div class="caja c2">
       <mat-card appearance="outlined">
-        <mat-card-header>Validar Bastidor</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.vehiculos.frame.validarbastidor' | translate }}</mat-card-header>
         <mat-card-content>
           <div class="divBox">
             <mat-form-field style="width: 300px !important;">
-              <mat-label>Bastidor a comprobar</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.vehiculos.entrada.bastidor.label' | translate }}</mat-label>
               <input matInput id="bastidorValidar" type="text" placeholder="2GDF4C11981518224" [(ngModel)]="bastidorValidar"
                 style="text-transform:uppercase" maxlength="40">
             </mat-form-field>
-            <button type="button" mat-fab class="botonRotatorio" aria-label="Validar un Bastidor" (click)="onClickValidarBastidor()"
-              matTooltip="Pulsar para validar" matTooltipPosition="below" style="margin-left: 5px;">
+            <button type="button" mat-fab class="botonRotatorio" (click)="onClickValidarBastidor()"
+              attr.aria-label="{{ 'generadores.jpromocion.vehiculos.boton.validarbastidor.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validar.tooltip' | translate }}" matTooltipPosition="below" style="margin-left: 5px;">
               <mat-icon>search_check</mat-icon>
             </button>
             <div style="margin-left: 5px;">
               <button type="button" class="btn-success" [@encogimientoAnimation] *ngIf="bastidorValidarOk == 'OK'"
-                matTooltip="Si" matTooltipPosition="below" (click)="onSelectDato('Si')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadook.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameSiInternacionalizado())">
                 <mat-icon>done_all</mat-icon>
               </button>
               <button type="button" class="btn-danger" [@encogimientoAnimation] *ngIf="bastidorValidarOk == 'ERROR'"
-                matTooltip="No" matTooltipPosition="below" (click)="onSelectDato('No')">
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.validadoko.tooltip' | translate }}" matTooltipPosition="below"
+                (click)="onSelectDato(dameNoInternacionalizado())">
                 <mat-icon>close</mat-icon>
               </button>
             </div>

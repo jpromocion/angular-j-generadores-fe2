@@ -13,14 +13,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { VehicleService } from '../core/services/vehicle.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-genera-coches',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule,
     MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule,
-    MatCardModule, MatAutocompleteModule],
+    MatCardModule, MatAutocompleteModule, TranslateModule],
   templateUrl: './genera-coches.component.html',
   styleUrl: './genera-coches.component.scss'
 })
