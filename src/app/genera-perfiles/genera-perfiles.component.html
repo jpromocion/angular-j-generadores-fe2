@@ -26,7 +26,7 @@
     </div>
     <div class="caja c3">
       <label style="margin-left: 5px;">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.label' | translate }}: </label>
-      <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"  style="margin-left: 10px;">
+      <mat-button-toggle-group name="tipoletra" [(ngModel)]="tipoLetra"  style="margin-left: 10px;">
         <mat-button-toggle value="s">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.valors' | translate }}</mat-button-toggle>
         <mat-button-toggle value="M">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.valormay' | translate }}</mat-button-toggle>
         <mat-button-toggle value="m">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.valormin' | translate }}</mat-button-toggle>
@@ -855,8 +855,8 @@
         <mat-icon>delete</mat-icon>
       </button>
       <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;"
-        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
         (click)="onClickLimpiarFiltrosPersonas()"
+        attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
         matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.tooltip' | translate }}" matTooltipPosition="below">
         <mat-icon>cleaning_services</mat-icon>
       </button>

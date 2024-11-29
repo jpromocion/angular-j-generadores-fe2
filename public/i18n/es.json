@@ -54,6 +54,11 @@
           "decimales": {
             "label": "Decimales",
             "tooltip": "En aquellas generaciones que devuelven un número con parte decimal, se indica el número de posiciones decimales a mostrar en el retorno."
+          },
+          "valoressinoaleatorio":{
+            "si": "Sí",
+            "no": "No",
+            "aleatorio": "Defecto(aleatorio)"
           }
         },
         "paginador": {
@@ -795,6 +800,136 @@
           },
           "bastidor": {
             "label": "Bastidor a comprobar"
+          }
+        }
+      },
+      "localizacion":{
+        "textosfijos":{
+          "domicilios":{
+            "parrafo1": "Genera un domicilio completamente aleatorio en CCAA, Provincia, Municipio, o selecciona en los bloques anterires una CCAA y provincia para generarlos dirigidos.",
+            "parrafo2": "Adicionalmente en este bloque podrás filtrar por el Municipio concreto de una provincia sobre el que generar."
+          }
+        },
+        "frame": {
+          "ccaa": "CCAA",
+          "provincias": "Provincias",
+          "municipios": "Municipios",
+          "domicilios": "Domicilios"
+        },
+        "boton": {
+          "generarccaa":{
+            "label": "Generar CCAAs"
+          },
+          "generarprovincias":{
+            "label": "Generar Provincias"
+          },
+          "generarmunicipios":{
+            "label": "Generar Municipios"
+          },
+          "generardomicilios":{
+            "label": "Generar domicilios"
+          }
+        },
+        "entrada":{
+          "ccaa": {
+            "label": "Cod. CCAA",
+            "tooltip": "Auto-rellenado con la CCAA seleccionada en el bloque 'Provincias'."
+          },
+          "provincia": {
+            "label": "Cod. Provincia",
+            "tooltip": "Auto-rellenado con la Provincia seleccionada en el bloque 'Municipios'."
+          },
+          "municipio": {
+            "label": "Cod. Municipio",
+            "tooltip": "Este valor si debe ser rellenado si se quiere filtrar las direcciones por municipio. El código de municipio está relacionado con la provincia, por lo que no tiene sentido por si solo. Puede copiarlo de uno de los resultados del bloque 'Municipios' tras filtrar una provincia."
+          },
+          "km":{
+            "label": "¿Km?"
+          },
+          "bloque":{
+            "label": "¿Bloque?"
+          },
+          "portal":{
+            "label": "¿Portal?"
+          },
+          "escalera":{
+            "label": "¿Escalera?"
+          },
+          "planta":{
+            "label": "¿Planta?"
+          },
+          "puerta":{
+            "label": "¿Puerta?"
+          }
+        },
+        "salida":{
+          "ccaa": {
+            "codigo": {
+              "label": "Código"
+            },
+            "nombre": {
+              "label": "Nombre"
+            }
+          },
+          "provincia": {
+            "codigo": {
+              "label": "Código"
+            },
+            "nombre": {
+              "label": "Nombre"
+            }
+          },
+          "municipio": {
+            "codigo": {
+              "label": "Código"
+            },
+            "nombre": {
+              "label": "Nombre"
+            }
+          },
+          "direccion": {
+            "completa": {
+              "label": "Completa"
+            },
+            "direccion": {
+              "label": "Dirección"
+            },
+            "numero": {
+              "label": "Número"
+            },
+            "km": {
+              "label": "Km"
+            },
+            "bloque": {
+              "label": "Bloque"
+            },
+            "portal": {
+              "label": "Portal"
+            },
+            "escalera": {
+              "label": "Escalera"
+            },
+            "planta": {
+              "label": "Planta"
+            },
+            "puerta": {
+              "label": "Puerta"
+            },
+            "cp": {
+              "label": "Cod. Postal"
+            },
+            "municipio": {
+              "label": "Municipio"
+            },
+            "provincia": {
+              "label": "Provincia"
+            },
+            "ccaa": {
+              "label": "CCAA"
+            },
+            "refcatastral": {
+              "label": "Ref. catastral"
+            }
           }
         }
       }

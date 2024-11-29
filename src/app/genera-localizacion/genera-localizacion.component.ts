@@ -24,6 +24,7 @@ import { Ccaa } from '../core/models/ccaa';
 import { Provincia } from '../core/models/provincia';
 import { Municipio } from '../core/models/municipio';
 import { DireccionCompleta } from '../core/models/direccion-completa';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -33,7 +34,7 @@ import { DireccionCompleta } from '../core/models/direccion-completa';
   imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
     MatTableModule, MatPaginatorModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
-    CdkDropList, CdkDrag],
+    CdkDropList, CdkDrag, TranslateModule],
   templateUrl: './genera-localizacion.component.html',
   styleUrl: './genera-localizacion.component.scss'
 })
@@ -47,13 +48,13 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       key: "id",
       columna: "id",
       type: "button",
-      label: "Código"
+      label: "generadores.jpromocion.localizacion.salida.ccaa.codigo.label"
     },
     {
       key: "nombre",
       columna: "nombre",
       type: "button",
-      label: "Nombre"
+      label: "generadores.jpromocion.localizacion.salida.ccaa.nombre.label"
     }
   ];
 
@@ -65,13 +66,13 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       key: "id",
       columna: "id",
       type: "button",
-      label: "Código"
+      label: "generadores.jpromocion.localizacion.salida.provincia.codigo.label"
     },
     {
       key: "nombre",
       columna: "nombre",
       type: "button",
-      label: "Nombre"
+      label: "generadores.jpromocion.localizacion.salida.provincia.nombre.label"
     }
   ];
 
@@ -82,13 +83,13 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       key: "id",
       columna: "id",
       type: "button",
-      label: "Código"
+      label: "generadores.jpromocion.localizacion.salida.municipio.codigo.label"
     },
     {
       key: "nombre",
       columna: "nombre",
       type: "button",
-      label: "Nombre"
+      label: "generadores.jpromocion.localizacion.salida.municipio.nombre.label"
     }
   ];
 
@@ -101,7 +102,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
-      label: "Completa"
+      label: "generadores.jpromocion.localizacion.salida.direccion.completa.label"
     },
     {
       key: "Dirección",
@@ -109,58 +110,58 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       type: "button",
       caseSensitive: true,
       clase: "botonFlatGrande",
-      label: "Dirección"
+      label: "generadores.jpromocion.localizacion.salida.direccion.direccion.label"
     },
     {
       key: "Número",
       columna: "numVia",
       type: "button",
-      label: "Número"
+      label: "generadores.jpromocion.localizacion.salida.direccion.numero.label"
     },
     {
       key: "Km",
       columna: "kilometro",
       type: "button",
-      label: "Km"
+      label: "generadores.jpromocion.localizacion.salida.direccion.km.label"
     },
     {
       key: "Bloque",
       columna: "bloque",
       type: "button",
-      label: "Bloque"
+      label: "generadores.jpromocion.localizacion.salida.direccion.bloque.label"
     },
     {
       key: "Portal",
       columna: "portal",
       type: "button",
-      label: "Portal"
+      label: "generadores.jpromocion.localizacion.salida.direccion.portal.label"
     },
     {
       key: "Escalera",
       columna: "escalera",
       type: "button",
-      label: "Escalera"
+      label: "generadores.jpromocion.localizacion.salida.direccion.escalera.label"
     },
     {
       key: "Planta",
       columna: "planta",
       type: "button",
       caseSensitive: true,
-      label: "Planta"
+      label: "generadores.jpromocion.localizacion.salida.direccion.planta.label"
     },
     {
       key: "Puerta",
       columna: "puerta",
       type: "button",
       caseSensitive: true,
-      label: "Puerta"
+      label: "generadores.jpromocion.localizacion.salida.direccion.puerta.label"
     },
     {
       key: "CP",
       columna: "codPostal",
       type: "button",
       caseSensitive: true,
-      label: "Cod. Postal"
+      label: "generadores.jpromocion.localizacion.salida.direccion.cp.label"
     },
     {
       key: "Municipio",
@@ -168,7 +169,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       clase: "botonFlatReducido",
       type: "button",
       caseSensitive: true,
-      label: "Municipio",
+      label: "generadores.jpromocion.localizacion.salida.direccion.municipio.label",
       columna2: "municipio",
     },
     {
@@ -177,7 +178,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       clase: "botonFlatReducido",
       type: "button",
       caseSensitive: true,
-      label: "Provincia",
+      label: "generadores.jpromocion.localizacion.salida.direccion.provincia.label",
       columna2: "provincia",
     },
     {
@@ -186,7 +187,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       clase: "botonFlatReducido",
       type: "button",
       caseSensitive: true,
-      label: "CCAA",
+      label: "generadores.jpromocion.localizacion.salida.direccion.ccaa.label",
       columna2: "ccaa",
     },
     {
@@ -194,7 +195,7 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       columna: "referenciaCatastral",
       type: "button",
       caseSensitive: true,
-      label: "Ref. catastral"
+      label: "generadores.jpromocion.localizacion.salida.direccion.refcatastral.label"
     },
   ];
 

@@ -1,4 +1,4 @@
-<h2 class="tracking-in-expand">Localización</h2>
+<h2 class="tracking-in-expand">{{ 'generadores.jpromocion.menu.localizacion' | translate }}</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
 
@@ -6,10 +6,11 @@
 
     <div class="caja c1">
       <mat-card appearance="outlined">
-        <mat-card-header>CCAA</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.localizacion.frame.ccaa' | translate }}</mat-card-header>
         <mat-card-content>
-          <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar CCAAs" (click)="onClickBotonGenerarCCAA()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button"  mat-fab class="botonRotatorio" (click)="onClickBotonGenerarCCAA()"
+            attr.aria-label="{{ 'generadores.jpromocion.localizacion.boton.generarccaa.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
@@ -26,7 +27,7 @@
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaCcaaGenerado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
-                  {{col.label}}
+                  {{ col.label | translate }}
                   <button mat-icon-button (click)="$event.stopPropagation(); openFilterCCAA(col.key); ">
                     <mat-icon>search</mat-icon>
                   </button>
@@ -42,7 +43,7 @@
                     -->
                     <div *ngSwitchCase="'button'">
                       <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(ccaa[col.columna], col.caseSensitive))"
-                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                         <span *ngIf="col.caseSensitive">{{ccaa[col.columna] | caseTransformer: tipoLetra }}</span>
                         <span *ngIf="!col.caseSensitive">{{ccaa[col.columna]}}</span>
                       </button>
@@ -60,16 +61,19 @@
 
             <!-- Acciones, y paginador -->
             <div style="float: left;">
-              <button type="button" style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Limpiar resultado" (click)="onClickLimpiarCCAA()"
-                matTooltip="Pulsar para limpiar el CCAA" matTooltipPosition="below">
+              <button type="button" style="margin-left: 5px;"  mat-fab class="botonRotatorio" (click)="onClickLimpiarCCAA()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosCCAA()"
-                matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickLimpiarFiltrosCCAA()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>cleaning_services</mat-icon>
               </button>
-              <button type="button"  style="margin-left: 5px;"  mat-fab class="botonRotatorio" aria-label="Exportar a Excel" (click)="exportJsonCCAA()"
-                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+              <button type="button"  style="margin-left: 5px;"  mat-fab class="botonRotatorio" (click)="exportJsonCCAA()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
             </div>
@@ -78,7 +82,7 @@
               <mat-paginator #paginatorCcaaGenerado="matPaginator"
                 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
                 showFirstLastButtons
-                aria-label="Seleccionar páginación">
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.paginador.label' | translate }}">
               </mat-paginator>
             </div>
 
@@ -90,15 +94,16 @@
 
     <div class="caja c2">
       <mat-card appearance="outlined">
-        <mat-card-header>Provincias</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.localizacion.frame.provincias' | translate }}</mat-card-header>
         <mat-card-content>
           <mat-form-field style="width: 250px !important;">
-            <mat-label>Cod. CCAA</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.localizacion.entrada.ccaa.label' | translate }}</mat-label>
             <input matInput id="provinCodCCAA" type="text"  maxlength="2" placeholder="01" [(ngModel)]="provinCodCCAA">
           </mat-form-field>
 
-          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar Provincias" (click)="onClickBotonGeneraProvincias()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickBotonGeneraProvincias()"
+            attr.aria-label="{{ 'generadores.jpromocion.localizacion.boton.generarprovincias.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
@@ -113,7 +118,7 @@
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaProvinGenerado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
-                  {{col.label}}
+                  {{ col.label | translate }}
                   <button mat-icon-button (click)="$event.stopPropagation(); openFilterProvincia(col.key); ">
                     <mat-icon>search</mat-icon>
                   </button>
@@ -129,7 +134,7 @@
                     -->
                     <div *ngSwitchCase="'button'">
                       <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(provincia[col.columna], col.caseSensitive))"
-                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                         <span *ngIf="col.caseSensitive">{{provincia[col.columna] | caseTransformer: tipoLetra }}</span>
                         <span *ngIf="!col.caseSensitive">{{provincia[col.columna]}}</span>
                       </button>
@@ -148,16 +153,19 @@
 
             <!-- Acciones, y paginador -->
             <div style="float: left;">
-              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarProvincias()"
-                matTooltip="Pulsar para limpiar el provincias" matTooltipPosition="below">
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickLimpiarProvincias()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosProvincia()"
-                matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickLimpiarFiltrosProvincia()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>cleaning_services</mat-icon>
               </button>
-              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonProvincias()"
-                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="exportJsonProvincias()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
             </div>
@@ -166,7 +174,7 @@
               <mat-paginator #paginatorProvinGenerado="matPaginator"
                 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
                 showFirstLastButtons
-                aria-label="Seleccionar páginación">
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.paginador.label' | translate }}">
               </mat-paginator>
             </div>
 
@@ -178,15 +186,16 @@
 
     <div class="caja c3">
       <mat-card appearance="outlined">
-        <mat-card-header>Municipios</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.localizacion.frame.municipios' | translate }}</mat-card-header>
         <mat-card-content>
           <mat-form-field style="width: 250px !important;">
-            <mat-label>Cod. Provincia</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.localizacion.entrada.provincia.label' | translate }}</mat-label>
             <input matInput id="muniCodProvin" type="text"  maxlength="2" placeholder="04" [(ngModel)]="muniCodProvin">
           </mat-form-field>
 
-          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Generar Municipios" (click)="onClickBotonGeneraMunicipios()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button"  mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickBotonGeneraMunicipios()"
+            attr.aria-label="{{ 'generadores.jpromocion.localizacion.boton.generarmunicipios.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
@@ -201,7 +210,7 @@
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaMuniGenerado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
-                  {{col.label}}
+                  {{ col.label | translate }}
                   <button mat-icon-button (click)="$event.stopPropagation(); openFilterMunicipio(col.key); ">
                     <mat-icon>search</mat-icon>
                   </button>
@@ -217,7 +226,7 @@
                     -->
                     <div *ngSwitchCase="'button'">
                       <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(municipio[col.columna], col.caseSensitive))"
-                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                         <span *ngIf="col.caseSensitive">{{municipio[col.columna] | caseTransformer: tipoLetra }}</span>
                         <span *ngIf="!col.caseSensitive">{{municipio[col.columna]}}</span>
                       </button>
@@ -235,16 +244,19 @@
 
             <!-- Acciones, y paginador -->
             <div style="float: left;">
-              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarMunicipios()"
-                matTooltip="Pulsar para limpiar el municipios" matTooltipPosition="below">
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickLimpiarMunicipios()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosMunicipio()"
-                matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickLimpiarFiltrosMunicipio()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>cleaning_services</mat-icon>
               </button>
-              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonMunicipios()"
-                matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+              <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="exportJsonMunicipios()"
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+                matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
                 <mat-icon>description</mat-icon>
               </button>
             </div>
@@ -253,7 +265,7 @@
               <mat-paginator #paginatorMuniGenerado="matPaginator"
                 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
                 showFirstLastButtons
-                aria-label="Seleccionar páginación">
+                attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.paginador.label' | translate }}">
               </mat-paginator>
             </div>
 
@@ -273,116 +285,117 @@
   <div style="margin: 10px;">
 
     <mat-card appearance="outlined">
-      <mat-card-header>Domicilios</mat-card-header>
+      <mat-card-header>{{ 'generadores.jpromocion.localizacion.frame.domicilios' | translate }}</mat-card-header>
       <mat-card-content>
 
-        <p style="margin-left: 10px;"><small><em>Genera un domicilio completamente aleatorio en CCAA, Provincia, Municipio, o selecciona en los bloques anterires una CCAA y provincia para generarlos dirigidos.</em></small></p>
-        <p style="margin-left: 10px;"><small><em>Adicionalmente en este bloque podrás filtrar por el Municipio concreto de una provincia sobre el que generar.</em></small></p>
+        <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.localizacion.textosfijos.domicilios.parrafo1' | translate }}</em></small></p>
+        <p style="margin-left: 10px;"><small><em>{{ 'generadores.jpromocion.localizacion.textosfijos.domicilios.parrafo2' | translate }}</em></small></p>
 
         <div class="grid-parametros-direccion">
           <div class="caja">
             <mat-form-field style="width: 200px !important;">
-              <mat-label>Cod. CCAA</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.localizacion.entrada.ccaa.label' | translate }}</mat-label>
               <input matInput id="provinCodCCAADomi" type="text"  maxlength="2"  [(ngModel)]="provinCodCCAA" readonly="true">
-              <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Provincias'.">help</mat-icon>
+              <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.localizacion.entrada.ccaa.tooltip' | translate }}">help</mat-icon>
             </mat-form-field>
           </div>
           <div class="caja">
             <mat-form-field style="width: 200px !important;">
-              <mat-label>Cod. Provincia</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.localizacion.entrada.provincia.label' | translate }}</mat-label>
               <input matInput id="muniCodProvinDomi" type="text"  maxlength="2"  [(ngModel)]="muniCodProvin" readonly="true">
-              <mat-icon matSuffix matTooltip="Auto-rellenado con la CCAA seleccionada en el bloque 'Municipios'.">help</mat-icon>
+              <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.localizacion.entrada.provincia.tooltip' | translate }}">help</mat-icon>
             </mat-form-field>
           </div>
           <div class="caja">
             <mat-form-field style="width: 200px !important;">
-              <mat-label>Cod. Municipio</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.localizacion.entrada.municipio.label' | translate }}</mat-label>
               <input matInput id="direccionParamCodMuni" type="text"  maxlength="3" placeholder="001" [(ngModel)]="direccionParamCodMuni">
-              <mat-icon matSuffix matTooltip="Este valor si debe ser rellenado si se quiere filtrar las direcciones por municipio. El código de municipio está relacionado con la provincia, por lo que no tiene sentido por si solo. Puede copiarlo de uno de los resultados del bloque 'Municipios' tras filtrar una provincia.">help</mat-icon>
+              <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.localizacion.entrada.municipio.tooltip' | translate }}">help</mat-icon>
             </mat-form-field>
           </div>
           <div class="caja">
             <mat-form-field style="width: 150px !important;">
-              <mat-label>Num. generaciones</mat-label>
-              <input matInput id="direccionParamNumGenerar" type="number"  min="1" max="1000" placeholder="Número de generaciones" [(ngModel)]="direccionParamNumGenerar">
-              <mat-icon matSuffix matTooltip="Número de domicilios a obtener.">help</mat-icon>
+              <mat-label>{{ 'generadores.jpromocion.generarcomunes.numgeneraciones.label' | translate }}</mat-label>
+              <input matInput id="direccionParamNumGenerar" type="number"  min="1" max="1000" [(ngModel)]="direccionParamNumGenerar">
+              <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.generarcomunes.numgeneraciones.tooltip' | translate }}">help</mat-icon>
             </mat-form-field>
           </div>
         </div>
 
         <div class="grid-parametros-direOpcional">
           <div class="caja">
-            <label>¿Km?: </label>
+            <label>{{ 'generadores.jpromocion.localizacion.entrada.km.label' | translate }}: </label>
             <mat-button-toggle-group name="direccionParamKm" [(ngModel)]="direccionParamKm"
               style="margin-left: 10px;">
-              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
-              <mat-button-toggle value="y">Si</mat-button-toggle>
-              <mat-button-toggle value="n">No</mat-button-toggle>
+              <mat-button-toggle value="">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.aleatorio' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="y">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.si' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="n">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.no' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
           <div class="caja">
-            <label>¿Bloque?: </label>
+            <label>{{ 'generadores.jpromocion.localizacion.entrada.bloque.label' | translate }}: </label>
             <mat-button-toggle-group name="direccionParamBloque" [(ngModel)]="direccionParamBloque"
               style="margin-left: 10px;">
-              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
-              <mat-button-toggle value="y">Si</mat-button-toggle>
-              <mat-button-toggle value="n">No</mat-button-toggle>
+              <mat-button-toggle value="">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.aleatorio' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="y">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.si' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="n">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.no' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
           <div class="caja">
-            <label>¿Portal?: </label>
+            <label>{{ 'generadores.jpromocion.localizacion.entrada.portal.label' | translate }}: </label>
             <mat-button-toggle-group name="direccionParamPortal" [(ngModel)]="direccionParamPortal"
               style="margin-left: 10px;">
-              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
-              <mat-button-toggle value="y">Si</mat-button-toggle>
-              <mat-button-toggle value="n">No</mat-button-toggle>
+              <mat-button-toggle value="">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.aleatorio' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="y">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.si' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="n">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.no' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
           <div class="caja">
-            <label>¿Escalera?: </label>
+            <label>{{ 'generadores.jpromocion.localizacion.entrada.escalera.label' | translate }}: </label>
             <mat-button-toggle-group name="direccionParamEscalera" [(ngModel)]="direccionParamEscalera"
               style="margin-left: 10px;">
-              <mat-button-toggle value="">Defecto(aleatorio)</mat-button-toggle>
-              <mat-button-toggle value="y">Si</mat-button-toggle>
-              <mat-button-toggle value="n">No</mat-button-toggle>
+              <mat-button-toggle value="">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.aleatorio' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="y">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.si' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="n">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.no' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
         </div>
 
         <div class="grid-parametros-direOpcional">
           <div class="caja">
-            <label>Planta?: </label>
+            <label>{{ 'generadores.jpromocion.localizacion.entrada.planta.label' | translate }}: </label>
             <mat-button-toggle-group name="direccionParamPlanta" [(ngModel)]="direccionParamPlanta"
               style="margin-left: 10px;">
-              <mat-button-toggle value="y">Si</mat-button-toggle>
-              <mat-button-toggle value="n">No</mat-button-toggle>
+              <mat-button-toggle value="y">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.si' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="n">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.no' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
           <div class="caja">
-            <label>¿Puerta?: </label>
+            <label>{{ 'generadores.jpromocion.localizacion.entrada.puerta.label' | translate }}: </label>
             <mat-button-toggle-group name="direccionParamPuerta" [(ngModel)]="direccionParamPuerta"
               style="margin-left: 10px;">
-              <mat-button-toggle value="y">Si</mat-button-toggle>
-              <mat-button-toggle value="n">No</mat-button-toggle>
+              <mat-button-toggle value="y">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.si' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="n">{{ 'generadores.jpromocion.generarcomunes.entrada.valoressinoaleatorio.no' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
         </div>
 
         <div class="grid-parametros-direccion-tipoLetra">
           <div class="caja">
-            <label>Tipo letra: </label>
-            <mat-button-toggle-group name="tipoletra" aria-label="Tipo letra de campos texto" [(ngModel)]="tipoLetra"
+            <label>{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.label' | translate }}: </label>
+            <mat-button-toggle-group name="tipoletra" [(ngModel)]="tipoLetra"
               style="margin-left: 10px;">
-              <mat-button-toggle value="s">Sin formato</mat-button-toggle>
-              <mat-button-toggle value="M">Mayúsculas</mat-button-toggle>
-              <mat-button-toggle value="m">Minúsculas</mat-button-toggle>
-              <mat-button-toggle value="c">Camel case</mat-button-toggle>
+              <mat-button-toggle value="s">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.valors' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="M">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.valormay' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="m">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.valormin' | translate }}</mat-button-toggle>
+              <mat-button-toggle value="c">{{ 'generadores.jpromocion.generarcomunes.entrada.tipoletra.valorc' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
 
           <div class="caja">
-            <button type="button"  mat-fab class="botonRotatorio" aria-label="Generar domicilios" (click)="onClickBotonGeneraDomicilios()"
-              matTooltip="Pulsar para generar" matTooltipPosition="below">
+            <button type="button"  mat-fab class="botonRotatorio" (click)="onClickBotonGeneraDomicilios()"
+              attr.aria-label="{{ 'generadores.jpromocion.localizacion.boton.generardomicilios.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>refresh</mat-icon>
             </button>
           </div>
@@ -400,7 +413,7 @@
               -->
               <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaDireccionGenerado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header cdkDrag>
-                  {{col.label}}
+                  {{ col.label | translate }}
                   <!-- "$event.stopPropagation()" en ambos buton y input de filtro, evita que se autoejecute el
                     sort al pulsar en ellos  dado que todo el th esta bajo la mat-sort-header.
                     De esta forma solo se ejecuta al pulsar sobre el la etiqueta de la cabecera.
@@ -421,13 +434,13 @@
                     -->
                     <div *ngSwitchCase="'button'">
                       <button mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(direccion[col.columna], col.caseSensitive))"
-                      matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                      matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                         <span *ngIf="col.caseSensitive">{{direccion[col.columna] | caseTransformer: tipoLetra }}</span>
                         <span *ngIf="!col.caseSensitive">{{direccion[col.columna]}}</span>
                       </button>
                       <button *ngIf="direccion[col.columna2] && direccion[col.columna2] != ''"
                         mat-flat-button [ngClass]="col.clase" type="button" (click)="onSelectDato(transformaTexto(direccion[col.columna2], col.caseSensitive))"
-                        matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                        matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                         <span *ngIf="col.caseSensitive">{{direccion[col.columna2] | caseTransformer: tipoLetra }}</span>
                         <span *ngIf="!col.caseSensitive">{{direccion[col.columna2]}}</span>
                       </button>
@@ -446,20 +459,23 @@
 
           <!-- Acciones, y paginador, fuera del div anterior que es el que crea el scrool horizontal responsive -->
           <div style="float: left;margin-top:5px;">
-            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDomicilios()"
-              matTooltip="Pulsar para limpiar las direcciones" matTooltipPosition="below">
+            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickLimpiarDomicilios()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
-            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Limpiar filtros" (click)="onClickLimpiarFiltrosDomicilios()"
-              matTooltip="Limpia filtros aplicados volviendo a los datos originales" matTooltipPosition="below">
+            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="onClickLimpiarFiltrosDomicilios()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiarfiltros.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>cleaning_services</mat-icon>
             </button>
-            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonDomicilios()"
-              matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            <button type="button" mat-fab class="botonRotatorio" style="margin-left: 5px;" (click)="exportJsonDomicilios()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>description</mat-icon>
             </button>
             <mat-form-field style="margin-left: 5px; width: 350px !important;">
-              <mat-label>Columnas visibles</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.generarcomunes.entrada.columnasvisibles.label' | translate }}</mat-label>
               <mat-select multiple [(ngModel)]="selectColumnasDirecciones">
                 @for (columna of listaColumnasDirecciones; track columna) {
                   <mat-option #matOptionColumDirecciones [value]="columna"
@@ -475,7 +491,7 @@
             <mat-paginator #paginatorDireccionGenerado="matPaginator"
               [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]"
               showFirstLastButtons
-              aria-label="Seleccionar páginación">
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.paginador.label' | translate }}">
             </mat-paginator>
           </div>
 

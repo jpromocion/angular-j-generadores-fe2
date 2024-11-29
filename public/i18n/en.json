@@ -54,6 +54,11 @@
           "decimales": {
             "label": "Decimals",
             "tooltip": "In those generations that return a number with a decimal part, the number of decimal places to display in the return is indicated."
+          },
+          "valoressinoaleatorio":{
+            "si": "Yes",
+            "no": "No",
+            "aleatorio": "Default(random)"
           }
         },
         "paginador": {
@@ -795,6 +800,136 @@
           },
           "bastidor": {
             "label": "Chassis to check"
+          }
+        }
+      },
+      "localizacion": {
+        "textosfijos": {
+          "domicilios": {
+            "parrafo1": "Generate a completely random address in CCAA, Province, Municipality, or select in the previous blocks a CCAA and province to generate them directed.",
+            "parrafo2": "Additionally, in this block, you can filter by the specific Municipality of a province to generate."
+          }
+        },
+        "frame": {
+          "ccaa": "CCAA",
+          "provincias": "Provinces",
+          "municipios": "Municipalities",
+          "domicilios": "Addresses"
+        },
+        "boton": {
+          "generarccaa": {
+            "label": "Generate CCAAs"
+          },
+          "generarprovincias": {
+            "label": "Generate Provinces"
+          },
+          "generarmunicipios": {
+            "label": "Generate Municipalities"
+          },
+          "generardomicilios": {
+            "label": "Generate addresses"
+          }
+        },
+        "entrada": {
+          "ccaa": {
+            "label": "CCAA Code",
+            "tooltip": "Auto-filled with the CCAA selected in the 'Provinces' block."
+          },
+          "provincia": {
+            "label": "Province Code",
+            "tooltip": "Auto-filled with the Province selected in the 'Municipalities' block."
+          },
+          "municipio": {
+            "label": "Municipality Code",
+            "tooltip": "This value should be filled if you want to filter addresses by municipality. The municipality code is related to the province, so it doesn't make sense on its own. You can copy it from one of the results in the 'Municipalities' block after filtering a province."
+          },
+          "km": {
+            "label": "Km?"
+          },
+          "bloque": {
+            "label": "Block?"
+          },
+          "portal": {
+            "label": "Portal?"
+          },
+          "escalera": {
+            "label": "Staircase?"
+          },
+          "planta": {
+            "label": "Floor?"
+          },
+          "puerta": {
+            "label": "Door?"
+          }
+        },
+        "salida": {
+          "ccaa": {
+            "codigo": {
+              "label": "Code"
+            },
+            "nombre": {
+              "label": "Name"
+            }
+          },
+          "provincia": {
+            "codigo": {
+              "label": "Code"
+            },
+            "nombre": {
+              "label": "Name"
+            }
+          },
+          "municipio": {
+            "codigo": {
+              "label": "Code"
+            },
+            "nombre": {
+              "label": "Name"
+            }
+          },
+          "direccion": {
+            "completa": {
+              "label": "Complete"
+            },
+            "direccion": {
+              "label": "Address"
+            },
+            "numero": {
+              "label": "Number"
+            },
+            "km": {
+              "label": "Km"
+            },
+            "bloque": {
+              "label": "Block"
+            },
+            "portal": {
+              "label": "Portal"
+            },
+            "escalera": {
+              "label": "Staircase"
+            },
+            "planta": {
+              "label": "Floor"
+            },
+            "puerta": {
+              "label": "Door"
+            },
+            "cp": {
+              "label": "Postal Code"
+            },
+            "municipio": {
+              "label": "Municipality"
+            },
+            "provincia": {
+              "label": "Province"
+            },
+            "ccaa": {
+              "label": "CCAA"
+            },
+            "refcatastral": {
+              "label": "Cadastral Ref."
+            }
           }
         }
       }
