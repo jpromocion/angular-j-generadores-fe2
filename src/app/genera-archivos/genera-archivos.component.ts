@@ -15,12 +15,14 @@ import { saveAs } from 'file-saver';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { FilesService } from '../core/services/files.service';
 import { Tipohash } from '../core/models/tipohash';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-genera-archivos',
   standalone: true,
   imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule],
+    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
+    TranslateModule],
   templateUrl: './genera-archivos.component.html',
   styleUrl: './genera-archivos.component.scss'
 })

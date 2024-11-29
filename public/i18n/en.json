@@ -59,6 +59,10 @@
             "si": "Yes",
             "no": "No",
             "aleatorio": "Default(random)"
+          },
+          "elegirarchivo":{
+            "label": "Choose file",
+            "labelplurarl": "Choose file(s)"
           }
         },
         "paginador": {
@@ -1002,6 +1006,62 @@
         "salida": {
           "imagengenerada": {
             "alt": "generated barcode"
+          }
+        }
+      },
+      "archivos": {
+        "frame": {
+          "base64codi": "Base 64 (encode)",
+          "base64encodi": "Base 64 (decode)",
+          "hash": "Get Hash",
+          "zip": "Generate Zip"
+        },
+        "boton": {
+          "codificar64": {
+            "label": "Encode base64",
+            "tooltip": "Press to encode"
+          },
+          "decodificar64": {
+            "label": "Decode base64",
+            "tooltip": "Press to decode"
+          },
+          "generarhash": {
+            "label": "Get hash",
+            "tooltip": "Press to get hash"
+          },
+          "generarzip": {
+            "label": "Generate zip",
+            "tooltip": "Press to generate zip"
+          }
+        },
+        "entrada": {
+          "tipoentrada": {
+            "label": "Entry type",
+            "valortexto": "Text",
+            "valorarchivo": "File"
+          },
+          "valorcodificar": {
+            "label": "Value to encode"
+          },
+          "tiposalida": {
+            "label": "Entry type",
+            "valortexto": "Text",
+            "valorarchivo": "File"
+          },
+          "valordecodificar": {
+            "label": "Value to decode"
+          },
+          "tipohash": {
+            "label": "Value to decode",
+            "placeholder": "Select ..."
+          }
+        },
+        "salida": {
+          "base64codi": {
+            "label": "Encoded in Base 64"
+          },
+          "base64decodi": {
+            "label": "Decoded text"
           }
         }
       }

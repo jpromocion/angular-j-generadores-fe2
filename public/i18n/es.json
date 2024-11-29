@@ -59,6 +59,10 @@
             "si": "Sí",
             "no": "No",
             "aleatorio": "Defecto(aleatorio)"
+          },
+          "elegirarchivo":{
+            "label": "Elegir archivo",
+            "labelplurarl": "Elegir archivo/s"
           }
         },
         "paginador": {
@@ -1002,6 +1006,62 @@
         "salida":{
           "imagengenerada": {
             "alt": "código barras generado"
+          }
+        }
+      },
+      "archivos":{
+        "frame": {
+          "base64codi": "Base 64 (codificar)",
+          "base64encodi": "Base 64 (decodificar)",
+          "hash": "Obtener Hash",
+          "zip": "Generar Zip"
+        },
+        "boton": {
+          "codificar64":{
+            "label": "Codificar base64",
+            "tooltip": "Pulsar para codificar"
+          },
+          "decodificar64":{
+            "label": "Decodificar base64",
+            "tooltip": "Pulsar para decodificar"
+          },
+          "generarhash":{
+            "label": "Obtener hash",
+            "tooltip": "Pulsar para obtener hash"
+          },
+          "generarzip":{
+            "label": "Generar zip",
+            "tooltip": "Pulsar para generar zip"
+          }
+        },
+        "entrada":{
+          "tipoentrada": {
+            "label": "Tipo entrada",
+            "valortexto": "Texto",
+            "valorarchivo": "Archivo"
+          },
+          "valorcodificar": {
+            "label": "Valor a codificar"
+          },
+          "tiposalida": {
+            "label": "Tipo entrada",
+            "valortexto": "Texto",
+            "valorarchivo": "Archivo"
+          },
+          "valordecodificar": {
+            "label": "Valor a decodificar"
+          },
+          "tipohash": {
+            "label": "Valor a decodificar",
+            "placeholder": "Seleccionar ..."
+          }
+        },
+        "salida":{
+          "base64codi": {
+            "label": "Codificado en Base 64"
+          },
+          "base64decodi": {
+            "label": "Texto decodificado"
           }
         }
       }
