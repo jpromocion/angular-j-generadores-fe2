@@ -932,6 +932,78 @@
             }
           }
         }
+      },
+      "qrbarras":{
+        "titulo": "QR y Códigos de barras",
+        "textosfijos":{
+          "qr":{
+            "parrafo1": "Los códigos QR se están convirtiendo en los códigos de barras 2D más reconocidos en todo el mundo. La gran ventaja del código QR es que podemos almacenar grandes cantidades de datos en un espacio limitado.",
+            "parrafo2": "Utilizan cuatro modos de codificación estandarizados para almacenar datos de manera eficiente.",
+            "parrafo3": "Además, son flexibles en tamaño y se escanean fácilmente con un teléfono inteligente. Al igual que el PDF417, un código QR puede soportar algunos daños sin provocar la pérdida de datos."
+          },
+          "147":{
+            "parrafo1": "PDF417 es un código de barras lineal apilado compuesto por múltiples códigos de barras 1D apilados uno sobre otro. Por lo tanto, puede utilizar un escáner lineal tradicional.",
+            "parrafo2": "Podríamos esperar encontrarlo en una variedad de aplicaciones, como viajes (tarjetas de embarque), tarjetas de identificación y gestión de inventario."
+          },
+          "ean13":{
+            "parrafo1": "Los códigos EAN se conocen en todo el mundo como números de artículo europeos y números de artículo internacionales. Están diseñados para su lectura en el punto de venta. También existen algunas variaciones diferentes del código EAN, como EAN-13, EAN-8, JAN-13 e ISBN.",
+            "parrafo2": "El código EAN-13 es el estándar EAN más utilizado. Está formado por 13 dígitos: un “0” inicial seguido del código UPC-A (12 dígitos)."
+          },
+          "code128":{
+            "parrafo1": "El código de barras Code 128 es un código lineal compacto y de alta densidad que se utiliza en las industrias de logística y transporte para pedidos y distribución.",
+            "parrafo2": "Puede codificar los 128 caracteres ASCII y su longitud es variable."
+          },
+          "upca":{
+            "parrafo1": "Los códigos UPC  (Universal Product Code) son algunos de los códigos de barras 1D más utilizados y los encontramos principalmente en los Estados Unidos.",
+            "parrafo2": "El UPC-A es un código solo numérico que contiene 12 dígitos: un número de identificación del fabricante (6 dígitos), un número de artículo (5 dígitos) y un dígito de control."
+          },
+          "upce":{
+            "parrafo1": "Una variante del UPC que tiene sólo 8 dígitos y se utiliza para paquetes pequeños."
+          }
+        },
+        "frame": {
+          "qr": "QR",
+          "pdf417": "PDF417",
+          "ean13": "EAN-13",
+          "code128": "Code 128",
+          "upca": "UPC-A",
+          "upce": "UPC-E"
+        },
+        "boton": {
+          "generarccaa":{
+            "label": "Generar CCAAs"
+          }
+        },
+        "entrada":{
+          "ancho": {
+            "label": "Ancho",
+            "tooltip": "Ancho de la imagen en pixeles a generar. Dejar en blanco para que se generen con el valor defecto del servicio."
+          },
+          "alto": {
+            "label": "Alto",
+            "tooltip": "Alto de la imagen en pixeles a generar. Dejar en blanco para que se generen con el valor defecto del servicio."
+          },
+          "valorcodificar":{
+            "label": "Valor a codificar",
+            "tooltip_ean13": "Código numérico de 13 dígitos comenzado por '0'.",
+            "tooltip_128": "Código alfanúmerico de máximo 80 carácteres.",
+            "tooltip_upca": "Código numérico de 12 dígitos. Puedes omitir el último que es el dígito de control, y lo generará por debajo.",
+            "tooltip_upce": "Código numérico de 8 dígitos."
+          },
+          "textoqrsup":{
+            "label": "Texto superior",
+            "tooltip": "Texto a fijar en parte superior. Opcional."
+          },
+          "textoqrinf":{
+            "label": "Texto inferior",
+            "tooltip": "Texto a fijar en parte inferior. Opcional."
+          }
+        },
+        "salida":{
+          "imagengenerada": {
+            "alt": "código barras generado"
+          }
+        }
       }
 
 

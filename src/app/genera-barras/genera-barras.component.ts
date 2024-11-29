@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, inject} from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import { Component, OnInit, inject} from '@angular/core';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -15,12 +15,14 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { BarcodesService } from '../core/services/barcodes.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-genera-barras',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
-    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule],
+  imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
+    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule,
+    TranslateModule],
   templateUrl: './genera-barras.component.html',
   styleUrl: './genera-barras.component.scss'
 })

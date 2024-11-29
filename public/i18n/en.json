@@ -932,6 +932,78 @@
             }
           }
         }
+      },
+      "qrbarras": {
+        "titulo": "QR and Barcodes",
+        "textosfijos": {
+          "qr": {
+            "parrafo1": "QR codes are becoming the most recognized 2D barcodes worldwide. The great advantage of the QR code is that we can store large amounts of data in a limited space.",
+            "parrafo2": "They use four standardized encoding modes to store data efficiently.",
+            "parrafo3": "Additionally, they are flexible in size and can be easily scanned with a smartphone. Like PDF417, a QR code can withstand some damage without causing data loss."
+          },
+          "147": {
+            "parrafo1": "PDF417 is a stacked linear barcode composed of multiple 1D barcodes stacked on top of each other. Therefore, it can use a traditional linear scanner.",
+            "parrafo2": "We might expect to find it in a variety of applications, such as travel (boarding passes), ID cards, and inventory management."
+          },
+          "ean13": {
+            "parrafo1": "EAN codes are known worldwide as European article numbers and international article numbers. They are designed to be read at the point of sale. There are also some different variations of the EAN code, such as EAN-13, EAN-8, JAN-13, and ISBN.",
+            "parrafo2": "The EAN-13 code is the most widely used EAN standard. It consists of 13 digits: an initial '0' followed by the UPC-A code (12 digits)."
+          },
+          "code128": {
+            "parrafo1": "The Code 128 barcode is a compact, high-density linear code used in the logistics and transportation industries for orders and distribution.",
+            "parrafo2": "It can encode the 128 ASCII characters and its length is variable."
+          },
+          "upca": {
+            "parrafo1": "UPC (Universal Product Code) codes are some of the most used 1D barcodes and are mainly found in the United States.",
+            "parrafo2": "The UPC-A is a numeric-only code that contains 12 digits: a manufacturer identification number (6 digits), an item number (5 digits), and a check digit."
+          },
+          "upce": {
+            "parrafo1": "A variant of the UPC that has only 8 digits and is used for small packages."
+          }
+        },
+        "frame": {
+          "qr": "QR",
+          "pdf417": "PDF417",
+          "ean13": "EAN-13",
+          "code128": "Code 128",
+          "upca": "UPC-A",
+          "upce": "UPC-E"
+        },
+        "boton": {
+          "generarccaa": {
+            "label": "Generate CCAAs"
+          }
+        },
+        "entrada": {
+          "ancho": {
+            "label": "Width",
+            "tooltip": "Width of the image in pixels to generate. Leave blank to generate with the default value of the service."
+          },
+          "alto": {
+            "label": "Height",
+            "tooltip": "Height of the image in pixels to generate. Leave blank to generate with the default value of the service."
+          },
+          "valorcodificar": {
+            "label": "Value to encode",
+            "tooltip_ean13": "13-digit numeric code starting with '0'.",
+            "tooltip_128": "Alphanumeric code of a maximum of 80 characters.",
+            "tooltip_upca": "12-digit numeric code. You can omit the last one which is the check digit, and it will generate it below.",
+            "tooltip_upce": "8-digit numeric code."
+          },
+          "textoqrsup": {
+            "label": "Upper text",
+            "tooltip": "Text to set at the top. Optional."
+          },
+          "textoqrinf": {
+            "label": "Lower text",
+            "tooltip": "Text to set at the bottom. Optional."
+          }
+        },
+        "salida": {
+          "imagengenerada": {
+            "alt": "generated barcode"
+          }
+        }
       }
 
 
