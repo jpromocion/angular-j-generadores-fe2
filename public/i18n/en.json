@@ -629,7 +629,156 @@
             "label": "Converted"
           }
         }
+      },
+      "fechas": {
+        "frame": {
+          "generartipofecha": "Generate date types",
+          "edad": "Age",
+          "diferencia": "Difference",
+          "diasemana": "Day of the week",
+          "operar": "Operate",
+          "unixafecha": "UNIX Time UTC -> Date",
+          "fechaaunix": "Local Date -> UNIX Time UTC",
+          "pascua": "Easter"
+        },
+        "boton": {
+          "generartipo": {
+            "label": "Generate type"
+          },
+          "calcularedad": {
+            "label": "Calculate age"
+          },
+          "calculardif": {
+            "label": "Calculate difference"
+          },
+          "calculardia": {
+            "label": "Calculate day"
+          },
+          "calcularoperacion": {
+            "label": "Calculate operation"
+          },
+          "generarpascua": {
+            "label": "Generate Easter data"
+          }
+        },
+        "entrada": {
+          "tipofecha": {
+            "label": "Select generation type",
+            "placeholder": "Select a generation type."
+          },
+          "fechanacimiento": {
+            "label": "Birth date",
+            "hint": "DD/MM/YYYY"
+          },
+          "horanacimiento": {
+            "label": "Time"
+          },
+          "fecha1": {
+            "label": "Date 1",
+            "hint": "DD/MM/YYYY"
+          },
+          "fecha2": {
+            "label": "Date 2",
+            "hint": "DD/MM/YYYY"
+          },
+          "hora1": {
+            "label": "Time 1"
+          },
+          "hora2": {
+            "label": "Time 2"
+          },
+          "fecha": {
+            "label": "Date",
+            "hint": "DD/MM/YYYY"
+          },
+          "hora": {
+            "label": "Time"
+          },
+          "operacion": {
+            "label": "Operation",
+            "placeholder": "Select an operation."
+          },
+          "anos": {
+            "label": "Years"
+          },
+          "meses": {
+            "label": "Months"
+          },
+          "dias": {
+            "label": "Days"
+          },
+          "horas": {
+            "label": "Hours"
+          },
+          "minutos": {
+            "label": "Minutes"
+          },
+          "utc": {
+            "label": "UTC",
+            "tooltip": "UNIX Time UTC"
+          },
+          "fechalocal": {
+            "label": "Local date",
+            "hint": "DD/MM/YYYY"
+          },
+          "horalocal": {
+            "label": "Local time"
+          },
+          "ejercicio": {
+            "label": "Exercise"
+          }
+        },
+        "salida": {
+          "edad": {
+            "valoresrelativos": "Relative values",
+            "valoresabsolutos": "Absolute values",
+            "anos": "years",
+            "meses": "months",
+            "dias": "days",
+            "horas": "hours",
+            "minutos": "minutes",
+            "segundos": "seconds"
+          },
+          "diasemana": {
+            "label": "Day of the week"
+          },
+          "fecharesultado": {
+            "label": "Result date"
+          },
+          "horaresultado": {
+            "label": "Result time"
+          },
+          "fechalocal": {
+            "label": "Local date"
+          },
+          "horalocal": {
+            "label": "Local time"
+          },
+          "fechautc": {
+            "label": "UTC date"
+          },
+          "horautc": {
+            "label": "UTC time"
+          },
+          "pascua": {
+            "domingoramos": "Palm Sunday",
+            "lunesanto": "Holy Monday",
+            "martessanto": "Holy Tuesday",
+            "miercolessanto": "Holy Wednesday",
+            "juevessanto": "Holy Thursday",
+            "viernessanto": "Holy Friday",
+            "sabadosanto": "Holy Saturday",
+            "domingoresurreccion": "Resurrection Sunday",
+            "periodovacacional": "Vacation period 2 weeks",
+            "periodoinicio": "Start",
+            "periodofin": "End"
+          }
+        }
       }
+
+
+
+
     }
   }
 }
