@@ -1,11 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {NgFor,NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CaseTransformerPipe } from '../shared/pipes/case-transformer.pipe';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatSelectModule} from '@angular/material/select';
@@ -20,13 +19,14 @@ import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.
 import { DateService } from '../core/services/date.service';
 import { Edad } from '../core/models/edad';
 import { Pascua } from '../core/models/pascua';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-genera-fechas',
   standalone: true,
   imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,MatDatepickerModule,MatNativeDateModule,
-    NgxMatTimepickerModule],
+    NgxMatTimepickerModule, TranslateModule],
   templateUrl: './genera-fechas.component.html',
   styleUrl: './genera-fechas.component.scss'
 })
@@ -36,7 +36,7 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   numGenerar: number = 1;
   selectedTipoGenera: string = '';
   tiposGenera: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo de generación.'},
+    //{valor: '', nombre: 'Seleccionar un tipo de generación.'},
     {valor: 'fn', nombre: 'Fecha nacimiento'},
     {valor: 'ff', nombre: 'Fecha futura'},
   ];
@@ -63,7 +63,7 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   horaOperarParam: string = '13:00';
   selectedTipoOpera: string = '';
   tiposOpera: Array<any> = [
-    {valor: '', nombre: 'Seleccionar una operación.'},
+    //{valor: '', nombre: 'Seleccionar una operación.'},
     {valor: 'sum', nombre: 'Suma'},
     {valor: 'res', nombre: 'Resta'},
   ];

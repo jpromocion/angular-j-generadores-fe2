@@ -103,6 +103,10 @@
           },
           "convertir": {
             "tooltip": "Pulsar para convertir"
+          },
+          "transformar": {
+            "label": "Transformar",
+            "tooltip": "Pulsar para transformar"
           }
         }
       },
@@ -625,7 +629,156 @@
             "label": "Convertido"
           }
         }
+      },
+      "fechas":{
+        "frame": {
+          "generartipofecha": "Generar tipos fecha",
+          "edad": "Edad",
+          "diferencia": "Diferencia",
+          "diasemana": "Día de la semana",
+          "operar": "Operar",
+          "unixafecha": "Tiempo UNIX UTC -> Fecha",
+          "fechaaunix": "Fecha local -> Tiempo UNIX UTC",
+          "pascua": "Pascua"
+        },
+        "boton": {
+          "generartipo":{
+            "label": "Generar tipo"
+          },
+          "calcularedad":{
+            "label": "Calcular edad"
+          },
+          "calculardif":{
+            "label": "Calcular edad"
+          },
+          "calculardia":{
+            "label": "Calcular día"
+          },
+          "calcularoperacion":{
+            "label": "Calcular operación"
+          },
+          "generarpascua":{
+            "label": "Generar datos de pascua"
+          }
+        },
+        "entrada":{
+          "tipofecha": {
+            "label": "Seleccionar tipo generación",
+            "placeholder": "Seleccionar un tipo de generación."
+          },
+          "fechanacimiento": {
+            "label": "Fecha nacimiento",
+            "hint": "DD/MM/YYYY"
+          },
+          "horanacimiento": {
+            "label": "Hora"
+          },
+          "fecha1": {
+            "label": "Fecha 1",
+            "hint": "DD/MM/YYYY"
+          },
+          "fecha2": {
+            "label": "Fecha 2",
+            "hint": "DD/MM/YYYY"
+          },
+          "hora1": {
+            "label": "Hora 1"
+          },
+          "hora2": {
+            "label": "Hora 2"
+          },
+          "fecha": {
+            "label": "Fecha",
+            "hint": "DD/MM/YYYY"
+          },
+          "hora": {
+            "label": "Hora"
+          },
+          "operacion": {
+            "label": "Operación",
+            "placeholder": "Seleccionar una operación."
+          },
+          "anos":{
+            "label": "Años"
+          },
+          "meses":{
+            "label": "Meses"
+          },
+          "dias":{
+            "label": "Días"
+          },
+          "horas":{
+            "label": "Horas"
+          },
+          "minutos":{
+            "label": "Minutos"
+          },
+          "utc": {
+            "label": "UTC",
+            "tooltip": "Tiempo UNIX UTC"
+          },
+          "fechalocal": {
+            "label": "Fecha local",
+            "hint": "DD/MM/YYYY"
+          },
+          "horalocal": {
+            "label": "Hora local"
+          },
+          "ejercicio": {
+            "label": "Ejercicio"
+          }
+        },
+        "salida":{
+          "edad":{
+            "valoresrelativos": "Valores relativos",
+            "valoresabsolutos": "Valores absolutos",
+            "anos": "años",
+            "meses": "meses",
+            "dias": "días",
+            "horas": "horas",
+            "minutos": "minutos",
+            "segundos": "segundos"
+          },
+          "diasemana":{
+            "label": "Día de la semana"
+          },
+          "fecharesultado":{
+            "label": "Fecha resultado"
+          },
+          "horaresultado":{
+            "label": "Hora resultado"
+          },
+          "fechalocal": {
+            "label": "Fecha local"
+          },
+          "horalocal": {
+            "label": "Hora local"
+          },
+          "fechautc": {
+            "label": "Fecha UTC"
+          },
+          "horautc": {
+            "label": "Hora UTC"
+          },
+          "pascua":{
+            "domingoramos": "Domingo de ramos",
+            "lunesanto": "Lunes santo",
+            "martessanto": "Martes santo",
+            "miercolessanto": "Miércoles santo",
+            "juevessanto": "Jueves santo",
+            "viernessanto": "Viernes santo",
+            "sabadosanto": "Sábado santo",
+            "domingoresurreccion": "Domingo resurrección",
+            "periodovacacional": "Periodo \"vacacional\" 2 semanas",
+            "periodoinicio": "Inicio",
+            "periodofin": "Fin"
+          }
+        }
       }
+
+
+
+
     }
   }
 }

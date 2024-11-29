@@ -1,4 +1,4 @@
-<h2 class="tracking-in-expand">Fechas</h2>
+<h2 class="tracking-in-expand">{{ 'generadores.jpromocion.menu.fechas' | translate }}</h2>
 
 <div class="panelFluidoSegundoNivel bounce-in-bottom">
 
@@ -7,16 +7,16 @@
 
     <div class="caja c1">
       <mat-card appearance="outlined">
-        <mat-card-header>Generar tipos fecha</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.generartipofecha' | translate }}</mat-card-header>
         <mat-card-content>
           <mat-form-field style="width: 200px !important;">
-            <mat-label>Num. generaciones</mat-label>
-            <input matInput id="numGenera" type="number"  min="2" max="1000" placeholder="Número de generaciones" [(ngModel)]="numGenerar">
+            <mat-label>{{ 'generadores.jpromocion.generarcomunes.numgeneraciones.label' | translate }}</mat-label>
+            <input matInput id="numGenera" type="number"  min="2" max="1000"  [(ngModel)]="numGenerar">
           </mat-form-field>
 
           <mat-form-field style="width: 200px;margin-left: 5px;">
-            <mat-label>Seleccionar tipo generación</mat-label>
-            <mat-select [(ngModel)]="selectedTipoGenera">
+            <mat-label>{{ 'generadores.jpromocion.fechas.entrada.tipofecha.label' | translate }}</mat-label>
+            <mat-select [(ngModel)]="selectedTipoGenera" placeholder="{{ 'generadores.jpromocion.fechas.entrada.tipofecha.placeholder' | translate }}">
               @for (tipo of tiposGenera; track tipo) {
                 <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
               }
@@ -27,21 +27,24 @@
           <!-- NOTA: los botones de esta pestaña fecha... no estan cogiendo la clase mat-accent que deberian llevar el mat-fab
             para pintarse lila... y no un violeta... no he conseguido saber porque, aplico color="accent" lo fuerza
            -->
-          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Generar tipo" (click)="onClickBotonGenerarTipo()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonGenerarTipo()"
+            attr.aria-label="{{ 'generadores.jpromocion.fechas.boton.generartipo.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
             *ngIf="textoGenerado?.length && textoGenerado.length > 0"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarTipo()"
-            matTooltip="Pulsar para limpiar los tipos" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarTipo()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
             *ngIf="textoGenerado?.length && textoGenerado.length > 0"
-            style="margin-left: 5px;" aria-label="Exportar a Excel" (click)="exportJsonTipos()"
-            matTooltip="Pulsar para exportar excel" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="exportJsonTipos()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.exportarexcel.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>description</mat-icon>
           </button>
 
@@ -50,7 +53,7 @@
               <mat-list-item>
                 <div style="margin-top: 2%; margin-bottom: 2%;">
                   <button mat-flat-button type="button" (click)="onSelectDato(texto)"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="fecha">{{texto}}</span>
                   </button>
                   <mat-divider></mat-divider>
@@ -64,20 +67,20 @@
 
     <div class="caja c2">
       <mat-card appearance="outlined">
-        <mat-card-header>Edad</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.edad' | translate }}</mat-card-header>
         <mat-card-content>
 
           <div>
             <mat-form-field>
-              <mat-label>Fecha nacimiento</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.fechanacimiento.label' | translate }}</mat-label>
               <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento" readonly="true">
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>{{ 'generadores.jpromocion.fechas.entrada.fechanacimiento.hint' | translate }}</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker disabled="false"></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.horanacimiento.label' | translate }}</mat-label>
               <input matInput
                     name="in_horaNacimiento"
                     [format]="24"
@@ -91,14 +94,16 @@
             </mat-form-field>
             <ngx-mat-timepicker color="accent" #pickerHoraNacimiento></ngx-mat-timepicker>
 
-            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular edad" (click)="onClickBotonEdad()"
-              matTooltip="Pulsar para calcular" matTooltipPosition="below">
+            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonEdad()"
+              attr.aria-label="{{ 'generadores.jpromocion.fechas.boton.calcularedad.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.calcular.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>calculate</mat-icon>
             </button>
 
             <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="edadRes"
-              style="margin-left: 5px;" color="accent" aria-label="Limpiar resultado" (click)="onClickLimpiarEdad()"
-              matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
+              style="margin-left: 5px;" color="accent" (click)="onClickLimpiarEdad()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
 
@@ -108,94 +113,94 @@
             <div class="grid-layout-edad">
 
               <div class="caja">
-                Valores relativos:
+                {{ 'generadores.jpromocion.fechas.salida.edad.valoresrelativos' | translate }}:
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.anyosRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.anyosRelativos}}</span>
                   </button>
-                  años
+                  {{ 'generadores.jpromocion.fechas.salida.edad.anos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.mesesRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.mesesRelativos}}</span>
                   </button>
-                  meses
+                  {{ 'generadores.jpromocion.fechas.salida.edad.meses' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.diasRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.diasRelativos}}</span>
                   </button>
-                  días
+                  {{ 'generadores.jpromocion.fechas.salida.edad.dias' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.horasRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.horasRelativos}}</span>
                   </button>
-                  horas
+                  {{ 'generadores.jpromocion.fechas.salida.edad.horas' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.minutosRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.minutosRelativos}}</span>
                   </button>
-                  minutos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.minutos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.segundosRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.segundosRelativos}}</span>
                   </button>
-                  segundos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.segundos' | translate }}
                 </p>
               </div>
 
               <div class="caja">
-                Valores absolutos:
+                {{ 'generadores.jpromocion.fechas.salida.edad.valoresabsolutos' | translate }}:
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.anyos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.anyos}}</span>
                   </button>
-                  años
+                  {{ 'generadores.jpromocion.fechas.salida.edad.anos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.meses.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.meses}}</span>
                   </button>
-                  meses
+                  {{ 'generadores.jpromocion.fechas.salida.edad.meses' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.dias.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.dias}}</span>
                   </button>
-                  días
+                  {{ 'generadores.jpromocion.fechas.salida.edad.dias' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.horas.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.horas}}</span>
                   </button>
-                  horas
+                  {{ 'generadores.jpromocion.fechas.salida.edad.horas' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(edadRes.minutos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.minutos}}</span>
                   </button>
-                  minutos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.minutos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button id="btnResEdadFinal" type="button" (click)="onSelectDato(edadRes.segundos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{edadRes.segundos}}</span>
                   </button>
-                  segundos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.segundos' | translate }}
                 </p>
               </div>
 
@@ -210,20 +215,20 @@
 
     <div class="caja c3">
       <mat-card appearance="outlined">
-        <mat-card-header>Diferencia</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.diferencia' | translate }}</mat-card-header>
         <mat-card-content>
 
           <div>
             <mat-form-field>
-              <mat-label>Fecha 1</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.fecha1.label' | translate }}</mat-label>
               <input matInput [matDatepicker]="pickerFecDifParam1" [(ngModel)]="fechaDifParam1" readonly="true">
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>{{ 'generadores.jpromocion.fechas.entrada.fecha1.hint' | translate }}</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecDifParam1"></mat-datepicker-toggle>
               <mat-datepicker #pickerFecDifParam1 disabled="false"></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora 1</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.hora1.label' | translate }}</mat-label>
               <input matInput
                     name="in_horaDifParam1"
                     [format]="24"
@@ -239,15 +244,15 @@
           </div>
           <div>
             <mat-form-field>
-              <mat-label>Fecha 2</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.fecha2.label' | translate }}</mat-label>
               <input matInput [matDatepicker]="pickerFecDifParam2" [(ngModel)]="fechaDifParam2" readonly="true">
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>{{ 'generadores.jpromocion.fechas.entrada.fecha2.hint' | translate }}</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecDifParam2"></mat-datepicker-toggle>
               <mat-datepicker #pickerFecDifParam2 disabled="false"></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora 2</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.hora2.label' | translate }}</mat-label>
               <input matInput
                     name="in_horaDifParam2"
                     [format]="24"
@@ -262,14 +267,16 @@
             <ngx-mat-timepicker color="accent" #pickerHoraDifParam2></ngx-mat-timepicker>
           </div>
 
-          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular diferencia" (click)="onClickBotonDiferencia()"
-            matTooltip="Pulsar para calcular" matTooltipPosition="below">
+          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonDiferencia()"
+            attr.aria-label="{{ 'generadores.jpromocion.fechas.boton.calculardif.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.calcular.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>calculate</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation] *ngIf="difRes"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDiferencia()"
-            matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarDiferencia()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -277,94 +284,94 @@
             <div class="grid-layout-edad">
 
               <div class="caja">
-                Valores relativos:
+                {{ 'generadores.jpromocion.fechas.salida.edad.valoresrelativos' | translate }}
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.anyosRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.anyosRelativos}}</span>
                   </button>
-                  años
+                  {{ 'generadores.jpromocion.fechas.salida.edad.anos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.mesesRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.mesesRelativos}}</span>
                   </button>
-                  meses
+                  {{ 'generadores.jpromocion.fechas.salida.edad.meses' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.diasRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.diasRelativos}}</span>
                   </button>
-                  días
+                  {{ 'generadores.jpromocion.fechas.salida.edad.dias' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.horasRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.horasRelativos}}</span>
                   </button>
-                  horas
+                  {{ 'generadores.jpromocion.fechas.salida.edad.horas' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.minutosRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.minutosRelativos}}</span>
                   </button>
-                  minutos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.minutos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.segundosRelativos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.segundosRelativos}}</span>
                   </button>
-                  segundos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.segundos' | translate }}
                 </p>
               </div>
 
               <div class="caja">
-                Valores absolutos:
+                {{ 'generadores.jpromocion.fechas.salida.edad.valoresabsolutos' | translate }}
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.anyos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.anyos}}</span>
                   </button>
-                  años
+                  {{ 'generadores.jpromocion.fechas.salida.edad.anos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.meses.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.meses}}</span>
                   </button>
                   meses
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.dias.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.dias}}</span>
                   </button>
-                  días
+                  {{ 'generadores.jpromocion.fechas.salida.edad.dias' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.horas.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.horas}}</span>
                   </button>
-                  horas
+                  {{ 'generadores.jpromocion.fechas.salida.edad.horas' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button type="button" (click)="onSelectDato(difRes.minutos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.minutos}}</span>
                   </button>
-                  minutos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.minutos' | translate }}
                 </p>
                 <p>
                   <button mat-flat-button id="btnResDifFinal" type="button" (click)="onSelectDato(difRes.segundos.toString())"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{difRes.segundos}}</span>
                   </button>
-                  segundos
+                  {{ 'generadores.jpromocion.fechas.salida.edad.segundos' | translate }}
                 </p>
               </div>
 
@@ -378,26 +385,28 @@
 
     <div class="caja c4">
       <mat-card appearance="outlined">
-        <mat-card-header>Día de la semana</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.diasemana' | translate }}</mat-card-header>
         <mat-card-content>
 
           <div>
             <mat-form-field>
-              <mat-label>Fecha</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.fecha.label' | translate }}</mat-label>
               <input matInput [matDatepicker]="pickerFecDiaSemanaParam" [(ngModel)]="fechaDiaSemanaParam" readonly="true">
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>{{ 'generadores.jpromocion.fechas.entrada.fecha.hint' | translate }}</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecDiaSemanaParam"></mat-datepicker-toggle>
               <mat-datepicker #pickerFecDiaSemanaParam disabled="false"></mat-datepicker>
             </mat-form-field>
 
-            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular día" (click)="onClickBotonDiaSemana()"
-              matTooltip="Pulsar para calcular" matTooltipPosition="below">
+            <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonDiaSemana()"
+              attr.aria-label="{{ 'generadores.jpromocion.fechas.boton.calculardia.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.calcular.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>calculate</mat-icon>
             </button>
 
             <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation] *ngIf="diaSemanaRes != ''"
-              style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarDiaSemana()"
-              matTooltip="Pulsar para limpiar" matTooltipPosition="below">
+              style="margin-left: 5px;" (click)="onClickLimpiarDiaSemana()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
 
@@ -405,7 +414,7 @@
 
           <div >
             <mat-form-field style="width: 200px !important;margin-left: 5px;" [@entradaLateralAnimation] *ngIf="diaSemanaRes != ''">
-              <mat-label>Día semana</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.salida.diasemana.label' | translate }}</mat-label>
               <input matInput id="in_diaSemanaRes" type="text" [(ngModel)]="diaSemanaRes" readonly="true" (click)="onSelectDato(diaSemanaRes)">
             </mat-form-field>
           </div>
@@ -418,20 +427,20 @@
 
     <div class="caja c5">
       <mat-card appearance="outlined">
-        <mat-card-header>Operar</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.operar' | translate }}</mat-card-header>
         <mat-card-content>
 
           <div>
             <mat-form-field>
-              <mat-label>Fecha</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.fecha.label' | translate }}</mat-label>
               <input matInput [matDatepicker]="pickerFecOperarParam" [(ngModel)]="fechaOperarParam" readonly="true">
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>{{ 'generadores.jpromocion.fechas.entrada.fecha.hint' | translate }}</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecOperarParam"></mat-datepicker-toggle>
               <mat-datepicker #pickerFecOperarParam disabled="false"></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.hora.label' | translate }}</mat-label>
               <input matInput
                     name="in_horaOperarParam"
                     [format]="24"
@@ -446,8 +455,8 @@
             <ngx-mat-timepicker color="accent" #pickerHoraOperarParam></ngx-mat-timepicker>
 
             <mat-form-field style="width: 200px;margin-left: 5px;">
-              <mat-label>Operación</mat-label>
-              <mat-select [(ngModel)]="selectedTipoOpera">
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.operacion.label' | translate }}</mat-label>
+              <mat-select [(ngModel)]="selectedTipoOpera" placeholder="{{ 'generadores.jpromocion.fechas.entrada.operacion.placeholder' | translate }}">
                 @for (tipo of tiposOpera; track tipo) {
                   <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
                 }
@@ -458,47 +467,49 @@
 
           <div>
             <mat-form-field style="width: 150px !important;">
-              <mat-label>Años</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.anos.label' | translate }}</mat-label>
               <input matInput id="paramOperaAnyos" type="number"  min="0" max="1000" [(ngModel)]="paramOperaAnyos">
             </mat-form-field>
 
             <mat-form-field style="width: 150px;margin-left: 5px;">
-              <mat-label>Meses</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.meses.label' | translate }}</mat-label>
               <input matInput id="paramOperaMeses" type="number"  min="0" max="1000" [(ngModel)]="paramOperaMeses">
             </mat-form-field>
 
             <mat-form-field style="width: 150px;margin-left: 5px;">
-              <mat-label>Días</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.dias.label' | translate }}</mat-label>
               <input matInput id="paramOperaDias" type="number"  min="0" max="1000" [(ngModel)]="paramOperaDias">
             </mat-form-field>
 
             <mat-form-field style="width: 150px;margin-left: 5px;">
-              <mat-label>Horas</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.horas.label' | translate }}</mat-label>
               <input matInput id="paramOperaHoras" type="number"  min="0" max="1000" [(ngModel)]="paramOperaHoras">
             </mat-form-field>
 
             <mat-form-field style="width: 150px;margin-left: 5px;">
-              <mat-label>Minutos</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.minutos.label' | translate }}</mat-label>
               <input matInput id="paramOperaMinutos" type="number"  min="0" max="1000" [(ngModel)]="paramOperaMinutos">
             </mat-form-field>
           </div>
 
 
 
-          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Calcular operación" (click)="onClickBotonOperar()"
-            matTooltip="Pulsar para calcular" matTooltipPosition="below">
+          <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonOperar()"
+            attr.aria-label="{{ 'generadores.jpromocion.fechas.boton.calcularoperacion.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.calcular.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>calculate</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation] *ngIf="fechaOperarRes && horaOperarRes != ''"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarOperar()"
-            matTooltip="Pulsar para limpiar calculo" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarOperar()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
           <div [@entradaLateralAnimation] *ngIf="fechaOperarRes && horaOperarRes != ''">
             <mat-form-field>
-              <mat-label>Fecha resultado</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.salida.fecharesultado.label' | translate }}</mat-label>
               <input matInput id="in_fechaOperarRes" [matDatepicker]="pickerFecOperarRes" [(ngModel)]="fechaOperarRes" readonly="true"
                 (click)="onSelectDato(fechaFormateada(fechaOperarRes))">
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecOperarRes" disabled></mat-datepicker-toggle>
@@ -506,7 +517,7 @@
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora resultado</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.salida.horaresultado.label' | translate }}</mat-label>
               <input matInput readonly [(ngModel)]="horaOperarRes" (click)="onSelectDato(horaOperarRes)"/>
               <mat-icon matSuffix>
                   watch_later
@@ -523,30 +534,32 @@
 
     <div class="caja c6">
       <mat-card appearance="outlined">
-        <mat-card-header>Tiempo UNIX UTC -> Fecha</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.unixafecha' | translate }}</mat-card-header>
         <mat-card-content>
 
           <mat-form-field style="width: 250px !important;margin-left: 5px;" >
-            <mat-label>UTC</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.fechas.entrada.utc.label' | translate }}</mat-label>
             <input matInput id="paramTimeUnix" type="number"  placeholder="1730199192" [(ngModel)]="paramTimeUnix">
-            <mat-icon matSuffix matTooltip="Tiempo UNIX UTC">help</mat-icon>
+            <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.fechas.entrada.utc.tooltip' | translate }}">help</mat-icon>
           </mat-form-field>
 
-          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonUTCFecha()"
-            matTooltip="Pulsar para transformar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonUTCFecha()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.transformar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.transformar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>sync_alt</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
             *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != '' && fechaUTCResTimUnix && horaUTCResTimUnix != ''"
-            style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarUTCFecha()"
-            matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+            style="margin-left: 5px;" (click)="onClickLimpiarUTCFecha()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
           <div [@entradaLateralAnimation] *ngIf="fechaLocalResTimUnix && horaLocalResTimUnix != ''">
             <mat-form-field>
-              <mat-label>Fecha local</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.salida.fechalocal.label' | translate }}</mat-label>
               <input matInput id="in_fechaLocalResTimUnix" [matDatepicker]="pickerFecLocalResTimUnix" [(ngModel)]="fechaLocalResTimUnix" readonly="true"
                 (click)="onSelectDato(fechaFormateada(fechaLocalResTimUnix))">
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecLocalResTimUnix" disabled></mat-datepicker-toggle>
@@ -554,7 +567,7 @@
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora local</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.salida.horalocal.label' | translate }}</mat-label>
               <input matInput readonly [(ngModel)]="horaLocalResTimUnix" (click)="onSelectDato(horaLocalResTimUnix)"/>
               <mat-icon matSuffix>
                   watch_later
@@ -565,7 +578,7 @@
 
           <div [@entradaLateralAnimation]  *ngIf="fechaUTCResTimUnix && horaUTCResTimUnix != ''">
             <mat-form-field>
-              <mat-label>Fecha UTC</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.salida.fechautc.label' | translate }}</mat-label>
               <input matInput id="in_fechaUTCResTimUnix" [matDatepicker]="pickerFecUTCResTimUnix" [(ngModel)]="fechaUTCResTimUnix" readonly="true"
                 (click)="onSelectDato(fechaFormateada(fechaUTCResTimUnix))">
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecUTCResTimUnix" disabled></mat-datepicker-toggle>
@@ -573,7 +586,7 @@
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora UTC</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.salida.horautc.label' | translate }}</mat-label>
               <input matInput readonly [(ngModel)]="horaUTCResTimUnix" (click)="onSelectDato(horaUTCResTimUnix)"/>
               <mat-icon matSuffix>
                   watch_later
@@ -587,21 +600,21 @@
 
     <div class="caja c7">
       <mat-card appearance="outlined">
-        <mat-card-header>Fecha local -> Tiempo UNIX UTC</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.fechaaunix' | translate }}</mat-card-header>
         <mat-card-content>
 
 
           <div>
             <mat-form-field>
-              <mat-label>Fecha local</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.fechalocal.label' | translate }}</mat-label>
               <input matInput [matDatepicker]="pickerparamFechaLocal" [(ngModel)]="paramFechaLocal" readonly="true">
-              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-hint>{{ 'generadores.jpromocion.fechas.entrada.fechalocal.hint' | translate }}</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="pickerparamFechaLocal"></mat-datepicker-toggle>
               <mat-datepicker #pickerparamFechaLocal disabled="false"></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field style="margin-left: 5px;">
-              <mat-label>Hora local</mat-label>
+              <mat-label>{{ 'generadores.jpromocion.fechas.entrada.horalocal.label' | translate }}</mat-label>
               <input matInput
                     name="in_paramHoraLocal"
                     [format]="24"
@@ -615,14 +628,16 @@
             </mat-form-field>
             <ngx-mat-timepicker color="accent" #pickerparamHoraLocal></ngx-mat-timepicker>
 
-            <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Transformar" (click)="onClickBotonFechaUTC()"
-              matTooltip="Pulsar para transformar" matTooltipPosition="below">
+            <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonFechaUTC()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.transformar.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.transformar.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>sync_alt</mat-icon>
             </button>
 
             <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
-              *ngIf="timeUnixRes" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarFechaUTC()"
-              matTooltip="Pulsar para limpiar conversión" matTooltipPosition="below">
+              *ngIf="timeUnixRes" style="margin-left: 5px;" (click)="onClickLimpiarFechaUTC()"
+              attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+              matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
               <mat-icon>delete</mat-icon>
             </button>
 
@@ -630,7 +645,7 @@
 
           <div [@entradaLateralAnimation] *ngIf="timeUnixRes">
             <button mat-flat-button id="btnResTimeUnix" type="button" (click)="onSelectDato(timeUnixRes.toString())"
-            matTooltip="Pulsar para copiar" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
               <span class="unix">{{timeUnixRes}}</span>
             </button>
           </div>
@@ -642,22 +657,24 @@
 
     <div class="caja c8">
       <mat-card appearance="outlined">
-        <mat-card-header>Pascua</mat-card-header>
+        <mat-card-header>{{ 'generadores.jpromocion.fechas.frame.pascua' | translate }}</mat-card-header>
         <mat-card-content>
 
           <mat-form-field style="width: 200px !important;">
-            <mat-label>Ejercicio</mat-label>
+            <mat-label>{{ 'generadores.jpromocion.fechas.entrada.ejercicio.label' | translate }}</mat-label>
             <input matInput id="pascuaParamEjercicio" type="number"  placeholder="2024" [(ngModel)]="pascuaParamEjercicio">
           </mat-form-field>
 
-          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" aria-label="Generar datos de pascua" (click)="onClickBotonGenerarPascua()"
-            matTooltip="Pulsar para generar" matTooltipPosition="below">
+          <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonGenerarPascua()"
+            attr.aria-label="{{ 'generadores.jpromocion.fechas.boton.generarpascua.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>refresh</mat-icon>
           </button>
 
           <button type="button" mat-fab class="botonRotatorio" color="accent" [@encogimientoAnimation]
-            *ngIf="pascuaRes" style="margin-left: 5px;" aria-label="Limpiar resultado" (click)="onClickLimpiarPascua()"
-            matTooltip="Pulsar para limpiar la pascua" matTooltipPosition="below">
+            *ngIf="pascuaRes" style="margin-left: 5px;" (click)="onClickLimpiarPascua()"
+            attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.label' | translate }}"
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.limpiar.tooltip' | translate }}" matTooltipPosition="below">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -666,76 +683,76 @@
 
               <div class="caja">
                 <p>
-                  Domingo ramos:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.domingoramos' | translate }}:
                   <button id="btnPascuaResDomingoRamos" mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaDomingoRamos))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaDomingoRamos)}}</span>
                   </button>
                 </p>
                 <p>
-                  Lunes santo:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.lunesanto' | translate }}:
                   <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaLunesSanto))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaLunesSanto)}}</span>
                   </button>
                 </p>
                 <p>
-                  Martes santo:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.martessanto' | translate }}:
                   <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaMartesSanto))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaMartesSanto)}}</span>
                   </button>
                 </p>
                 <p>
-                  Miércoles santo:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.miercolessanto' | translate }}:
                   <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaMiercolesSanto))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaMiercolesSanto)}}</span>
                   </button>
                 </p>
                 <p>
-                  Jueves santo:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.juevessanto' | translate }}:
                   <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaJuevesSanto))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaJuevesSanto)}}</span>
                   </button>
                 </p>
                 <p>
-                  Viernes santo:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.viernessanto' | translate }}:
                   <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaViernesSanto))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaViernesSanto)}}</span>
                   </button>
                 </p>
                 <p>
-                  Sábado santo:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.sabadosanto' | translate }}:
                   <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaSabadoSanto))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaSabadoSanto)}}</span>
                   </button>
                 </p>
                 <p>
-                  Domingo resurrección:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.domingoresurreccion' | translate }}:
                   <button  mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaDomingoResurreccion))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaDomingoResurreccion)}}</span>
                   </button>
                 </p>
               </div>
 
               <div class="caja">
-                Periodo "vacacional" 2 semanas:
+                {{ 'generadores.jpromocion.fechas.salida.pascua.periodovacacional' | translate }}:
                 <p>
-                  Inicio:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.periodoinicio' | translate }}:
                   <button mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaLunesPeriodoVacacional))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaLunesPeriodoVacacional)}}</span>
                   </button>
                 </p>
                 <p>
-                  Fin:
+                  {{ 'generadores.jpromocion.fechas.salida.pascua.periodofin' | translate }}:
                   <button mat-flat-button type="button" (click)="onSelectDato(fechaFormateada(pascuaRes.fechaDomingoPeriodoVacacional))"
-                  matTooltip="Pulsar para copiar" matTooltipPosition="below">
+                  matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.copiar.tooltip' | translate }}" matTooltipPosition="below">
                     <span class="edad">{{fechaFormateada(pascuaRes.fechaDomingoPeriodoVacacional)}}</span>
                   </button>
                 </p>

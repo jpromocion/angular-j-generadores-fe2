@@ -103,6 +103,10 @@
           },
           "convertir": {
             "tooltip": "Click to convert"
+          },
+          "transformar": {
+            "label": "Transform",
+            "tooltip": "Click to transform"
           }
         }
       },
