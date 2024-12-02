@@ -1189,14 +1189,123 @@
           }
         },
         "salida":{
-          "base64codi": {
-            "label": "Codificado en Base 64"
-          },
           "rgb": {
             "label": "RGB"
           },
           "hexadecimal": {
             "label": "Hexadecimal"
+          }
+        }
+      },
+      "variados":{
+        "frame": {
+          "generartipo": "Generar tipo seleccionado",
+          "generartelefono": "Generar Teléfonos",
+          "generarpasswords": "Generar Passwords",
+          "generarcodipromo": "Generar Códigos promocionales",
+          "generarrefecatas": "Generar referencias catastrales",
+          "validarrefecatas": "Validar referencias catastrales",
+          "generarcups": "Generar CUPS (Código Universal del Punto de Suministro)",
+          "validarcups": "Validar CUPS (Código Universal del Punto de Suministro)",
+          "validarlei": "Validar LEI (Legal Entity Identifier)",
+          "validarisin": "Validar ISIN (International Securities Identification Numbering)",
+          "validarnss": "Validar NSS (Número Seguridad Social)"
+        },
+        "boton": {
+          "generartipo":{
+            "label":  "Generar tipo"
+          },
+          "generartelefono":{
+            "label":  "Generar teléfono"
+          },
+          "generarpasswords":{
+            "label":  "Generar password"
+          },
+          "generarcodipromo":{
+            "label":  "Generar códigos promocionales"
+          },
+          "generarrefecatas":{
+            "label":  "Generar referencia"
+          },
+          "validarrefecatas":{
+            "label":  "Validar una Ref. catastral"
+          },
+          "generarcups":{
+            "label":  "Generar CUPS"
+          },
+          "validarcups":{
+            "label":  "Validar un CUPS"
+          },
+          "validarlei":{
+            "label":  "Validar un LEI"
+          },
+          "validarisin":{
+            "label":  "Validar un ISIN"
+          },
+          "validarnss":{
+            "label":  "Validar un NSS"
+          }
+        },
+        "entrada":{
+          "tipogenera": {
+            "label": "Seleccionar tipo generación",
+            "placeholder": "Seleccionar ..."
+          },
+          "tipotelefono": {
+            "label": "Seleccionar tipo teléfono",
+            "placeholder": "Seleccionar ..."
+          },
+          "passmayus": {
+            "label": "Mayús./minús."
+          },
+          "passnumeros": {
+            "label": "Números"
+          },
+          "passespecial": {
+            "label": "Especial"
+          },
+          "promolongi": {
+            "label": "Longitud",
+            "tooltip": "Longitud de los códigos generados."
+          },
+          "promocarac": {
+            "label": "Conjunto caract.",
+            "tooltip": "Juego de carácteres que utilizar."
+          },
+          "promopatron": {
+            "label": "Patrón",
+            "tooltip": "Opcional. Patrón que seguirán los códigos generados. Se utiliza el '-' como separador de partes. Se indicará patrón como 'AA-AAAAA-AAA-AAAA' y cada parte que separa el guión será generada. En caso de rellenar patrón, se ignora lo rellenado en longitud."
+          },
+          "promoprefijo": {
+            "label": "Prefijo",
+            "tooltip": "Opcional. Prefijo a añadir en todo código promocional en la forma 'prefix-'."
+          },
+          "promosufijo": {
+            "label": "Sufijo",
+            "tooltip": "Opcional. Sufijo a añadir en todo código promocional en la forma 'sufix-'."
+          },
+          "tipocatas": {
+            "label": "Seleccionar tipo",
+            "placeholder": "Seleccionar ..."
+          },
+          "refecatas": {
+            "label": "Ref. catastral"
+          },
+          "tipocups": {
+            "label": "Seleccionar tipo",
+            "placeholder": "Seleccionar ..."
+          },
+          "cups": {
+            "label": "CUPS"
+          },
+          "lei": {
+            "label": "LEI"
+          },
+          "isin": {
+            "label": "ISIN"
+          },
+          "nss": {
+            "label": "NSS"
           }
         }
       }

@@ -14,13 +14,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { MiscService } from '../core/services/misc.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-genera-variados',
   standalone: true,
   imports: [FormsModule,ReactiveFormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
     MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
-    MatAutocompleteModule],
+    MatAutocompleteModule,TranslateModule],
   templateUrl: './genera-variados.component.html',
   styleUrl: './genera-variados.component.scss'
 })
@@ -63,7 +64,7 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   //telefonos
   selectedTipoTelefono: string = '';
   tiposTelefono: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo de teléfono.'},
+    //{valor: '', nombre: 'Seleccionar un tipo de teléfono.'},
     {valor: 'f', nombre: 'Fijo'},
     {valor: 'm', nombre: 'Móvil'}
   ];
@@ -83,7 +84,7 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   //referencias catastrales
   refCatasParamSelectedTipo: string = '';
   tiposRefCatastrales: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo.'},
+    //{valor: '', nombre: 'Seleccionar un tipo.'},
     {valor: 'u', nombre: 'Urbana'},
     {valor: 'r', nombre: 'Rústica'}
   ];
@@ -97,7 +98,7 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   //CUPS
   cupsParamSelectedTipo: string = '';
   tiposCups: Array<any> = [
-    {valor: '', nombre: 'Seleccionar un tipo.'},
+    //{valor: '', nombre: 'Seleccionar un tipo.'},
     {valor: 'e', nombre: 'Energía'},
     {valor: 'g', nombre: 'Gas'}
   ];

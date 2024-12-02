@@ -1189,14 +1189,123 @@
           }
         },
         "salida": {
-          "base64codi": {
-            "label": "Encoded in Base 64"
-          },
           "rgb": {
             "label": "RGB"
           },
           "hexadecimal": {
             "label": "Hexadecimal"
+          }
+        }
+      },
+      "variados": {
+        "frame": {
+          "generartipo": "Generate selected type",
+          "generartelefono": "Generate Phones",
+          "generarpasswords": "Generate Passwords",
+          "generarcodipromo": "Generate Promotional Codes",
+          "generarrefecatas": "Generate Cadastral References",
+          "validarrefecatas": "Validate Cadastral References",
+          "generarcups": "Generate CUPS (Universal Supply Point Code)",
+          "validarcups": "Validate CUPS (Universal Supply Point Code)",
+          "validarlei": "Validate LEI (Legal Entity Identifier)",
+          "validarisin": "Validate ISIN (International Securities Identification Number)",
+          "validarnss": "Validate NSS (Social Security Number)"
+        },
+        "boton": {
+          "generartipo": {
+            "label": "Generate type"
+          },
+          "generartelefono": {
+            "label": "Generate phone"
+          },
+          "generarpasswords": {
+            "label": "Generate password"
+          },
+          "generarcodipromo": {
+            "label": "Generate promotional codes"
+          },
+          "generarrefecatas": {
+            "label": "Generate reference"
+          },
+          "validarrefecatas": {
+            "label": "Validate a cadastral ref."
+          },
+          "generarcups": {
+            "label": "Generate CUPS"
+          },
+          "validarcups": {
+            "label": "Validate a CUPS"
+          },
+          "validarlei": {
+            "label": "Validate a LEI"
+          },
+          "validarisin": {
+            "label": "Validate an ISIN"
+          },
+          "validarnss": {
+            "label": "Validate a NSS"
+          }
+        },
+        "entrada": {
+          "tipogenera": {
+            "label": "Select generation type",
+            "placeholder": "Select ..."
+          },
+          "tipotelefono": {
+            "label": "Select phone type",
+            "placeholder": "Select ..."
+          },
+          "passmayus": {
+            "label": "Uppercase/lowercase"
+          },
+          "passnumeros": {
+            "label": "Numbers"
+          },
+          "passespecial": {
+            "label": "Special"
+          },
+          "promolongi": {
+            "label": "Length",
+            "tooltip": "Length of the generated codes."
+          },
+          "promocarac": {
+            "label": "Char. set",
+            "tooltip": "Character set to use."
+          },
+          "promopatron": {
+            "label": "Pattern",
+            "tooltip": "Optional. Pattern that generated codes will follow. The '-' is used as a separator of parts. The pattern will be indicated as 'AA-AAAAA-AAA-AAAA' and each part separated by the dash will be generated. If the pattern is filled, the length filled will be ignored."
+          },
+          "promoprefijo": {
+            "label": "Prefix",
+            "tooltip": "Optional. Prefix to add in every promotional code in the form 'prefix-'."
+          },
+          "promosufijo": {
+            "label": "Suffix",
+            "tooltip": "Optional. Suffix to add in every promotional code in the form 'suffix-'."
+          },
+          "tipocatas": {
+            "label": "Select type",
+            "placeholder": "Select ..."
+          },
+          "refecatas": {
+            "label": "Cadastral ref."
+          },
+          "tipocups": {
+            "label": "Select type",
+            "placeholder": "Select ..."
+          },
+          "cups": {
+            "label": "CUPS"
+          },
+          "lei": {
+            "label": "LEI"
+          },
+          "isin": {
+            "label": "ISIN"
+          },
+          "nss": {
+            "label": "NSS"
           }
         }
       }
