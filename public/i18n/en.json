@@ -341,6 +341,48 @@
         }
       },
       "perfil": {
+        "mensajes": {
+          "generadopersona": {
+            "mensaje": "Person generated",
+            "titulo": "GeneratePerson"
+          },
+          "generadopersonas": {
+            "mensaje": "List of generated people",
+            "titulo": "GeneratePeople"
+          },
+          "generadoempresa": {
+            "mensaje": "Company generated",
+            "titulo": "GenerateCompany"
+          },
+          "generadoempresas": {
+            "mensaje": "List of generated companies",
+            "titulo": "GenerateCompanies"
+          },
+          "limpiadopersona": {
+            "mensaje": "People cleaned",
+            "titulo": "CleanPeople"
+          },
+          "excelpersona": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelPeople"
+          },
+          "limpiadofiltrospersona": {
+            "mensaje": "Filters cleaned",
+            "titulo": "CleanPeopleFilters"
+          },
+          "limpiadoempresa": {
+            "mensaje": "Companies cleaned",
+            "titulo": "CleanCompanies"
+          },
+          "excelempresa": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelCompanies"
+          },
+          "limpiadofiltrosempresa": {
+            "mensaje": "Filters cleaned",
+            "titulo": "CleanCompaniesFilters"
+          }
+        },
         "frame": {
           "personagenerada": "Generated person",
           "personasgeneradas": "Generated persons",

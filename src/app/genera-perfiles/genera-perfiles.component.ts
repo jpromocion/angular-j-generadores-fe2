@@ -23,6 +23,7 @@ import { Persona } from '../core/models/persona';
 import { Empresa } from '../core/models/empresa';
 import { DireccionCompleta } from '../core/models/direccion-completa';
 import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 
 
@@ -510,7 +511,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       .subscribe(persona => {
         this.personaGenerada = persona[0];
         if (this.personaGenerada){
-          this.openSnackBar('Persona generada', 'GenerarPersona');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadopersona.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadopersona.titulo')));
         }
       });
     } else {
@@ -537,7 +540,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
         this.inicializarPaginadoresSortsPersonas();
         if (this.listaPersonasGeneradas && this.listaPersonasGeneradas.data.length > 0) {
           this.badgetPersonasGenradas = this.listaPersonasGeneradas.data.length;
-          this.openSnackBar('Lista Personas generadas', 'GenerarPersonas');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadopersonas.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadopersonas.titulo')));
         }
     });
     }
@@ -552,7 +557,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       .subscribe(empresa => {
         this.empresaGenerada = empresa[0];
         if (this.empresaGenerada){
-          this.openSnackBar('Empresa generada', 'GenerarEmpresa');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadoempresa.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadoempresa.titulo')));
         }
       });
     } else {
@@ -579,7 +586,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
           this.inicializarPaginadoresSortsEmpresas();
           if (this.listaEmpresasGeneradas && this.listaEmpresasGeneradas.data.length > 0) {
             this.badgetEmpresasGeneradas = this.listaEmpresasGeneradas.data.length;
-            this.openSnackBar('Lista Empresas generadas', 'GenerarEmpresas');
+            this.openSnackBar(
+              this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadoempresas.mensaje')),
+              this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.generadoempresas.titulo')));
           }
       });
     }
@@ -748,7 +757,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     // }));
 
     this.excelService.exportAsExcelFile(res, 'Perfiles_personas');
-    this.openSnackBar('Excel generado','ExcelPersonas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelpersona.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelpersona.titulo')));
   }
 
   /**
@@ -757,7 +768,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   onClickLimpiarPersonas(): void {
     this.listaPersonasGeneradas = new MatTableDataSource<Persona>();
     this.listaPersonasGeneradasOriginal = [];
-    this.openSnackBar('Personas limpiados', 'LimpiarPersonas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadopersona.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadopersona.titulo')));
 
   }
 
@@ -932,7 +945,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    */
   onClickLimpiarFiltrosPersonas(): void {
     this.listaPersonasGeneradas.data = this.listaPersonasGeneradasOriginal;
-    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosPersonas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadofiltrospersona.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadofiltrospersona.titulo')));
   }
 
 
@@ -1024,7 +1039,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     // }));
 
     this.excelService.exportAsExcelFile(res, 'Perfiles_empresas');
-    this.openSnackBar('Excel generado','ExcelEmpresas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelempresa.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelempresa.titulo')));
   }
 
 
@@ -1036,7 +1053,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   onClickLimpiarEmpresas(): void {
     this.listaEmpresasGeneradas = new MatTableDataSource<Empresa>();
     this.listaEmpresasGeneradasOriginal = [];
-    this.openSnackBar('Empresas limpiadas', 'LimpiarEmpresas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadoempresa.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadoempresa.titulo')));
   }
 
 
@@ -1213,7 +1232,9 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    */
   onClickLimpiarFiltrosEmpresas(): void {
     this.listaEmpresasGeneradas.data = this.listaEmpresasGeneradasOriginal;
-    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosEmpresas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadofiltrosempresa.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.limpiadofiltrosempresa.titulo')));
   }
 
 
