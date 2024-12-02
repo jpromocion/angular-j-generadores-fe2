@@ -1251,6 +1251,148 @@
         }
       },
       "colores": {
+        "mensajes": {
+          "generadocolor": {
+            "mensaje": "Color generated",
+            "titulo": "GenerateColor"
+          },
+          "converhexa": {
+            "mensaje": "Hex-RGB conversion performed",
+            "titulo": "ConvHexRGB"
+          },
+          "errorhexa": {
+            "mensaje": "Enter a hexadecimal value",
+            "titulo": "ConvHexRGBError"
+          },
+          "limpiarhexa": {
+            "mensaje": "Hex-RGB conversion cleaned",
+            "titulo": "CleanConvHexRGB"
+          },
+          "converrgb": {
+            "mensaje": "RGB-Hex conversion performed",
+            "titulo": "ConvRGBHex"
+          },
+          "errorrgb": {
+            "mensaje": "Enter the 3 RGB color values",
+            "titulo": "ConvRGBHexError"
+          },
+          "limpiarrgb": {
+            "mensaje": "RGB-Hex conversion cleaned",
+            "titulo": "CleanConvRGBHex"
+          },
+          "aclarar": {
+            "mensaje": "Color lightened",
+            "titulo": "LightenColor"
+          },
+          "erroraclarar": {
+            "mensaje": "Select source color",
+            "titulo": "LightenError"
+          },
+          "limpiaraclarar": {
+            "mensaje": "Lighten color cleaned",
+            "titulo": "CleanLighten"
+          },
+          "oscurecido": {
+            "mensaje": "Color darkened",
+            "titulo": "DarkenColor"
+          },
+          "erroroscurecido": {
+            "mensaje": "Select source color",
+            "titulo": "DarkenError"
+          },
+          "limpiaroscurecido": {
+            "mensaje": "Darken color cleaned",
+            "titulo": "CleanDarken"
+          },
+          "transformado": {
+            "mensaje": "Color transformed",
+            "titulo": "TransformColor"
+          },
+          "errortransformado": {
+            "mensaje": "Select source color",
+            "titulo": "TransformError"
+          },
+          "limpiartransformado": {
+            "mensaje": "Transform color cleaned",
+            "titulo": "CleanTransform"
+          },
+          "invertido": {
+            "mensaje": "Color inverted",
+            "titulo": "InvertColor"
+          },
+          "errorinvertido": {
+            "mensaje": "Select source color",
+            "titulo": "InvertError"
+          },
+          "limpiarinvertido": {
+            "mensaje": "Invert color cleaned",
+            "titulo": "CleanInvert"
+          },
+          "alphaeado": {
+            "mensaje": "Alpha color",
+            "titulo": "AlphaColor"
+          },
+          "erroralphaeado": {
+            "mensaje": "Select source color",
+            "titulo": "AlphaError"
+          },
+          "limpiaralphaeado": {
+            "mensaje": "Alpha color cleaned",
+            "titulo": "CleanAlpha"
+          },
+          "mezclado": {
+            "mensaje": "Colors mixed",
+            "titulo": "MixColor"
+          },
+          "errormezclado1": {
+            "mensaje": "Select color 1",
+            "titulo": "MixError"
+          },
+          "errormezclado2": {
+            "mensaje": "Select color 2",
+            "titulo": "MixError"
+          },
+          "limpiarmezclado": {
+            "mensaje": "Mixed color cleaned",
+            "titulo": "CleanMix"
+          },
+          "gradientalizado": {
+            "mensaje": "Gradient list generated",
+            "titulo": "GenerateGradient"
+          },
+          "errogradientalizado1": {
+            "mensaje": "Select color 1",
+            "titulo": "GradientError"
+          },
+          "errogradientalizado2": {
+            "mensaje": "Select color 2",
+            "titulo": "GradientError"
+          },
+          "limpiagradientalizado": {
+            "mensaje": "Gradient cleaned",
+            "titulo": "CleanGradient"
+          },
+          "excelgradientalizado": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelGradient"
+          },
+          "monocromatizado": {
+            "mensaje": "Monochromatic list generated",
+            "titulo": "GenerateMonochromatic"
+          },
+          "erromonocromatizado": {
+            "mensaje": "Select color 1",
+            "titulo": "MonochromaticError"
+          },
+          "limpiamonocromatizado": {
+            "mensaje": "Monochromatic cleaned",
+            "titulo": "CleanMonochromatic"
+          },
+          "excelmonocromatizado": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelMonochromatic"
+          }
+        },
         "textosfijos": {
           "selector": {
             "parrafo1": "In operations that work with 1 color, they will use the \"Main Color\".",

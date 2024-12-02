@@ -18,7 +18,7 @@ import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.
 import { ColorService } from '../core/services/color.service';
 import { Color } from '../core/models/color';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-colores',
@@ -133,7 +133,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
       if (colorGen && colorGen[0]){
         this.color = colorGen[0].hex;
         this.colorObj = colorGen[0];
-        this.openSnackBar('Color generado', 'GenerarColor');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.generadocolor.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.generadocolor.titulo')));
       }
     });
   }
@@ -177,7 +179,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.convertHexaRgb = resultado;
       if (this.convertHexaRgb && this.convertHexaRgb != ''){
-        this.openSnackBar('Conversión hexa-RGB realizada', 'ConvHexRGB');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.converhexa.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.converhexa.titulo')));
       }
     });
   }
@@ -188,7 +192,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonConvertirHexaRGB(): void {
     this.convertHexaRgb = '';
     if (this.convertHexaParam === ''){
-      this.openSnackBar('Introduzca un valor hexadecimal', 'ErrorConvHexRGB');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errorhexa.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errorhexa.titulo')));
       return;
     }
     this.getHexToRgb(this.convertHexaParam);
@@ -201,7 +207,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarConvertirHexaRGB(): void {
     this.convertHexaRgb = '';
-    this.openSnackBar('Conversión hexa-RGB limpiada', 'LimpiarConvHexRGB');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarhexa.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarhexa.titulo')));
   }
 
 
@@ -215,7 +223,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.convertRgbHexa = resultado;
       if (this.convertRgbHexa && this.convertRgbHexa != ''){
-        this.openSnackBar('Conversión RGB-hexa realizada', 'ConvRGBHex');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.converrgb.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.converrgb.titulo')));
       }
     });
   }
@@ -226,7 +236,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonConvertirRGBHexa(): void {
     this.convertRgbHexa = '';
     if (this.convertRgbRojoParam === undefined || this.convertRgbVerdeParam === undefined || this.convertRgbAzulParam === undefined){
-      this.openSnackBar('Introduzca los 3 valores de colores RGB', 'ErrorConvRGBHex');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errorrgb.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errorrgb.titulo')));
       return;
     }
     this.getRgbToHex(this.convertRgbRojoParam, this.convertRgbVerdeParam, this.convertRgbAzulParam);
@@ -239,7 +251,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarConvertirRGBHexa(): void {
     this.convertRgbHexa = '';
-    this.openSnackBar('Conversión RGB-hexa limpiada', 'LimpiarConvRGBHex');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarrgb.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarrgb.titulo')));
   }
 
 
@@ -254,7 +268,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.colorAclarado = resultado;
       if (this.colorAclarado && this.colorAclarado != ''){
-        this.openSnackBar('Color aclarado', 'AclararColor');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.aclarar.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.aclarar.titulo')));
       }
     });
   }
@@ -265,7 +281,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonAclararColor(): void {
     this.colorAclarado = '';
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color origen', 'ErrorAclarar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erroraclarar.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erroraclarar.titulo')));
       return;
     }
     this.getLighten(this.colorSele,this.aclaraColorCantidad);
@@ -278,7 +296,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarAclararColor(): void {
     this.colorAclarado = '';
-    this.openSnackBar('Aclarar color limpiado', 'LimpiarAclarar');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiaraclarar.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiaraclarar.titulo')));
   }
 
 
@@ -293,7 +313,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.colorOscurecido = resultado;
       if (this.colorOscurecido && this.colorOscurecido != ''){
-        this.openSnackBar('Color oscurecido', 'OscurecerColor');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.oscurecido.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.oscurecido.titulo')));
       }
     });
   }
@@ -304,7 +326,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonOscurecerColor(): void {
     this.colorOscurecido = '';
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color origen', 'ErrorOscurecer');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erroroscurecido.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erroroscurecido.titulo')));
       return;
     }
     this.getDarken(this.colorSele,this.oscureceColorCantidad);
@@ -317,7 +341,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarOscurecerColor(): void {
     this.colorOscurecido = '';
-    this.openSnackBar('Oscurecer color limpiado', 'LimpiarOscurecer');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiaroscurecido.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiaroscurecido.titulo')));
   }
 
 
@@ -340,7 +366,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
             .subscribe(resultado => {
               this.colorTransformado = resultado;
               if (this.colorTransformado && this.colorTransformado != ''){
-                this.openSnackBar('Color transformado', 'TransformarColor');
+                this.openSnackBar(
+                  this.translate.instant(marker('generadores.jpromocion.colores.mensajes.transformado.mensaje')),
+                  this.translate.instant(marker('generadores.jpromocion.colores.mensajes.transformado.titulo')));
               }
             });
 
@@ -357,7 +385,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonTransformarColor(): void {
     this.colorTransformado = '';
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color origen', 'ErrorTransformar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errortransformado.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errortransformado.titulo')));
       return;
     }
     this.getTransformarColor(this.colorSele,this.matizColorCantidad, this.saturaColorCantidad, this.brilloColorCantidad);
@@ -370,7 +400,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarTransformarColor(): void {
     this.colorTransformado = '';
-    this.openSnackBar('Color transformado limpiado', 'LimpiarTransformar');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiartransformado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiartransformado.titulo')));
   }
 
 
@@ -387,7 +419,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.colorInvertir = resultado;
       if (this.colorInvertir && this.colorInvertir != ''){
-        this.openSnackBar('Color invertido', 'InvertirColor');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.invertido.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.invertido.titulo')));
       }
     });
   }
@@ -398,7 +432,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonInvertirColor(): void {
     this.colorInvertir = '';
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color origen', 'ErrorInvertir');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errorinvertido.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errorinvertido.titulo')));
       return;
     }
     this.getInvert(this.colorSele);
@@ -411,7 +447,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarInvertirColor(): void {
     this.colorInvertir = '';
-    this.openSnackBar('Color invertido limpiado', 'LimpiarInvertir');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarinvertido.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarinvertido.titulo')));
   }
 
 
@@ -426,7 +464,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
       if (colorGen){
         this.colorAlphaHex = colorGen.hex;
         this.colorAlpha = colorGen;
-        this.openSnackBar('Color alpha', 'AlphaColor');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.alphaeado.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.alphaeado.titulo')));
       }
     });
   }
@@ -438,7 +478,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     this.colorAlpha = undefined;
     this.colorAlphaHex = '';
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color origen', 'ErrorAlpha');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erroralphaeado.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erroralphaeado.titulo')));
       return;
     }
     this.getAlpha(this.colorSele,this.alphaColorCantidad);
@@ -452,7 +494,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickLimpiarAlphaColor(): void {
     this.colorAlpha = undefined;
     this.colorAlphaHex = '';
-    this.openSnackBar('Color alpha limpiado', 'LimpiarAlpha');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiaralphaeado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiaralphaeado.titulo')));
   }
 
 
@@ -465,7 +509,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.colorMezclado = resultado;
       if (this.colorMezclado && this.colorMezclado != ''){
-        this.openSnackBar('Colores mezclados', 'MezclarColor');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.mezclado.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.mezclado.titulo')));
       }
     });
   }
@@ -476,10 +522,14 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonMezclarColor(): void {
     this.colorMezclado = '';
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color 1', 'ErrorMezclar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errormezclado1.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errormezclado1.titulo')));
       return;
     } else if (this.colorSele2 === ''){
-      this.openSnackBar('Seleccione color 2', 'ErrorMezclar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errormezclado2.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errormezclado2.titulo')));
       return;
     }
     this.getMix(this.colorSele, this.colorSele2, this.mezclaColorCantidad);
@@ -492,7 +542,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarMezclarColor(): void {
     this.colorMezclado = '';
-    this.openSnackBar('Color invertido limpiado', 'LimpiarMezclar');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarmezclado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiarmezclado.titulo')));
   }
 
 
@@ -506,7 +558,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
       .subscribe(gradientes => {
         this.listaGradiente = gradientes;
         if (this.listaGradiente && this.listaGradiente.length > 0) {
-          this.openSnackBar('Lista gradientes generados', 'GenerarGradiente');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.colores.mensajes.gradientalizado.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.colores.mensajes.gradientalizado.titulo')));
         }
       });
   }
@@ -519,10 +573,14 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonGradienteColor(): void {
     this.listaGradiente = [];
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color 1', 'ErrorGradiente');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errogradientalizado1.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errogradientalizado1.titulo')));
       return;
     } else if (this.colorSele2 === ''){
-      this.openSnackBar('Seleccione color 2', 'ErrorGradiente');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errogradientalizado2.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.errogradientalizado2.titulo')));
       return;
     }
     this.getGradiente(this.colorSele, this.colorSele2, this.gradienteCantidad);
@@ -534,7 +592,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
    */
   onClickLimpiarGradienteColor(): void {
     this.listaGradiente = [];
-    this.openSnackBar('Gradiente limpiado', 'LimpiarGradiente');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiagradientalizado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiagradientalizado.titulo')));
   }
 
   /**
@@ -543,7 +603,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   exportJsonGradiente(): void {
     const filteredIbanList = this.listaGradiente.map(({ hex }) => ({ hex }));
     this.excelService.exportAsExcelFile(filteredIbanList, 'Lista_Gradiente');
-    this.openSnackBar('Excel generado','ExcelGradiente');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelgradientalizado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelgradientalizado.titulo')));
   }
 
 
@@ -559,7 +621,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
     .subscribe(monos => {
       this.listaMonocromaticos = monos;
       if (this.listaMonocromaticos && this.listaMonocromaticos.length > 0) {
-        this.openSnackBar('Lista monocromáticos generados', 'GenerarMonocromatico');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.monocromatizado.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.colores.mensajes.monocromatizado.titulo')));
       }
     });
   }
@@ -572,7 +636,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   onClickBotonMonocromaticoColor(): void {
     this.listaMonocromaticos = [];
     if (this.colorSele === ''){
-      this.openSnackBar('Seleccione color 1', 'ErrorMonocromatico');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erromonocromatizado.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.colores.mensajes.erromonocromatizado.titulo')));
       return;
     }
     this.getMonochrome(this.colorSele, this.monocromaticoCantidad);
@@ -584,7 +650,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   */
   onClickLimpiarMonocromaticoColor(): void {
     this.listaMonocromaticos = [];
-    this.openSnackBar('Monocromático limpiado', 'LimpiarMonocromatico');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiamonocromatizado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.limpiamonocromatizado.titulo')));
   }
 
   /**
@@ -593,7 +661,9 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   exportJsonMonocromatico(): void {
     const filteredIbanList = this.listaMonocromaticos.map(({ hex }) => ({ hex }));
     this.excelService.exportAsExcelFile(filteredIbanList, 'Lista_Monocromatico');
-    this.openSnackBar('Excel generado','ExcelMonocromatico');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelmonocromatizado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelmonocromatizado.titulo')));
   }
 
 
