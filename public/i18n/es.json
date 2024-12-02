@@ -800,6 +800,32 @@
         }
       },
       "vehiculos": {
+        "mensajes": {
+          "generadomatricula": {
+            "mensaje": "Matrícula generada",
+            "titulo": "GenerarMatricula"
+          },
+          "generadobastidor": {
+            "mensaje": "Nº Bastidor generado",
+            "titulo": "GenerarBastidor"
+          },
+          "errormatriculatipo": {
+            "mensaje": "Debe seleccionar un tipo de matrícula.",
+            "titulo": "ErrorMatricula"
+          },
+          "limpiarmatricula": {
+            "mensaje": "Datos limpiados",
+            "titulo": "LimpiarVehiculos"
+          },
+          "excelmatricula": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelVehiculos"
+          },
+          "validadobastidor": {
+            "mensaje": "Nº Bastidor validado",
+            "titulo": "ValidarBastidor"
+          }
+        },
         "frame": {
           "generarvehiculo": "Generar Vehículo",
           "validarbastidor": "Validar Bastidor"

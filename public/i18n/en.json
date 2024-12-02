@@ -800,6 +800,32 @@
         }
       },
       "vehiculos": {
+        "mensajes": {
+          "generadomatricula": {
+            "mensaje": "License plate generated",
+            "titulo": "GenerateLicensePlate"
+          },
+          "generadobastidor": {
+            "mensaje": "Chassis number generated",
+            "titulo": "GenerateChassisNumber"
+          },
+          "errormatriculatipo": {
+            "mensaje": "A type of license plate must be selected.",
+            "titulo": "LicensePlateError"
+          },
+          "limpiarmatricula": {
+            "mensaje": "Data cleaned",
+            "titulo": "CleanVehicles"
+          },
+          "excelmatricula": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelVehicles"
+          },
+          "validadobastidor": {
+            "mensaje": "Chassis number validated",
+            "titulo": "ValidateChassisNumber"
+          }
+        },
         "frame": {
           "generarvehiculo": "Generate Vehicle",
           "validarbastidor": "Validate Chassis"

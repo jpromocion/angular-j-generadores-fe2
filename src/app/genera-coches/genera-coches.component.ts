@@ -14,6 +14,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { VehicleService } from '../core/services/vehicle.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-coches',
@@ -76,7 +77,9 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
       .subscribe(cadena => {
         this.textoGenerado = cadena;
         if (this.textoGenerado && this.textoGenerado.length > 0){
-          this.openSnackBar('Matrícula generada', 'GenerarMatricula');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.generadomatricula.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.generadomatricula.titulo')));
         }
       });
   }
@@ -89,7 +92,9 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
       .subscribe(cadena => {
         this.textoGenerado = cadena;
         if (this.textoGenerado && this.textoGenerado.length > 0){
-          this.openSnackBar('Nº Bastidor generado', 'GenerarBastidor');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.generadobastidor.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.generadobastidor.titulo')));
         }
       });
   }
@@ -128,7 +133,9 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
     let codigoTipoSeleccionado = (<any>this.selectedTipoGeneraFC?.value)?.valor;
 
     if (!codigoTipoSeleccionado || codigoTipoSeleccionado == '') {
-      this.openSnackBar('Debe seleccionar un tipo de matrícula.','Cerrar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.errormatriculatipo.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.errormatriculatipo.titulo')));
     } else if (codigoTipoSeleccionado != 'vin') {
       this.getMatricula(this.numGenerar, codigoTipoSeleccionado);
     } else {
@@ -142,7 +149,9 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarTexto(): void {
     this.textoGenerado = [];
-    this.openSnackBar('Datos limpiados', 'LimpiarVehiculos');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.limpiarmatricula.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.limpiarmatricula.titulo')));
   }
 
   /**
@@ -151,7 +160,9 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
   exportJsonTipos(): void {
     const formattedNies = this.textoGenerado.map(matricula => ({ Valor: matricula }));
     this.excelService.exportAsExcelFile(formattedNies, 'Lista_tipos');
-    this.openSnackBar('Excel generado','ExcelVehiculos');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.excelmatricula.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.excelmatricula.titulo')));
   }
 
 
@@ -163,7 +174,9 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
     .subscribe(esOk => {
       this.bastidorValidarOk = esOk;
       if (this.bastidorValidarOk && this.bastidorValidarOk != ''){
-        this.openSnackBar('Nº Bastidor validado', 'ValidarBastidor');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.validadobastidor.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.validadobastidor.titulo')));
       }
     });
     //console.info('Bastidor validado: ' + this.bastidorValidarOk);
