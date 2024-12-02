@@ -536,6 +536,128 @@
         }
       },
       "numeros": {
+        "mensajes": {
+          "generadoalea": {
+            "mensaje": "Num. aleatorios generados",
+            "titulo": "GenerarNumAleatorios"
+          },
+          "limpiadoalea": {
+            "mensaje": "Números aleatorios limpiados",
+            "titulo": "LimpiarNumAleatorios"
+          },
+          "excelalea": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelNumAleatorios"
+          },
+          "generadomoneda": {
+            "mensaje": "Lanzamientos moneda generados",
+            "titulo": "GenerarLanzaMoneda"
+          },
+          "limpiadomoneda": {
+            "mensaje": "Lanzamientos moneda limpiados",
+            "titulo": "LimpiarLanzaMoneda"
+          },
+          "excelmoneda": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelLanzaMoneda"
+          },
+          "generadodado": {
+            "mensaje": "Lanzamientos dados generados",
+            "titulo": "GenerarLanzaDado"
+          },
+          "limpiadodado": {
+            "mensaje": "Lanzamientos dados limpiados",
+            "titulo": "LimpiarLanzaDado"
+          },
+          "exceldado": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelLanzaDado"
+          },
+          "generadogaussiano": {
+            "mensaje": "Num. Gaussiano generados",
+            "titulo": "GenerarNumGaussiano"
+          },
+          "limpiadogaussiano": {
+            "mensaje": "Números Gaussiano limpiados",
+            "titulo": "LimpiarNumGaussiano"
+          },
+          "excelgaussiano": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelNumGaussiano"
+          },
+          "operacioncalculada": {
+            "mensaje": "Operación calculada",
+            "titulo": "Calculado"
+          },
+          "calculadoraerror1": {
+            "mensaje": "No hay operador",
+            "titulo": "No,no,no"
+          },
+          "calculadoraerror2": {
+            "mensaje": "Operando 1 no está definido",
+            "titulo": "No,no,no"
+          },
+          "calculadoraerror3": {
+            "mensaje": "Ya hay un operador, calcule primero",
+            "titulo": "No,no,no"
+          },
+          "generadoproporcion": {
+            "mensaje": "Proporción calculada",
+            "titulo": "ProporcionCalculada"
+          },
+          "limpiadoproporcion": {
+            "mensaje": "Cálculo proporcion limpiado",
+            "titulo": "LimpiarProporcion"
+          },
+          "generadoarea": {
+            "mensaje": "Área calculada",
+            "titulo": "AreaCalculada"
+          },
+          "errorarea": {
+            "mensaje": "Proporción calculada",
+            "titulo": "ProporcErrorArea"
+          },
+          "limpiadoarea": {
+            "mensaje": "Cálculo área limpiado",
+            "titulo": "LimpiarArea"
+          },
+          "convertidogrados": {
+            "mensaje": "Conversión grados-radianes realizada",
+            "titulo": "ConvGraRad"
+          },
+          "convertidoradianes": {
+            "mensaje": "Conversión radianes-grados realizada",
+            "titulo": "ConvRadGra"
+          },
+          "limpiadogrados": {
+            "mensaje": "Conversión grados-radianes limpiada",
+            "titulo": "LimpiarConvGraRad"
+          },
+          "convertidobase": {
+            "mensaje": "Conversión base",
+            "titulo": "ConvBase"
+          },
+          "limpiadobase": {
+            "mensaje": "Conversión base limpiado",
+            "titulo": "LimpiarConvBase"
+          },
+          "convertidoarabigo": {
+            "mensaje": "Conversión arábigo-romano realizada",
+            "titulo": "ConvAraRom"
+          },
+          "convertidoromano": {
+            "mensaje": "Conversión romano-arábigo realizada",
+            "titulo": "ConvRomAra"
+          },
+          "errorarabigo": {
+            "mensaje": "Valor arábigo no válido",
+            "titulo": "Error"
+          },
+          "limpiadoarabigo": {
+            "mensaje": "Conversión arábigo-romano limpiada",
+            "titulo": "LimpiarConvAraRom"
+          }
+        },
         "frame": {
           "aleatorio": "Número aleatorio",
           "gaussiano": "Número aleatorio (Gaussiano)",

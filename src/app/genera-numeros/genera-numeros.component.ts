@@ -128,7 +128,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(cadena => {
       this.aleatorioGenerado = cadena;
       if (this.aleatorioGenerado && this.aleatorioGenerado.length > 0){
-        this.openSnackBar('Num. aleatorios generados', 'GenerarNumAleatorios');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadoalea.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadoalea.titulo')));
       }
     });
   }
@@ -147,7 +149,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarAleatorios(): void {
     this.aleatorioGenerado = [];
-    this.openSnackBar('Números aleatorios limpiados', 'LimpiarNumAleatorios');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoalea.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoalea.titulo')));
   }
 
   /**
@@ -156,7 +160,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   exportJsonAleatorios(): void {
     const formatted = this.aleatorioGenerado.map(dato => ({ Numero: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_NumAleatorios');
-    this.openSnackBar('Excel generado','ExcelNumAleatorios');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelalea.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelalea.titulo')));
   }
 
 
@@ -168,7 +174,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(cadena => {
       this.monedaGenerado = cadena;
       if (this.monedaGenerado && this.monedaGenerado.length > 0){
-        this.openSnackBar('Lanzamientos moneda generados', 'GenerarLanzaMoneda');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadomoneda.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadomoneda.titulo')));
       }
     });
   }
@@ -188,7 +196,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarMoneda(): void {
     this.monedaGenerado = [];
-    this.openSnackBar('Lanzamientos moneda limpiados', 'LimpiarLanzaMoneda');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadomoneda.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadomoneda.titulo')));
   }
 
   /**
@@ -197,7 +207,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   exportJsonMoneda(): void {
     const formatted = this.monedaGenerado.map(dato => ({ CaraCruz: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_LanzaMoneda');
-    this.openSnackBar('Excel generado','ExcelLanzaMoneda');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelmoneda.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelmoneda.titulo')));
   }
 
 
@@ -210,7 +222,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(cadena => {
       this.dadoGenerado = cadena;
       if (this.dadoGenerado && this.dadoGenerado.length > 0){
-        this.openSnackBar('Lanzamientos Dado generados', 'GenerarLanzaDado');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadodado.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadodado.titulo')));
       }
     });
   }
@@ -230,7 +244,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarDado(): void {
     this.dadoGenerado = [];
-    this.openSnackBar('Lanzamientos Dado limpiados', 'LimpiarLanzaDado');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadodado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadodado.titulo')));
   }
 
   /**
@@ -239,7 +255,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   exportJsonDado(): void {
     const formatted = this.dadoGenerado.map(dato => ({ Dado: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_LanzaDado');
-    this.openSnackBar('Excel generado','ExcelLanzaDado');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.exceldado.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.exceldado.titulo')));
   }
 
 
@@ -254,7 +272,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(cadena => {
       this.gaussianoGenerado = cadena;
       if (this.gaussianoGenerado && this.gaussianoGenerado.length > 0){
-        this.openSnackBar('Num. Gaussiano generados', 'GenerarNumGaussiano');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadogaussiano.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadogaussiano.titulo')));
       }
     });
   }
@@ -274,7 +294,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarGaussiano(): void {
     this.gaussianoGenerado = [];
-    this.openSnackBar('Números Gaussiano limpiados', 'LimpiarNumGaussiano');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadogaussiano.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadogaussiano.titulo')));
   }
 
   /**
@@ -283,7 +305,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   exportJsonGaussiano(): void {
     const formatted = this.gaussianoGenerado.map(dato => ({ Numero: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_NumGaussiano');
-    this.openSnackBar('Excel generado','ExcelNumGaussiano');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelgaussiano.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelgaussiano.titulo')));
   }
 
   /**
@@ -305,7 +329,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
 
       if (this.calculadoraPantalla && this.calculadoraPantalla != ''){
         this.calculadoraCalculado = true;
-        this.openSnackBar('Operación calculada', 'Calculado');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.operacioncalculada.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.operacioncalculada.titulo')));
       }
     });
   }
@@ -330,7 +356,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
 
       if (this.calculadoraPantalla && this.calculadoraPantalla != ''){
         this.calculadoraCalculado = true;
-        this.openSnackBar('Operación calculada', 'Calculado');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.operacioncalculada.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.operacioncalculada.titulo')));
       }
     });
   }
@@ -465,9 +493,13 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
       this.calculadoraPantalla += elemento;
     } else if (elemento === '='){
       if (this.calculadoraOperacion === ''){
-        this.openSnackBar('No hay operador', 'No,no,no');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.calculadoraerror1.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.calculadoraerror1.titulo')));
       } else if (this.calculadoraOperando1 === undefined) {
-        this.openSnackBar('Operando 1 no está definido', 'No,no,no');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.calculadoraerror2.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.calculadoraerror2.titulo')));
       } else {
         //rellenamos el calculadoraOperando2 con la parte de la pantalla que hay tras el operador
         this.calculadoraOperando2 = parseFloat(this.calculadoraPantalla.substring(this.calculadoraPantalla.indexOf(this.calculadoraOperacion) + this.calculadoraOperacion.length).replace(',', '.'));
@@ -485,7 +517,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
       //Cualquier otro caso es un operador.
       //No podemos pulsar un operador si ya se registro otro, la calculadora es para hacer una operacion por vez!!!!
       if (this.calculadoraOperacion && this.calculadoraOperacion != ''){
-        this.openSnackBar('Ya hay un operador, calcule primero', 'No,no,no');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.calculadoraerror3.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.calculadoraerror3.titulo')));
       } else{
         //cargamos el primer operando con lo que hay antes
         this.calculadoraOperando1 = parseFloat(this.calculadoraPantalla.replace(',', '.'));
@@ -510,7 +544,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.proporcionResultado = resultado;
       if (this.proporcionResultado && this.proporcionResultado != ''){
-        this.openSnackBar('Proporción calculada', 'ProporcionCalculada');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadoproporcion.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadoproporcion.titulo')));
       }
     });
   }
@@ -529,7 +565,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarProporcion(): void {
     this.proporcionResultado = '';
-    this.openSnackBar('Cálculo proporcion limpiado', 'LimpiarProporcion');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoproporcion.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoproporcion.titulo')));
   }
 
 
@@ -543,7 +581,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.areaResultado = resultado;
       if (this.areaResultado && this.areaResultado != ''){
-        this.openSnackBar('Área calculada', 'AreaCalculada');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadoarea.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.generadoarea.titulo')));
       }
     });
   }
@@ -553,7 +593,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   */
   onClickBotonArea(): void {
     if (this.areaSelectedTipo === ''){
-      this.openSnackBar('Selecciona un tipo de figura', 'Error');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.errorarea.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.errorarea.titulo')));
       return;
     }
     this.areaResultado = '';
@@ -566,7 +608,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarArea(): void {
     this.areaResultado = '';
-    this.openSnackBar('Cálculo área limpiado', 'LimpiarArea');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoarea.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoarea.titulo')));
   }
 
   /**
@@ -628,7 +672,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.gradosResultado = resultado;
       if (this.gradosResultado && this.gradosResultado != ''){
-        this.openSnackBar('Conversión grados-radianes realizada', 'ConvGraRad');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidogrados.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidogrados.titulo')));
       }
     });
   }
@@ -639,7 +685,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.gradosResultado = resultado;
       if (this.gradosResultado && this.gradosResultado != ''){
-        this.openSnackBar('Conversión radianes-grados realizada', 'ConvRadGra');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidoradianes.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidoradianes.titulo')));
       }
     });
   }
@@ -663,7 +711,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarGrados(): void {
     this.gradosResultado = '';
-    this.openSnackBar('Conversión grados-radianes limpiada', 'LimpiarConvGraRad');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadogrados.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadogrados.titulo')));
   }
 
   /**
@@ -675,7 +725,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.baseResultado = resultado;
       if (this.baseResultado && this.baseResultado != ''){
-        this.openSnackBar('Conversión base', 'ConvBase');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidobase.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidobase.titulo')));
       }
     });
   }
@@ -694,7 +746,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarBase(): void {
     this.baseResultado = '';
-    this.openSnackBar('Conversión base limpiado', 'LimpiarConvBase');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadobase.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadobase.titulo')));
   }
 
 
@@ -708,7 +762,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.arabigoResultado = resultado;
       if (this.arabigoResultado && this.arabigoResultado != ''){
-        this.openSnackBar('Conversión arábigo-romano realizada', 'ConvAraRom');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidoarabigo.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidoarabigo.titulo')));
       }
     });
   }
@@ -719,7 +775,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     .subscribe(resultado => {
       this.arabigoResultado = resultado;
       if (this.arabigoResultado && this.arabigoResultado != ''){
-        this.openSnackBar('Conversión romano-arábigo realizada', 'ConvRomAra');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidoromano.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.convertidoromano.titulo')));
       }
     });
   }
@@ -732,7 +790,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     if (this.arabigoTipo == 'arabigo'){
       let valor = parseInt(this.arabigoValor);
       if (isNaN(valor)){
-        this.openSnackBar('Valor arábigo no válido', 'Error');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.errorarabigo.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.errorarabigo.titulo')));
       } else{
         this.getArabigoRomano(parseInt(this.arabigoValor));
       }
@@ -749,7 +809,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
     */
   onClickLimpiarArabigo(): void {
     this.arabigoResultado = '';
-    this.openSnackBar('Conversión arábigo-romano limpiada', 'LimpiarConvAraRom');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoarabigo.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.limpiadoarabigo.titulo')));
   }
 
 

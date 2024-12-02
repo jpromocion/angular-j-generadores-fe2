@@ -536,6 +536,128 @@
         }
       },
       "numeros": {
+        "mensajes": {
+          "generadoalea": {
+            "mensaje": "Random numbers generated",
+            "titulo": "GenerateRandomNumbers"
+          },
+          "limpiadoalea": {
+            "mensaje": "Random numbers cleaned",
+            "titulo": "CleanRandomNumbers"
+          },
+          "excelalea": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelRandomNumbers"
+          },
+          "generadomoneda": {
+            "mensaje": "Coin flips generated",
+            "titulo": "GenerateCoinFlips"
+          },
+          "limpiadomoneda": {
+            "mensaje": "Coin flips cleaned",
+            "titulo": "CleanCoinFlips"
+          },
+          "excelmoneda": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelCoinFlips"
+          },
+          "generadodado": {
+            "mensaje": "Dice rolls generated",
+            "titulo": "GenerateDiceRolls"
+          },
+          "limpiadodado": {
+            "mensaje": "Dice rolls cleaned",
+            "titulo": "CleanDiceRolls"
+          },
+          "exceldado": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelDiceRolls"
+          },
+          "generadogaussiano": {
+            "mensaje": "Gaussian numbers generated",
+            "titulo": "GenerateGaussianNumbers"
+          },
+          "limpiadogaussiano": {
+            "mensaje": "Gaussian numbers cleaned",
+            "titulo": "CleanGaussianNumbers"
+          },
+          "excelgaussiano": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelGaussianNumbers"
+          },
+          "operacioncalculada": {
+            "mensaje": "Operation calculated",
+            "titulo": "Calculated"
+          },
+          "calculadoraerror1": {
+            "mensaje": "No operator",
+            "titulo": "No,no,no"
+          },
+          "calculadoraerror2": {
+            "mensaje": "Operand 1 is not defined",
+            "titulo": "No,no,no"
+          },
+          "calculadoraerror3": {
+            "mensaje": "There is already an operator, calculate first",
+            "titulo": "No,no,no"
+          },
+          "generadoproporcion": {
+            "mensaje": "Proportion calculated",
+            "titulo": "ProportionCalculated"
+          },
+          "limpiadoproporcion": {
+            "mensaje": "Proportion calculation cleaned",
+            "titulo": "CleanProportion"
+          },
+          "generadoarea": {
+            "mensaje": "Area calculated",
+            "titulo": "AreaCalculated"
+          },
+          "errorarea": {
+            "mensaje": "Proportion calculated",
+            "titulo": "ProportionAreaError"
+          },
+          "limpiadoarea": {
+            "mensaje": "Area calculation cleaned",
+            "titulo": "CleanArea"
+          },
+          "convertidogrados": {
+            "mensaje": "Degree-radian conversion performed",
+            "titulo": "ConvDegRad"
+          },
+          "convertidoradianes": {
+            "mensaje": "Radian-degree conversion performed",
+            "titulo": "ConvRadDeg"
+          },
+          "limpiadogrados": {
+            "mensaje": "Degree-radian conversion cleaned",
+            "titulo": "CleanConvDegRad"
+          },
+          "convertidobase": {
+            "mensaje": "Base conversion",
+            "titulo": "ConvBase"
+          },
+          "limpiadobase": {
+            "mensaje": "Base conversion cleaned",
+            "titulo": "CleanConvBase"
+          },
+          "convertidoarabigo": {
+            "mensaje": "Arabic-Roman conversion performed",
+            "titulo": "ConvAraRom"
+          },
+          "convertidoromano": {
+            "mensaje": "Roman-Arabic conversion performed",
+            "titulo": "ConvRomAra"
+          },
+          "errorarabigo": {
+            "mensaje": "Invalid Arabic value",
+            "titulo": "Error"
+          },
+          "limpiadoarabigo": {
+            "mensaje": "Arabic-Roman conversion cleaned",
+            "titulo": "CleanConvAraRom"
+          }
+        },
         "frame": {
           "aleatorio": "Random number",
           "gaussiano": "Random number (Gaussian)",
