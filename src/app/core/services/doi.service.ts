@@ -3,84 +3,33 @@
  * API rest "doi/"
  */
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { MessageService } from './message.service';
-import { DatosConexionService } from './datos-conexion.service';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoiService {
+  nombreSimpleServicio: string = 'DoiService';
 
   //La URL de la API rest
   private urlJsonServer = environment.apiUrl;
   private interfazDoi = '/doi';
 
-  baseHeaders = new HttpHeaders().set('X-API-KEY', '');
-
   //inyectamos el servicio HTTP
   private http: HttpClient = inject(HttpClient);
-  //inyeccion de dependencias para que a su vez pueda hacer uso del servicio de mensajes
-  messageService: MessageService = inject(MessageService);
+  //inyectamos baseservice para utilizar como padre, de forma mas "angular" en vez de extender la clase con herencia
+  private baseService: BaseService = inject(BaseService);
 
-  //inyectamos el servicio de datos conexion, para obtener la api-key que fija el componente padre
-  //de todo app
-  private datosConexionService: DatosConexionService = inject(DatosConexionService);
 
-  constructor () {
+  constructor() {
+    this.baseService.nombreServicioMensaje = this.nombreSimpleServicio;
   }
 
-  /**
-   * Fijar la apyKey
-   * @param apiKeyIn
-   */
-  private setApiKey(apiKeyIn: string) {
-    this.baseHeaders = new HttpHeaders().set('X-API-KEY', apiKeyIn);
-  }
 
-  /**
-   * Fijar la api-key del servicio de datos conexion
-   */
-  private fijarApiKeyServicio() {
-    this.setApiKey(this.datosConexionService.getApiKey());
-  }
-
-  /** Log a HeroService message with the MessageService */
-  /**
-   * Loguear un mensaje en el servicio de mensajes
-   * @param message
-   */
-  private log(message: string, error: boolean = false) {
-    console.info(`DoiService: ${message}`);
-    if (error) {
-      this.messageService.addError(`DoiService: ${message}`);
-    } else {
-      this.messageService.add(`DoiService: ${message}`);
-    }
-  }
-
-  /**
-  * Manjear fallo en operación Http
-  * Mantiene la app en funcionamiento.
-  *
-  * @param operation - nombre de la operación fallada
-  * @param result - valor opcional a retornar como resultado observable
-  */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} fallo: ${error.message} - Error adicional: ${error.error}`, true);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 
   /**
    * Interfaz de invocación del servicio rest para obtener nifs generados aleatoriamente.
@@ -89,15 +38,15 @@ export class DoiService {
    */
   getNif(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     //const baseHeaders = new HttpHeaders().set('X-API-KEY', 'jortri0105');
     //return this.http.get<string[]>(this.urlJsonServer + this.interfazDoi + '/nif?results=10', this.requestOptions)
     return this.http.get<string[]>(this.urlJsonServer + this.interfazDoi + '/nif?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string[]>('getNif', []))
+        catchError(this.baseService.handleError<string[]>('getNif', []))
       );
   }
 
@@ -108,13 +57,13 @@ export class DoiService {
    */
   getNie(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get<string[]>(this.urlJsonServer + this.interfazDoi + '/nie?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Nies recuperados')),
-        catchError(this.handleError<string[]>('getNie', []))
+        catchError(this.baseService.handleError<string[]>('getNie', []))
       );
   }
 
@@ -125,13 +74,13 @@ export class DoiService {
    */
   getCif(resultados: number = 1, letra: string = ''): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get<string[]>(this.urlJsonServer + this.interfazDoi + '/cif?results=' + resultados + "&custom_letter=" + letra, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string[]>('getCif', []))
+        catchError(this.baseService.handleError<string[]>('getCif', []))
       );
   }
 
@@ -142,13 +91,13 @@ export class DoiService {
    */
   validateNif(nif: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get(this.urlJsonServer + this.interfazDoi + '/validatenif?nif=' + nif, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('validateNif', ''))
+        catchError(this.baseService.handleError<string>('validateNif', ''))
       );
   }
 
@@ -159,13 +108,13 @@ export class DoiService {
    */
   validateNie(nie: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get(this.urlJsonServer + this.interfazDoi + '/validatenie?nie=' + nie, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('validateNie', ''))
+        catchError(this.baseService.handleError<string>('validateNie', ''))
       );
   }
 
@@ -177,13 +126,13 @@ export class DoiService {
    */
   validateCif(cif: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get(this.urlJsonServer + this.interfazDoi + '/validatecif?cif=' + cif, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('validateCif', ''))
+        catchError(this.baseService.handleError<string>('validateCif', ''))
       );
   }
 
@@ -195,13 +144,13 @@ export class DoiService {
    */
   getPassport(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get<string[]>(this.urlJsonServer + this.interfazDoi + '/passport?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Nies recuperados')),
-        catchError(this.handleError<string[]>('getPassport', []))
+        catchError(this.baseService.handleError<string[]>('getPassport', []))
       );
   }
 
@@ -212,13 +161,13 @@ export class DoiService {
    */
   getValidatepassport(passport: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get(this.urlJsonServer + this.interfazDoi + '/validatepassport?passport=' + passport, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getValidatepassport', ''))
+        catchError(this.baseService.handleError<string>('getValidatepassport', ''))
       );
   }
 
@@ -229,13 +178,13 @@ export class DoiService {
    */
   getCalculatepassportdc(passport: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get(this.urlJsonServer + this.interfazDoi + '/calculatepassportdc?passport=' + passport, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getCalculatepassportdc', ''))
+        catchError(this.baseService.handleError<string>('getCalculatepassportdc', ''))
       );
   }
 

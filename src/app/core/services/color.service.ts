@@ -3,86 +3,33 @@
  * API rest "coolor/"
  */
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError} from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { MessageService } from './message.service';
 import { Color } from '../models/color';
-import { DatosConexionService } from './datos-conexion.service';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColorService {
+  nombreSimpleServicio: string = 'ColorService';
 
   //La URL de la API rest
   private urlJsonServer = environment.apiUrl;
   private interfaz = '/color';
 
-  baseHeaders = new HttpHeaders().set('X-API-KEY', '');
-
   //inyectamos el servicio HTTP
   private http: HttpClient = inject(HttpClient);
-  //inyeccion de dependencias para que a su vez pueda hacer uso del servicio de mensajes
-  messageService: MessageService = inject(MessageService);
-
-  //inyectamos el servicio de datos conexion, para obtener la api-key que fija el componente padre
-  //de todo app
-  private datosConexionService: DatosConexionService = inject(DatosConexionService);
-
-  constructor() { }
+  //inyectamos baseservice para utilizar como padre, de forma mas "angular" en vez de extender la clase con herencia
+  private baseService: BaseService = inject(BaseService);
 
 
-  /**
-   * Fijar la apyKey
-   * @param apiKeyIn
-   */
-  private setApiKey(apiKeyIn: string) {
-    this.baseHeaders = new HttpHeaders().set('X-API-KEY', apiKeyIn);
+  constructor() {
+    this.baseService.nombreServicioMensaje = this.nombreSimpleServicio;
   }
 
-  /**
-   * Fijar la api-key del servicio de datos conexion
-   */
-  private fijarApiKeyServicio() {
-    this.setApiKey(this.datosConexionService.getApiKey());
-  }
-
-
-  /**
-   * Loguear un mensaje en el servicio de mensajes
-   * @param message
-   */
-  private log(message: string, error: boolean = false) {
-    //TODO: pendiente ver como gestionar mensajes
-    console.info(`ColorService: ${message}`);
-    if (error) {
-      this.messageService.addError(`ColorService: ${message}`);
-    } else {
-      this.messageService.add(`ColorService: ${message}`);
-    }
-  }
-
-  /**
-  * Manjear fallo en operación Http
-  * Mantiene la app en funcionamiento.
-  *
-  * @param operation - nombre de la operación fallada
-  * @param result - valor opcional a retornar como resultado observable
-  */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} fallo: ${error.message} - Error adicional: ${error.error}`, true);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 
   /**
    * Interfaz de invocación del servicio rest para obtener colores generados aleatoriamente.
@@ -91,13 +38,13 @@ export class ColorService {
    */
   getColor(resultados: number = 1): Observable<Color[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get<Color[]>(this.urlJsonServer + this.interfaz + '/color?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Cuentas recuperados')),
-        catchError(this.handleError<Color[]>('getColor', []))
+        catchError(this.baseService.handleError<Color[]>('getColor', []))
       );
   }
 
@@ -109,7 +56,7 @@ export class ColorService {
    */
   getHexToRgb(hexadecimal: string): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -120,11 +67,11 @@ export class ColorService {
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/hexToRgb?hexa=' + hexadecimal;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getHexToRgb', ''))
+        catchError(this.baseService.handleError<string>('getHexToRgb', ''))
       );
   }
 
@@ -135,18 +82,18 @@ export class ColorService {
    */
   getRgbToHex(red: number, green: number, blue: number): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/rgbToHex';
 
     urlfinal = urlfinal + '?red=' + red + '&green=' + green + '&blue=' + blue;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getRgbToHex', ''))
+        catchError(this.baseService.handleError<string>('getRgbToHex', ''))
       );
   }
 
@@ -158,7 +105,7 @@ export class ColorService {
    */
   getLighten(hexadecimal: string, cantidad: number = 0): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -171,11 +118,11 @@ export class ColorService {
     urlfinal = urlfinal + '&amount=' + cantidad;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getLighten', ''))
+        catchError(this.baseService.handleError<string>('getLighten', ''))
       );
   }
 
@@ -187,7 +134,7 @@ export class ColorService {
    */
   getDarken(hexadecimal: string, cantidad: number = 0): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -200,11 +147,11 @@ export class ColorService {
     urlfinal = urlfinal + '&amount=' + cantidad;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getDarken', ''))
+        catchError(this.baseService.handleError<string>('getDarken', ''))
       );
   }
 
@@ -215,7 +162,7 @@ export class ColorService {
    */
   getSaturate(hexadecimal: string, cantidad: number = 0): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -228,11 +175,11 @@ export class ColorService {
     urlfinal = urlfinal + '&amount=' + cantidad;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getSaturate', ''))
+        catchError(this.baseService.handleError<string>('getSaturate', ''))
       );
   }
 
@@ -243,7 +190,7 @@ export class ColorService {
    */
   getHue(hexadecimal: string, cantidad: number = 0): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -256,11 +203,11 @@ export class ColorService {
     urlfinal = urlfinal + '&amount=' + cantidad;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getHue', ''))
+        catchError(this.baseService.handleError<string>('getHue', ''))
       );
   }
 
@@ -271,7 +218,7 @@ export class ColorService {
    */
   getBrightness(hexadecimal: string, cantidad: number = 0): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -284,11 +231,11 @@ export class ColorService {
     urlfinal = urlfinal + '&amount=' + cantidad;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getBrightness', ''))
+        catchError(this.baseService.handleError<string>('getBrightness', ''))
       );
   }
 
@@ -299,7 +246,7 @@ export class ColorService {
    */
   getInvert(hexadecimal: string): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -311,11 +258,11 @@ export class ColorService {
 
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getInvert', ''))
+        catchError(this.baseService.handleError<string>('getInvert', ''))
       );
   }
 
@@ -326,7 +273,7 @@ export class ColorService {
    */
   getAlpha(hexadecimal: string, alpha: number): Observable<Color> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -339,11 +286,11 @@ export class ColorService {
     urlfinal = urlfinal + '&alpha=' + alpha;
 
     return this.http.get<Color>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Cuentas recuperados')),
-        catchError(this.handleError<Color>('getAlpha', undefined))
+        catchError(this.baseService.handleError<Color>('getAlpha', undefined))
       );
   }
 
@@ -354,7 +301,7 @@ export class ColorService {
    */
   getMix(hexadecimal1: string, hexadecimal2: string, porcentaje: number): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -370,11 +317,11 @@ export class ColorService {
     urlfinal = urlfinal + '&amount=' + porcentaje;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Personas recuperadas')),
-        catchError(this.handleError<string>('getMix', ''))
+        catchError(this.baseService.handleError<string>('getMix', ''))
       );
   }
 
@@ -386,7 +333,7 @@ export class ColorService {
    */
   getGradient(hexadecimal1: string, hexadecimal2: string, numberOfGradients: number): Observable<Color[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -402,11 +349,11 @@ export class ColorService {
     urlfinal = urlfinal + '&numberOfGradients=' + numberOfGradients;
 
     return this.http.get<Color[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Cuentas recuperados')),
-        catchError(this.handleError<Color[]>('getGradient', []))
+        catchError(this.baseService.handleError<Color[]>('getGradient', []))
       );
   }
 
@@ -418,7 +365,7 @@ export class ColorService {
    */
   getMonochrome(hexadecimal: string, numberOfColors: number): Observable<Color[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el # da problemas en la URL, podriamos reemplazarlo por %23 como ahce postman
     //pero como el servicio responde sin necesidad de llevar el #, lo eliminamos
@@ -430,11 +377,11 @@ export class ColorService {
     urlfinal = urlfinal + '&numberOfColors=' + numberOfColors;
 
     return this.http.get<Color[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Cuentas recuperados')),
-        catchError(this.handleError<Color[]>('getMonochrome', []))
+        catchError(this.baseService.handleError<Color[]>('getMonochrome', []))
       );
   }
 

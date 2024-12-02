@@ -3,89 +3,33 @@
  * API rest "date/"
  */
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { MessageService } from './message.service';
-import { DatosConexionService } from './datos-conexion.service';
 import { Edad } from '../models/edad';
 import { Tiempounix } from '../models/tiempounix';
 import { Pascua } from '../models/pascua';
-
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DateService {
-
-
+  nombreSimpleServicio: string = 'DateService';
 
   //La URL de la API rest
   private urlJsonServer = environment.apiUrl;
   private interfaz = '/date';
 
-  baseHeaders = new HttpHeaders().set('X-API-KEY', '');
-
   //inyectamos el servicio HTTP
   private http: HttpClient = inject(HttpClient);
-  //inyeccion de dependencias para que a su vez pueda hacer uso del servicio de mensajes
-  messageService: MessageService = inject(MessageService);
+  //inyectamos baseservice para utilizar como padre, de forma mas "angular" en vez de extender la clase con herencia
+  private baseService: BaseService = inject(BaseService);
 
-  //inyectamos el servicio de datos conexion, para obtener la api-key que fija el componente padre
-  //de todo app
-  private datosConexionService: DatosConexionService = inject(DatosConexionService);
 
-  constructor () {
-  }
-
-  /**
-   * Fijar la apyKey
-   * @param apiKeyIn
-   */
-  private setApiKey(apiKeyIn: string) {
-    this.baseHeaders = new HttpHeaders().set('X-API-KEY', apiKeyIn);
-  }
-
-  /**
-   * Fijar la api-key del servicio de datos conexion
-   */
-  private fijarApiKeyServicio() {
-    this.setApiKey(this.datosConexionService.getApiKey());
-  }
-
-  /** Log a HeroService message with the MessageService */
-  /**
-   * Loguear un mensaje en el servicio de mensajes
-   * @param message
-   */
-  private log(message: string, error: boolean = false) {
-    console.info(`DateService: ${message}`);
-    if (error) {
-      this.messageService.addError(`DateService: ${message}`);
-    } else {
-      this.messageService.add(`DateService: ${message}`);
-    }
-  }
-
-  /**
-  * Manjear fallo en operación Http
-  * Mantiene la app en funcionamiento.
-  *
-  * @param operation - nombre de la operación fallada
-  * @param result - valor opcional a retornar como resultado observable
-  */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} fallo: ${error.message} - Error adicional: ${error.error}`, true);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  constructor() {
+    this.baseService.nombreServicioMensaje = this.nombreSimpleServicio;
   }
 
 
@@ -97,16 +41,16 @@ export class DateService {
    */
   getBirthDate(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/birthdate?results=' + resultados;
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Fec. nacimiento recuperados')),
-        catchError(this.handleError<string[]>('getBirthDate', []))
+        catchError(this.baseService.handleError<string[]>('getBirthDate', []))
       );
   }
 
@@ -117,16 +61,16 @@ export class DateService {
    */
   getFutureDate(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/futuredate?results=' + resultados;
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<string[]>('getFutureDate', []))
+        catchError(this.baseService.handleError<string[]>('getFutureDate', []))
       );
   }
 
@@ -152,7 +96,7 @@ export class DateService {
    */
   getAge(fechaNacimiento: Date): Observable<Edad> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //formatear a dd/MM/yyyy HH:mm:ss asignando a una cadena
     let fechaNacimientoCad = this.formatearFecha(fechaNacimiento);
@@ -160,11 +104,11 @@ export class DateService {
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/age?birthDate=' + fechaNacimientoCad;
 
     return this.http.get<Edad>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<Edad>('getAge', undefined))
+        catchError(this.baseService.handleError<Edad>('getAge', undefined))
       );
   }
 
@@ -175,7 +119,7 @@ export class DateService {
    */
   getDateDiff(startDate: Date, endDate: Date): Observable<Edad> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //formatear a dd/MM/yyyy HH:mm:ss asignando a una cadena
     let startDateCad = this.formatearFecha(startDate);
@@ -184,11 +128,11 @@ export class DateService {
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/datediff?startDate=' + startDateCad + '&endDate=' + endDateCad;
 
     return this.http.get<Edad>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<Edad>('getDateDiff', undefined))
+        catchError(this.baseService.handleError<Edad>('getDateDiff', undefined))
       );
   }
 
@@ -201,7 +145,7 @@ export class DateService {
   getDateoperation(date: Date, operation: String, years: number = 0, months: number = 0, days: number = 0,
     hours: number = 0, minutes: number = 0, seconds: number = 0): Observable<String> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //formatear a dd/MM/yyyy HH:mm:ss asignando a una cadena
     let dateCad = this.formatearFecha(date);
@@ -211,11 +155,11 @@ export class DateService {
       '&hours=' + hours + '&minutes=' + minutes + '&seconds=' + seconds;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<String>('getDateoperation', ''))
+        catchError(this.baseService.handleError<String>('getDateoperation', ''))
       );
   }
 
@@ -226,7 +170,7 @@ export class DateService {
    */
   getDayofweek(date: Date): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //formatear a dd/MM/yyyy HH:mm:ss asignando a una cadena
     let dateCad = this.formatearFecha(date);
@@ -234,11 +178,11 @@ export class DateService {
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/dayofweek?date=' + dateCad;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<string>('getDayofweek', ''))
+        catchError(this.baseService.handleError<string>('getDayofweek', ''))
       );
   }
 
@@ -250,16 +194,16 @@ export class DateService {
    */
   getUnixtimeToTime(unixTime: number): Observable<Tiempounix> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/unixtimeToTime?unixTime=' + unixTime;
 
     return this.http.get<Tiempounix>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<Tiempounix>('getUnixtimeToTime', undefined))
+        catchError(this.baseService.handleError<Tiempounix>('getUnixtimeToTime', undefined))
       );
   }
 
@@ -271,7 +215,7 @@ export class DateService {
    */
   getTimeToUnixtime(date: Date): Observable<Tiempounix> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //formatear a dd/MM/yyyy HH:mm:ss asignando a una cadena
     let dateCad = this.formatearFecha(date);
@@ -279,11 +223,11 @@ export class DateService {
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/timeToUnixtime?date=' + dateCad;
 
     return this.http.get<Tiempounix>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<Tiempounix>('getTimeToUnixtime', undefined))
+        catchError(this.baseService.handleError<Tiempounix>('getTimeToUnixtime', undefined))
       );
   }
 
@@ -295,16 +239,16 @@ export class DateService {
    */
   getHolyWeek(year: number): Observable<Pascua> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/holyWeek?year=' + year;
 
     return this.http.get<Pascua>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Fec. futuras recuperados')),
-        catchError(this.handleError<Pascua>('getHolyWeek', undefined))
+        catchError(this.baseService.handleError<Pascua>('getHolyWeek', undefined))
       );
   }
 

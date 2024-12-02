@@ -20,21 +20,6 @@
         "variados": "Various",
         "acercade": "About"
       },
-      "compramecafe": {
-        "boton": "Buy me a coffee!!"
-      },
-      "acercade": {
-        "version": "Version",
-        "autor": "Author",
-        "infocontacto": "Contact Information",
-        "enviaremail": "Send email"
-      },
-      "principal": {
-        "apikey": {
-          "label": "API-Key",
-          "tooltip": "Enter the API key for communication with the REST service"
-        }
-      },
       "generarcomunes": {
         "numgeneraciones": {
           "label": "Num. generations",
@@ -117,6 +102,28 @@
             "label": "Transform",
             "tooltip": "Click to transform"
           }
+        },
+        "mensajes": {
+          "errorservicio": "{{operacion}} failed: {{mensaje}} - Additional error: {{erroradicional}}"
+        }
+      },
+      "bandejamensajes": {
+        "titulo": "Message Inbox",
+        "botonlimpiar": "Clear messages"
+      },
+      "compramecafe": {
+        "boton": "Buy me a coffee!!"
+      },
+      "acercade": {
+        "version": "Version",
+        "autor": "Author",
+        "infocontacto": "Contact Information",
+        "enviaremail": "Send email"
+      },
+      "principal": {
+        "apikey": {
+          "label": "API-Key",
+          "tooltip": "Enter the API key for communication with the REST service"
         }
       },
       "documentos": {

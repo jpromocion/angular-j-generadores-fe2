@@ -3,83 +3,32 @@
  * API rest "file/"
  */
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { MessageService } from './message.service';
-import { DatosConexionService } from './datos-conexion.service';
 import { Tipohash } from '../models/tipohash';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilesService {
+  nombreSimpleServicio: string = 'FilesService';
 
   //La URL de la API rest
   private urlJsonServer = environment.apiUrl;
   private interfaz = '/file';
 
-  baseHeaders = new HttpHeaders().set('X-API-KEY', '');
-
   //inyectamos el servicio HTTP
   private http: HttpClient = inject(HttpClient);
-  //inyeccion de dependencias para que a su vez pueda hacer uso del servicio de mensajes
-  messageService: MessageService = inject(MessageService);
-
-  //inyectamos el servicio de datos conexion, para obtener la api-key que fija el componente padre
-  //de todo app
-  private datosConexionService: DatosConexionService = inject(DatosConexionService);
-
-  constructor() { }
+  //inyectamos baseservice para utilizar como padre, de forma mas "angular" en vez de extender la clase con herencia
+  private baseService: BaseService = inject(BaseService);
 
 
-  /**
-   * Fijar la apyKey
-   * @param apiKeyIn
-   */
-  private setApiKey(apiKeyIn: string) {
-    this.baseHeaders = new HttpHeaders().set('X-API-KEY', apiKeyIn);
+  constructor() {
+    this.baseService.nombreServicioMensaje = this.nombreSimpleServicio;
   }
-
-  /**
-   * Fijar la api-key del servicio de datos conexion
-   */
-  private fijarApiKeyServicio() {
-    this.setApiKey(this.datosConexionService.getApiKey());
-  }
-
-  /**
-   * Loguear un mensaje en el servicio de mensajes
-   * @param message
-   */
-  private log(message: string, error: boolean = false) {
-    console.info(`FilesService: ${message}`);
-    if (error) {
-      this.messageService.addError(`FilesService: ${message}`);
-    } else {
-      this.messageService.add(`FilesService: ${message}`);
-    }
-  }
-
-  /**
-  * Manjear fallo en operación Http
-  * Mantiene la app en funcionamiento.
-  *
-  * @param operation - nombre de la operación fallada
-  * @param result - valor opcional a retornar como resultado observable
-  */
-  private handleError<T>(operation = 'operation', result: T) {
-    return (error: any): Observable<T> => {
-
-      console.error(error); // log to console instead
-
-      this.log(`${operation} fallo: ${error.message} - Error adicional: ${error.error}`, true);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
-
 
   /**
    * Interfaz de invocación del servicio rest para codificar una cadena a base 64
@@ -88,18 +37,18 @@ export class FilesService {
    */
   postBase64(text: string): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el texto se fija a la url
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/base64';
 
     return this.http.post(urlfinal, text,{
-        headers: this.baseHeaders,
+        headers: this.baseService.baseHeaders,
         responseType: 'text'
       })
       .pipe(
         //tap(_ => this.log('Num aleatorios recuperados')),
-        catchError(this.handleError<string>('postBase64', ''))
+        catchError(this.baseService.handleError<string>('postBase64', ''))
       );
   }
 
@@ -110,7 +59,7 @@ export class FilesService {
    */
   postBase64file(file: File, name: string): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el texto se fija a la url
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/base64file';
@@ -125,12 +74,12 @@ export class FilesService {
     form.append('name', name);
 
     return this.http.post(urlfinal, form,{
-        headers: this.baseHeaders,
+        headers: this.baseService.baseHeaders,
         responseType: 'text'
       })
       .pipe(
         //tap(_ => this.log('Num aleatorios recuperados')),
-        catchError(this.handleError<string>('postBase64file', ''))
+        catchError(this.baseService.handleError<string>('postBase64file', ''))
       );
   }
 
@@ -141,18 +90,18 @@ export class FilesService {
    */
   postDecode64(text: string): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el texto se fija a la url
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/decode64';
 
     return this.http.post(urlfinal, text,{
-        headers: this.baseHeaders,
+        headers: this.baseService.baseHeaders,
         responseType: 'text'
       })
       .pipe(
         //tap(_ => this.log('Num aleatorios recuperados')),
-        catchError(this.handleError<string>('postDecode64', ''))
+        catchError(this.baseService.handleError<string>('postDecode64', ''))
       );
   }
 
@@ -164,18 +113,18 @@ export class FilesService {
    */
   postDecode64file(text: string): Observable<any> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el texto se fija a la url
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/decode64file';
 
     return this.http.post(urlfinal, text,{
-        headers: this.baseHeaders,
+        headers: this.baseService.baseHeaders,
         responseType: "blob" // This tells angular to parse it as a blob, default is json
       })
       .pipe(
         //tap(_ => this.log('Num aleatorios recuperados')),
-        catchError(this.handleError<Blob>('postDecode64file', new Blob()))
+        catchError(this.baseService.handleError<Blob>('postDecode64file', new Blob()))
       );
   }
 
@@ -188,16 +137,16 @@ export class FilesService {
    */
   getHashtypes(): Observable<Tipohash[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/hashtypes';
 
     return this.http.get<Tipohash[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Tipos de hash recuperados')),
-        catchError(this.handleError<Tipohash[]>('getHashtypes', []))
+        catchError(this.baseService.handleError<Tipohash[]>('getHashtypes', []))
       );
   }
 
@@ -208,7 +157,7 @@ export class FilesService {
    */
   postHash(file: File, name: string, type: string): Observable<string> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el texto se fija a la url
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/hash';
@@ -220,12 +169,12 @@ export class FilesService {
     form.append('type', type);
 
     return this.http.post(urlfinal, form,{
-        headers: this.baseHeaders,
+        headers: this.baseService.baseHeaders,
         responseType: 'text'
       })
       .pipe(
         //tap(_ => this.log('Hash recuperado')),
-        catchError(this.handleError<string>('postHash', ''))
+        catchError(this.baseService.handleError<string>('postHash', ''))
       );
     }
 
@@ -237,7 +186,7 @@ export class FilesService {
    */
   postZip(files: File[]): Observable<any> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     //el texto se fija a la url
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/zip';
@@ -249,12 +198,12 @@ export class FilesService {
     }
 
     return this.http.post(urlfinal, form,{
-        headers: this.baseHeaders,
+        headers: this.baseService.baseHeaders,
         responseType: "blob" // This tells angular to parse it as a blob, default is json
       })
       .pipe(
         //tap(_ => this.log('Num aleatorios recuperados')),
-        catchError(this.handleError<Blob>('postZip', new Blob()))
+        catchError(this.baseService.handleError<Blob>('postZip', new Blob()))
       );
   }
 

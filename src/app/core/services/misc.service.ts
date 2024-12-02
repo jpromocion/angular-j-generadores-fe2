@@ -3,88 +3,34 @@
  * API rest "misc/"
  */
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { MessageService } from './message.service';
-import { DatosConexionService } from './datos-conexion.service';
 import { Ccaa } from '../models/ccaa';
 import { Provincia } from '../models/provincia';
 import { Municipio } from '../models/municipio';
 import { DireccionCompleta } from '../models/direccion-completa';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MiscService {
-
+  nombreSimpleServicio: string = 'MiscService';
 
   //La URL de la API rest
   private urlJsonServer = environment.apiUrl;
   private interfaz = '/misc';
 
-  baseHeaders = new HttpHeaders().set('X-API-KEY', '');
-
   //inyectamos el servicio HTTP
   private http: HttpClient = inject(HttpClient);
-  //inyeccion de dependencias para que a su vez pueda hacer uso del servicio de mensajes
-  messageService: MessageService = inject(MessageService);
+  //inyectamos baseservice para utilizar como padre, de forma mas "angular" en vez de extender la clase con herencia
+  private baseService: BaseService = inject(BaseService);
 
-  //inyectamos el servicio de datos conexion, para obtener la api-key que fija el componente padre
-  //de todo app
-  private datosConexionService: DatosConexionService = inject(DatosConexionService);
 
-  constructor () {
-  }
-
-  /**
-   * Fijar la apyKey
-   * @param apiKeyIn
-   */
-  private setApiKey(apiKeyIn: string) {
-    this.baseHeaders = new HttpHeaders().set('X-API-KEY', apiKeyIn);
-  }
-
-  /**
-   * Fijar la api-key del servicio de datos conexion
-   */
-  private fijarApiKeyServicio() {
-    this.setApiKey(this.datosConexionService.getApiKey());
-  }
-
-  /** Log a HeroService message with the MessageService */
-  /**
-   * Loguear un mensaje en el servicio de mensajes
-   * @param message
-   */
-  private log(message: string, error: boolean = false) {
-    console.info(`MiscService: ${message}`);
-    if (error) {
-      this.messageService.addError(`MiscService: ${message}`);
-    } else {
-      this.messageService.add(`MiscService: ${message}`);
-    }
-  }
-
-  /**
-  * Manjear fallo en operación Http
-  * Mantiene la app en funcionamiento.
-  *
-  * @param operation - nombre de la operación fallada
-  * @param result - valor opcional a retornar como resultado observable
-  */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} fallo: ${error.message} - Error adicional: ${error.error}`, true);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  constructor() {
+    this.baseService.nombreServicioMensaje = this.nombreSimpleServicio;
   }
 
   /**
@@ -94,14 +40,14 @@ export class MiscService {
    */
   getEmail(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/email?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
-        catchError(this.handleError<string[]>('getEmail', []))
+        catchError(this.baseService.handleError<string[]>('getEmail', []))
       );
   }
 
@@ -113,7 +59,7 @@ export class MiscService {
   getPassword(resultados: number = 1, longitud: number = -1, mayusMinus: string = '',
     numeros: string = '', especial: string = ''): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/password?results=' + resultados;
     if (longitud != -1) {
@@ -130,11 +76,11 @@ export class MiscService {
     }
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Passwords recuperados')),
-        catchError(this.handleError<string[]>('getPassword', []))
+        catchError(this.baseService.handleError<string[]>('getPassword', []))
       );
   }
 
@@ -145,7 +91,7 @@ export class MiscService {
    */
   getPhonenumber(resultados: number = 1, tipo: string = ''): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/phonenumber?results=' + resultados;
     if (tipo != '') {
@@ -153,11 +99,11 @@ export class MiscService {
     }
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Telefonos recuperados')),
-        catchError(this.handleError<string[]>('getPhonenumber', []))
+        catchError(this.baseService.handleError<string[]>('getPhonenumber', []))
       );
   }
 
@@ -168,14 +114,14 @@ export class MiscService {
    */
   getCity(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/city?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Ciudades recuperados')),
-        catchError(this.handleError<string[]>('getCity', []))
+        catchError(this.baseService.handleError<string[]>('getCity', []))
       );
   }
 
@@ -186,14 +132,14 @@ export class MiscService {
    */
   getZipCode(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/zipcode?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Cod. Postales recuperados')),
-        catchError(this.handleError<string[]>('getZipCode', []))
+        catchError(this.baseService.handleError<string[]>('getZipCode', []))
       );
   }
 
@@ -205,14 +151,14 @@ export class MiscService {
    */
   getImei(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/imei?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('IMEIs recuperados')),
-        catchError(this.handleError<string[]>('getImei', []))
+        catchError(this.baseService.handleError<string[]>('getImei', []))
       );
   }
 
@@ -225,7 +171,7 @@ export class MiscService {
   getVoucher(resultados: number = 1, charset: string = '', length: number = -1,
     pattern: string = '', prefix: string = '', suffix: string = ''): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/voucher?results=' + resultados;
     if (charset != '') {
@@ -245,11 +191,11 @@ export class MiscService {
     }
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Passwords recuperados')),
-        catchError(this.handleError<string[]>('getVoucher', []))
+        catchError(this.baseService.handleError<string[]>('getVoucher', []))
       );
   }
 
@@ -261,13 +207,13 @@ export class MiscService {
    */
   getCcaa(): Observable<Ccaa[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
     return this.http.get<Ccaa[]>(this.urlJsonServer + this.interfaz + '/ccaa', {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('CCAAs recuperados')),
-        catchError(this.handleError<Ccaa[]>('getCcaa', []))
+        catchError(this.baseService.handleError<Ccaa[]>('getCcaa', []))
       );
   }
 
@@ -278,16 +224,16 @@ export class MiscService {
    */
   getProvincias(idccaa: string): Observable<Provincia[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/provincias?idccaa=' + idccaa;
 
     return this.http.get<Provincia[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('provincias de una CCAA recuperados')),
-        catchError(this.handleError<Provincia[]>('getProvincias', []))
+        catchError(this.baseService.handleError<Provincia[]>('getProvincias', []))
       );
   }
 
@@ -298,16 +244,16 @@ export class MiscService {
    */
   getMunicipios(idprovincia: string): Observable<Municipio[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/municipios?idprovincia=' + idprovincia;
 
     return this.http.get<Municipio[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('municipios de una provincia recuperados')),
-        catchError(this.handleError<Municipio[]>('getMunicipios', []))
+        catchError(this.baseService.handleError<Municipio[]>('getMunicipios', []))
       );
   }
 
@@ -318,14 +264,14 @@ export class MiscService {
    */
   getUuid(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     return this.http.get<string[]>(this.urlJsonServer + this.interfaz + '/uuid?results=' + resultados, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
-        catchError(this.handleError<string[]>('getUuid', []))
+        catchError(this.baseService.handleError<string[]>('getUuid', []))
       );
   }
 
@@ -338,7 +284,7 @@ export class MiscService {
     km: string = '', bloque: string = '', portal: string = '', escalera: string = '',
 		planta: string = '', puerta: string = ''): Observable<DireccionCompleta[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/address?results=' + resultados;
 
@@ -379,11 +325,11 @@ export class MiscService {
     }
 
     return this.http.get<DireccionCompleta[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('provincias de una CCAA recuperados')),
-        catchError(this.handleError<DireccionCompleta[]>('getAddress', []))
+        catchError(this.baseService.handleError<DireccionCompleta[]>('getAddress', []))
       );
   }
 
@@ -394,7 +340,7 @@ export class MiscService {
    */
   getCatastral(resultados: number = 1, type: string = ''): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/catastral?results=' + resultados;
 
@@ -403,11 +349,11 @@ export class MiscService {
     }
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
-        catchError(this.handleError<string[]>('getCatastral', []))
+        catchError(this.baseService.handleError<string[]>('getCatastral', []))
       );
   }
 
@@ -418,16 +364,16 @@ export class MiscService {
    */
   getValidatecatastral(catastral: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatecatastral?catastral=' + catastral;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getValidatecatastral', ''))
+        catchError(this.baseService.handleError<string>('getValidatecatastral', ''))
       );
   }
 
@@ -439,7 +385,7 @@ export class MiscService {
    */
   getCups(resultados: number = 1, type: string = ''): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/cups?results=' + resultados;
 
@@ -448,11 +394,11 @@ export class MiscService {
     }
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
-        catchError(this.handleError<string[]>('getCups', []))
+        catchError(this.baseService.handleError<string[]>('getCups', []))
       );
   }
 
@@ -463,16 +409,16 @@ export class MiscService {
    */
   getValidatecups(cups: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatecups?cups=' + cups;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getValidatecups', ''))
+        catchError(this.baseService.handleError<string>('getValidatecups', ''))
       );
   }
 
@@ -483,16 +429,16 @@ export class MiscService {
    */
   getLei(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/lei?results=' + resultados;
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
-        catchError(this.handleError<string[]>('getLei', []))
+        catchError(this.baseService.handleError<string[]>('getLei', []))
       );
   }
 
@@ -503,16 +449,16 @@ export class MiscService {
    */
   getValidatelei(lei: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatelei?lei=' + lei;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getValidatelei', ''))
+        catchError(this.baseService.handleError<string>('getValidatelei', ''))
       );
   }
 
@@ -523,16 +469,16 @@ export class MiscService {
    */
   getIsin(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/isin?results=' + resultados;
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
-        catchError(this.handleError<string[]>('getIsin', []))
+        catchError(this.baseService.handleError<string[]>('getIsin', []))
       );
   }
 
@@ -543,16 +489,16 @@ export class MiscService {
    */
   getValidateisin(isin: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/validateisin?isin=' + isin;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getValidateisin', ''))
+        catchError(this.baseService.handleError<string>('getValidateisin', ''))
       );
   }
 
@@ -563,16 +509,16 @@ export class MiscService {
    */
   getNss(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/nss?results=' + resultados;
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Emails recuperados')),
-        catchError(this.handleError<string[]>('getNss', []))
+        catchError(this.baseService.handleError<string[]>('getNss', []))
       );
   }
 
@@ -583,16 +529,16 @@ export class MiscService {
    */
   getValidatenss(nss: string): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/validatenss?nss=' + nss;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Nifs recuperados')),
-        catchError(this.handleError<string>('getValidatenss', ''))
+        catchError(this.baseService.handleError<string>('getValidatenss', ''))
       );
   }
 

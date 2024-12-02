@@ -58,7 +58,7 @@ import { marker} from '@colsen1991/ngx-translate-extract-marker';
     )
   ],
 })
-export class BaseGeneraComponent implements OnInit  {
+export abstract class BaseGeneraComponent implements OnInit  {
 
   //Opcion fija "Seleccionar todas" para los combos de columnas a mostrar en tablas
   static columSeleccionarTodas = 'Seleccionar todas';

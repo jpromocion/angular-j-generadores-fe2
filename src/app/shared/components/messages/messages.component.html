@@ -1,6 +1,6 @@
 <div *ngIf="messageService.messages.length">
 
-  <h2>Bandeja de mensajes</h2>
+  <h2>{{ 'generadores.jpromocion.bandejamensajes.titulo' | translate }}</h2>
   <div *ngFor='let message of messageService.messages'>
     <div class="alert-primary"  *ngIf="message.tipo=='info'">
       {{message.mensaje}}
@@ -30,6 +30,8 @@
     </div>
     -->
   </div>
-  <button mat-stroked-button type="button" (click)="limpiarMensajes()" style="margin-top: 5px;margin-bottom: 10px;">Limpiar mensajes</button>
+  <button mat-stroked-button type="button" (click)="limpiarMensajes()" style="margin-top: 5px;margin-bottom: 10px;">
+    {{ 'generadores.jpromocion.bandejamensajes.botonlimpiar' | translate }}
+  </button>
 
 </div>

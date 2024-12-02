@@ -3,82 +3,33 @@
  * API rest "number/"
  */
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, delay } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { MessageService } from './message.service';
-import { DatosConexionService } from './datos-conexion.service';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NumberService {
-
+  nombreSimpleServicio: string = 'NumberService';
 
   //La URL de la API rest
   private urlJsonServer = environment.apiUrl;
   private interfaz = '/number';
 
-  baseHeaders = new HttpHeaders().set('X-API-KEY', '');
-
   //inyectamos el servicio HTTP
   private http: HttpClient = inject(HttpClient);
-  //inyeccion de dependencias para que a su vez pueda hacer uso del servicio de mensajes
-  messageService: MessageService = inject(MessageService);
-
-  //inyectamos el servicio de datos conexion, para obtener la api-key que fija el componente padre
-  //de todo app
-  private datosConexionService: DatosConexionService = inject(DatosConexionService);
-
-  constructor() { }
+  //inyectamos baseservice para utilizar como padre, de forma mas "angular" en vez de extender la clase con herencia
+  private baseService: BaseService = inject(BaseService);
 
 
-  /**
-   * Fijar la apyKey
-   * @param apiKeyIn
-   */
-  private setApiKey(apiKeyIn: string) {
-    this.baseHeaders = new HttpHeaders().set('X-API-KEY', apiKeyIn);
+  constructor() {
+    this.baseService.nombreServicioMensaje = this.nombreSimpleServicio;
   }
 
-  /**
-   * Fijar la api-key del servicio de datos conexion
-   */
-  private fijarApiKeyServicio() {
-    this.setApiKey(this.datosConexionService.getApiKey());
-  }
 
-  /**
-   * Loguear un mensaje en el servicio de mensajes
-   * @param message
-   */
-  private log(message: string, error: boolean = false) {
-    console.info(`NumberService: ${message}`);
-    if (error) {
-      this.messageService.addError(`NumberService: ${message}`);
-    } else {
-      this.messageService.add(`NumberService: ${message}`);
-    }
-  }
-
-  /**
-  * Manjear fallo en operación Http
-  * Mantiene la app en funcionamiento.
-  *
-  * @param operation - nombre de la operación fallada
-  * @param result - valor opcional a retornar como resultado observable
-  */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      console.error(error); // log to console instead
-
-      this.log(`${operation} fallo: ${error.message} - Error adicional: ${error.error}`, true);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 
   /**
    * Interfaz de invocación del servicio rest para obtener numeros aleatorios.
@@ -87,7 +38,7 @@ export class NumberService {
    */
   getRandom(resultados: number = 1, minimo: number = 0, maximo: number = 0, decimales: String = 'n', repetidos: String = 'y'): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/random?results=' + resultados;
 
@@ -104,11 +55,11 @@ export class NumberService {
     }
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Num aleatorios recuperados')),
-        catchError(this.handleError<string[]>('getRandom', []))
+        catchError(this.baseService.handleError<string[]>('getRandom', []))
       );
   }
 
@@ -119,7 +70,7 @@ export class NumberService {
    */
   getCoin(resultados: number = 1, simboloCara: String = '', simboloCruz: String = ''): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/coin?results=' + resultados;
 
@@ -132,11 +83,11 @@ export class NumberService {
     }
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Tiradas de moneda recuperadas')),
-        catchError(this.handleError<string[]>('getCoin', []))
+        catchError(this.baseService.handleError<string[]>('getCoin', []))
       );
   }
 
@@ -147,16 +98,16 @@ export class NumberService {
    */
   getDice(resultados: number = 1): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/dice?results=' + resultados;
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Tiradas de dado recuperadas')),
-        catchError(this.handleError<string[]>('getDice', []))
+        catchError(this.baseService.handleError<string[]>('getDice', []))
       );
   }
 
@@ -167,7 +118,7 @@ export class NumberService {
    */
   getGauss(resultados: number = 1, media: number = 0, desviacion: number = 1, decimales: number = 5): Observable<string[]> {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/gauss?results=' + resultados;
 
@@ -181,11 +132,11 @@ export class NumberService {
 
 
     return this.http.get<string[]>(urlfinal, {
-      headers: this.baseHeaders,
+      headers: this.baseService.baseHeaders,
     })
       .pipe(
         //tap(_ => this.log('Num aleatorios por gauss recuperados')),
-        catchError(this.handleError<string[]>('getGauss', []))
+        catchError(this.baseService.handleError<string[]>('getGauss', []))
       );
   }
 
@@ -196,7 +147,7 @@ export class NumberService {
    */
   getCalculator(operando: string, numero1: number = 0, numero2: number = 0, decimales: number = 2): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/calculator?operand=' + operando;
 
@@ -209,11 +160,11 @@ export class NumberService {
     }
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Resultado operación recuperado')),
-        catchError(this.handleError<string>('getCalculator', ''))
+        catchError(this.baseService.handleError<string>('getCalculator', ''))
       );
   }
 
@@ -224,7 +175,7 @@ export class NumberService {
    */
   getProportion(numeroA: number = 0, numeroB: number = 0, numeroC: number = 0, directa: String = 'y', decimales: number = 2): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/proportion?numberA=' + numeroA;
 
@@ -240,11 +191,11 @@ export class NumberService {
     }
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Resultado proporción recuperado')),
-        catchError(this.handleError<string>('getProportion', ''))
+        catchError(this.baseService.handleError<string>('getProportion', ''))
       );
   }
 
@@ -255,7 +206,7 @@ export class NumberService {
    */
   getArea(tipo: String = 'cuadrado', numeroA: number = 0, numeroB: number = 0, numeroC: number = 0, decimales: number = 2): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/area?type=' + tipo;
 
@@ -271,11 +222,11 @@ export class NumberService {
     }
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Area recuperada')),
-        catchError(this.handleError<string>('getArea', ''))
+        catchError(this.baseService.handleError<string>('getArea', ''))
       );
   }
 
@@ -286,7 +237,7 @@ export class NumberService {
    */
   getDegreesToRadians(grados: number = 0, decimales: number = 2): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/degreesToRadians?degrees=' + grados;
 
@@ -295,11 +246,11 @@ export class NumberService {
     }
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Radianes recuperada')),
-        catchError(this.handleError<string>('getDegreesToRadians', ''))
+        catchError(this.baseService.handleError<string>('getDegreesToRadians', ''))
       );
   }
 
@@ -310,7 +261,7 @@ export class NumberService {
    */
   getRadiansToDegrees(radianes: number = 0, decimales: number = 2): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/radiansToDegrees?radians=' + radianes;
 
@@ -319,11 +270,11 @@ export class NumberService {
     }
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Grados recuperada')),
-        catchError(this.handleError<string>('getRadiansToDegrees', ''))
+        catchError(this.baseService.handleError<string>('getRadiansToDegrees', ''))
       );
   }
 
@@ -334,7 +285,7 @@ export class NumberService {
    */
   getTrigonometric(tipo: String = 'seno', numero: number = 0, tipoNumero: String = 'radianes', decimales: number = 2): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/trigonometric?type=' + tipo;
 
@@ -349,11 +300,11 @@ export class NumberService {
     }
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Cálculo trigonometrico recuperado')),
-        catchError(this.handleError<string>('getTrigonometric', ''))
+        catchError(this.baseService.handleError<string>('getTrigonometric', ''))
       );
   }
 
@@ -364,7 +315,7 @@ export class NumberService {
    */
   getBaseConverter(numero: String = '', baseOrigen: number = 10, baseDestino: number = 10): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/baseConverter?number=' + numero;
 
@@ -373,11 +324,11 @@ export class NumberService {
     urlfinal = urlfinal + '&baseTo=' + baseDestino;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Cambio base recuperado')),
-        catchError(this.handleError<string>('getBaseConverter', ''))
+        catchError(this.baseService.handleError<string>('getBaseConverter', ''))
       );
   }
 
@@ -388,16 +339,16 @@ export class NumberService {
    */
   getArabicToRoman(numero: number = 0): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/arabicToRoman?number=' + numero;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Romano recuperado')),
-        catchError(this.handleError<string>('getArabicToRoman', ''))
+        catchError(this.baseService.handleError<string>('getArabicToRoman', ''))
       );
   }
 
@@ -408,16 +359,16 @@ export class NumberService {
    */
   getRomanToArabic(numero: String = 'I'): Observable<string>  {
     //fijamos la api-key del servicio de datos conexion
-    this.fijarApiKeyServicio();
+    this.baseService.fijarApiKeyServicio();
 
     let urlfinal: string = this.urlJsonServer + this.interfaz + '/romanToArabic?number=' + numero;
 
     return this.http.get(urlfinal, {
-      headers: this.baseHeaders, responseType: 'text'
+      headers: this.baseService.baseHeaders, responseType: 'text'
     })
       .pipe(
         //tap(_ => this.log('Arabigo recuperado')),
-        catchError(this.handleError<string>('getRomanToArabic', ''))
+        catchError(this.baseService.handleError<string>('getRomanToArabic', ''))
       );
   }
 

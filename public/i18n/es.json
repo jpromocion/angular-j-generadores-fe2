@@ -20,21 +20,6 @@
         "variados": "Variados",
         "acercade": "Acerca de"
       },
-      "compramecafe":{
-        "boton": "¡¡Compramé un café!!"
-      },
-      "acercade":{
-        "version": "Versión",
-        "autor": "Autor",
-        "infocontacto": "Información de contacto",
-        "enviaremail": "Enviar email"
-      },
-      "principal":{
-        "apikey":{
-          "label": "API-Key",
-          "tooltip": "Introduzca la api-key para la comunicación con el servicio REST"
-        }
-      },
       "generarcomunes":{
         "numgeneraciones": {
           "label": "Num. generaciones",
@@ -117,6 +102,28 @@
             "label": "Transformar",
             "tooltip": "Pulsar para transformar"
           }
+        },
+        "mensajes":{
+          "errorservicio": "{{operacion}} fallo: {{mensaje}} - Error adicional: {{erroradicional}}"
+        }
+      },
+      "bandejamensajes":{
+        "titulo": "Bandeja de mensajes",
+        "botonlimpiar": "Limpiar mensajes"
+      },
+      "compramecafe":{
+        "boton": "¡¡Compramé un café!!"
+      },
+      "acercade":{
+        "version": "Versión",
+        "autor": "Autor",
+        "infocontacto": "Información de contacto",
+        "enviaremail": "Enviar email"
+      },
+      "principal":{
+        "apikey":{
+          "label": "API-Key",
+          "tooltip": "Introduzca la api-key para la comunicación con el servicio REST"
         }
       },
       "documentos":{
