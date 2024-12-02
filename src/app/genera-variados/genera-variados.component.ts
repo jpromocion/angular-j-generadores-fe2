@@ -15,6 +15,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { MiscService } from '../core/services/misc.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-variados',
@@ -144,7 +145,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('Emails generados', 'GenerarEmail');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadoemail.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadoemail.titulo')));
       }
     });
   }
@@ -158,7 +161,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('Ciudades generadas', 'GenerarCiudad');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadociudad.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadociudad.titulo')));
       }
     });
   }
@@ -171,7 +176,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('Cod. postales generados', 'GenerarCP');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadocodpostal.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadocodpostal.titulo')));
       }
     });
   }
@@ -184,7 +191,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('IMEIs generados', 'GenerarIMEI');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadoimei.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadoimei.titulo')));
       }
     });
   }
@@ -197,7 +206,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('UUIDs generados', 'GenerarUUID');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadouuid.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadouuid.titulo')));
       }
     });
   }
@@ -210,7 +221,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('LEIs generados', 'GenerarLEI');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadolei.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadolei.titulo')));
       }
     });
   }
@@ -223,7 +236,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('ISINs generados', 'GenerarISIN');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadoisin.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadoisin.titulo')));
       }
     });
   }
@@ -236,7 +251,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('NSS generados', 'GenerarNSS');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadonss.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadonss.titulo')));
       }
     });
   }
@@ -275,7 +292,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     let codigoTipoSeleccionado = (<any>this.selectedTipoGeneraFC?.value)?.valor;
 
     if (!codigoTipoSeleccionado || codigoTipoSeleccionado == '') {
-      this.openSnackBar('Debe seleccionar un tipo de generación.','Cerrar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.variados.mensajes.errortipogene.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.variados.mensajes.errortipogene.titulo')));
     } else if (codigoTipoSeleccionado == 'em') {
       this.getEmail(this.numGenerar);
     } else if (codigoTipoSeleccionado == 'ci') {
@@ -302,7 +321,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarTipo(): void {
     this.textoGenerado = [];
-    this.openSnackBar('Datos limpiados', 'LimpiarTipo');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadotipogene.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadotipogene.titulo')));
   }
 
   /**
@@ -311,7 +332,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   exportJsonTipos(): void {
     const formatted = this.textoGenerado.map(dato => ({ Valor: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_tipos');
-    this.openSnackBar('Excel generado','ExcelTipos');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.errortipogene.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.exceltipogene.titulo')));
   }
 
 
@@ -324,7 +347,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.passGenerado = cadena;
       if (this.passGenerado && this.passGenerado.length > 0){
-        this.openSnackBar('Passwords generados', 'GenerarPassword');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadopass.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadopass.titulo')));
       }
     });
   }
@@ -345,7 +370,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarPassword(): void {
     this.passGenerado = [];
-    this.openSnackBar('Passwords limpiados', 'LimpiarPassword');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadopass.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadopass.titulo')));
   }
 
   /**
@@ -354,7 +381,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   exportJsonPassword(): void {
     const formatted = this.passGenerado.map(dato => ({ Password: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_passwords');
-    this.openSnackBar('Excel generado','ExcelPasswords');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpass.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpass.titulo')));
   }
 
 
@@ -377,7 +406,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
 
         this.tlfGenerado = cadena;
         if (this.tlfGenerado && this.tlfGenerado.length > 0){
-          this.openSnackBar('Teléfonos generados', 'GenerarTelefono');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadotlf.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadotlf.titulo')));
         }
       });
 
@@ -391,7 +422,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   onClickBotonGenerarTelefono(): void {
     this.tlfGenerado = [];
     if (this.selectedTipoTelefono == '') {
-      this.openSnackBar('Debe seleccionar un tipo de teléfono.','Cerrar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.variados.mensajes.errortlf.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.variados.mensajes.errortlf.titulo')));
     } else {
       this.getTelefono(this.numGenerar, this.selectedTipoTelefono);
     }
@@ -403,7 +436,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarTelefono(): void {
     this.tlfGenerado = [];
-    this.openSnackBar('Telefonos limpiados', 'LimpiarTelefono');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadotlf.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadotlf.titulo')));
   }
 
   /**
@@ -412,7 +447,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   exportJsonTelefono(): void {
     const formatted = this.tlfGenerado.map(dato => ({ Telefono: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_Telefonos');
-    this.openSnackBar('Excel generado','ExcelTelefono');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.exceltlf.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.exceltlf.titulo')));
   }
 
 
@@ -425,7 +462,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.promoGenerado = cadena;
       if (this.promoGenerado && this.promoGenerado.length > 0){
-        this.openSnackBar('Cod. promocionales generados', 'GenerarCodPromocional');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadopromo.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadopromo.titulo')));
       }
     });
   }
@@ -445,7 +484,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarPromocionales(): void {
     this.promoGenerado = [];
-    this.openSnackBar('Cod. promocionales limpiados', 'LimpiarCodPromocional');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadopromo.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadopromo.titulo')));
   }
 
   /**
@@ -454,7 +495,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   exportJsonPromocionales(): void {
     const formatted = this.promoGenerado.map(dato => ({ Cod_Promocional: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_CodPromocionales');
-    this.openSnackBar('Excel generado','ExcelCodPromocional');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpromo.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpromo.titulo')));
   }
 
 
@@ -468,7 +511,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.refCatasGeneradas = cadena;
       if (this.refCatasGeneradas && this.refCatasGeneradas.length > 0){
-        this.openSnackBar('Ref. catastrales generadas', 'GenerarRefCatastral');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadocatas.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadocatas.titulo')));
       }
     });
   }
@@ -486,7 +531,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarRefCatastral(): void {
     this.refCatasGeneradas = [];
-    this.openSnackBar('Ref. catastrales limpiadas', 'LimpiarRefCatastral');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadocatas.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadocatas.titulo')));
   }
 
   /**
@@ -495,7 +542,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   exportJsonRefCatastral(): void {
     const formatted = this.refCatasGeneradas.map(dato => ({ RefCatastral: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_RefCatastrales');
-    this.openSnackBar('Excel generado','ExcelRefCatastral');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcatas.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcatas.titulo')));
   }
 
 
@@ -510,7 +559,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(nifOk => {
       this.refCatasValidarOk = nifOk;
       if (this.refCatasValidarOk && this.refCatasValidarOk != ''){
-        this.openSnackBar('Ref. catastral validada', 'ValidarRefCatastral');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadicatas.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadicatas.titulo')));
       }
     });
   }
@@ -529,7 +580,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cadena => {
       this.cupsGeneradas = cadena;
       if (this.cupsGeneradas && this.cupsGeneradas.length > 0){
-        this.openSnackBar('CUPS generados', 'GenerarCups');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadocups.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.generadocups.titulo')));
       }
     });
   }
@@ -547,7 +600,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarCups(): void {
     this.cupsGeneradas = [];
-    this.openSnackBar('CUPS limpiados', 'LimpiarCups');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadocups.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.limpiadocups.titulo')));
   }
 
   /**
@@ -556,7 +611,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   exportJsonCups(): void {
     const formatted = this.cupsGeneradas.map(dato => ({ Cups: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_Cups');
-    this.openSnackBar('Excel generado','ExcelCups');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcups.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcups.titulo')));
   }
 
 
@@ -571,7 +628,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(cups => {
       this.cupsValidarOk = cups;
       if (this.cupsValidarOk && this.cupsValidarOk != ''){
-        this.openSnackBar('CUPS validado', 'ValidarCups');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadicups.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadicups.titulo')));
       }
     });
   }
@@ -587,7 +646,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(lei => {
       this.leiValidarOk = lei;
       if (this.leiValidarOk && this.leiValidarOk != ''){
-        this.openSnackBar('LEI validado', 'ValidarLei');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadilei.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadilei.titulo')));
       }
     });
   }
@@ -602,7 +663,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(isin => {
       this.isinValidarOk = isin;
       if (this.isinValidarOk && this.isinValidarOk != ''){
-        this.openSnackBar('ISIN validado', 'ValidarIsin');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadiisin.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadiisin.titulo')));
       }
     });
   }
@@ -616,7 +679,9 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(nss => {
       this.nssValidarOk = nss;
       if (this.nssValidarOk && this.nssValidarOk != ''){
-        this.openSnackBar('NSS validado', 'ValidarNss');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadinss.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.variados.mensajes.validadinss.titulo')));
       }
     });
   }

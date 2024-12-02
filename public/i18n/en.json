@@ -2007,6 +2007,136 @@
         }
       },
       "variados": {
+        "mensajes": {
+          "generadoemail": {
+            "mensaje": "Emails generated",
+            "titulo": "GenerateEmail"
+          },
+          "generadociudad": {
+            "mensaje": "Cities generated",
+            "titulo": "GenerateCity"
+          },
+          "generadocodpostal": {
+            "mensaje": "Postal codes generated",
+            "titulo": "GeneratePostalCode"
+          },
+          "generadoimei": {
+            "mensaje": "IMEIs generated",
+            "titulo": "GenerateIMEI"
+          },
+          "generadouuid": {
+            "mensaje": "UUIDs generated",
+            "titulo": "GenerateUUID"
+          },
+          "generadolei": {
+            "mensaje": "LEIs generated",
+            "titulo": "GenerateLEI"
+          },
+          "generadoisin": {
+            "mensaje": "ISINs generated",
+            "titulo": "GenerateISIN"
+          },
+          "generadonss": {
+            "mensaje": "NSS generated",
+            "titulo": "GenerateNSS"
+          },
+          "errortipogene": {
+            "mensaje": "You must select a type of generation",
+            "titulo": "TypeError"
+          },
+          "limpiadotipogene": {
+            "mensaje": "Data cleaned",
+            "titulo": "CleanType"
+          },
+          "exceltipogene": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelTypes"
+          },
+          "generadopass": {
+            "mensaje": "Passwords generated",
+            "titulo": "GeneratePassword"
+          },
+          "limpiadopass": {
+            "mensaje": "Passwords cleaned",
+            "titulo": "CleanPassword"
+          },
+          "excelpass": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelPasswords"
+          },
+          "generadotlf": {
+            "mensaje": "Phones generated",
+            "titulo": "GeneratePhone"
+          },
+          "errortlf": {
+            "mensaje": "You must select a type of phone.",
+            "titulo": "PhoneError"
+          },
+          "limpiadotlf": {
+            "mensaje": "Phones cleaned",
+            "titulo": "CleanPhone"
+          },
+          "exceltlf": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelPhone"
+          },
+          "generadopromo": {
+            "mensaje": "Promotional codes generated",
+            "titulo": "GeneratePromoCode"
+          },
+          "limpiadopromo": {
+            "mensaje": "Promotional codes cleaned",
+            "titulo": "CleanPromoCode"
+          },
+          "excelpromo": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelPromoCode"
+          },
+          "generadocatas": {
+            "mensaje": "Cadastral references generated",
+            "titulo": "GenerateCadastralRef"
+          },
+          "limpiadocatas": {
+            "mensaje": "Cadastral references cleaned",
+            "titulo": "CleanCadastralRef"
+          },
+          "excelcatas": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelCadastralRef"
+          },
+          "validadicatas": {
+            "mensaje": "Cadastral reference validated",
+            "titulo": "ValidateCadastralRef"
+          },
+          "generadocups": {
+            "mensaje": "CUPS generated",
+            "titulo": "GenerateCups"
+          },
+          "limpiadocups": {
+            "mensaje": "CUPS cleaned",
+            "titulo": "CleanCups"
+          },
+          "excelcups": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelCups"
+          },
+          "validadicups": {
+            "mensaje": "CUPS validated",
+            "titulo": "ValidateCups"
+          },
+          "validadilei": {
+            "mensaje": "LEI validated",
+            "titulo": "ValidateLei"
+          },
+          "validadiisin": {
+            "mensaje": "ISIN validated",
+            "titulo": "ValidateIsin"
+          },
+          "validadinss": {
+            "mensaje": "NSS validated",
+            "titulo": "ValidateNss"
+          }
+        },
         "frame": {
           "generartipo": "Generate selected type",
           "generartelefono": "Generate Phones",
