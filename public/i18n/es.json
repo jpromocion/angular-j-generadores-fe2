@@ -954,6 +954,80 @@
       },
       "qrbarras": {
         "titulo": "QR y Códigos de barras",
+        "mensajes": {
+          "generadoupca": {
+            "mensaje": "Generado código UPC-A",
+            "titulo": "GenerarBarraUPCA"
+          },
+          "errorupcatamano": {
+            "mensaje": "El código UPC-A debe ser de 11-12 dígitos numéricos",
+            "titulo": "ErrorBarraUPCA"
+          },
+          "limpiadooupca": {
+            "mensaje": "Código barras UPC-A limpiado",
+            "titulo": "LimpiarBarraUPCA"
+          },
+          "generadoupce": {
+            "mensaje": "Generado código UPC-E",
+            "titulo": "GenerarBarraUPCE"
+          },
+          "errorupcetamano": {
+            "mensaje": "El código UPC-E debe ser de 8 dígitos numéricos",
+            "titulo": "ErrorBarraUPCE"
+          },
+          "limpiadooupce": {
+            "mensaje": "Código barras UPC-E limpiado",
+            "titulo": "LimpiarBarraUPCE"
+          },
+          "generadoean13": {
+            "mensaje": "Generado código EAN-13",
+            "titulo": "GenerarBarraEAN"
+          },
+          "errorean13tamano": {
+            "mensaje": "El código EAN-13 debe ser de 13 dígitos numéricos",
+            "titulo": "ErrorBarraEAN"
+          },
+          "limpiadooean13": {
+            "mensaje": "Código barras EAN-13 limpiado",
+            "titulo": "LimpiarBarraEAN"
+          },
+          "generadocode128": {
+            "mensaje": "Generado código Code-128",
+            "titulo": "GenerarBarraCode128"
+          },
+          "errorcode128tamano": {
+            "mensaje": "El código Code-128 debe tener un máximo de 80 carácteres",
+            "titulo": "ErrorBarraCode128"
+          },
+          "limpiadoocode128": {
+            "mensaje": "Código barras Code-128 limpiado",
+            "titulo": "LimpiarBarraCode128"
+          },
+          "generadopdf147": {
+            "mensaje": "Generado código PDF-147",
+            "titulo": "GenerarBarraPdf147"
+          },
+          "errorpdf147tamano": {
+            "mensaje": "El código debe contener algo",
+            "titulo": "ErrorBarraPdf147"
+          },
+          "limpiadoopdf147": {
+            "mensaje": "Código barras PDF-147 limpiado",
+            "titulo": "LimpiarBarraPdf147"
+          },
+          "generadoqr": {
+            "mensaje": "Generado código QR",
+            "titulo": "GenerarBarraQr"
+          },
+          "errorqrtamano": {
+            "mensaje": "El código debe contener algo",
+            "titulo": "ErrorBarraQr"
+          },
+          "limpiadoqr": {
+            "mensaje": "Código barras QR limpiado",
+            "titulo": "LimpiarBarraQr"
+          }
+        },
         "textosfijos": {
           "qr": {
             "parrafo1": "Los códigos QR se están convirtiendo en los códigos de barras 2D más reconocidos en todo el mundo. La gran ventaja del código QR es que podemos almacenar grandes cantidades de datos en un espacio limitado.",

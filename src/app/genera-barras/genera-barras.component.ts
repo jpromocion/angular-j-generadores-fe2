@@ -16,6 +16,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { BarcodesService } from '../core/services/barcodes.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-barras',
@@ -81,7 +82,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
           this.imagenUpcA = '';
         }
         if (this.imagenUpcA != '') {
-          this.openSnackBar('Generado código UPC-A', 'GenerarBarraUPCA');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoupca.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoupca.titulo')));
         }
       });
     }
@@ -93,7 +96,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     this.imagenUpcA = '';
     //comprobamos que upcABarcode sean solo numeros y de tamaño 12 o 11
     if ((this.upcABarcode.length != 12 && this.upcABarcode.length != 11) || isNaN(Number(this.upcABarcode))) {
-      this.openSnackBar('El código UPC-A debe ser de 11-12 dígitos numéricos', 'ErrorBarraUPCA');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorupcatamano.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorupcatamano.titulo')));
       return;
     } else{
       this.getUpcA(this.upcABarcode, this.ancho, this.alto);
@@ -107,7 +112,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarUpcA(): void {
     this.imagenUpcA = '';
-    this.openSnackBar('Código barras UPC-A limpiado', 'LimpiarBarraUPCE');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadooupca.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadooupca.titulo')));
   }
 
   /**
@@ -122,7 +129,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
         this.imagenUpcE = '';
       }
       if (this.imagenUpcE != '') {
-        this.openSnackBar('Generado código UPC-E', 'GenerarBarraUPCE');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoupce.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoupce.titulo')));
       }
     });
   }
@@ -134,7 +143,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     this.imagenUpcE = '';
     //comprobamos que upcEBarcode sean solo numeros y de tamaño 8
     if (this.upcEBarcode.length != 8 || isNaN(Number(this.upcEBarcode))) {
-      this.openSnackBar('El código UPC-E debe ser de 8 dígitos numéricos', 'ErrorBarraUPCE');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorupcetamano.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorupcetamano.titulo')));
       return;
     } else{
       this.getUpcE(this.upcEBarcode, this.ancho, this.alto);
@@ -146,7 +157,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarUpcE(): void {
     this.imagenUpcE = '';
-    this.openSnackBar('Código barras UPC-E limpiado', 'LimpiarBarraUPCE');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadooupce.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadooupce.titulo')));
   }
 
 
@@ -162,7 +175,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
         this.imagenEan = '';
       }
       if (this.imagenEan != '') {
-        this.openSnackBar('Generado código EAN-13', 'GenerarBarraEAN');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoean13.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoean13.titulo')));
       }
     });
   }
@@ -174,7 +189,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     this.imagenEan = '';
     //comprobamos que EanBarcode sean solo numeros y de tamaño 13
     if (this.eanBarcode.length != 13 || isNaN(Number(this.eanBarcode))) {
-      this.openSnackBar('El código EAN-13 debe ser de 13 dígitos numéricos', 'ErrorBarraEAN');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorean13tamano.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorean13tamano.titulo')));
       return;
     } else{
       this.getEan(this.eanBarcode, this.ancho, this.alto);
@@ -186,7 +203,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarEan(): void {
     this.imagenEan = '';
-    this.openSnackBar('Código barras EAN-13 limpiado', 'LimpiarBarraEAN');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadooean13.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadooean13.titulo')));
   }
 
 
@@ -204,7 +223,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
         this.imagenCode128 = '';
       }
       if (this.imagenCode128 != '') {
-        this.openSnackBar('Generado código Code-128', 'GenerarBarraCode128');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadocode128.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadocode128.titulo')));
       }
     });
   }
@@ -216,7 +237,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     this.imagenCode128 = '';
     //comprobamos que Code128Barcode tamaño máximo de 80
     if (this.code128Barcode.length > 80) {
-      this.openSnackBar('El código Code-128 debe tener un máximo de 80 carácteres', 'ErrorBarraCode128');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorcode128tamano.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorcode128tamano.titulo')));
       return;
     } else{
       this.getCode128(this.code128Barcode, this.ancho, this.alto);
@@ -228,7 +251,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarCode128(): void {
     this.imagenCode128 = '';
-    this.openSnackBar('Código barras Code-128 limpiado', 'LimpiarBarraCode128');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadoocode128.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadoocode128.titulo')));
   }
 
 
@@ -245,7 +270,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
         this.imagenPdf147 = '';
       }
       if (this.imagenPdf147 != '') {
-        this.openSnackBar('Generado código PDF-147', 'GenerarBarraPdf147');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadopdf147.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadopdf147.titulo')));
       }
     });
   }
@@ -258,7 +285,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
 
     //comprobamos que tenga algo
     if (this.pdf147Barcode.length <= 0) {
-      this.openSnackBar('El código debe contener algo', 'ErrorBarraPdf147');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorpdf147tamano.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorpdf147tamano.titulo')));
       return;
     } else{
       this.getPdf147(this.pdf147Barcode, this.ancho, this.alto);
@@ -271,7 +300,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarPdf147(): void {
     this.imagenPdf147 = '';
-    this.openSnackBar('Código QR limpiado', 'LimpiarBarraPdf147');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadoopdf147.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadoopdf147.titulo')));
   }
 
 
@@ -289,7 +320,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
         this.imagenQr = '';
       }
       if (this.imagenQr != '') {
-        this.openSnackBar('Generado código QR', 'GenerarBarraQr');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoqr.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.generadoqr.titulo')));
       }
     });
   }
@@ -301,7 +334,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     this.imagenQr = '';
     //comprobamos que tenga algo
     if (this.qrBarcode.length <= 0) {
-      this.openSnackBar('El código debe contener algo', 'ErrorBarraQr');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorqrtamano.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.errorqrtamano.titulo')));
       return;
     } else{
       this.getQr(this.qrBarcode, this.ancho, this.alto, this.qrTextoTop, this.qrTextoBottom);
@@ -314,7 +349,9 @@ export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarQr(): void {
     this.imagenQr = '';
-    this.openSnackBar('Código QR limpiado', 'LimpiarBarraQr');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadoqr.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.qrbarras.mensajes.limpiadoqr.titulo')));
   }
 
 }

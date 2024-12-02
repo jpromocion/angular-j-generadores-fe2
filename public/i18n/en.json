@@ -954,6 +954,80 @@
       },
       "qrbarras": {
         "titulo": "QR and Barcodes",
+        "mensajes": {
+          "generadoupca": {
+            "mensaje": "UPC-A code generated",
+            "titulo": "GenerateUPCABarcode"
+          },
+          "errorupcatamano": {
+            "mensaje": "The UPC-A code must be 11-12 numeric digits",
+            "titulo": "UPCABarcodeError"
+          },
+          "limpiadooupca": {
+            "mensaje": "UPC-A barcode cleaned",
+            "titulo": "CleanUPCABarcode"
+          },
+          "generadoupce": {
+            "mensaje": "UPC-E code generated",
+            "titulo": "GenerateUPCEBarcode"
+          },
+          "errorupcetamano": {
+            "mensaje": "The UPC-E code must be 8 numeric digits",
+            "titulo": "UPCEBarcodeError"
+          },
+          "limpiadooupce": {
+            "mensaje": "UPC-E barcode cleaned",
+            "titulo": "CleanUPCEBarcode"
+          },
+          "generadoean13": {
+            "mensaje": "EAN-13 code generated",
+            "titulo": "GenerateEANBarcode"
+          },
+          "errorean13tamano": {
+            "mensaje": "The EAN-13 code must be 13 numeric digits",
+            "titulo": "EANBarcodeError"
+          },
+          "limpiadooean13": {
+            "mensaje": "EAN-13 barcode cleaned",
+            "titulo": "CleanEANBarcode"
+          },
+          "generadocode128": {
+            "mensaje": "Code-128 code generated",
+            "titulo": "GenerateCode128Barcode"
+          },
+          "errorcode128tamano": {
+            "mensaje": "The Code-128 code must have a maximum of 80 characters",
+            "titulo": "Code128BarcodeError"
+          },
+          "limpiadoocode128": {
+            "mensaje": "Code-128 barcode cleaned",
+            "titulo": "CleanCode128Barcode"
+          },
+          "generadopdf147": {
+            "mensaje": "PDF-147 code generated",
+            "titulo": "GeneratePdf147Barcode"
+          },
+          "errorpdf147tamano": {
+            "mensaje": "The code must contain something",
+            "titulo": "Pdf147BarcodeError"
+          },
+          "limpiadoopdf147": {
+            "mensaje": "PDF-147 barcode cleaned",
+            "titulo": "CleanPdf147Barcode"
+          },
+          "generadoqr": {
+            "mensaje": "QR code generated",
+            "titulo": "GenerateQrBarcode"
+          },
+          "errorqrtamano": {
+            "mensaje": "The code must contain something",
+            "titulo": "QrBarcodeError"
+          },
+          "limpiadoqr": {
+            "mensaje": "QR barcode cleaned",
+            "titulo": "CleanQrBarcode"
+          }
+        },
         "textosfijos": {
           "qr": {
             "parrafo1": "QR codes are becoming the most recognized 2D barcodes worldwide. The great advantage of the QR code is that we can store large amounts of data in a limited space.",
