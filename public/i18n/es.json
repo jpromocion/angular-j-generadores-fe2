@@ -212,6 +212,40 @@
       },
       "bancario": {
         "titulo": "Elementos bancarios",
+        "mensajes": {
+          "generadoiban": {
+            "mensaje": "Lista IBANs generados",
+            "titulo": "GenerarIBANs"
+          },
+          "generadotarjeta": {
+            "mensaje": "Lista Tarjetas generadas",
+            "titulo": "GenerarTarjetas"
+          },
+          "validadoiban": {
+            "mensaje": "IBAN validado",
+            "titulo": "ValidarIBAN"
+          },
+          "validadotarjeta": {
+            "mensaje": "Tarjeta validada",
+            "titulo": "ValidarTarjeta"
+          },
+          "limpiadoiban": {
+            "mensaje": "IBANs limpiado",
+            "titulo": "LimpiarIBANs"
+          },
+          "limpiadotarjeta": {
+            "mensaje": "Tarjetas limpiado",
+            "titulo": "LimpiarTarjetas"
+          },
+          "exceliban": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelIban"
+          },
+          "exceltarjeta": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelTarjetas"
+          }
+        },
         "frame": {
           "generariban": "Generar IBANs",
           "generartarjeta": "Generar Tarjetas",

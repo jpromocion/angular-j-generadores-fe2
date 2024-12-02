@@ -212,6 +212,40 @@
       },
       "bancario": {
         "titulo": "Banking Elements",
+        "mensajes": {
+          "generadoiban": {
+            "mensaje": "List of generated IBANs",
+            "titulo": "GenerateIBANs"
+          },
+          "generadotarjeta": {
+            "mensaje": "List of generated Cards",
+            "titulo": "GenerateCards"
+          },
+          "validadoiban": {
+            "mensaje": "IBAN validated",
+            "titulo": "ValidateIBAN"
+          },
+          "validadotarjeta": {
+            "mensaje": "Card validated",
+            "titulo": "ValidateCard"
+          },
+          "limpiadoiban": {
+            "mensaje": "IBANs cleaned",
+            "titulo": "CleanIBANs"
+          },
+          "limpiadotarjeta": {
+            "mensaje": "Cards cleaned",
+            "titulo": "CleanCards"
+          },
+          "exceliban": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelIBAN"
+          },
+          "exceltarjeta": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelCards"
+          }
+        },
         "frame": {
           "generariban": "Generate IBANs",
           "generartarjeta": "Generate Cards",

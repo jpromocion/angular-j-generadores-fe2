@@ -17,6 +17,7 @@ import { BankService } from '../core/services/bank.service';
 import { Cuenta } from '../core/models/cuenta';
 import { Tarjeta } from '../core/models/tarjeta';
 import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 
 @Component({
@@ -90,7 +91,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
       .subscribe(cuentas => {
         this.listaIban = cuentas;
         if (this.listaIban && this.listaIban.length > 0) {
-          this.openSnackBar('Lista IBANs generados', 'GenerarIBANs');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.generadoiban.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.generadoiban.titulo')));
         }
       });
     // }
@@ -113,7 +116,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
       .subscribe(cuentas => {
         this.listaTarjeta = cuentas;
         if (this.listaTarjeta && this.listaTarjeta.length > 0) {
-          this.openSnackBar('Lista Tarjetas generadas', 'GenerarTarjetas');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.generadotarjeta.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.generadotarjeta.titulo')));
         }
       });
     // }
@@ -145,7 +150,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
     .subscribe(ibanOk => {
       this.ibanValidarOk = ibanOk;
       if (this.ibanValidarOk && this.ibanValidarOk != ''){
-        this.openSnackBar('IBAN validado', 'ValidarIBAN');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.validadoiban.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.validadoiban.titulo')));
       }
     });
     //console.info('Iban validado: ' + this.ibanValidarOk);
@@ -159,7 +166,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
     .subscribe(tarjetaOk => {
       this.tarjetaValidarOk = tarjetaOk;
       if (this.tarjetaValidarOk && this.tarjetaValidarOk != ''){
-        this.openSnackBar('Tarjeta validada', 'ValidarTarjeta');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.validadotarjeta.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.validadotarjeta.titulo')));
       }
     });
     //console.info('Tarjeta validada: ' + this.tarjetaValidarOk);
@@ -180,7 +189,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
    */
   onClickLimpiarListaIBAN(): void {
     this.listaIban = [];
-    this.openSnackBar('IBANs limpiado', 'LimpiarIBANs');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.limpiadoiban.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.limpiadoiban.titulo')));
   }
 
   /**
@@ -188,7 +199,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
    */
   onClickLimpiarListaTarjetas(): void {
     this.listaTarjeta = [];
-    this.openSnackBar('Tarjetas limpiado', 'LimpiarTarjetas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.limpiadotarjeta.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.limpiadotarjeta.titulo')));
   }
 
 
@@ -198,7 +211,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
   exportJsonIban(): void {
     const filteredIbanList = this.listaIban.map(({ iban, ibanFormateado }) => ({ iban, ibanFormateado }));
     this.excelService.exportAsExcelFile(filteredIbanList, 'Lista_IBANs');
-    this.openSnackBar('Excel generado','ExcelIban');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceliban.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceliban.titulo')));
   }
 
   /**
@@ -207,7 +222,9 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
   exportJsonTarjetas(): void {
     const filteredTarjetaList = this.listaTarjeta.map(({ tarjeta, tarjetaFormateada, expiracionCredito, cvc }) => ({ tarjeta, tarjetaFormateada, expiracionCredito, cvc }));
     this.excelService.exportAsExcelFile(filteredTarjetaList, 'Lista_Tarjetas');
-    this.openSnackBar('Excel generado','ExcelTarjetas');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceltarjeta.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceltarjeta.titulo')));
   }
 
 }
