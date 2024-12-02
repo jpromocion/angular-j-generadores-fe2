@@ -135,6 +135,76 @@
         }
       },
       "documentos": {
+        "mensajes": {
+          "generadonif": {
+            "mensaje": "List of generated NIFs",
+            "titulo": "GenerateNIFs"
+          },
+          "generadonie": {
+            "mensaje": "List of generated NIEs",
+            "titulo": "GenerateNIEs"
+          },
+          "generadocif": {
+            "mensaje": "List of generated CIFs",
+            "titulo": "GenerateCIFs"
+          },
+          "validadonif": {
+            "mensaje": "NIF validated",
+            "titulo": "ValidateNIF"
+          },
+          "validadonie": {
+            "mensaje": "NIE validated",
+            "titulo": "ValidateNIE"
+          },
+          "validadocif": {
+            "mensaje": "CIF validated",
+            "titulo": "ValidateCIF"
+          },
+          "limpiadonif": {
+            "mensaje": "NIFs cleaned",
+            "titulo": "CleanNIFs"
+          },
+          "limpiadonie": {
+            "mensaje": "NIEs cleaned",
+            "titulo": "CleanNIEs"
+          },
+          "limpiadocif": {
+            "mensaje": "CIFs cleaned",
+            "titulo": "CleanCIFs"
+          },
+          "excelnif": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelNIFs"
+          },
+          "excelnie": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelNIEs"
+          },
+          "excelcif": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelCIFs"
+          },
+          "generadopasaporte": {
+            "mensaje": "List of generated Passports",
+            "titulo": "GeneratePassport"
+          },
+          "limpiadopasaporte": {
+            "mensaje": "Passports cleaned",
+            "titulo": "CleanPassport"
+          },
+          "excelpasaporte": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelPassport"
+          },
+          "validadopasaporte": {
+            "mensaje": "Passport validated",
+            "titulo": "ValidatePassport"
+          },
+          "generadodcpasaporte": {
+            "mensaje": "Passport control digits calculated",
+            "titulo": "CalculatedPassportDC"
+          }
+        },
         "frame": {
           "generarnif": "Generate NIFs",
           "generarnie": "Generate NIEs",

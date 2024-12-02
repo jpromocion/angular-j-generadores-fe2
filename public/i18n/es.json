@@ -135,6 +135,76 @@
         }
       },
       "documentos": {
+        "mensajes": {
+          "generadonif": {
+            "mensaje": "Lista NIFs generados",
+            "titulo": "GenerarNIFs"
+          },
+          "generadonie": {
+            "mensaje": "Lista NIEs generados",
+            "titulo": "GenerarNIEs"
+          },
+          "generadocif": {
+            "mensaje": "Lista CIFs generados",
+            "titulo": "GenerarCIFs"
+          },
+          "validadonif": {
+            "mensaje": "NIF validado",
+            "titulo": "ValidarNIF"
+          },
+          "validadonie": {
+            "mensaje": "NIE validado",
+            "titulo": "ValidarNIE"
+          },
+          "validadocif": {
+            "mensaje": "CIF validado",
+            "titulo": "ValidarCIF"
+          },
+          "limpiadonif": {
+            "mensaje": "NIFs limpiados",
+            "titulo": "LimpiarNIFs"
+          },
+          "limpiadonie": {
+            "mensaje": "NIEs limpiados",
+            "titulo": "LimpiarNIEs"
+          },
+          "limpiadocif": {
+            "mensaje": "CIFs limpiados",
+            "titulo": "LimpiarCIFs"
+          },
+          "excelnif": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelNIFs"
+          },
+          "excelnie": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelNIEs"
+          },
+          "excelcif": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelCIFs"
+          },
+          "generadopasaporte": {
+            "mensaje": "Lista Pasaportes generados",
+            "titulo": "GenerarPasaporte"
+          },
+          "limpiadopasaporte": {
+            "mensaje": "Pasaportes limpiado",
+            "titulo": "LimpiarPasaporte"
+          },
+          "excelpasaporte": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelPasaporte"
+          },
+          "validadopasaporte": {
+            "mensaje": "Pasaporte validado",
+            "titulo": "ValidarPasaporte"
+          },
+          "generadodcpasaporte": {
+            "mensaje": "Calculado dígitos de control del pasaporte",
+            "titulo": "CalculadoDCPasaporte"
+          }
+        },
         "frame": {
           "generarnif": "Generar NIFs",
           "generarnie": "Generar NIEs",

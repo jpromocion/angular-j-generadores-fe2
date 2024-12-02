@@ -16,7 +16,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { DoiService } from '../core/services/doi.service';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 declare var $: any;
 
@@ -156,7 +156,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
       .subscribe(nifs => {
         this.listaNifs = nifs;
         if (this.listaNifs && this.listaNifs.length > 0) {
-          this.openSnackBar('Lista NIFs generados', 'GenerarNIFs');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadonif.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadonif.titulo')));
         }
       });
     // }
@@ -179,7 +181,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
       .subscribe(nies => {
         this.listaNies = nies;
         if (this.listaNies && this.listaNies.length > 0) {
-          this.openSnackBar('Lista NIEs generados', 'GenerarNIEs');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadonie.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadonie.titulo')));
         }
       });
     // }
@@ -210,7 +214,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
       .subscribe(cifs => {
         this.listaCifs = cifs;
         if (this.listaCifs && this.listaCifs.length > 0) {
-          this.openSnackBar('Lista CIFs generados', 'GenerarCIFs');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadocif.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadocif.titulo')));
         }
       });
     // }
@@ -252,7 +258,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     .subscribe(nifOk => {
       this.nifValidarOk = nifOk;
       if (this.nifValidarOk && this.nifValidarOk != ''){
-        this.openSnackBar('NIF validado', 'ValidarNIF');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadonif.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadonif.titulo')));
       }
     });
     //console.info('Nif validado: ' + this.nifValidarOk);
@@ -267,7 +275,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     .subscribe(nieOk => {
       this.nieValidarOk = nieOk;
       if (this.nieValidarOk && this.nieValidarOk != ''){
-        this.openSnackBar('NIE validado', 'ValidarNIE');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadonie.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadonie.titulo')));
       }
     });
     //console.info('Nie validado: ' + this.nieValidarOk);
@@ -282,7 +292,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     .subscribe(cifOk => {
       this.cifValidarOk = cifOk;
       if (this.cifValidarOk && this.cifValidarOk != ''){
-        this.openSnackBar('CIF validado', 'ValidarCIF');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadocif.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadocif.titulo')));
       }
     });
     //console.info('Cif validado: ' + this.cifValidarOk);
@@ -307,7 +319,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     */
   onClickLimpiarListaNif(): void {
     this.listaNifs = [];
-    this.openSnackBar('NIFs limpiado', 'LimpiarNIFs');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadonif.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadonif.titulo')));
   }
 
   /**
@@ -315,7 +329,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     */
   onClickLimpiarListaNie(): void {
     this.listaNies = [];
-    this.openSnackBar('NIEs limpiado', 'LimpiarNIEs');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadonie.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadonie.titulo')));
   }
 
   /**
@@ -323,7 +339,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     */
   onClickLimpiarListaCif(): void {
     this.listaCifs = [];
-    this.openSnackBar('CIFs limpiado', 'LimpiarCIFs');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadocif.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadocif.titulo')));
   }
 
 
@@ -334,7 +352,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   exportJsonNifs(): void {
     const formattedNifs = this.listaNifs.map(nif => ({ NIF: nif }));
     this.excelService.exportAsExcelFile(formattedNifs, 'Lista_NIFs');
-    this.openSnackBar('Excel generado','ExcelNIFs');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnif.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnif.titulo')));
   }
 
   /**
@@ -343,7 +363,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   exportJsonNies(): void {
     const formattedNies = this.listaNies.map(nie => ({ NIE: nie }));
     this.excelService.exportAsExcelFile(formattedNies, 'Lista_NIEs');
-    this.openSnackBar('Excel generado','ExcelNIEs');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnie.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnie.titulo')));
   }
 
   /**
@@ -352,7 +374,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   exportJsonCifs(): void {
     const formattedCifs = this.listaCifs.map(cif => ({ CIF: cif }));
     this.excelService.exportAsExcelFile(formattedCifs, 'Lista_CIFs');
-    this.openSnackBar('Excel generado','ExcelCIFs');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelcif.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelcif.titulo')));
   }
 
 
@@ -364,7 +388,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
       .subscribe(pasaportes => {
         this.listaPasaportes = pasaportes;
         if (this.listaPasaportes && this.listaPasaportes.length > 0) {
-          this.openSnackBar('Lista Pasaportes generados', 'GenerarPasaporte');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadopasaporte.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadopasaporte.titulo')));
         }
       });
   }
@@ -384,7 +410,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     */
   onClickLimpiarListaPasaporte(): void {
     this.listaPasaportes = [];
-    this.openSnackBar('Pasaportes limpiado', 'LimpiarPasaporte');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadopasaporte.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.limpiadopasaporte.titulo')));
   }
 
     /**
@@ -393,7 +421,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     exportJsonPasaporte(): void {
       const formattedNies = this.listaPasaportes.map(nie => ({ NIE: nie }));
       this.excelService.exportAsExcelFile(formattedNies, 'Lista_Pasaportes');
-      this.openSnackBar('Excel generado','ExcelPasaporte');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelpasaporte.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelpasaporte.titulo')));
     }
 
   /**
@@ -405,7 +435,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     .subscribe(pasaporteOk => {
       this.pasaporteValidarOk = pasaporteOk;
       if (this.pasaporteValidarOk && this.pasaporteValidarOk != ''){
-        this.openSnackBar('Pasaporte validado', 'ValidarPasaporte');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadopasaporte.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.validadopasaporte.titulo')));
       }
     });
     //console.info('Nie validado: ' + this.pasaporteValidarOk);
@@ -420,7 +452,9 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
     .subscribe(dc => {
       this.pasaporteCalcularDC = dc;
       if (this.pasaporteCalcularDC && this.pasaporteCalcularDC != ''){
-        this.openSnackBar('Calculado dígitos de control del pasaporte', 'CalculadoDCPasaporte');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadodcpasaporte.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.generadodcpasaporte.titulo')));
       }
     });
   }
