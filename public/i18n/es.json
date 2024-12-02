@@ -547,6 +547,24 @@
         }
       },
       "texto": {
+        "mensajes": {
+          "generadocara": {
+            "mensaje": "Texto generado",
+            "titulo": "GenerarTextoCaracteres"
+          },
+          "generadopala": {
+            "mensaje": "Texto generado",
+            "titulo": "GenerarTextoPalabras"
+          },
+          "generadoparra": {
+            "mensaje": "Texto generado",
+            "titulo": "GenerarTextoParrafos"
+          },
+          "limpiartexto": {
+            "mensaje": "Texto limpiado",
+            "titulo": "LimpiarTexto"
+          }
+        },
         "boton": {
           "generartexto": {
             "label": "Generar caracteres"

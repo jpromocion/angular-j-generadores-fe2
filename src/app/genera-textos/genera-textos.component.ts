@@ -11,7 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { TextosService } from '../core/services/textos.service';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-textos',
@@ -53,7 +53,9 @@ export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit
       .subscribe(cadena => {
         this.textoGenerado = cadena[0];
         if (this.textoGenerado && this.textoGenerado != ''){
-          this.openSnackBar('Texto generado', 'GenerarTextoCaracteres');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.texto.mensajes.generadocara.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.texto.mensajes.generadocara.titulo')));
         }
       });
     }
@@ -72,7 +74,9 @@ export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit
       .subscribe(cadena => {
         this.textoGenerado = cadena[0];
         if (this.textoGenerado && this.textoGenerado != ''){
-          this.openSnackBar('Texto generado', 'GenerarTextoPalabras');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.texto.mensajes.generadopala.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.texto.mensajes.generadopala.titulo')));
         }
       });
     }
@@ -91,7 +95,9 @@ export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit
       .subscribe(cadena => {
         this.textoGenerado = cadena[0];
         if (this.textoGenerado && this.textoGenerado != ''){
-          this.openSnackBar('Texto generado', 'GenerarTextoParrafos');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.texto.mensajes.generadoparra.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.texto.mensajes.generadoparra.titulo')));
         }
       });
     }
@@ -122,7 +128,9 @@ export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarTexto(): void {
     this.textoGenerado = '';
-    this.openSnackBar('Texto limpiado', 'LimpiarTexto');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.texto.mensajes.limpiartexto.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.texto.mensajes.limpiartexto.titulo')));
   }
 
 
