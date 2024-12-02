@@ -25,7 +25,7 @@ import { Provincia } from '../core/models/provincia';
 import { Municipio } from '../core/models/municipio';
 import { DireccionCompleta } from '../core/models/direccion-completa';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 
 @Component({
@@ -352,7 +352,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       //como quita/pone pom es necesario inicializarlo todo de nuevo
       this.inicializarPaginadoresSortsCcaa();
       if (this.ccaaGenerado && this.ccaaGenerado.data.length > 0) {
-        this.openSnackBar('Lista CCAA', 'GenerarCCAA');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadoccaa.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadoccaa.titulo')));
       }
     });
   }
@@ -375,7 +377,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     //this.ccaaGenerado = [];
     this.ccaaGenerado = new MatTableDataSource<Ccaa>();
     this.ccaaGeneradoOriginal = [];
-    this.openSnackBar('CCAA limpiados', 'LimpiarCCAA');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadoccaa.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadoccaa.titulo')));
   }
 
   /**
@@ -401,7 +405,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     });
 
     this.excelService.exportAsExcelFile(formatted, 'Lista_CCAA');
-    this.openSnackBar('Excel generado','ExcelCCAA');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelccaa.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelccaa.titulo')));
   }
 
   /**
@@ -458,7 +464,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
    */
   onClickLimpiarFiltrosCCAA(): void {
     this.ccaaGenerado.data = this.ccaaGeneradoOriginal;
-    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosCCAA');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosccaa.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosccaa.titulo')));
   }
 
 
@@ -487,7 +495,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       //como quita/pone pom es necesario inicializarlo todo de nuevo
       this.inicializarPaginadoresSortsProvincias();
       if (this.provinGenerado && this.provinGenerado.data.length > 0) {
-        this.openSnackBar('Lista Provincias', 'GenerarProvincias');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadoprovincia.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadoprovincia.titulo')));
       }
     });
   }
@@ -502,7 +512,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.provinGenerado = new MatTableDataSource<Provincia>();
     this.provinGeneradoOriginal = [];
     if (this.provinCodCCAA == '') {
-      this.openSnackBar('Debe seleccionar una CCAA.','Cerrar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.errorprovincia.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.errorprovincia.titulo')));
     } else{
       this.getProvincias(this.provinCodCCAA);
     }
@@ -516,7 +528,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     //this.provinGenerado = [];
     this.provinGenerado = new MatTableDataSource<Provincia>();
     this.provinGeneradoOriginal = [];
-    this.openSnackBar('Provincias limpiados', 'LimpiarProvincias');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadoprovincia.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadoprovincia.titulo')));
   }
 
   /**
@@ -545,7 +559,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     });
 
     this.excelService.exportAsExcelFile(formatted, 'Lista_Provincias');
-    this.openSnackBar('Excel generado','ExcelProvincias');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelprovincia.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelprovincia.titulo')));
   }
 
 
@@ -603,7 +619,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
    */
   onClickLimpiarFiltrosProvincia(): void {
     this.provinGenerado.data = this.provinGeneradoOriginal;
-    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosProvincia');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosprovincia.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosprovincia.titulo')));
   }
 
 
@@ -639,7 +657,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       //como quita/pone pom es necesario inicializarlo todo de nuevo
       this.inicializarPaginadoresSortsMunicipios();
       if (this.muniGenerado && this.muniGenerado.data.length > 0) {
-        this.openSnackBar('Lista Municipios', 'GenerarMunicipios');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadomunicipio.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadomunicipio.titulo')));
       }
     });
   }
@@ -655,7 +675,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.muniGenerado = new MatTableDataSource<Municipio>();
     this.muniGeneradoOriginal = [];
     if (this.provinCodCCAA == '') {
-      this.openSnackBar('Debe seleccionar una Provincia.','Cerrar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.errormunicipio.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.errormunicipio.titulo')));
     } else{
       this.getMunicipios(this.muniCodProvin);
     }
@@ -669,7 +691,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     //this.muniGenerado = [];
     this.muniGenerado = new MatTableDataSource<Municipio>();
     this.muniGeneradoOriginal = [];
-    this.openSnackBar('Municipios limpiados', 'LimpiarMunicipios');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadomunicipio.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadomunicipio.titulo')));
   }
 
   /**
@@ -695,7 +719,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     });
 
     this.excelService.exportAsExcelFile(formatted, 'Lista_Municipios');
-    this.openSnackBar('Excel generado','ExcelMunicipios');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelmunicipio.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelmunicipio.titulo')));
   }
 
   /**
@@ -752,7 +778,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
    */
   onClickLimpiarFiltrosMunicipio(): void {
     this.muniGenerado.data = this.muniGeneradoOriginal;
-    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosMunicipio');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosmunicipio.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosmunicipio.titulo')));
   }
 
 
@@ -787,7 +815,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       //como quita/pone pom es necesario inicializarlo todo de nuevo
       this.inicializarPaginadoresSortsDirecciones();
         if (this.direccionGenerado && this.direccionGenerado.data.length > 0) {
-          this.openSnackBar('Lista domicilios generados', 'GenerarDomicilios');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadodomicilio.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.generadodomicilio.titulo')));
         }
       }
 
@@ -801,7 +831,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     this.direccionGenerado = new MatTableDataSource<DireccionCompleta>();
     this.direccionGeneradoOriginal = [];
     if (this.direccionParamCodMuni != '' && this.muniCodProvin == '') {
-      this.openSnackBar('El municipio debe seleccionarse con un código de provincia.','ErrorDomicilios');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.errordomicilio.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.errordomicilio.titulo')));
     } else{
       this.getDirecciones(this.direccionParamNumGenerar, this.provinCodCCAA, this.muniCodProvin, this.direccionParamCodMuni,
         this.direccionParamKm, this.direccionParamBloque, this.direccionParamPortal, this.direccionParamEscalera,
@@ -816,7 +848,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
   onClickLimpiarDomicilios(): void {
     this.direccionGenerado = new MatTableDataSource<DireccionCompleta>();
     this.direccionGeneradoOriginal = [];
-    this.openSnackBar('Domicilios limpiados', 'LimpiarDomicilios');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadodomicilio.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadodomicilio.titulo')));
   }
 
   /**
@@ -894,7 +928,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     });
 
     this.excelService.exportAsExcelFile(formatted, 'Lista_Domicilios');
-    this.openSnackBar('Excel generado','ExcelDomicilios');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.exceldomicilio.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.exceldomicilio.titulo')));
   }
 
 
@@ -1003,7 +1039,9 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
    */
   onClickLimpiarFiltrosDomicilios(): void {
     this.direccionGenerado.data = this.direccionGeneradoOriginal;
-    this.openSnackBar('Filtros limpiados', 'LimpiarFiltrosDomicilios');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosdomicilio.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.limpiadofiltrosdomicilio.titulo')));
   }
 
 

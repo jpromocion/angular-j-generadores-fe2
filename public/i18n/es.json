@@ -1071,6 +1071,84 @@
         }
       },
       "localizacion": {
+        "mensajes": {
+          "generadoccaa": {
+            "mensaje": "Lista CCAA",
+            "titulo": "GenerarCCAA"
+          },
+          "limpiadoccaa": {
+            "mensaje": "CCAA limpiados",
+            "titulo": "LimpiarCCAA"
+          },
+          "excelccaa": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelCCAA"
+          },
+          "limpiadofiltrosccaa": {
+            "mensaje": "Filtros limpiados",
+            "titulo": "LimpiarFiltrosCCAA"
+          },
+          "generadoprovincia": {
+            "mensaje": "Lista Provincias",
+            "titulo": "GenerarProvincias"
+          },
+          "errorprovincia": {
+            "mensaje": "Debe seleccionar una CCAA.",
+            "titulo": "ErrorProvicia"
+          },
+          "limpiadoprovincia": {
+            "mensaje": "Provincias limpiados",
+            "titulo": "LimpiarProvincias"
+          },
+          "excelprovincia": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelProvincias"
+          },
+          "limpiadofiltrosprovincia": {
+            "mensaje": "Filtros limpiados",
+            "titulo": "LimpiarFiltrosProvincia"
+          },
+          "generadomunicipio": {
+            "mensaje": "Lista Municipios",
+            "titulo": "GenerarMunicipios"
+          },
+          "errormunicipio": {
+            "mensaje": "Debe seleccionar una Provincia.",
+            "titulo": "ErrorMunicipio"
+          },
+          "limpiadomunicipio": {
+            "mensaje": "Municipios limpiados",
+            "titulo": "LimpiarMunicipios"
+          },
+          "excelmunicipio": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelMunicipios"
+          },
+          "limpiadofiltrosmunicipio": {
+            "mensaje": "Filtros limpiados",
+            "titulo": "LimpiarFiltrosMunicipio"
+          },
+          "generadodomicilio": {
+            "mensaje": "Lista domicilios generados",
+            "titulo": "GenerarDomicilios"
+          },
+          "errordomicilio": {
+            "mensaje": "El municipio debe seleccionarse con un código de provincia.",
+            "titulo": "ErrorDomicilios"
+          },
+          "limpiadodomicilio": {
+            "mensaje": "Domicilios limpiados",
+            "titulo": "LimpiarDomicilios"
+          },
+          "exceldomicilio": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelDomicilios"
+          },
+          "limpiadofiltrosdomicilio": {
+            "mensaje": "Filtros limpiados",
+            "titulo": "LimpiarFiltrosDomicilio"
+          }
+        },
         "textosfijos": {
           "domicilios": {
             "parrafo1": "Genera un domicilio completamente aleatorio en CCAA, Provincia, Municipio, o selecciona en los bloques anterires una CCAA y provincia para generarlos dirigidos.",

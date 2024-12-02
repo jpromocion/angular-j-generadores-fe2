@@ -1071,6 +1071,84 @@
         }
       },
       "localizacion": {
+        "mensajes": {
+          "generadoccaa": {
+            "mensaje": "List of Autonomous Communities",
+            "titulo": "GenerateAutonomousCommunities"
+          },
+          "limpiadoccaa": {
+            "mensaje": "Autonomous Communities cleaned",
+            "titulo": "CleanAutonomousCommunities"
+          },
+          "excelccaa": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelAutonomousCommunities"
+          },
+          "limpiadofiltrosccaa": {
+            "mensaje": "Filters cleaned",
+            "titulo": "CleanAutonomousCommunitiesFilters"
+          },
+          "generadoprovincia": {
+            "mensaje": "List of Provinces",
+            "titulo": "GenerateProvinces"
+          },
+          "errorprovincia": {
+            "mensaje": "You must select an Autonomous Community.",
+            "titulo": "ProvinceError"
+          },
+          "limpiadoprovincia": {
+            "mensaje": "Provinces cleaned",
+            "titulo": "CleanProvinces"
+          },
+          "excelprovincia": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelProvinces"
+          },
+          "limpiadofiltrosprovincia": {
+            "mensaje": "Filters cleaned",
+            "titulo": "CleanProvinceFilters"
+          },
+          "generadomunicipio": {
+            "mensaje": "List of Municipalities",
+            "titulo": "GenerateMunicipalities"
+          },
+          "errormunicipio": {
+            "mensaje": "You must select a Province.",
+            "titulo": "MunicipalityError"
+          },
+          "limpiadomunicipio": {
+            "mensaje": "Municipalities cleaned",
+            "titulo": "CleanMunicipalities"
+          },
+          "excelmunicipio": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelMunicipalities"
+          },
+          "limpiadofiltrosmunicipio": {
+            "mensaje": "Filters cleaned",
+            "titulo": "CleanMunicipalityFilters"
+          },
+          "generadodomicilio": {
+            "mensaje": "List of generated Addresses",
+            "titulo": "GenerateAddresses"
+          },
+          "errordomicilio": {
+            "mensaje": "The municipality must be selected with a province code.",
+            "titulo": "AddressError"
+          },
+          "limpiadodomicilio": {
+            "mensaje": "Addresses cleaned",
+            "titulo": "CleanAddresses"
+          },
+          "exceldomicilio": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelAddresses"
+          },
+          "limpiadofiltrosdomicilio": {
+            "mensaje": "Filters cleaned",
+            "titulo": "CleanAddressFilters"
+          }
+        },
         "textosfijos": {
           "domicilios": {
             "parrafo1": "Generate a completely random address in CCAA, Province, Municipality, or select in the previous blocks a CCAA and province to generate them directed.",
