@@ -759,6 +759,124 @@
         }
       },
       "fechas": {
+        "mensajes": {
+          "generadofecnaci": {
+            "mensaje": "Fec. nacimiento generadas",
+            "titulo": "GenerarFecNacimiento"
+          },
+          "generadofecfuturas": {
+            "mensaje": "Fec. futuras generadas",
+            "titulo": "GenerarFecFutura"
+          },
+          "errorfectipo": {
+            "mensaje": "Debe seleccionar un tipo de generación.",
+            "titulo": "ErrorFechas"
+          },
+          "limpiadofec": {
+            "mensaje": "Datos limpiados",
+            "titulo": "LimpiarTipo"
+          },
+          "excelfec": {
+            "mensaje": "Excel generado",
+            "titulo": "ExcelTipos"
+          },
+          "calculadoedad": {
+            "mensaje": "Calculada edad",
+            "titulo": "CalculadaEdad"
+          },
+          "erroredad": {
+            "mensaje": "Debe seleccionar una fecha de nacimiento.",
+            "titulo": "ErrorEdad"
+          },
+          "limpiadoedad": {
+            "mensaje": "Datos limpiados",
+            "titulo": "LimpiarEdad"
+          },
+          "calculadodiff": {
+            "mensaje": "Calculada diferencia",
+            "titulo": "CalculadaDiferencia"
+          },
+          "errordiff1": {
+            "mensaje": "Debe seleccionar una fecha 1.",
+            "titulo": "ErrorDiferencia"
+          },
+          "errordiff2": {
+            "mensaje": "Debe seleccionar una fecha 2.",
+            "titulo": "ErrorDiferencia"
+          },
+          "limpiadodiff": {
+            "mensaje": "Datos limpiados",
+            "titulo": "LimpiarDiferencia"
+          },
+          "calculadoopera": {
+            "mensaje": "Operacion realizada",
+            "titulo": "OperarFecha"
+          },
+          "erroropera1": {
+            "mensaje": "Debe seleccionar una fecha.",
+            "titulo": "ErrorOperacion"
+          },
+          "erroropera2": {
+            "mensaje": "Debe seleccionar una operación.",
+            "titulo": "ErrorOperacion"
+          },
+          "erroropera3": {
+            "mensaje": "Los valores de años, meses, días, horas, minutos deben estar rellenos. Sino aplican cambio, deje el valor 0.",
+            "titulo": "ErrorOperacion"
+          },
+          "limpiadoopera": {
+            "mensaje": "Fecha limpiada",
+            "titulo": "LimpiarOperacion"
+          },
+          "calculadodiasem": {
+            "mensaje": "Calculado día de la semana",
+            "titulo": "DiaSemanaCalculado"
+          },
+          "errordiasem": {
+            "mensaje": "Debe seleccionar una fecha.",
+            "titulo": "ErrorDiaSemana"
+          },
+          "limpiadodiasem": {
+            "mensaje": "Día de la semana limpiado",
+            "titulo": "LimpiarDiaSemana"
+          },
+          "convertidoutc": {
+            "mensaje": "Conversión realizada",
+            "titulo": "ConversionUtcFecha"
+          },
+          "errorutc": {
+            "mensaje": "Debe seleccionar el tiempo UTC",
+            "titulo": "ErrorUtcFecha"
+          },
+          "limpiadoutc": {
+            "mensaje": "Conversión limpiada",
+            "titulo": "LimpiarUtcFecha"
+          },
+          "convertidofecha": {
+            "mensaje": "Conversión realizada",
+            "titulo": "ConversionFechaUtc"
+          },
+          "errorfecha": {
+            "mensaje": "Debe seleccionar fecha.",
+            "titulo": "ErrorFechaUtc"
+          },
+          "limpiadofecha": {
+            "mensaje": "Conversión limpiada",
+            "titulo": "LimpiarFechaUtc"
+          },
+          "generadopascua": {
+            "mensaje": "Fechas de pascua generadas",
+            "titulo": "GenerarPascua"
+          },
+          "errorpascua": {
+            "mensaje": "Debe seleccionar un ejercicio.",
+            "titulo": "ErrorPascua"
+          },
+          "limpiadopascua": {
+            "mensaje": "Pascua limpiada",
+            "titulo": "LimpiarPascua"
+          }
+        },
         "frame": {
           "generartipofecha": "Generar tipos fecha",
           "edad": "Edad",

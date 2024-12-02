@@ -759,6 +759,124 @@
         }
       },
       "fechas": {
+        "mensajes": {
+          "generadofecnaci": {
+            "mensaje": "Generated birth dates",
+            "titulo": "GenerateBirthDate"
+          },
+          "generadofecfuturas": {
+            "mensaje": "Generated future dates",
+            "titulo": "GenerateFutureDate"
+          },
+          "errorfectipo": {
+            "mensaje": "You must select a type of generation.",
+            "titulo": "DateError"
+          },
+          "limpiadofec": {
+            "mensaje": "Data cleaned",
+            "titulo": "CleanType"
+          },
+          "excelfec": {
+            "mensaje": "Excel generated",
+            "titulo": "ExcelTypes"
+          },
+          "calculadoedad": {
+            "mensaje": "Age calculated",
+            "titulo": "AgeCalculated"
+          },
+          "erroredad": {
+            "mensaje": "You must select a birth date.",
+            "titulo": "AgeError"
+          },
+          "limpiadoedad": {
+            "mensaje": "Data cleaned",
+            "titulo": "CleanAge"
+          },
+          "calculadodiff": {
+            "mensaje": "Difference calculated",
+            "titulo": "DifferenceCalculated"
+          },
+          "errordiff1": {
+            "mensaje": "You must select date 1.",
+            "titulo": "DifferenceError"
+          },
+          "errordiff2": {
+            "mensaje": "You must select date 2.",
+            "titulo": "DifferenceError"
+          },
+          "limpiadodiff": {
+            "mensaje": "Data cleaned",
+            "titulo": "CleanDifference"
+          },
+          "calculadoopera": {
+            "mensaje": "Operation performed",
+            "titulo": "OperateDate"
+          },
+          "erroropera1": {
+            "mensaje": "You must select a date.",
+            "titulo": "OperationError"
+          },
+          "erroropera2": {
+            "mensaje": "You must select an operation.",
+            "titulo": "OperationError"
+          },
+          "erroropera3": {
+            "mensaje": "The values for years, months, days, hours, minutes must be filled in. If no change applies, leave the value at 0.",
+            "titulo": "OperationError"
+          },
+          "limpiadoopera": {
+            "mensaje": "Date cleaned",
+            "titulo": "CleanOperation"
+          },
+          "calculadodiasem": {
+            "mensaje": "Day of the week calculated",
+            "titulo": "DayOfWeekCalculated"
+          },
+          "errordiasem": {
+            "mensaje": "You must select a date.",
+            "titulo": "DayOfWeekError"
+          },
+          "limpiadodiasem": {
+            "mensaje": "Day of the week cleaned",
+            "titulo": "CleanDayOfWeek"
+          },
+          "convertidoutc": {
+            "mensaje": "Conversion performed",
+            "titulo": "ConvertUtcDate"
+          },
+          "errorutc": {
+            "mensaje": "You must select the UTC time",
+            "titulo": "UtcDateError"
+          },
+          "limpiadoutc": {
+            "mensaje": "Conversion cleaned",
+            "titulo": "CleanUtcDate"
+          },
+          "convertidofecha": {
+            "mensaje": "Conversion performed",
+            "titulo": "ConvertDateUtc"
+          },
+          "errorfecha": {
+            "mensaje": "You must select a date.",
+            "titulo": "DateUtcError"
+          },
+          "limpiadofecha": {
+            "mensaje": "Conversion cleaned",
+            "titulo": "CleanDateUtc"
+          },
+          "generadopascua": {
+            "mensaje": "Easter dates generated",
+            "titulo": "GenerateEaster"
+          },
+          "errorpascua": {
+            "mensaje": "You must select a year.",
+            "titulo": "EasterError"
+          },
+          "limpiadopascua": {
+            "mensaje": "Easter cleaned",
+            "titulo": "CleanEaster"
+          }
+        },
         "frame": {
           "generartipofecha": "Generate date types",
           "edad": "Age",

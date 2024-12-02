@@ -20,6 +20,7 @@ import { DateService } from '../core/services/date.service';
 import { Edad } from '../core/models/edad';
 import { Pascua } from '../core/models/pascua';
 import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-fechas',
@@ -115,7 +116,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('Fec. nacimiento generadas', 'GenerarFecNacimiento');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.generadofecnaci.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.generadofecnaci.titulo')));
       }
     });
   }
@@ -128,7 +131,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     .subscribe(cadena => {
       this.textoGenerado = cadena;
       if (this.textoGenerado && this.textoGenerado.length > 0){
-        this.openSnackBar('Fec. futuras generadas', 'GenerarFecFutura');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.generadofecfuturas.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.generadofecfuturas.titulo')));
       }
     });
   }
@@ -140,7 +145,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   onClickBotonGenerarTipo(): void {
     this.textoGenerado = [];
     if (this.selectedTipoGenera == '') {
-      this.openSnackBar('Debe seleccionar un tipo de generación.','Cerrar');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorfectipo.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorfectipo.titulo')));
     } else if (this.selectedTipoGenera == 'fn') {
       this.getFecNacimiento(this.numGenerar);
     } else if (this.selectedTipoGenera == 'ff') {
@@ -154,7 +161,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarTipo(): void {
     this.textoGenerado = [];
-    this.openSnackBar('Datos limpiados', 'LimpiarTipo');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadofec.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadofec.titulo')));
   }
 
 
@@ -164,7 +173,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   exportJsonTipos(): void {
     const formatted = this.textoGenerado.map(dato => ({ Valor: dato }));
     this.excelService.exportAsExcelFile(formatted, 'Lista_tipos');
-    this.openSnackBar('Excel generado','ExcelTipos');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.excelfec.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.excelfec.titulo')));
   }
 
 
@@ -176,7 +187,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     .subscribe(edad => {
       if (edad){
         this.edadRes = edad;
-        this.openSnackBar('Calculada edad', 'CalculadaEdad');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadoedad.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadoedad.titulo')));
 
         //situarnos en el campo resultado final
         const btnResDifFinal = document.getElementById('btnResEdadFinal');
@@ -213,7 +226,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     //console.log('Hora Nacimiento: ' + this.horaNacimiento);
 
     if (this.fechaNacimiento == null){
-      this.openSnackBar('Debe seleccionar una fecha de nacimiento.','ErrorEdad');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroredad.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroredad.titulo')));
       return;
     } else{
       //limpiar horas y minutos de fechaNacimiento
@@ -238,7 +253,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarEdad(): void {
     this.edadRes = undefined;
-    this.openSnackBar('Datos limpiados', 'LimpiarEdad');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadoedad.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadoedad.titulo')));
   }
 
 
@@ -251,7 +268,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     .subscribe(diff => {
       if (diff){
         this.difRes = diff;
-        this.openSnackBar('Calculada diferencia', 'CalculadaDiferencia');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadodiff.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadodiff.titulo')));
 
         //situarnos en el campo resultado final
         const btnResDifFinal = document.getElementById('btnResDifFinal');
@@ -275,10 +294,14 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     // console.log('Hora 2: ' + this.horaDifParam2);
 
     if (this.fechaDifParam1 == null){
-      this.openSnackBar('Debe seleccionar una fecha 1.','ErrorDiferencia');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiff1.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiff1.titulo')));
       return;
     } else if (this.fechaDifParam2 == null){
-        this.openSnackBar('Debe seleccionar una fecha 2.','ErrorDiferencia');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiff2.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiff2.titulo')));
         return;
     } else{
       //limpiar horas y minutos de fechas de diferencia
@@ -314,7 +337,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarDiferencia(): void {
     this.difRes = undefined;
-    this.openSnackBar('Datos limpiados', 'LimpiarDiferencia');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadodiff.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadodiff.titulo')));
   }
 
 
@@ -332,7 +357,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
         this.fechaOperarRes = new Date(year, month - 1, day, hours, minutes, seconds);
         this.horaOperarRes = ('0' + this.fechaOperarRes.getHours()).slice(-2) + ':' + ('0' + this.fechaOperarRes.getMinutes()).slice(-2);
 
-        this.openSnackBar('Operacion realizada', 'OperarFecha');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadoopera.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadoopera.titulo')));
 
         //situarnos en el campo resultado final
         const in_fechaOperarRes = document.getElementById('in_fechaOperarRes');
@@ -353,14 +380,20 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     this.horaOperarRes = '';
 
     if (this.fechaOperarParam == null){
-      this.openSnackBar('Debe seleccionar una fecha.','ErrorOperacion');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera1.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera1.titulo')));
       return;
     } else if (this.selectedTipoOpera == ''){
-      this.openSnackBar('Debe seleccionar una operación.','ErrorOperacion');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera2.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera2.titulo')));
       return;
     } else if (this.paramOperaAnyos == null || this.paramOperaMeses == null || this.paramOperaDias == null ||
       this.paramOperaHoras == null || this.paramOperaMinutos == null){
-      this.openSnackBar('Los valores de años, meses, días, horas, minutos deben estar rellenos. Sino aplican cambio, deje el valor 0.','ErrorOperacion');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera3.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera3.titulo')));
     } else{
       //limpiar horas y minutos de fechas de diferencia
       this.fechaOperarParam = this.limpiarHorasMinutos(this.fechaOperarParam);
@@ -387,7 +420,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   onClickLimpiarOperar(): void {
     this.fechaOperarRes = undefined;
     this.horaOperarRes = '';
-    this.openSnackBar('Fecha limpiada', 'LimpiarOperacion');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadoopera.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadoopera.titulo')));
   }
 
 
@@ -401,7 +436,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     .subscribe(dia => {
       if (dia && dia != ''){
         this.diaSemanaRes = dia;
-        this.openSnackBar('Calculado día de la semana', 'DiaSemanaCalculado');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadodiasem.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.calculadodiasem.titulo')));
 
         //situarnos en el campo resultado final
         const in_diaSemanaRes = document.getElementById('in_diaSemanaRes');
@@ -421,7 +458,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     this.diaSemanaRes = '';
 
     if (this.fechaDiaSemanaParam == null){
-      this.openSnackBar('Debe seleccionar una fecha.','ErrorDiaSemana');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiasem.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiasem.titulo')));
       return;
     } else{
       this.getDayofweek(this.fechaDiaSemanaParam);
@@ -436,7 +475,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarDiaSemana(): void {
     this.diaSemanaRes = '';
-    this.openSnackBar('Día de la semana limpiado', 'LimpiarDiaSemana');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadodiasem.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadodiasem.titulo')));
   }
 
 
@@ -454,7 +495,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
         this.horaLocalResTimUnix = ('0' + this.fechaLocalResTimUnix.getHours()).slice(-2) + ':' + ('0' + this.fechaLocalResTimUnix.getMinutes()).slice(-2);
         this.fechaUTCResTimUnix = new Date(matriz.fechaUTC);
         this.horaUTCResTimUnix = ('0' + this.fechaUTCResTimUnix.getHours()).slice(-2) + ':' + ('0' + this.fechaUTCResTimUnix.getMinutes()).slice(-2);
-        this.openSnackBar('Conversión realizada', 'ConversionUtcFecha');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.convertidoutc.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.convertidoutc.titulo')));
 
         //situarnos en el campo resultado final
         const in_fechaLocalResTimUnix = document.getElementById('in_fechaLocalResTimUnix');
@@ -477,7 +520,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     this.horaUTCResTimUnix = '';
 
     if (this.paramTimeUnix == null){
-      this.openSnackBar('Debe seleccionar el tiempo UTC.','ErrorUtcFecha');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorutc.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorutc.titulo')));
       return;
     } else{
       this.getUnixtimeToTime(this.paramTimeUnix);
@@ -495,7 +540,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     this.horaLocalResTimUnix = '';
     this.fechaUTCResTimUnix = undefined;
     this.horaUTCResTimUnix = '';
-    this.openSnackBar('Conversión limpiada', 'LimpiarUtcFecha');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadoutc.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadoutc.titulo')));
   }
 
 
@@ -509,7 +556,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     .subscribe(matriz => {
       if (matriz){
         this.timeUnixRes = matriz.tiempoUnixUTC;
-        this.openSnackBar('Conversión realizada', 'ConversionFechaUtc');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.convertidofecha.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.convertidofecha.titulo')));
 
         //situarnos en el campo resultado final
         const btnResTimeUnix = document.getElementById('btnResTimeUnix');
@@ -529,7 +578,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     this.timeUnixRes = undefined;
 
     if (this.paramFechaLocal == null){
-      this.openSnackBar('Debe seleccionar fecha.','ErrorFechaUtc');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorfecha.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorfecha.titulo')));
       return;
     } else{
       //limpiar horas y minutos
@@ -555,7 +606,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarFechaUTC(): void {
     this.timeUnixRes = undefined;
-    this.openSnackBar('Conversión limpiada', 'LimpiarFechaUtc');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadofecha.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadofecha.titulo')));
   }
 
 
@@ -580,7 +633,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
         this.pascuaRes.fechaLunesPeriodoVacacional = new Date(pascua.fechaLunesPeriodoVacacional);
         this.pascuaRes.fechaDomingoPeriodoVacacional = new Date(pascua.fechaDomingoPeriodoVacacional);
 
-        this.openSnackBar('Fechas de pascua generadas', 'GenerarPascua');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.generadopascua.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.generadopascua.titulo')));
 
         //situarnos en el campo resultado final
         const btnPascuaResDomingoRamos = document.getElementById('btnPascuaResDomingoRamos');
@@ -598,7 +653,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   onClickBotonGenerarPascua(): void {
     this.pascuaRes = undefined;
     if (this.pascuaParamEjercicio == null){
-      this.openSnackBar('Debe seleccionar un ejercicio.','ErrorPascua');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorpascua.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorpascua.titulo')));
     } else {
       this.getHolyWeek(this.pascuaParamEjercicio);
     }
@@ -610,7 +667,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
     */
   onClickLimpiarPascua(): void {
     this.pascuaRes = undefined;
-    this.openSnackBar('Pascua limpiada', 'LimpiarPascua');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadopascua.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.limpiadopascua.titulo')));
   }
 
 
