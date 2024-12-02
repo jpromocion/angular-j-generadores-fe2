@@ -105,7 +105,9 @@ export abstract class BaseGeneraComponent implements OnInit  {
   onSelectDato(dato: string | undefined): void {
     if (dato) {
       this.clipboard.copy(dato);
-      this.openSnackBar('Dato copiado al portapapeles', 'CopiaPortapapeles');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.copiadoportapapeles.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.copiadoportapapeles.titulo')));
     }
   }
 

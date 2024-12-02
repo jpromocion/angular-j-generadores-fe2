@@ -40,12 +40,12 @@
             "label": "Decimals",
             "tooltip": "In those generations that return a number with a decimal part, the number of decimal places to display in the return is indicated."
           },
-          "valoressinoaleatorio":{
+          "valoressinoaleatorio": {
             "si": "Yes",
             "no": "No",
             "aleatorio": "Default(random)"
           },
-          "elegirarchivo":{
+          "elegirarchivo": {
             "label": "Choose file",
             "labelplurarl": "Choose file(s)"
           }
@@ -104,7 +104,15 @@
           }
         },
         "mensajes": {
-          "errorservicio": "{{operacion}} failed: {{mensaje}} - Additional error: {{erroradicional}}"
+          "errorservicio": "{{operacion}} failed: {{mensaje}} - Additional error: {{erroradicional}}",
+          "copiadoportapapeles": {
+            "mensaje": "Data copied to clipboard",
+            "titulo": "ClipboardCopy"
+          },
+          "limpiarmensajeserror": {
+            "mensaje": "Messages cleaned",
+            "titulo": "CleanedMessages"
+          }
         }
       },
       "bandejamensajes": {
@@ -211,7 +219,7 @@
           "validartarjeta": "Validate Card"
         },
         "boton": {
-          "generariban":{
+          "generariban": {
             "label": "Generate a list of IBANs"
           }
         },
@@ -1017,6 +1025,76 @@
         }
       },
       "archivos": {
+        "mensajes": {
+          "recuperadohash": {
+            "mensaje": "Hash types list retrieved",
+            "titulo": "RetrieveHashTypesList"
+          },
+          "codificadotextobase64": {
+            "mensaje": "Text encoded to base64",
+            "titulo": "Base64Encoded"
+          },
+          "codificadoarchibase64": {
+            "mensaje": "File encoded to base64",
+            "titulo": "Base64FileEncoded"
+          },
+          "errorcodibase64tipoentrada": {
+            "mensaje": "Input type must have something selected",
+            "titulo": "Base64EncodeError"
+          },
+          "errorcodibase64entrada": {
+            "mensaje": "Text must contain something",
+            "titulo": "Base64EncodeError"
+          },
+          "errorcodibase64fichero": {
+            "mensaje": "A file must be selected",
+            "titulo": "Base64EncodeError"
+          },
+          "limpiarbase64": {
+            "mensaje": "Base64 text cleaned",
+            "titulo": "Base64EncodeClean"
+          },
+          "decodificarbase64": {
+            "mensaje": "Text decoded from base64",
+            "titulo": "Base64Decoded"
+          },
+          "decodificararchivobase64": {
+            "mensaje": "File decoded from base64",
+            "titulo": "Base64FileDecoded"
+          },
+          "errordecodibase64texto": {
+            "mensaje": "Text must contain something",
+            "titulo": "Base64DecodeError"
+          },
+          "limpiardecobase64": {
+            "mensaje": "Original text cleaned",
+            "titulo": "Base64DecodeClean"
+          },
+          "obtenerhash": {
+            "mensaje": "Hash obtained",
+            "titulo": "HashObtained"
+          },
+          "errorhashtipohash": {
+            "mensaje": "A hash type must be selected",
+            "titulo": "HashError"
+          },
+          "errorhashfichero": {
+            "mensaje": "A file must be selected",
+            "titulo": "HashError"
+          },
+          "limpiarhash": {
+            "mensaje": "Hash cleaned",
+            "titulo": "HashClean"
+          },
+          "generarzip": {
+            "mensaje": "Zip generated",
+            "titulo": "ZipGenerated"
+          },
+          "errorzipfichero": {
+            "mensaje": "At least one file must be selected",
+            "titulo": "ZipError"
+          }
+        },
         "frame": {
           "base64codi": "Base 64 (encode)",
           "base64encodi": "Base 64 (decode)",
@@ -1316,11 +1394,6 @@
           }
         }
       }
-
-
-
-
-
     }
   }
 }

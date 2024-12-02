@@ -1,9 +1,9 @@
 {
   "generadores": {
-    "jpromocion":{
+    "jpromocion": {
       "titulo": "Generadores de",
       "titulocompleto": "Generadores de jpromocion",
-      "menu":{
+      "menu": {
         "titulo": "Menú",
         "principal": "Principal",
         "documentos": "Documentos",
@@ -20,7 +20,7 @@
         "variados": "Variados",
         "acercade": "Acerca de"
       },
-      "generarcomunes":{
+      "generarcomunes": {
         "numgeneraciones": {
           "label": "Num. generaciones",
           "tooltip": "En aquellas generaciones que devuelven una lista, se indica el número de resultados a obtener."
@@ -40,12 +40,12 @@
             "label": "Decimales",
             "tooltip": "En aquellas generaciones que devuelven un número con parte decimal, se indica el número de posiciones decimales a mostrar en el retorno."
           },
-          "valoressinoaleatorio":{
+          "valoressinoaleatorio": {
             "si": "Sí",
             "no": "No",
             "aleatorio": "Defecto(aleatorio)"
           },
-          "elegirarchivo":{
+          "elegirarchivo": {
             "label": "Elegir archivo",
             "labelplurarl": "Elegir archivo/s"
           }
@@ -103,30 +103,38 @@
             "tooltip": "Pulsar para transformar"
           }
         },
-        "mensajes":{
-          "errorservicio": "{{operacion}} fallo: {{mensaje}} - Error adicional: {{erroradicional}}"
+        "mensajes": {
+          "errorservicio": "{{operacion}} fallo: {{mensaje}} - Error adicional: {{erroradicional}}",
+          "copiadoportapapeles": {
+            "mensaje": "Dato copiado al portapapeles",
+            "titulo": "CopiaPortapapeles"
+          },
+          "limpiarmensajeserror": {
+            "mensaje": "Mensajes limpiados",
+            "titulo": "LimpiadosMensajes"
+          }
         }
       },
-      "bandejamensajes":{
+      "bandejamensajes": {
         "titulo": "Bandeja de mensajes",
         "botonlimpiar": "Limpiar mensajes"
       },
-      "compramecafe":{
+      "compramecafe": {
         "boton": "¡¡Compramé un café!!"
       },
-      "acercade":{
+      "acercade": {
         "version": "Versión",
         "autor": "Autor",
         "infocontacto": "Información de contacto",
         "enviaremail": "Enviar email"
       },
-      "principal":{
-        "apikey":{
+      "principal": {
+        "apikey": {
           "label": "API-Key",
           "tooltip": "Introduzca la api-key para la comunicación con el servicio REST"
         }
       },
-      "documentos":{
+      "documentos": {
         "frame": {
           "generarnif": "Generar NIFs",
           "generarnie": "Generar NIEs",
@@ -139,47 +147,47 @@
           "calculardcpasaporte": "Calcular DC Pasaporte"
         },
         "boton": {
-          "generarnif":{
+          "generarnif": {
             "label": "Generar una lista de NIFs"
           },
-          "limpiarnif":{
+          "limpiarnif": {
             "label": "Limpiar lista NIFs"
           },
-          "generarnie":{
+          "generarnie": {
             "label": "Generar una lista de NIEs"
           },
-          "limpiarnie":{
+          "limpiarnie": {
             "label": "Limpiar lista NIEs"
           },
-          "generarpasapor":{
+          "generarpasapor": {
             "label": "Generar una lista de Pasaportes"
           },
-          "limpiarpasapor":{
+          "limpiarpasapor": {
             "label": "Limpiar lista Pasaportes"
           },
-          "generarcif":{
+          "generarcif": {
             "label": "Generar una lista de CIFs"
           },
-          "limpiarcif":{
+          "limpiarcif": {
             "label": "Limpiar lista CIFs"
           },
-          "validarnif":{
+          "validarnif": {
             "label": "Validar un NIF"
           },
-          "validarnie":{
+          "validarnie": {
             "label": "Validar un NIE"
           },
-          "validarcif":{
+          "validarcif": {
             "label": "Validar un CIF"
           },
-          "validarpasapor":{
+          "validarpasapor": {
             "label": "Validar un Pasaporte"
           },
-          "calculardcpasapor":{
+          "calculardcpasapor": {
             "label": "Calcular dígito control pasaporte"
           }
         },
-        "entrada":{
+        "entrada": {
           "tipocif": {
             "label": "Seleccionar tipo sociedad",
             "placeholder": "Seleccionar ..."
@@ -202,7 +210,7 @@
           }
         }
       },
-      "bancario":{
+      "bancario": {
         "titulo": "Elementos bancarios",
         "frame": {
           "generariban": "Generar IBANs",
@@ -211,11 +219,11 @@
           "validartarjeta": "Validar Tarjeta"
         },
         "boton": {
-          "generariban":{
+          "generariban": {
             "label": "Generar una lista de IBANs"
           }
         },
-        "entrada":{
+        "entrada": {
           "tipotarjeta": {
             "label": "Seleccionar tipo tarjeta",
             "placeholder": "Seleccionar un tipo concreto para generar solo este tipo."
@@ -228,7 +236,7 @@
           }
         }
       },
-      "perfil":{
+      "perfil": {
         "frame": {
           "personagenerada": "Persona generada",
           "personasgeneradas": "Personas generadas",
@@ -236,11 +244,11 @@
           "empresasgeneradas": "Empresas generadas"
         },
         "boton": {
-          "generarperfil":{
+          "generarperfil": {
             "label": "Generar un perfil"
           }
         },
-        "entrada":{
+        "entrada": {
           "tipoperfil": {
             "label": "Tipo perfil",
             "valorp": "Persona",
@@ -253,7 +261,7 @@
             "valorm": "Mujer"
           }
         },
-        "salida":{
+        "salida": {
           "persona": {
             "nif": {
               "label": "NIF"
@@ -392,13 +400,13 @@
           }
         }
       },
-      "texto":{
+      "texto": {
         "boton": {
-          "generartexto":{
+          "generartexto": {
             "label": "Generar caracteres"
           }
         },
-        "entrada":{
+        "entrada": {
           "idioma": {
             "label": "Idioma",
             "valorsp": "Castellano",
@@ -417,13 +425,13 @@
             "tooltip": "Si el tipo es 'Carácteres' será el número de carácteres a generar, si el tipo es 'Palabras' será el número de palabras a generar, y si es 'Párrafos' será el número de párrafos a generar"
           }
         },
-        "salida":{
+        "salida": {
           "textogenerado": {
             "label": "Texto generado"
           }
         }
       },
-      "numeros":{
+      "numeros": {
         "frame": {
           "aleatorio": "Número aleatorio",
           "gaussiano": "Número aleatorio (Gaussiano)",
@@ -437,32 +445,32 @@
           "arabigoromano": "Arábigo <-> Romano"
         },
         "boton": {
-          "generaraleatorio":{
+          "generaraleatorio": {
             "label": "Generar aleatorios"
           },
-          "generargaussiano":{
+          "generargaussiano": {
             "label": "Generar aleatorio Gaussiano"
           },
-          "generarmoneda":{
+          "generarmoneda": {
             "label": "Generar lanzamientos moneda"
           },
-          "generardado":{
+          "generardado": {
             "label": "Generar lanzamientos de dado"
           },
-          "calcularregla3":{
+          "calcularregla3": {
             "label": "Calcular X"
           },
-          "convertirgrados":{
+          "convertirgrados": {
             "label": "Conversión grados-radianes"
           },
-          "convertirbase":{
+          "convertirbase": {
             "label": "Conversión de base"
           },
-          "convertirarabigoromano":{
+          "convertirarabigoromano": {
             "label": "Conversión arábigo-romano"
           }
         },
-        "entrada":{
+        "entrada": {
           "aleatoriominimo": {
             "label": "Mínimo",
             "tooltip": "Valor inferior de los generables."
@@ -634,7 +642,7 @@
             "label": "Romano"
           }
         },
-        "salida":{
+        "salida": {
           "gradosradconvertido": {
             "label": "Convertido"
           },
@@ -646,7 +654,7 @@
           }
         }
       },
-      "fechas":{
+      "fechas": {
         "frame": {
           "generartipofecha": "Generar tipos fecha",
           "edad": "Edad",
@@ -658,26 +666,26 @@
           "pascua": "Pascua"
         },
         "boton": {
-          "generartipo":{
+          "generartipo": {
             "label": "Generar tipo"
           },
-          "calcularedad":{
+          "calcularedad": {
             "label": "Calcular edad"
           },
-          "calculardif":{
+          "calculardif": {
             "label": "Calcular edad"
           },
-          "calculardia":{
+          "calculardia": {
             "label": "Calcular día"
           },
-          "calcularoperacion":{
+          "calcularoperacion": {
             "label": "Calcular operación"
           },
-          "generarpascua":{
+          "generarpascua": {
             "label": "Generar datos de pascua"
           }
         },
-        "entrada":{
+        "entrada": {
           "tipofecha": {
             "label": "Seleccionar tipo generación",
             "placeholder": "Seleccionar un tipo de generación."
@@ -714,19 +722,19 @@
             "label": "Operación",
             "placeholder": "Seleccionar una operación."
           },
-          "anos":{
+          "anos": {
             "label": "Años"
           },
-          "meses":{
+          "meses": {
             "label": "Meses"
           },
-          "dias":{
+          "dias": {
             "label": "Días"
           },
-          "horas":{
+          "horas": {
             "label": "Horas"
           },
-          "minutos":{
+          "minutos": {
             "label": "Minutos"
           },
           "utc": {
@@ -744,8 +752,8 @@
             "label": "Ejercicio"
           }
         },
-        "salida":{
-          "edad":{
+        "salida": {
+          "edad": {
             "valoresrelativos": "Valores relativos",
             "valoresabsolutos": "Valores absolutos",
             "anos": "años",
@@ -755,13 +763,13 @@
             "minutos": "minutos",
             "segundos": "segundos"
           },
-          "diasemana":{
+          "diasemana": {
             "label": "Día de la semana"
           },
-          "fecharesultado":{
+          "fecharesultado": {
             "label": "Fecha resultado"
           },
-          "horaresultado":{
+          "horaresultado": {
             "label": "Hora resultado"
           },
           "fechalocal": {
@@ -776,7 +784,7 @@
           "horautc": {
             "label": "Hora UTC"
           },
-          "pascua":{
+          "pascua": {
             "domingoramos": "Domingo de ramos",
             "lunesanto": "Lunes santo",
             "martessanto": "Martes santo",
@@ -791,20 +799,20 @@
           }
         }
       },
-      "vehiculos":{
+      "vehiculos": {
         "frame": {
           "generarvehiculo": "Generar Vehículo",
           "validarbastidor": "Validar Bastidor"
         },
         "boton": {
-          "generarvehiculo":{
+          "generarvehiculo": {
             "label": "Generar datos vehículo"
           },
-          "validarbastidor":{
+          "validarbastidor": {
             "label": "Validar un Bastidor"
           }
         },
-        "entrada":{
+        "entrada": {
           "tipovehiculo": {
             "label": "Seleccionar tipo generación",
             "placeholder": "Seleccionar ..."
@@ -814,9 +822,9 @@
           }
         }
       },
-      "localizacion":{
-        "textosfijos":{
-          "domicilios":{
+      "localizacion": {
+        "textosfijos": {
+          "domicilios": {
             "parrafo1": "Genera un domicilio completamente aleatorio en CCAA, Provincia, Municipio, o selecciona en los bloques anterires una CCAA y provincia para generarlos dirigidos.",
             "parrafo2": "Adicionalmente en este bloque podrás filtrar por el Municipio concreto de una provincia sobre el que generar."
           }
@@ -828,20 +836,20 @@
           "domicilios": "Domicilios"
         },
         "boton": {
-          "generarccaa":{
+          "generarccaa": {
             "label": "Generar CCAAs"
           },
-          "generarprovincias":{
+          "generarprovincias": {
             "label": "Generar Provincias"
           },
-          "generarmunicipios":{
+          "generarmunicipios": {
             "label": "Generar Municipios"
           },
-          "generardomicilios":{
+          "generardomicilios": {
             "label": "Generar domicilios"
           }
         },
-        "entrada":{
+        "entrada": {
           "ccaa": {
             "label": "Cod. CCAA",
             "tooltip": "Auto-rellenado con la CCAA seleccionada en el bloque 'Provincias'."
@@ -854,26 +862,26 @@
             "label": "Cod. Municipio",
             "tooltip": "Este valor si debe ser rellenado si se quiere filtrar las direcciones por municipio. El código de municipio está relacionado con la provincia, por lo que no tiene sentido por si solo. Puede copiarlo de uno de los resultados del bloque 'Municipios' tras filtrar una provincia."
           },
-          "km":{
+          "km": {
             "label": "¿Km?"
           },
-          "bloque":{
+          "bloque": {
             "label": "¿Bloque?"
           },
-          "portal":{
+          "portal": {
             "label": "¿Portal?"
           },
-          "escalera":{
+          "escalera": {
             "label": "¿Escalera?"
           },
-          "planta":{
+          "planta": {
             "label": "¿Planta?"
           },
-          "puerta":{
+          "puerta": {
             "label": "¿Puerta?"
           }
         },
-        "salida":{
+        "salida": {
           "ccaa": {
             "codigo": {
               "label": "Código"
@@ -944,31 +952,31 @@
           }
         }
       },
-      "qrbarras":{
+      "qrbarras": {
         "titulo": "QR y Códigos de barras",
-        "textosfijos":{
-          "qr":{
+        "textosfijos": {
+          "qr": {
             "parrafo1": "Los códigos QR se están convirtiendo en los códigos de barras 2D más reconocidos en todo el mundo. La gran ventaja del código QR es que podemos almacenar grandes cantidades de datos en un espacio limitado.",
             "parrafo2": "Utilizan cuatro modos de codificación estandarizados para almacenar datos de manera eficiente.",
             "parrafo3": "Además, son flexibles en tamaño y se escanean fácilmente con un teléfono inteligente. Al igual que el PDF417, un código QR puede soportar algunos daños sin provocar la pérdida de datos."
           },
-          "147":{
+          "147": {
             "parrafo1": "PDF417 es un código de barras lineal apilado compuesto por múltiples códigos de barras 1D apilados uno sobre otro. Por lo tanto, puede utilizar un escáner lineal tradicional.",
             "parrafo2": "Podríamos esperar encontrarlo en una variedad de aplicaciones, como viajes (tarjetas de embarque), tarjetas de identificación y gestión de inventario."
           },
-          "ean13":{
+          "ean13": {
             "parrafo1": "Los códigos EAN se conocen en todo el mundo como números de artículo europeos y números de artículo internacionales. Están diseñados para su lectura en el punto de venta. También existen algunas variaciones diferentes del código EAN, como EAN-13, EAN-8, JAN-13 e ISBN.",
             "parrafo2": "El código EAN-13 es el estándar EAN más utilizado. Está formado por 13 dígitos: un “0” inicial seguido del código UPC-A (12 dígitos)."
           },
-          "code128":{
+          "code128": {
             "parrafo1": "El código de barras Code 128 es un código lineal compacto y de alta densidad que se utiliza en las industrias de logística y transporte para pedidos y distribución.",
             "parrafo2": "Puede codificar los 128 caracteres ASCII y su longitud es variable."
           },
-          "upca":{
+          "upca": {
             "parrafo1": "Los códigos UPC  (Universal Product Code) son algunos de los códigos de barras 1D más utilizados y los encontramos principalmente en los Estados Unidos.",
             "parrafo2": "El UPC-A es un código solo numérico que contiene 12 dígitos: un número de identificación del fabricante (6 dígitos), un número de artículo (5 dígitos) y un dígito de control."
           },
-          "upce":{
+          "upce": {
             "parrafo1": "Una variante del UPC que tiene sólo 8 dígitos y se utiliza para paquetes pequeños."
           }
         },
@@ -981,11 +989,11 @@
           "upce": "UPC-E"
         },
         "boton": {
-          "generarccaa":{
+          "generarccaa": {
             "label": "Generar CCAAs"
           }
         },
-        "entrada":{
+        "entrada": {
           "ancho": {
             "label": "Ancho",
             "tooltip": "Ancho de la imagen en pixeles a generar. Dejar en blanco para que se generen con el valor defecto del servicio."
@@ -994,29 +1002,99 @@
             "label": "Alto",
             "tooltip": "Alto de la imagen en pixeles a generar. Dejar en blanco para que se generen con el valor defecto del servicio."
           },
-          "valorcodificar":{
+          "valorcodificar": {
             "label": "Valor a codificar",
             "tooltip_ean13": "Código numérico de 13 dígitos comenzado por '0'.",
             "tooltip_128": "Código alfanúmerico de máximo 80 carácteres.",
             "tooltip_upca": "Código numérico de 12 dígitos. Puedes omitir el último que es el dígito de control, y lo generará por debajo.",
             "tooltip_upce": "Código numérico de 8 dígitos."
           },
-          "textoqrsup":{
+          "textoqrsup": {
             "label": "Texto superior",
             "tooltip": "Texto a fijar en parte superior. Opcional."
           },
-          "textoqrinf":{
+          "textoqrinf": {
             "label": "Texto inferior",
             "tooltip": "Texto a fijar en parte inferior. Opcional."
           }
         },
-        "salida":{
+        "salida": {
           "imagengenerada": {
             "alt": "código barras generado"
           }
         }
       },
-      "archivos":{
+      "archivos": {
+        "mensajes": {
+          "recuperadohash": {
+            "mensaje": "Lista tipos hash recuperados",
+            "titulo": "RecuperarListaTiposHash"
+          },
+          "codificadotextobase64": {
+            "mensaje": "Codificado texto a base64",
+            "titulo": "CodificadoBase64"
+          },
+          "codificadoarchibase64": {
+            "mensaje": "Codificado archivo a base64",
+            "titulo": "CodificadoArchivoBase64"
+          },
+          "errorcodibase64tipoentrada": {
+            "mensaje": "El tipo entrada debe tener algo seleccionado",
+            "titulo": "ErrorCodificaBase64"
+          },
+          "errorcodibase64entrada": {
+            "mensaje": "El texto debe contener algo",
+            "titulo": "ErrorCodificaBase64"
+          },
+          "errorcodibase64fichero": {
+            "mensaje": "Debe seleccionarse algún fichero",
+            "titulo": "ErrorCodificaBase64"
+          },
+          "limpiarbase64": {
+            "mensaje": "Texto base64 limpiado",
+            "titulo": "LimpiarCodificaBase64"
+          },
+          "decodificarbase64": {
+            "mensaje": "Decodificado texto de base64",
+            "titulo": "DecodificadoBase64"
+          },
+          "decodificararchivobase64": {
+            "mensaje": "Decodificado archivo de base64",
+            "titulo": "DecodificadoArchivoBase64"
+          },
+          "errordecodibase64texto": {
+            "mensaje": "El texto debe contener algo",
+            "titulo": "ErrorDecodificaBase64"
+          },
+          "limpiardecobase64": {
+            "mensaje": "Texto original limpiado",
+            "titulo": "LimpiarDecodificaBase64"
+          },
+          "obtenerhash": {
+            "mensaje": "Obtenido hash",
+            "titulo": "ObtenidoHash"
+          },
+          "errorhashtipohash": {
+            "mensaje": "Debe seleccionarse algún tipo de hash",
+            "titulo": "ErrorHash"
+          },
+          "errorhashfichero": {
+            "mensaje": "Debe seleccionarse algún fichero",
+            "titulo": "ErrorHash"
+          },
+          "limpiarhash": {
+            "mensaje": "Hash limpiado",
+            "titulo": "LimpiarHash"
+          },
+          "generarzip": {
+            "mensaje": "Generado zip",
+            "titulo": "GeneradoZip"
+          },
+          "errorzipfichero": {
+            "mensaje": "Debe seleccionar al menos un fichero",
+            "titulo": "ErrorGeneraZip"
+          }
+        },
         "frame": {
           "base64codi": "Base 64 (codificar)",
           "base64encodi": "Base 64 (decodificar)",
@@ -1024,24 +1102,24 @@
           "zip": "Generar Zip"
         },
         "boton": {
-          "codificar64":{
+          "codificar64": {
             "label": "Codificar base64",
             "tooltip": "Pulsar para codificar"
           },
-          "decodificar64":{
+          "decodificar64": {
             "label": "Decodificar base64",
             "tooltip": "Pulsar para decodificar"
           },
-          "generarhash":{
+          "generarhash": {
             "label": "Obtener hash",
             "tooltip": "Pulsar para obtener hash"
           },
-          "generarzip":{
+          "generarzip": {
             "label": "Generar zip",
             "tooltip": "Pulsar para generar zip"
           }
         },
-        "entrada":{
+        "entrada": {
           "tipoentrada": {
             "label": "Tipo entrada",
             "valortexto": "Texto",
@@ -1063,7 +1141,7 @@
             "placeholder": "Seleccionar ..."
           }
         },
-        "salida":{
+        "salida": {
           "base64codi": {
             "label": "Codificado en Base 64"
           },
@@ -1072,36 +1150,36 @@
           }
         }
       },
-      "colores":{
-        "textosfijos":{
-          "selector":{
+      "colores": {
+        "textosfijos": {
+          "selector": {
             "parrafo1": "En operaciones que operen con 1 color, utilizarán el \"Color principal\".",
             "parrafo2": "En operaciones que operen con 2 colores, utilizarán el \"Color principal\" como color 1, y el \"Color secundario\" como color 2."
           },
-          "aclarar":{
+          "aclarar": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
           },
-          "oscurecer":{
+          "oscurecer": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
           },
-          "matizar":{
+          "matizar": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
           },
-          "invertir":{
+          "invertir": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
           },
-          "alpha":{
+          "alpha": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
           },
-          "mezclar":{
+          "mezclar": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\" como color 1 de la mezcla.",
             "parrafo2": "Utiliza el \"Color secundario\" del bloque \"Selector de Color\" como color 2 de la mezcla."
           },
-          "gradiente":{
+          "gradiente": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\" como color 1 de la gradiente.",
             "parrafo2": "Utiliza el \"Color secundario\" del bloque \"Selector de Color\" como color 2 de la gradiente."
           },
-          "monocroma":{
+          "monocroma": {
             "parrafo1": "Utiliza el \"Color principal\" del bloque \"Selector de Color\"."
           }
         },
@@ -1120,43 +1198,43 @@
           "monocroma": "Colores monocromáticos"
         },
         "boton": {
-          "generarcolor":{
+          "generarcolor": {
             "label": "Generar un color aleatorio"
           },
-          "aclarar":{
+          "aclarar": {
             "label": "Aclara color",
             "tooltip": "Pulsar para aclarar"
           },
-          "oscurecer":{
+          "oscurecer": {
             "label": "Oscurecer color",
             "tooltip": "Pulsar para oscurecer"
           },
-          "matizar":{
+          "matizar": {
             "label": "Transformar color",
             "tooltip": "Pulsar para aplicar"
           },
-          "invertir":{
+          "invertir": {
             "label": "Invertir color",
             "tooltip": "Pulsar para invertir"
           },
-          "alpha":{
+          "alpha": {
             "label": "Alpha color",
             "tooltip": "Pulsar para alpha"
           },
-          "mezclar":{
+          "mezclar": {
             "label": "Mezclar colores",
             "tooltip": "Pulsar para mezclar"
           },
-          "gradiente":{
+          "gradiente": {
             "label": "Obtener gradientes",
             "tooltip": "Pulsar para gradientes"
           },
-          "monocroma":{
+          "monocroma": {
             "label": "Obtener colores monocromáticos",
             "tooltip": "Pulsar para monocromático"
           }
         },
-        "entrada":{
+        "entrada": {
           "colorprincipal": {
             "label": "Color principal"
           },
@@ -1195,7 +1273,7 @@
             "label": "Num. colores"
           }
         },
-        "salida":{
+        "salida": {
           "rgb": {
             "label": "RGB"
           },
@@ -1204,7 +1282,7 @@
           }
         }
       },
-      "variados":{
+      "variados": {
         "frame": {
           "generartipo": "Generar tipo seleccionado",
           "generartelefono": "Generar Teléfonos",
@@ -1219,41 +1297,41 @@
           "validarnss": "Validar NSS (Número Seguridad Social)"
         },
         "boton": {
-          "generartipo":{
-            "label":  "Generar tipo"
+          "generartipo": {
+            "label": "Generar tipo"
           },
-          "generartelefono":{
-            "label":  "Generar teléfono"
+          "generartelefono": {
+            "label": "Generar teléfono"
           },
-          "generarpasswords":{
-            "label":  "Generar password"
+          "generarpasswords": {
+            "label": "Generar password"
           },
-          "generarcodipromo":{
-            "label":  "Generar códigos promocionales"
+          "generarcodipromo": {
+            "label": "Generar códigos promocionales"
           },
-          "generarrefecatas":{
-            "label":  "Generar referencia"
+          "generarrefecatas": {
+            "label": "Generar referencia"
           },
-          "validarrefecatas":{
-            "label":  "Validar una Ref. catastral"
+          "validarrefecatas": {
+            "label": "Validar una Ref. catastral"
           },
-          "generarcups":{
-            "label":  "Generar CUPS"
+          "generarcups": {
+            "label": "Generar CUPS"
           },
-          "validarcups":{
-            "label":  "Validar un CUPS"
+          "validarcups": {
+            "label": "Validar un CUPS"
           },
-          "validarlei":{
-            "label":  "Validar un LEI"
+          "validarlei": {
+            "label": "Validar un LEI"
           },
-          "validarisin":{
-            "label":  "Validar un ISIN"
+          "validarisin": {
+            "label": "Validar un ISIN"
           },
-          "validarnss":{
-            "label":  "Validar un NSS"
+          "validarnss": {
+            "label": "Validar un NSS"
           }
         },
-        "entrada":{
+        "entrada": {
           "tipogenera": {
             "label": "Seleccionar tipo generación",
             "placeholder": "Seleccionar ..."
@@ -1316,11 +1394,6 @@
           }
         }
       }
-
-
-
-
-
     }
   }
 }

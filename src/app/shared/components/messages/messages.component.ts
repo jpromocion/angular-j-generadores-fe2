@@ -4,6 +4,8 @@ import { MessageService } from '../../../core/services/message.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { TranslateModule } from '@ngx-translate/core';
+import {TranslateService} from "@ngx-translate/core";
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-messages',
@@ -20,6 +22,8 @@ export class MessagesComponent {
 
   private _snackBar = inject(MatSnackBar);
 
+  translate = inject(TranslateService);
+
   constructor() {}
 
   openSnackBar(message: string, action: string) {
@@ -34,7 +38,9 @@ export class MessagesComponent {
 
   limpiarMensajes(): void {
     this.messageService.clear();
-    this.openSnackBar('Mensajes limpiados','');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.limpiarmensajeserror.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.limpiarmensajeserror.titulo')));
   }
 
 }

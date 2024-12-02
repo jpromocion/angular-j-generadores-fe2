@@ -16,6 +16,7 @@ import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.
 import { FilesService } from '../core/services/files.service';
 import { Tipohash } from '../core/models/tipohash';
 import { TranslateModule } from '@ngx-translate/core';
+import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
   selector: 'app-genera-archivos',
@@ -77,7 +78,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(tipos => {
       this.listaTiposHash = tipos;
       if (this.listaTiposHash && this.listaTiposHash.length > 0) {
-        this.openSnackBar('Lista tipos hash recuperados', 'RecuperarListaTiposHash');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.recuperadohash.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.recuperadohash.titulo')));
       }
     });
   }
@@ -93,7 +96,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(textoBase64 => {
       if (textoBase64 && textoBase64 != '') {
         this.textoCodificadoBase64 = textoBase64;
-        this.openSnackBar('Codificado texto a base64', 'CodificadoBase64');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.codificadotextobase64.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.codificadotextobase64.titulo')));
       }
     });
   }
@@ -107,7 +112,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(textoBase64 => {
       if (textoBase64 && textoBase64 != '') {
         this.textoCodificadoBase64 = textoBase64;
-        this.openSnackBar('Codificado archivo a base64', 'CodificadoArchivoBase64');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.codificadoarchibase64.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.codificadoarchibase64.titulo')));
       }
     });
   }
@@ -120,13 +127,19 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     //comprobamos que tenga algo
 
     if (this.codifica64Entrada == '') {
-      this.openSnackBar('El tipo entrada debe tener algo seleccionado', 'ErrorCodificaBase64');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorcodibase64tipoentrada.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorcodibase64tipoentrada.titulo')));
       return;
     } else if (this.codifica64Entrada == 'texto' && this.textoABase64.length <= 0) {
-      this.openSnackBar('El texto debe contener algo', 'ErrorCodificaBase64');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorcodibase64entrada.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorcodibase64entrada.titulo')));
       return;
     } else if (this.codifica64Entrada == 'archivo' && this.archivoBase64 == undefined) {
-      this.openSnackBar('Debe seleccionarse algún fichero', 'ErrorCodificaBase64');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorcodibase64fichero.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorcodibase64fichero.titulo')));
       return;
     } else{
       if (this.codifica64Entrada == 'texto') {
@@ -145,7 +158,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarBase64(): void {
     this.textoCodificadoBase64 = '';
-    this.openSnackBar('Texto base64 limpiado', 'LimpiarCodificaBase64');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.limpiarbase64.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.limpiarbase64.titulo')));
   }
 
   /**
@@ -157,7 +172,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(textoOri => {
       if (textoOri && textoOri != '') {
         this.textoDecodificadoBase64 = textoOri;
-        this.openSnackBar('Decodificado texto de base64', 'DecodificadoBase64');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.decodificarbase64.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.decodificarbase64.titulo')));
       }
     });
   }
@@ -173,7 +190,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
         this.archivoDecodificadoBase64 = new File([archivo], 'archivo_decodificado.txt', {type: 'text/plain'});
         //ahora lo descargamos
         saveAs(archivo, "archivo_decodificado.txt");
-        this.openSnackBar('Decodificado archivo de base64', 'DecodificadoArchivoBase64');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.decodificararchivobase64.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.decodificararchivobase64.titulo')));
       } else{
         this.archivoDecodificadoBase64 = undefined;
       }
@@ -187,7 +206,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     this.textoDecodificadoBase64 = '';
     //comprobamos que tenga algo
     if (this.textoDeBase64.length <= 0) {
-      this.openSnackBar('El texto debe contener algo', 'ErrorDecodificaBase64');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errordecodibase64texto.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errordecodibase64texto.titulo')));
       return;
     } else{
       if (this.decodifica64Salida == 'texto') {
@@ -205,7 +226,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarDecoBase64(): void {
     this.textoDecodificadoBase64 = '';
-    this.openSnackBar('Texto original limpiado', 'LimpiarDecodificaBase64');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.limpiardecobase64.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.limpiardecobase64.titulo')));
   }
 
   /**
@@ -258,7 +281,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     .subscribe(hash => {
       if (hash && hash != '') {
         this.textoHash = hash;
-        this.openSnackBar('Obtenido hash', 'ObtenidoHash');
+        this.openSnackBar(
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.obtenerhash.mensaje')),
+          this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.obtenerhash.titulo')));
       }
     });
   }
@@ -271,10 +296,14 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     //comprobamos que tenga algo
 
     if (this.selectedTipoHash == '') {
-      this.openSnackBar('Debe seleccionarse algún tipo de hash', 'ErrorHash');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorhashtipohash.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorhashtipohash.titulo')));
       return;
     } else if (this.archivoHash == undefined) {
-      this.openSnackBar('Debe seleccionarse algún fichero', 'ErrorHash');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorhashfichero.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorhashfichero.titulo')));
       return;
     } else{
       this.postHash(this.archivoHash, this.nombreArchivoHash, this.selectedTipoHash);
@@ -287,7 +316,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     */
   onClickLimpiarHash(): void {
     this.textoHash = '';
-    this.openSnackBar('Hash limpiado', 'LimpiarHash');
+    this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.limpiarhash.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.limpiarhash.titulo')));
   }
 
 
@@ -331,7 +362,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
           this.archivoGeneradoZip = new File([archivo], 'comprimido.zip', {type: 'application/zip'});
           //ahora lo descargamos
           saveAs(archivo, 'comprimido.zip');
-          this.openSnackBar('Generado zip', 'GeneradoZip');
+          this.openSnackBar(
+            this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.generarzip.mensaje')),
+            this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.generarzip.titulo')));
 
           //restablecer el icono y clase del boton
           iconoDescargarZip!.innerText = 'download';
@@ -355,7 +388,9 @@ export class GeneraArchivosComponent extends BaseGeneraComponent implements OnIn
     this.textoDecodificadoBase64 = '';
     //comprobamos que tenga algo
     if (this.archivosZip.length <= 0) {
-      this.openSnackBar('Debe seleccionar al menos un fichero', 'ErrorGeneraZip');
+      this.openSnackBar(
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorzipfichero.mensaje')),
+        this.translate.instant(marker('generadores.jpromocion.archivos.mensajes.errorzipfichero.titulo')));
       return;
     } else{
       this.postZip(this.archivosZip);
