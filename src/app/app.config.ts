@@ -11,6 +11,7 @@ import {HttpClient} from '@angular/common/http';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
+  //new TranslateHttpLoader(http, './', '.json');
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),

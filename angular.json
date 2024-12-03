@@ -27,8 +27,13 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                "glob": "**/*",
-                "input": "public"
+              "glob": "**/*",
+              "input": "public"
+              },
+              {
+              "glob": "**/*",
+              "input": "public/i18n",
+              "output": "i18n"
               }
             ],
             "styles": [
@@ -95,6 +100,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+              "glob": "**/*",
+              "input": "public/i18n",
+              "output": "i18n"
               }
             ],
             "styles": [
