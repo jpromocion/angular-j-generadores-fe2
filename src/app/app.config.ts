@@ -10,8 +10,11 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
-  new TranslateHttpLoader(http, './i18n/', '.json');
-  //new TranslateHttpLoader(http, './', '.json');
+  //NOTA: En local funciona bien... pero al desplegar en render y railway, no consigo que los json de i18n esten
+  //en subfolder i18n, siempre aparecen en la raiz https://angular-j-generadores-fe-production.up.railway.app/es.json
+  //Asi que los hemos puesto directamente en el public raiz para ver si asi funciona desplegado.
+  //new TranslateHttpLoader(http, './i18n/', '.json');
+  new TranslateHttpLoader(http, './', '.json');
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
