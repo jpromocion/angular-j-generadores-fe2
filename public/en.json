@@ -3,6 +3,7 @@
     "jpromocion": {
       "titulo": "Generators of",
       "titulocompleto": "Generators of jpromocion",
+      "descripcion": "Generation of common elements for test data filling: identity documents, complete profiles, numbers, dates, colors... Random generations, common validations.",
       "menu": {
         "titulo": "Menu",
         "principal": "Main",
