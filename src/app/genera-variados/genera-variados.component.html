@@ -103,7 +103,7 @@
             <mat-label>{{ 'generadores.jpromocion.variados.entrada.tipotelefono.label' | translate }}</mat-label>
             <mat-select [(ngModel)]="selectedTipoTelefono" placeholder="{{ 'generadores.jpromocion.variados.entrada.tipotelefono.placeholder' | translate }}">
               @for (tipo of tiposTelefono; track tipo) {
-                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+                <mat-option [value]="tipo.valor">{{tipo.nombre | translate }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -282,7 +282,7 @@
             <mat-label>{{ 'generadores.jpromocion.variados.entrada.tipocatas.label' | translate }}</mat-label>
             <mat-select [(ngModel)]="refCatasParamSelectedTipo" placeholder="{{ 'generadores.jpromocion.variados.entrada.tipocatas.placeholder' | translate }}">
               @for (tipo of tiposRefCatastrales; track tipo) {
-                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+                <mat-option [value]="tipo.valor">{{tipo.nombre | translate }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -365,7 +365,7 @@
             <mat-label>{{ 'generadores.jpromocion.variados.entrada.tipocups.label' | translate }}</mat-label>
             <mat-select [(ngModel)]="cupsParamSelectedTipo" placeholder="{{ 'generadores.jpromocion.variados.entrada.tipocups.placeholder' | translate }}">
               @for (tipo of tiposCups; track tipo) {
-                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+                <mat-option [value]="tipo.valor">{{tipo.nombre | translate }}</mat-option>
               }
             </mat-select>
           </mat-form-field>

@@ -41,14 +41,6 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   selectedTipoGeneraFC = new FormControl('');
   tiposGenera: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo de generación.'},
-    {valor: 'em', nombre: 'Email'},
-    {valor: 'ci', nombre: 'Ciudad'},
-    {valor: 'cp', nombre: 'Cod. Postal'},
-    {valor: 'im', nombre: 'IMEI - Identidad internacional de equipo móvil'},
-    {valor: 'ui', nombre: 'UUID - Identificador único universal'},
-    {valor: 'lei', nombre: 'LEI - Identificador de Entidad Legal'},
-    {valor: 'isi', nombre: 'ISIN - International Securities Identification Numbering'},
-    {valor: 'nss', nombre: 'NSS - Número Seguridad Social'},
   ];
   tiposGeneraFiltrado: Array<any> = [];
   textoGenerado: string[] = [];
@@ -66,8 +58,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   selectedTipoTelefono: string = '';
   tiposTelefono: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo de teléfono.'},
-    {valor: 'f', nombre: 'Fijo'},
-    {valor: 'm', nombre: 'Móvil'}
+    {valor: 'f', nombre: 'generadores.jpromocion.generarcomunes.lovs.tipostelefono.valorf'},
+    {valor: 'm', nombre: 'generadores.jpromocion.generarcomunes.lovs.tipostelefono.valorm'}
   ];
   // tlfNumGenera: number = 1;
   tlfGenerado: string[] = [];
@@ -86,8 +78,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   refCatasParamSelectedTipo: string = '';
   tiposRefCatastrales: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo.'},
-    {valor: 'u', nombre: 'Urbana'},
-    {valor: 'r', nombre: 'Rústica'}
+    {valor: 'u', nombre: 'generadores.jpromocion.generarcomunes.lovs.tiporefcatastral.valoru'},
+    {valor: 'r', nombre: 'generadores.jpromocion.generarcomunes.lovs.tiporefcatastral.valorr'}
   ];
   refCatasGeneradas: string[] = [];
 
@@ -100,8 +92,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   cupsParamSelectedTipo: string = '';
   tiposCups: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo.'},
-    {valor: 'e', nombre: 'Energía'},
-    {valor: 'g', nombre: 'Gas'}
+    {valor: 'e', nombre: 'generadores.jpromocion.generarcomunes.lovs.tipocups.valore'},
+    {valor: 'g', nombre: 'generadores.jpromocion.generarcomunes.lovs.tipocups.valorg'}
   ];
   cupsGeneradas: string[] = [];
 
@@ -132,7 +124,16 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   }
 
   override ngOnInit(): void {
-
+    this.tiposGenera = [
+      {valor: 'em', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valorem'))},
+      {valor: 'ci', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valorci'))},
+      {valor: 'cp', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valorcp'))},
+      {valor: 'im', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valorim'))},
+      {valor: 'ui', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valorui'))},
+      {valor: 'lei', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valorlei'))},
+      {valor: 'isi', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valorisi'))},
+      {valor: 'nss', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvariados.valornss'))}
+    ];
   }
 
 

@@ -38,8 +38,8 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   selectedTipoGenera: string = '';
   tiposGenera: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo de generación.'},
-    {valor: 'fn', nombre: 'Fecha nacimiento'},
-    {valor: 'ff', nombre: 'Fecha futura'},
+    {valor: 'fn', nombre: 'generadores.jpromocion.generarcomunes.lovs.tiposfecha.valorfn'},
+    {valor: 'ff', nombre: 'generadores.jpromocion.generarcomunes.lovs.tiposfecha.valorff'},
   ];
   textoGenerado: string[] = [];
 
@@ -65,8 +65,8 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   selectedTipoOpera: string = '';
   tiposOpera: Array<any> = [
     //{valor: '', nombre: 'Seleccionar una operación.'},
-    {valor: 'sum', nombre: 'Suma'},
-    {valor: 'res', nombre: 'Resta'},
+    {valor: 'sum', nombre: 'generadores.jpromocion.generarcomunes.lovs.operacionfecha.valorsum'},
+    {valor: 'res', nombre: 'generadores.jpromocion.generarcomunes.lovs.operacionfecha.valorres'},
   ];
   paramOperaAnyos: number = 0;
   paramOperaMeses: number = 0;

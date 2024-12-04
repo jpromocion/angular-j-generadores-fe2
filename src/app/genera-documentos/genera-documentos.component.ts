@@ -60,23 +60,6 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   selectedSociedadFC = new FormControl('');
   tiposSociedades: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo concreto para generar solo este tipo.'},
-    {valor: 'A', nombre: 'A. Sociedades anónimas.'},
-    {valor: 'B', nombre: 'B. Sociedades de responsabilidad limitada.'},
-    {valor: 'C', nombre: 'C. Sociedades colectivas.'},
-    {valor: 'D', nombre: 'D. Sociedades comanditarias.'},
-    {valor: 'E', nombre: 'E. Comunidades de bienes.'},
-    {valor: 'F', nombre: 'F. Sociedades cooperativas.'},
-    {valor: 'G', nombre: 'G. Asociaciones y fundaciones.'},
-    {valor: 'H', nombre: 'H. Comunidades de propietarios en régimen de propiedad horizontal.'},
-    {valor: 'J', nombre: 'J. Sociedades civiles.'},
-    {valor: 'N', nombre: 'N. Entidades no residentes.'},
-    {valor: 'P', nombre: 'P. Corporaciones locales.'},
-    {valor: 'Q', nombre: 'Q. Organismos autónomos, estatales o no, y asimilados, y congregaciones e instituciones religiosas.'},
-    {valor: 'R', nombre: 'R. Congregaciones e instituciones religiosas (desde 2008, ORDEN EHA/451/20084​)'},
-    {valor: 'S', nombre: 'S. Órganos de la Administración del Estado y comunidades autónomas'},
-    {valor: 'U', nombre: 'U. Uniones Temporales de Empresas.'},
-    {valor: 'V', nombre: 'V. Sociedad Agraria de Transformación.'},
-    {valor: 'W', nombre: 'W. Establecimientos permanentes de entidades no residentes en España'}
   ];
   tiposSociedadesFiltrado: Array<any> = [];
 
@@ -92,19 +75,39 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
   }
 
   override ngOnInit(): void {
-  //  this.getNifs();
-  //this.selectedSociedad = this.tiposSociedades[0].valor;
-  this.numGenerar = 1;
+    //  this.getNifs();
+    //this.selectedSociedad = this.tiposSociedades[0].valor;
+    this.numGenerar = 1;
 
-  //Incluir tooltips en la pagina
-  //Forma para utilizar el tooltip normal de js, no el de bootstrap:
-  //$(document).ready(function() {
-  //  $('[data-toggle="tooltip"]').tooltip();
-  //})
+    //Incluir tooltips en la pagina
+    //Forma para utilizar el tooltip normal de js, no el de bootstrap:
+    //$(document).ready(function() {
+    //  $('[data-toggle="tooltip"]').tooltip();
+    //})
 
-  //Forma para utilizar el tooltip de bootstrap
-  //const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  //const tooltipList = Array.from(tooltipTriggerList).map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    //Forma para utilizar el tooltip de bootstrap
+    //const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    //const tooltipList = Array.from(tooltipTriggerList).map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    this.tiposSociedades = [
+      {valor: 'A', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valora'))},
+      {valor: 'B', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorb'))},
+      {valor: 'C', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorc'))},
+      {valor: 'D', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valord'))},
+      {valor: 'E', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valore'))},
+      {valor: 'F', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorf'))},
+      {valor: 'G', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorg'))},
+      {valor: 'H', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorh'))},
+      {valor: 'J', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorj'))},
+      {valor: 'N', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorn'))},
+      {valor: 'P', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorp'))},
+      {valor: 'Q', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorq'))},
+      {valor: 'R', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorr'))},
+      {valor: 'S', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valors'))},
+      {valor: 'U', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valoru'))},
+      {valor: 'V', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorv'))},
+      {valor: 'W', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposcif.valorw'))}
+    ];
   }
 
 

@@ -33,16 +33,6 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
   selectedTipoGeneraFC = new FormControl('');
   tiposGenera: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo de generación.'},
-    {valor: 't', nombre: 'Turismo'},
-    {valor: 'c', nombre: 'Ciclomotor'},
-    {valor: 'r', nombre: 'Remolque'},
-    {valor: 'e', nombre: 'Especial'},
-    {valor: 'u', nombre: 'Turístico'},
-    {valor: 'h', nombre: 'Histórico'},
-    {valor: 'tp', nombre: 'Temporal particular'},
-    {valor: 'te', nombre: 'Temporal empresa'},
-    {valor: 'd', nombre: 'Diplomática'},
-    {valor: 'vin', nombre: 'Nº Bastidor'}
   ];
   tiposGeneraFiltrado: Array<any> = [];
   numGenerar: number = 1;
@@ -64,7 +54,18 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
   }
 
   override ngOnInit(): void {
-
+    this.tiposGenera = [
+      {valor: 't', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valort'))},
+      {valor: 'c', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valorc'))},
+      {valor: 'r', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valorr'))},
+      {valor: 'e', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valore'))},
+      {valor: 'u', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valoru'))},
+      {valor: 'h', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valorh'))},
+      {valor: 'tp', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valortp'))},
+      {valor: 'te', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valorte'))},
+      {valor: 'd', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valord'))},
+      {valor: 'vin', nombre: this.translate.instant(marker('generadores.jpromocion.generarcomunes.lovs.tiposvehiculo.valorvin'))}
+    ];
   }
 
 

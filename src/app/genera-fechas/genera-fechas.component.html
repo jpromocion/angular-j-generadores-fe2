@@ -18,7 +18,7 @@
             <mat-label>{{ 'generadores.jpromocion.fechas.entrada.tipofecha.label' | translate }}</mat-label>
             <mat-select [(ngModel)]="selectedTipoGenera" placeholder="{{ 'generadores.jpromocion.fechas.entrada.tipofecha.placeholder' | translate }}">
               @for (tipo of tiposGenera; track tipo) {
-                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+                <mat-option [value]="tipo.valor">{{tipo.nombre | translate }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -458,7 +458,7 @@
               <mat-label>{{ 'generadores.jpromocion.fechas.entrada.operacion.label' | translate }}</mat-label>
               <mat-select [(ngModel)]="selectedTipoOpera" placeholder="{{ 'generadores.jpromocion.fechas.entrada.operacion.placeholder' | translate }}">
                 @for (tipo of tiposOpera; track tipo) {
-                  <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+                  <mat-option [value]="tipo.valor">{{tipo.nombre | translate}}</mat-option>
                 }
               </mat-select>
             </mat-form-field>

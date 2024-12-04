@@ -33,15 +33,6 @@ export class AppComponent implements OnInit {
 
   }
 
-  /**
-   * Cambia el idioma al pipe translate por el indicado como paramtro
-   * @param language
-   */
-  /*
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
-     */
 
   parentFun(name: string){
     //alert("parent component function: " + name);

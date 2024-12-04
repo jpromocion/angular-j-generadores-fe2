@@ -114,6 +114,78 @@
             "mensaje": "Mensajes limpiados",
             "titulo": "LimpiadosMensajes"
           }
+        },
+        "lovs":{
+          "tiposcif": {
+            "valora": "A. Sociedades anónimas.",
+            "valorb": "B. Sociedades de responsabilidad limitada.",
+            "valorc": "C. Sociedades colectivas.",
+            "valord": "D. Sociedades comanditarias.",
+            "valore": "E. Comunidades de bienes.",
+            "valorf": "F. Sociedades cooperativas.",
+            "valorg": "G. Asociaciones y fundaciones.",
+            "valorh": "H. Comunidades de propietarios en régimen de propiedad horizontal.",
+            "valorj": "J. Sociedades civiles.",
+            "valorn": "N. Entidades no residentes.",
+            "valorp": "P. Corporaciones locales.",
+            "valorq": "Q. Organismos autónomos, estatales o no, y asimilados, y congregaciones e instituciones religiosas.",
+            "valorr": "R. Congregaciones e instituciones religiosas (desde 2008, ORDEN EHA/451/20084​)",
+            "valors": "S. Órganos de la Administración del Estado y comunidades autónomas",
+            "valoru": "U. Uniones Temporales de Empresas.",
+            "valorv": "V. Sociedad Agraria de Transformación.",
+            "valorw": "W. Establecimientos permanentes de entidades no residentes en España"
+          },
+          "figurasarea":{
+            "valorcuadrado": "Cuadrado",
+            "valorrectangulo": "Rectángulo",
+            "valortriangulo": "Triángulo",
+            "valorparalelogramo": "Paralelogramo",
+            "valortrapezoide": "Trapezoide",
+            "valorcirculo": "Círculo",
+            "valorelipse": "Elipse"
+          },
+          "tiposfecha":{
+            "valorfn": "Fecha nacimiento",
+            "valorff": "Fecha futura"
+          },
+          "operacionfecha": {
+            "valorsum": "Suma",
+            "valorres": "Resta"
+          },
+          "tiposvehiculo": {
+            "valort": "Turismo",
+            "valorc": "Ciclomotor",
+            "valorr": "Remolque",
+            "valore": "Especial",
+            "valoru": "Turístico",
+            "valorh": "Histórico",
+            "valortp": "Temporal particular",
+            "valorte": "Temporal empresa",
+            "valord": "Diplomática",
+            "valorvin": "Nº Bastidor"
+          },
+          "tiposvariados":{
+            "valorem": "Email",
+            "valorci": "Ciudad",
+            "valorcp": "Cod. Postal",
+            "valorim": "IMEI - Identidad internacional de equipo móvil",
+            "valorui": "UUID - Identificador único universal",
+            "valorlei": "LEI - Identificador de Entidad Legal",
+            "valorisi": "ISIN - International Securities Identification Numbering",
+            "valornss": "NSS - Número Seguridad Social"
+          },
+          "tipostelefono":{
+            "valorf": "Fi1jo",
+            "valorm": "Móvil"
+          },
+          "tiporefcatastral":{
+            "valoru": "Urbana",
+            "valorr": "Rústica"
+          },
+          "tipocups":{
+            "valore": "Electricidad",
+            "valorg": "Gas"
+          }
         }
       },
       "bandejamensajes": {

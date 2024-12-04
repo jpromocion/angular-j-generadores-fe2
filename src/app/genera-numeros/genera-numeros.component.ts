@@ -71,13 +71,13 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   areaSelectedTipo: string = '';
   areaTiposArea: Array<any> = [
     //{valor: '', nombre: 'Seleccionar un tipo de figura.'},
-    {valor: 'cuadrado', nombre: 'Cuadrado'},
-    {valor: 'rectangulo', nombre: 'Rectángulo'},
-    {valor: 'triangulo', nombre: 'Triángulo'},
-    {valor: 'paralelogramo', nombre: 'Paralelogramo'},
-    {valor: 'trapezoide', nombre: 'Trapezoide'},
-    {valor: 'circulo', nombre: 'Círculo'},
-    {valor: 'elipse', nombre: 'Elipse'}
+    {valor: 'cuadrado', nombre: 'generadores.jpromocion.generarcomunes.lovs.figurasarea.valorcuadrado'},
+    {valor: 'rectangulo', nombre: 'generadores.jpromocion.generarcomunes.lovs.figurasarea.valorrectangulo'},
+    {valor: 'triangulo', nombre: 'generadores.jpromocion.generarcomunes.lovs.figurasarea.valortriangulo'},
+    {valor: 'paralelogramo', nombre: 'generadores.jpromocion.generarcomunes.lovs.figurasarea.valorparalelogramo'},
+    {valor: 'trapezoide', nombre: 'generadores.jpromocion.generarcomunes.lovs.figurasarea.valortrapezoide'},
+    {valor: 'circulo', nombre: 'generadores.jpromocion.generarcomunes.lovs.figurasarea.valorcirculo'},
+    {valor: 'elipse', nombre: 'generadores.jpromocion.generarcomunes.lovs.figurasarea.valorelipse'}
   ];
   areaA: number = 0;
   areaB: number = 0;

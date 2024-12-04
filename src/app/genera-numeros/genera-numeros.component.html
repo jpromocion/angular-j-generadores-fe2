@@ -486,7 +486,7 @@
             <mat-select [(ngModel)]="areaSelectedTipo" (selectionChange)="onSelectedFiguraTrigo($event.value)"
               placeholder="{{ 'generadores.jpromocion.bancario.entrada.tipotarjeta.placeholder' | translate }}">
               @for (tipo of areaTiposArea; track tipo) {
-                <mat-option [value]="tipo.valor">{{tipo.nombre}}</mat-option>
+                <mat-option [value]="tipo.valor">{{tipo.nombre | translate }}</mat-option>
               }
             </mat-select>
           </mat-form-field>

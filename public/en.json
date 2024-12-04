@@ -114,6 +114,78 @@
             "mensaje": "Messages cleaned",
             "titulo": "CleanedMessages"
           }
+        },
+        "lovs":{
+          "tiposcif": {
+            "valora": "A. Public limited companies.",
+            "valorb": "B. Limited liability companies.",
+            "valorc": "C. Partnerships.",
+            "valord": "D. Limited partnerships.",
+            "valore": "E. Communities of goods.",
+            "valorf": "F. Cooperative societies.",
+            "valorg": "G. Associations and foundations.",
+            "valorh": "H. Communities of property in horizontal property regime.",
+            "valorj": "J. Civil societies.",
+            "valorn": "N. Non-resident entities.",
+            "valorp": "P. Local corporations.",
+            "valorq": "Q. Autonomous bodies, state or non-state, and similar, and religious congregations and institutions.",
+            "valorr": "R. Religious congregations and institutions (since 2008, ORDER EHA/451/20084​)",
+            "valors": "S. State Administration bodies and autonomous communities",
+            "valoru": "U. Temporary Unions of Companies.",
+            "valorv": "V. Agricultural Transformation Society.",
+            "valorw": "W. Permanent establishments of non-resident entities in Spain"
+          },
+          "figurasarea": {
+            "valorcuadrado": "Square",
+            "valorrectangulo": "Rectangle",
+            "valortriangulo": "Triangle",
+            "valorparalelogramo": "Parallelogram",
+            "valortrapezoide": "Trapezoid",
+            "valorcirculo": "Circle",
+            "valorelipse": "Ellipse"
+          },
+          "tiposfecha": {
+            "valorfn": "Birth date",
+            "valorff": "Future date"
+          },
+          "operacionfecha": {
+            "valorsum": "Sum",
+            "valorres": "Subtract"
+          },
+          "tiposvehiculo": {
+            "valort": "Car",
+            "valorc": "Moped",
+            "valorr": "Trailer",
+            "valore": "Special",
+            "valoru": "Tourist",
+            "valorh": "Historic",
+            "valortp": "Temporary private",
+            "valorte": "Temporary company",
+            "valord": "Diplomatic",
+            "valorvin": "Chassis number"
+          },
+          "tiposvariados": {
+            "valorem": "Email",
+            "valorci": "City",
+            "valorcp": "Postal Code",
+            "valorim": "IMEI - International Mobile Equipment Identity",
+            "valorui": "UUID - Universal Unique Identifier",
+            "valorlei": "LEI - Legal Entity Identifier",
+            "valorisi": "ISIN - International Securities Identification Number",
+            "valornss": "NSS - Social Security Number"
+          },
+          "tipostelefono": {
+            "valorf": "Landline",
+            "valorm": "Mobile"
+          },
+          "tiporefcatastral": {
+            "valoru": "Urban",
+            "valorr": "Rural"
+          },
+          "tipocups": {
+            "valore": "Electricity",
+            "valorg": "Gas"
+          }
         }
       },
       "bandejamensajes": {
