@@ -3,6 +3,7 @@
     "jpromocion": {
       "titulo": "Generadores de",
       "titulocompleto": "Generadores de jpromocion",
+      "descripcion": "Generación de elementos comunes para relleno de datos de prueba: documentos identidad, perfiles completos, números, fechas, colores... Generaciones aleatorias, validaciones comunes.",
       "menu": {
         "titulo": "Menú",
         "principal": "Principal",
