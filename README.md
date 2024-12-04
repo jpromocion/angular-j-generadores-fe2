@@ -274,4 +274,29 @@ En base a ello y siguiendo las recomendaciones de [Así deberías Estructurar tu
 
 
 
+## Desplegar aplicación en un nginx local
 
+Lo instalas para windos "https://nginx.org/en/docs/windows.html"
+```
+start nginx
+```
+
+Comprobar esta el proceso:
+```
+tasklist /fi "imagename eq nginx.exe"
+```
+
+Manipularlo:
+```
+nginx -s stop	      fast shutdown
+nginx -s quit	      graceful shutdown
+nginx -s reload	    changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes
+nginx -s reopen	    re-opening log files
+```
+
+Construyes tu aplicación:
+```
+ng build --configuration=production
+```
+
+Del contenido que el anterior comando genera en "dist" copias lo que ha generado dentro de "dist\angular-j-generadores-fe2\browser" directamente a "C:\nginx-1.27.3\html". Vuelves a levantar y accedes a "http://localhost/80"
