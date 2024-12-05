@@ -33,7 +33,6 @@ import {TranslateService} from "@ngx-translate/core";
   ]
 })
 export class MenuComponent {
-  title = 'Generadores de';
 
   //Para poder invocar la funcion useLanguage del componente padre app
   @Output("useLanguagePadre") useLanguagePadre: EventEmitter<any> = new EventEmitter();

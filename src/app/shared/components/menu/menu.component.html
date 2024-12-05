@@ -53,8 +53,11 @@
       </button>
       <!--}-->
       <span class="divTituloIdioma">
+        <!-- Finalmente dejamos el titulo neutro
         <h1>{{ 'generadores.jpromocion.titulo' | translate }}
         <a href="https://github.com/jpromocion/" target="_blank">jpromocion</a>
+        -->
+        <h1>{{ 'generadores.jpromocion.titulocompleto' | translate }}
         </h1>
         <span style="display: flex;flex-direction: row; gap: 10px;">
           <img src="/bandera_es.png" class="{{ getBanderaClass('es') }}" style="height: 25px; width: 25px;" alt="es" (click)="cambiarIdioma('es')">
