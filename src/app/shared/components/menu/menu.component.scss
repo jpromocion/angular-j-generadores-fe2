@@ -93,6 +93,9 @@ mat-sidenav-content {
 @media (max-width: 800px) {
   .divTituloIdioma {
     flex-direction: column;
+    max-width: 100%;
+    //overflow: hidden;
+    //overflow-wrap: break-word;
   }
 }
 

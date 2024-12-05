@@ -1,7 +1,7 @@
 {
   "generadores": {
     "jpromocion": {
-      "titulo": "Generators of",
+      "titulocorto": "Random generators",
       "titulocompleto": "Random generators for testing",
       "descripcion": "Generation of common elements for test data filling: identity documents, complete profiles, numbers, dates, colors... Random generations, common validations.",
       "menu": {
