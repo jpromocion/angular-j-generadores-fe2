@@ -158,8 +158,8 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   * Exportar la lista de tipos generados a excel
   */
   exportJsonAleatorios(): void {
-    const formatted = this.aleatorioGenerado.map(dato => ({ Numero: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_NumAleatorios');
+    const formatted = this.aleatorioGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.numeros.excel.aleatorios.columnas.numero'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.numeros.excel.aleatorios.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelalea.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelalea.titulo')));
@@ -205,8 +205,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   * Exportar la lista de tipos generados a excel
   */
   exportJsonMoneda(): void {
-    const formatted = this.monedaGenerado.map(dato => ({ CaraCruz: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_LanzaMoneda');
+    const formatted = this.monedaGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.numeros.excel.monedas.columnas.caracruz'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.numeros.excel.monedas.titulo')));
+
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelmoneda.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelmoneda.titulo')));
@@ -253,8 +254,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   * Exportar la lista de tipos generados a excel
   */
   exportJsonDado(): void {
-    const formatted = this.dadoGenerado.map(dato => ({ Dado: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_LanzaDado');
+    const formatted = this.dadoGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.numeros.excel.dados.columnas.dado'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.numeros.excel.dados.titulo')));
+
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.exceldado.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.exceldado.titulo')));
@@ -303,8 +305,9 @@ export class GeneraNumerosComponent extends BaseGeneraComponent implements OnIni
   * Exportar la lista de tipos generados a excel
   */
   exportJsonGaussiano(): void {
-    const formatted = this.gaussianoGenerado.map(dato => ({ Numero: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_NumGaussiano');
+    const formatted = this.gaussianoGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.numeros.excel.gaussianos.columnas.numero'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.numeros.excel.gaussianos.titulo')));
+
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelgaussiano.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.numeros.mensajes.excelgaussiano.titulo')));

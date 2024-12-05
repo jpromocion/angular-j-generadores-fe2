@@ -601,8 +601,8 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
    * Exportar la lista de gradientes generados a excel
    */
   exportJsonGradiente(): void {
-    const filteredIbanList = this.listaGradiente.map(({ hex }) => ({ hex }));
-    this.excelService.exportAsExcelFile(filteredIbanList, 'Lista_Gradiente');
+    const filteredGradList = this.listaGradiente.map(({ hex }) => ({ [this.translate.instant(marker('generadores.jpromocion.colores.excel.gradientes.columnas.hex'))]: hex }));
+    this.excelService.exportAsExcelFile(filteredGradList, this.translate.instant(marker('generadores.jpromocion.colores.excel.gradientes.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelgradientalizado.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelgradientalizado.titulo')));
@@ -659,8 +659,8 @@ export class GeneraColoresComponent extends BaseGeneraComponent implements OnIni
   * Exportar la lista de gradientes generados a excel
   */
   exportJsonMonocromatico(): void {
-    const filteredIbanList = this.listaMonocromaticos.map(({ hex }) => ({ hex }));
-    this.excelService.exportAsExcelFile(filteredIbanList, 'Lista_Monocromatico');
+    const filteredMonoList = this.listaMonocromaticos.map(({ hex }) => ({ [this.translate.instant(marker('generadores.jpromocion.colores.excel.monocromaticos.columnas.hex'))]: hex }));
+    this.excelService.exportAsExcelFile(filteredMonoList, this.translate.instant(marker('generadores.jpromocion.colores.excel.monocromaticos.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelmonocromatizado.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.colores.mensajes.excelmonocromatizado.titulo')));

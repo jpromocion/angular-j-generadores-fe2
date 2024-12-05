@@ -115,7 +115,7 @@
             "titulo": "CleanedMessages"
           }
         },
-        "lovs":{
+        "lovs": {
           "tiposcif": {
             "valora": "A. Public limited companies.",
             "valorb": "B. Limited liability companies.",
@@ -351,6 +351,32 @@
             "label": "Passport without DC",
             "tooltip": "Passport number without the control digit."
           }
+        },
+        "excel": {
+          "nifs": {
+            "titulo": "NIF_List",
+            "columnas": {
+              "nif": "NIF"
+            }
+          },
+          "nies": {
+            "titulo": "NIE_List",
+            "columnas": {
+              "nie": "NIE"
+            }
+          },
+          "pasaportes": {
+            "titulo": "Passport_List",
+            "columnas": {
+              "pasaporte": "Passport"
+            }
+          },
+          "cifs": {
+            "titulo": "CIF_List",
+            "columnas": {
+              "cif": "CIF"
+            }
+          }
         }
       },
       "bancario": {
@@ -410,6 +436,24 @@
           },
           "tarjetavalidar": {
             "label": "Card to check"
+          }
+        },
+        "excel": {
+          "ibans": {
+            "titulo": "IBAN_List",
+            "columnas": {
+              "iban": "IBAN",
+              "ibanFormateado": "Formatted IBAN"
+            }
+          },
+          "tarjetas": {
+            "titulo": "Card_List",
+            "columnas": {
+              "tarjeta": "Number",
+              "tarjetaFormateada": "Formatted",
+              "expiracionCredito": "Expiration date",
+              "cvc": "CVC"
+            }
           }
         }
       },
@@ -615,6 +659,25 @@
             },
             "refcatastral": {
               "label": "Cadastral ref."
+            }
+          }
+        },
+        "excel": {
+          "personas": {
+            "titulo": "People_Profiles",
+            "columnas": {
+              "edad": "Age",
+              "codmuni": "Municipality code",
+              "codprov": "Province code",
+              "codccaa": "CCAA code"
+            }
+          },
+          "empresas": {
+            "titulo": "Company_Profiles",
+            "columnas": {
+              "codmuni": "Municipality code",
+              "codprov": "Province code",
+              "codccaa": "CCAA code"
             }
           }
         }
@@ -1011,6 +1074,32 @@
           "arabigoconvertido": {
             "label": "Converted"
           }
+        },
+        "excel": {
+          "aleatorios": {
+            "titulo": "Random_Numbers_List",
+            "columnas": {
+              "numero": "Number"
+            }
+          },
+          "monedas": {
+            "titulo": "Coin_Tosses_List",
+            "columnas": {
+              "caracruz": "Heads-Tails"
+            }
+          },
+          "dados": {
+            "titulo": "Dice_Rolls_List",
+            "columnas": {
+              "dado": "Die"
+            }
+          },
+          "gaussianos": {
+            "titulo": "Gaussian_Numbers_List",
+            "columnas": {
+              "numero": "Number"
+            }
+          }
         }
       },
       "fechas": {
@@ -1274,6 +1363,14 @@
             "periodoinicio": "Start",
             "periodofin": "End"
           }
+        },
+        "excel": {
+          "fechas": {
+            "titulo": "Date_Types_List",
+            "columnas": {
+              "fecha": "Date"
+            }
+          }
         }
       },
       "vehiculos": {
@@ -1322,6 +1419,11 @@
           },
           "bastidor": {
             "label": "Chassis to check"
+          }
+        },
+        "excel": {
+          "tipos": {
+            "titulo": "Vehicle_Type_List"
           }
         }
       },
@@ -1530,6 +1632,20 @@
             "refcatastral": {
               "label": "Cadastral Ref."
             }
+          }
+        },
+        "excel": {
+          "ccaas": {
+            "titulo": "CCAAs_List"
+          },
+          "provincias": {
+            "titulo": "Provinces_List"
+          },
+          "municipios": {
+            "titulo": "Municipalities_List"
+          },
+          "domicilios": {
+            "titulo": "Addresses_List"
           }
         }
       },
@@ -2077,6 +2193,20 @@
           "hexadecimal": {
             "label": "Hexadecimal"
           }
+        },
+        "excel": {
+          "gradientes": {
+            "titulo": "Gradient_List",
+            "columnas": {
+              "hex": "Hexadecimal"
+            }
+          },
+          "monocromaticos": {
+            "titulo": "Monochromatic_List",
+            "columnas": {
+              "hex": "Hexadecimal"
+            }
+          }
         }
       },
       "variados": {
@@ -2318,6 +2448,41 @@
           },
           "nss": {
             "label": "NSS"
+          }
+        },
+        "excel": {
+          "tipos": {
+            "titulo": "Types_List"
+          },
+          "passwords": {
+            "titulo": "Passwords_List",
+            "columnas": {
+              "password": "Password"
+            }
+          },
+          "telefonos": {
+            "titulo": "Phones_List",
+            "columnas": {
+              "telefono": "Phone"
+            }
+          },
+          "promocionales": {
+            "titulo": "Phones_List",
+            "columnas": {
+              "codigo": "Code"
+            }
+          },
+          "catastrales": {
+            "titulo": "Cadastral_Refs_List",
+            "columnas": {
+              "referencia": "Reference"
+            }
+          },
+          "cups": {
+            "titulo": "Cups_List",
+            "columnas": {
+              "cups": "CUPS"
+            }
           }
         }
       }

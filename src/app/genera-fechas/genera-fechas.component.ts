@@ -171,8 +171,9 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   * Exportar la lista de tipos generados a excel
   */
   exportJsonTipos(): void {
-    const formatted = this.textoGenerado.map(dato => ({ Valor: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_tipos');
+    const formatted = this.textoGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.fechas.excel.fechas.columnas.fecha'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.fechas.excel.fechas.titulo')));
+
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.excelfec.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.excelfec.titulo')));

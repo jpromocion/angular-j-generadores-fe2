@@ -115,7 +115,7 @@
             "titulo": "LimpiadosMensajes"
           }
         },
-        "lovs":{
+        "lovs": {
           "tiposcif": {
             "valora": "A. Sociedades anónimas.",
             "valorb": "B. Sociedades de responsabilidad limitada.",
@@ -135,7 +135,7 @@
             "valorv": "V. Sociedad Agraria de Transformación.",
             "valorw": "W. Establecimientos permanentes de entidades no residentes en España"
           },
-          "figurasarea":{
+          "figurasarea": {
             "valorcuadrado": "Cuadrado",
             "valorrectangulo": "Rectángulo",
             "valortriangulo": "Triángulo",
@@ -144,7 +144,7 @@
             "valorcirculo": "Círculo",
             "valorelipse": "Elipse"
           },
-          "tiposfecha":{
+          "tiposfecha": {
             "valorfn": "Fecha nacimiento",
             "valorff": "Fecha futura"
           },
@@ -164,7 +164,7 @@
             "valord": "Diplomática",
             "valorvin": "Nº Bastidor"
           },
-          "tiposvariados":{
+          "tiposvariados": {
             "valorem": "Email",
             "valorci": "Ciudad",
             "valorcp": "Cod. Postal",
@@ -174,15 +174,15 @@
             "valorisi": "ISIN - International Securities Identification Numbering",
             "valornss": "NSS - Número Seguridad Social"
           },
-          "tipostelefono":{
-            "valorf": "Fi1jo",
+          "tipostelefono": {
+            "valorf": "Fijo",
             "valorm": "Móvil"
           },
-          "tiporefcatastral":{
+          "tiporefcatastral": {
             "valoru": "Urbana",
             "valorr": "Rústica"
           },
-          "tipocups":{
+          "tipocups": {
             "valore": "Electricidad",
             "valorg": "Gas"
           }
@@ -351,6 +351,32 @@
             "label": "Pasaporte sin DC",
             "tooltip": "Número de pasaporte sin el dígito de control."
           }
+        },
+        "excel": {
+          "nifs": {
+            "titulo": "Lista_NIFs",
+            "columnas": {
+              "nif": "NIF"
+            }
+          },
+          "nies": {
+            "titulo": "Lista_NIEs",
+            "columnas": {
+              "nie": "NIE"
+            }
+          },
+          "pasaportes": {
+            "titulo": "Lista_Pasaportes",
+            "columnas": {
+              "pasaporte": "Pasaporte"
+            }
+          },
+          "cifs": {
+            "titulo": "Lista_CIFs",
+            "columnas": {
+              "cif": "CIF"
+            }
+          }
         }
       },
       "bancario": {
@@ -410,6 +436,24 @@
           },
           "tarjetavalidar": {
             "label": "Tarjeta a comprobar"
+          }
+        },
+        "excel": {
+          "ibans": {
+            "titulo": "Lista_IBANs",
+            "columnas": {
+              "iban": "IBAN",
+              "ibanFormateado": "IBAN Formateado"
+            }
+          },
+          "tarjetas": {
+            "titulo": "Lista_Tarjetas",
+            "columnas": {
+              "tarjeta": "Número",
+              "tarjetaFormateada": "Formateado",
+              "expiracionCredito": "Fecha expiración",
+              "cvc": "CVC"
+            }
           }
         }
       },
@@ -615,6 +659,25 @@
             },
             "refcatastral": {
               "label": "Ref. catastral"
+            }
+          }
+        },
+        "excel": {
+          "personas": {
+            "titulo": "Perfiles_personas",
+            "columnas": {
+              "edad": "Edad",
+              "codmuni": "Cod. municipio",
+              "codprov": "Cod. provincia",
+              "codccaa": "Cod. CCAA"
+            }
+          },
+          "empresas": {
+            "titulo": "Perfiles_empresas",
+            "columnas": {
+              "codmuni": "Cod. municipio",
+              "codprov": "Cod. provincia",
+              "codccaa": "Cod. CCAA"
             }
           }
         }
@@ -1011,6 +1074,32 @@
           "arabigoconvertido": {
             "label": "Convertido"
           }
+        },
+        "excel": {
+          "aleatorios": {
+            "titulo": "Lista_Numeros_Aleatorios",
+            "columnas": {
+              "numero": "Número"
+            }
+          },
+          "monedas": {
+            "titulo": "Lista_Lanzamientos_Monedas",
+            "columnas": {
+              "caracruz": "Cara-Cruz"
+            }
+          },
+          "dados": {
+            "titulo": "Lista_Lanzamientos_Dados",
+            "columnas": {
+              "dado": "Dado"
+            }
+          },
+          "gaussianos": {
+            "titulo": "Lista_Numeros_Gaussianos",
+            "columnas": {
+              "numero": "Número"
+            }
+          }
         }
       },
       "fechas": {
@@ -1274,6 +1363,14 @@
             "periodoinicio": "Inicio",
             "periodofin": "Fin"
           }
+        },
+        "excel": {
+          "fechas": {
+            "titulo": "Lista_tipos_fechas",
+            "columnas": {
+              "fecha": "Fecha"
+            }
+          }
         }
       },
       "vehiculos": {
@@ -1322,6 +1419,11 @@
           },
           "bastidor": {
             "label": "Bastidor a comprobar"
+          }
+        },
+        "excel": {
+          "tipos": {
+            "titulo": "Lista_tipos_vehiculos"
           }
         }
       },
@@ -1530,6 +1632,20 @@
             "refcatastral": {
               "label": "Ref. catastral"
             }
+          }
+        },
+        "excel": {
+          "ccaas": {
+            "titulo": "Lista_CCAAs"
+          },
+          "provincias": {
+            "titulo": "Lista_Provincias"
+          },
+          "municipios": {
+            "titulo": "Lista_Municipios"
+          },
+          "domicilios": {
+            "titulo": "Lista_Domicilios"
           }
         }
       },
@@ -2077,6 +2193,20 @@
           "hexadecimal": {
             "label": "Hexadecimal"
           }
+        },
+        "excel": {
+          "gradientes": {
+            "titulo": "Lista_Gradientes",
+            "columnas": {
+              "hex": "Hexadecimal"
+            }
+          },
+          "monocromaticos": {
+            "titulo": "Lista_Monocromáticos",
+            "columnas": {
+              "hex": "Hexadecimal"
+            }
+          }
         }
       },
       "variados": {
@@ -2318,6 +2448,41 @@
           },
           "nss": {
             "label": "NSS"
+          }
+        },
+        "excel": {
+          "tipos": {
+            "titulo": "Lista_tipos"
+          },
+          "passwords": {
+            "titulo": "Lista_passwords",
+            "columnas": {
+              "password": "Password"
+            }
+          },
+          "telefonos": {
+            "titulo": "Lista_Telefonos",
+            "columnas": {
+              "telefono": "Teléfono"
+            }
+          },
+          "promocionales": {
+            "titulo": "Lista_Telefonos",
+            "columnas": {
+              "codigo": "Código"
+            }
+          },
+          "catastrales": {
+            "titulo": "Lista_Ref_Catastrales",
+            "columnas": {
+              "referencia": "Referencia"
+            }
+          },
+          "cups": {
+            "titulo": "Lista_Cups",
+            "columnas": {
+              "cups": "CUPS"
+            }
           }
         }
       }

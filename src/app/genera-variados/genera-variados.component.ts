@@ -331,8 +331,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   * Exportar la lista de tipos generados a excel
   */
   exportJsonTipos(): void {
-    const formatted = this.textoGenerado.map(dato => ({ Valor: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_tipos');
+    const formatted = this.textoGenerado.map(dato => ({ [(<any>this.selectedTipoGeneraFC?.value)?.nombre]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.variados.excel.tipos.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.errortipogene.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.exceltipogene.titulo')));
@@ -380,8 +380,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   * Exportar la lista de tipos generados a excel
   */
   exportJsonPassword(): void {
-    const formatted = this.passGenerado.map(dato => ({ Password: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_passwords');
+    const formatted = this.passGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.variados.excel.passwords.columnas.password'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.variados.excel.passwords.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpass.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpass.titulo')));
@@ -446,8 +446,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   * Exportar la lista de tipos generados a excel
   */
   exportJsonTelefono(): void {
-    const formatted = this.tlfGenerado.map(dato => ({ Telefono: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_Telefonos');
+    const formatted = this.tlfGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.variados.excel.telefonos.columnas.telefono'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.variados.excel.telefonos.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.exceltlf.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.exceltlf.titulo')));
@@ -494,8 +494,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   * Exportar la lista de tipos generados a excel
   */
   exportJsonPromocionales(): void {
-    const formatted = this.promoGenerado.map(dato => ({ Cod_Promocional: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_CodPromocionales');
+    const formatted = this.promoGenerado.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.variados.excel.promocionales.columnas.codigo'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.variados.excel.promocionales.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpromo.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelpromo.titulo')));
@@ -541,8 +541,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   * Exportar la lista de tipos generados a excel
   */
   exportJsonRefCatastral(): void {
-    const formatted = this.refCatasGeneradas.map(dato => ({ RefCatastral: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_RefCatastrales');
+    const formatted = this.refCatasGeneradas.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.variados.excel.catastrales.columnas.referencia'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.variados.excel.catastrales.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcatas.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcatas.titulo')));
@@ -610,8 +610,8 @@ export class GeneraVariadosComponent extends BaseGeneraComponent implements OnIn
   * Exportar la lista de tipos generados a excel
   */
   exportJsonCups(): void {
-    const formatted = this.cupsGeneradas.map(dato => ({ Cups: dato }));
-    this.excelService.exportAsExcelFile(formatted, 'Lista_Cups');
+    const formatted = this.cupsGeneradas.map(dato => ({ [this.translate.instant(marker('generadores.jpromocion.variados.excel.cups.columnas.cups'))]: dato }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.variados.excel.cups.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcups.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.variados.mensajes.excelcups.titulo')));

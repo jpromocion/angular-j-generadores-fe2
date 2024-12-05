@@ -622,98 +622,108 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
   exportJsonPersonas(): void {
     //var res = alasql('SEARCH / AS @data \ people / AS @persons \ RETURN(@persons->name as Name, @persons->age as Age, @data->city AS City) \ FROM ?', [this.peopleByCity])
 
+
+
+
+
+
+
+
+
+
+
     const displayedColumns = this.displayedColumnsPersonas;
     const res = this.listaPersonasGeneradas.data.map(persona => {
       const result: any = {};
       displayedColumns.forEach(col => {
       switch (col) {
         case 'Nif':
-        result.NIF = persona.nif;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.nif.label'))] = persona.nif;
         break;
         case 'Nie':
-        result.NIE = persona.nie;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.nie.label'))] = persona.nie;
         break;
         case 'Nss':
-        result.NSS = persona.nss;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.nss.label'))] = persona.nss;
         break;
         case 'Pasaporte':
-        result.Pasaporte = persona.pasaporte;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.pasaporte.label'))] = persona.pasaporte;
         break;
         case 'Genero':
-        result.Genero = this.transformaTexto(persona.genero);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.sexo.label'))] = this.transformaTexto(persona.genero);
         break;
         case 'Fecha_Nacimiento':
-        result.FechaNacimiento = persona.fechaNacimiento;
-        result.Edad = persona.edad;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.fechanacimiento.label'))] = persona.fechaNacimiento;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.excel.personas.columnas.edad'))] = persona.edad;
         break;
         case 'Nombre':
-        result.Nombre = this.transformaTexto(persona.nombre);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.nombre.label'))] = this.transformaTexto(persona.nombre);
         break;
         case 'Apellido_1':
-        result.Apellido1 = this.transformaTexto(persona.apellido1);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.apellido1.label'))] = this.transformaTexto(persona.apellido1);
         break;
         case 'Apellido_2':
-        result.Apellido2 = this.transformaTexto(persona.apellido2);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.apellido2.label'))] = this.transformaTexto(persona.apellido2);
         break;
         case 'Nombre_Completo':
-        result.NombreCompleto = this.transformaTexto(persona.nombreCompleto);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.nombrecompleto.label'))] = this.transformaTexto(persona.nombreCompleto);
         break;
         case 'Telefono_Movil':
-        result.TelefonoMovil = persona.telefonoMovil;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.telefonomovil.label'))] = persona.telefonoMovil;
         break;
         case 'Telefono_Fijo':
-        result.TelefonoFijo = persona.telefonoFijo;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.telefonofijo.label'))] = persona.telefonoFijo;
         break;
         case 'Login':
-        result.Login = this.transformaTexto(persona.login);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.login.label'))] = this.transformaTexto(persona.login);
         break;
         case 'Email':
-        result.Email = this.transformaTexto(persona.email);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.email.label'))] = this.transformaTexto(persona.email);
         break;
         case 'Password':
-        result.Password = persona.password;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.password.label'))] = persona.password;
         break;
         case 'CCAA':
-        result.CCAA_Ine = persona.direccion.ineCcaa;
-        result.CCAA = this.transformaTexto(persona.direccion.ccaa);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.excel.personas.columnas.codccaa'))] = persona.direccion.ineCcaa;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.ccaa.label'))] = this.transformaTexto(persona.direccion.ccaa);
         break;
         case 'Provincia':
-        result.Provincia_Ine = persona.direccion.ineProvincia;
-        result.Provincia = this.transformaTexto(persona.direccion.provincia);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.excel.personas.columnas.codprov'))] = persona.direccion.ineProvincia;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.provincia.label'))] = this.transformaTexto(persona.direccion.provincia);
         break;
         case 'Municipio':
-        result.Municipio_Ine = persona.direccion.ineMunicipio;
-        result.Municipio = this.transformaTexto(persona.direccion.municipio);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.excel.personas.columnas.codmuni'))] = persona.direccion.ineMunicipio;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.municipio.label'))] = this.transformaTexto(persona.direccion.municipio);
         break;
         case 'Cod_Postal':
-        result.CodigoPostal = persona.direccion.codPostal;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.cp.label'))] = persona.direccion.codPostal;
         break;
         case 'Direccion':
-        result.Direccion = this.transformaTexto(persona.direccion.direccionAMedio);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.direccion.label'))] = this.transformaTexto(persona.direccion.direccionAMedio);
         break;
         case 'Dir_Completa':
-        result.Direccion_Completa = this.transformaTexto(persona.direccion.direccionCompleta);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.direccioncompleta.label'))] = this.transformaTexto(persona.direccion.direccionCompleta);
         break;
         case 'Ref_Catastral':
-        result.ReferenciaCatastral = this.transformaTexto(persona.direccion.referenciaCatastral);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.refcatastral.label'))] = this.transformaTexto(persona.direccion.referenciaCatastral);
         break;
         case 'Iban':
-        result.IBAN = persona.iban;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.iban.label'))] = persona.iban;
         break;
         case 'Bic':
-        result.BIC = persona.bic;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.bic.label'))] = persona.bic;
         break;
         case 'Tarjeta':
-        result.TarjetaCredito = persona.tarjetaCredito;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.tarjeta.label'))] = persona.tarjetaCredito;
         break;
         case 'Tipo_Tarjeta':
-        result.TipoTarjeta = this.transformaTexto(persona.tipoTarjeta);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.tipotarjeta.label'))] = this.transformaTexto(persona.tipoTarjeta);
         break;
         case 'Expiracion':
-        result.ExpiracionCredito = persona.expiracionCredito;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.expiracion.label'))] = persona.expiracionCredito;
         break;
         case 'Cvc':
-        result.CVC = persona.cvc;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.persona.cvc.label'))] = persona.cvc;
         break;
       }
       });
@@ -756,7 +766,7 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
     //   CVC: persona.cvc
     // }));
 
-    this.excelService.exportAsExcelFile(res, 'Perfiles_personas');
+    this.excelService.exportAsExcelFile(res, this.translate.instant(marker('generadores.jpromocion.perfil.excel.personas.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelpersona.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelpersona.titulo')));
@@ -961,84 +971,63 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
       displayedColumns.forEach(col => {
       switch (col) {
         case 'Cif':
-        result.CIF = empresa.cif;
+        //result.CIF = empresa.cif;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.cif.label'))] = empresa.cif;
         break;
         case 'Razón':
-        result.Razon = this.transformaTexto(empresa.nombre);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.razonsocial.label'))] = this.transformaTexto(empresa.nombre);
         break;
         case 'Fecha_Constitución':
-        result.FechaConstitucion = empresa.fechaCreacion;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.fechaconstitucion.label'))] = empresa.fechaCreacion;
         break;
         case 'Cnae':
-        result.CNAE = empresa.cnae;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.cnae.label'))] = empresa.cnae;
         break;
         case 'Actividad':
-        result.Actividad = this.transformaTexto(empresa.actividad);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.actividad.label'))] = this.transformaTexto(empresa.actividad);
         break;
         case 'Email':
-        result.Email = this.transformaTexto(empresa.email);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.email.label'))] = this.transformaTexto(empresa.email);
         break;
         case 'Página_Web':
-        result.PaginaWeb = this.transformaTexto(empresa.paginaWeb);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.paginaweb.label'))] = this.transformaTexto(empresa.paginaWeb);
         break;
         case 'Telefono':
-        result.Telefono = empresa.telefono;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.telefono.label'))] = empresa.telefono;
         break;
         case 'Fax':
-        result.Fax = empresa.fax;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.fax.label'))] = empresa.fax;
         break;
         case 'CCAA':
-        result.CCAA_Ine = empresa.direccion.ineCcaa;
-        result.CCAA = this.transformaTexto(empresa.direccion.ccaa);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.excel.empresas.columnas.codccaa'))] = empresa.direccion.ineCcaa;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.ccaa.label'))] = this.transformaTexto(empresa.direccion.ccaa);
         break;
         case 'Provincia':
-        result.Provincia_Ine = empresa.direccion.ineProvincia;
-        result.Provincia = this.transformaTexto(empresa.direccion.provincia);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.excel.empresas.columnas.codprov'))] = empresa.direccion.ineProvincia;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.provincia.label'))] = this.transformaTexto(empresa.direccion.provincia);
         break;
         case 'Municipio':
-        result.Municipio_Ine = empresa.direccion.ineMunicipio;
-        result.Municipio = this.transformaTexto(empresa.direccion.municipio);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.excel.empresas.columnas.codmuni'))] = empresa.direccion.ineMunicipio;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.municipio.label'))] = this.transformaTexto(empresa.direccion.municipio);
         break;
         case 'Cod_Postal':
-        result.CodigoPostal = empresa.direccion.codPostal;
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.cp.label'))] = empresa.direccion.codPostal;
         break;
         case 'Direccion':
-        result.Direccion = this.transformaTexto(empresa.direccion.direccionAMedio);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.direccion.label'))] = this.transformaTexto(empresa.direccion.direccionAMedio);
         break;
         case 'Dir_Completa':
-        result.Direccion_Completa = this.transformaTexto(empresa.direccion.direccionCompleta);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.direccioncompleta.label'))] = this.transformaTexto(empresa.direccion.direccionCompleta);
         break;
         case 'Ref_Catastral':
-        result.ReferenciaCatastral = this.transformaTexto(empresa.direccion.referenciaCatastral);
+        result[this.translate.instant(marker('generadores.jpromocion.perfil.salida.empresa.refcatastral.label'))] = this.transformaTexto(empresa.direccion.referenciaCatastral);
         break;
       }
       });
       return result;
     });
 
-    //DEPRECATED: cuando exportabamos todas las columnas y no solo las seleccionadas en el selector de columnas visibles
-    // const res = this.listaEmpresasGeneradas.data.map(empresa => ({
-    //   CIF: empresa.cif,
-    //   Razon: this.transformaTexto(empresa.nombre),
-    //   FechaConstitucion: empresa.fechaCreacion,
-    //   CNAE: empresa.cnae,
-    //   Actividad: this.transformaTexto(empresa.actividad),
-    //   Email: empresa.email,
-    //   Telefono: empresa.telefono,
-    //   Fax: empresa.fax,
-    //   CCAA_Ine: empresa.direccion.ineCcaa,
-    //   CCAA: this.transformaTexto(empresa.direccion.ccaa),
-    //   Provincia_Ine: empresa.direccion.ineProvincia,
-    //   Provincia: this.transformaTexto(empresa.direccion.provincia),
-    //   Municipio_Ine: empresa.direccion.ineMunicipio,
-    //   Municipio: this.transformaTexto(empresa.direccion.municipio),
-    //   CodigoPostal: empresa.direccion.codPostal,
-    //   Direccion: this.transformaTexto(empresa.direccion.direccionAMedio),
-    //   Direccion_Completa: this.transformaTexto(empresa.direccion.direccionCompleta),
-    //   ReferenciaCatastral: this.transformaTexto(empresa.direccion.referenciaCatastral)
-    // }));
-
-    this.excelService.exportAsExcelFile(res, 'Perfiles_empresas');
+    this.excelService.exportAsExcelFile(res, this.translate.instant(marker('generadores.jpromocion.perfil.excel.empresas.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelempresa.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.perfil.mensajes.excelempresa.titulo')));

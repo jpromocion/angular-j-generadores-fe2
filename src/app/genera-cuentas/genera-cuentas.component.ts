@@ -209,8 +209,11 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
    * Exportar la lista de iban generados a excel
    */
   exportJsonIban(): void {
-    const filteredIbanList = this.listaIban.map(({ iban, ibanFormateado }) => ({ iban, ibanFormateado }));
-    this.excelService.exportAsExcelFile(filteredIbanList, 'Lista_IBANs');
+    const filteredIbanList = this.listaIban.map(({ iban, ibanFormateado }) => ({
+      [this.translate.instant(marker('generadores.jpromocion.bancario.excel.ibans.columnas.iban'))]: iban,
+      [this.translate.instant(marker('generadores.jpromocion.bancario.excel.ibans.columnas.ibanFormateado'))]: ibanFormateado
+    }));
+    this.excelService.exportAsExcelFile(filteredIbanList, this.translate.instant(marker('generadores.jpromocion.bancario.excel.ibans.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceliban.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceliban.titulo')));
@@ -220,8 +223,13 @@ export class GeneraCuentasComponent extends BaseGeneraComponent implements OnIni
   * Exportar la lista de tarjetas generados a excel
   */
   exportJsonTarjetas(): void {
-    const filteredTarjetaList = this.listaTarjeta.map(({ tarjeta, tarjetaFormateada, expiracionCredito, cvc }) => ({ tarjeta, tarjetaFormateada, expiracionCredito, cvc }));
-    this.excelService.exportAsExcelFile(filteredTarjetaList, 'Lista_Tarjetas');
+    const filteredTarjetaList = this.listaTarjeta.map(({ tarjeta, tarjetaFormateada, expiracionCredito, cvc }) => ({
+      [this.translate.instant(marker('generadores.jpromocion.bancario.excel.tarjetas.columnas.tarjeta'))]: tarjeta,
+      [this.translate.instant(marker('generadores.jpromocion.bancario.excel.tarjetas.columnas.tarjetaFormateada'))]: tarjetaFormateada,
+      [this.translate.instant(marker('generadores.jpromocion.bancario.excel.tarjetas.columnas.expiracionCredito'))]: expiracionCredito,
+      [this.translate.instant(marker('generadores.jpromocion.bancario.excel.tarjetas.columnas.cvc'))]: cvc
+    }));
+    this.excelService.exportAsExcelFile(filteredTarjetaList, this.translate.instant(marker('generadores.jpromocion.bancario.excel.tarjetas.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceltarjeta.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.bancario.mensajes.exceltarjeta.titulo')));

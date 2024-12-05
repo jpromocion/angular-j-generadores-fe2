@@ -159,8 +159,8 @@ export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit
   * Exportar la lista de tipos generados a excel
   */
   exportJsonTipos(): void {
-    const formattedNies = this.textoGenerado.map(matricula => ({ Valor: matricula }));
-    this.excelService.exportAsExcelFile(formattedNies, 'Lista_tipos');
+    const formatted = this.textoGenerado.map(matricula => ({ [(<any>this.selectedTipoGeneraFC?.value)?.nombre]: matricula }));
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.vehiculos.excel.tipos.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.excelmatricula.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.vehiculos.mensajes.excelmatricula.titulo')));

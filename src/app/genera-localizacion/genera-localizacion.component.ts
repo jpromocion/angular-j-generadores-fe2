@@ -394,17 +394,18 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       displayedColumns.forEach(col => {
         switch (col) {
           case 'id':
-          result.Codigo = ccaa.id;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.ccaa.codigo.label'))] = ccaa.id;
           break;
           case 'nombre':
-          result.Nombre = ccaa.nombre;
+          //result.Nombre = ccaa.nombre;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.ccaa.nombre.label'))] = ccaa.nombre;
           break;
         }
       });
       return result;
     });
 
-    this.excelService.exportAsExcelFile(formatted, 'Lista_CCAA');
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.localizacion.excel.ccaas.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelccaa.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelccaa.titulo')));
@@ -548,17 +549,17 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       displayedColumns.forEach(col => {
         switch (col) {
           case 'id':
-          result.Codigo = provin.id;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.provincia.codigo.label'))] = provin.id;
           break;
           case 'nombre':
-          result.Nombre = provin.nombre;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.provincia.nombre.label'))] = provin.nombre;
           break;
         }
       });
       return result;
     });
 
-    this.excelService.exportAsExcelFile(formatted, 'Lista_Provincias');
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.localizacion.excel.provincias.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelprovincia.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelprovincia.titulo')));
@@ -708,17 +709,17 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       displayedColumns.forEach(col => {
         switch (col) {
           case 'id':
-          result.Codigo = muni.id;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.municipio.codigo.label'))] = muni.id;
           break;
           case 'nombre':
-          result.Nombre = muni.nombre;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.municipio.nombre.label'))] = muni.nombre;
           break;
         }
       });
       return result;
     });
 
-    this.excelService.exportAsExcelFile(formatted, 'Lista_Municipios');
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.localizacion.excel.municipios.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelmunicipio.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.excelmunicipio.titulo')));
@@ -874,6 +875,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
     //   CCAA: this.transformaTexto(dato.ineCcaa + ' - ' + dato.ccaa),
     //   ReferenciaCatastral: this.transformaTexto(dato.referenciaCatastral)}));
 
+    //Definicion del mostrado de columnas para tabla domicilios, personalizado opciones
+    //para mostrar filas por plantillas
     //lo basamso en las columnas mostradas para coger los cambios de columnas visibles o no, y el orden de las mismas
     const displayedColumns = this.displayedColumnsDireccionGenerado;
     const formatted = this.direccionGenerado.data.map(direccion => {
@@ -881,53 +884,53 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
       displayedColumns.forEach(col => {
         switch (col) {
           case 'Dirección completa':
-          result.DireccionCompleta = direccion.direccionCompleta;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.completa.label'))] = direccion.direccionCompleta;
           break;
           case 'Dirección':
-          result.Direccion = direccion.direccion;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.direccion.label'))] = direccion.direccion;
           break;
           case 'Número':
-          result.NumVia = direccion.numVia;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.numero.label'))] = direccion.numVia;
           break;
           case 'Km':
-          result.Kilometro = direccion.kilometro;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.km.label'))] = direccion.kilometro;
           break;
           case 'Bloque':
-          result.Bloque = direccion.bloque;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.bloque.label'))] = direccion.bloque;
           break;
           case 'Portal':
-          result.Portal = direccion.portal;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.portal.label'))] = direccion.portal;
           break;
           case 'Escalera':
-          result.Escalera = direccion.escalera;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.escalera.label'))] = direccion.escalera;
           break;
           case 'Planta':
-          result.Planta = direccion.planta;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.planta.label'))] = direccion.planta;
           break;
           case 'Puerta':
-          result.Puerta = direccion.puerta;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.puerta.label'))] = direccion.puerta;
           break;
           case 'CP':
-          result.CodigoPostal = direccion.codPostal;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.cp.label'))] = direccion.codPostal;
           break;
           case 'Municipio':
-          result.Municipio = direccion.ineMunicipio + ' - ' + direccion.municipio;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.municipio.label'))] = direccion.ineMunicipio + ' - ' + direccion.municipio;
           break;
           case 'Provincia':
-          result.Provincia = direccion.ineProvincia + ' - ' + direccion.provincia;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.provincia.label'))] = direccion.ineProvincia + ' - ' + direccion.provincia;
           break;
           case 'CCAA':
-          result.CCAA = direccion.ineCcaa + ' - ' + direccion.ccaa;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.ccaa.label'))] = direccion.ineCcaa + ' - ' + direccion.ccaa;
           break;
           case 'Ref. catastral':
-          result.ReferenciaCatastral = direccion.referenciaCatastral;
+          result[this.translate.instant(marker('generadores.jpromocion.localizacion.salida.direccion.refcatastral.label'))] = direccion.referenciaCatastral;
           break
         }
       });
       return result;
     });
 
-    this.excelService.exportAsExcelFile(formatted, 'Lista_Domicilios');
+    this.excelService.exportAsExcelFile(formatted, this.translate.instant(marker('generadores.jpromocion.localizacion.excel.domicilios.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.exceldomicilio.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.localizacion.mensajes.exceldomicilio.titulo')));

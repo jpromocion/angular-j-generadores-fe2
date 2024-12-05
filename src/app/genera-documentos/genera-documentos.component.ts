@@ -353,8 +353,8 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
    * Exportar la lista de nifs generados a excel
    */
   exportJsonNifs(): void {
-    const formattedNifs = this.listaNifs.map(nif => ({ NIF: nif }));
-    this.excelService.exportAsExcelFile(formattedNifs, 'Lista_NIFs');
+    const formattedNifs = this.listaNifs.map(nif => ({ [this.translate.instant(marker('generadores.jpromocion.documentos.excel.nifs.columnas.nif'))]: nif }));
+    this.excelService.exportAsExcelFile(formattedNifs, this.translate.instant(marker('generadores.jpromocion.documentos.excel.nifs.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnif.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnif.titulo')));
@@ -364,8 +364,8 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
    * Exportar la lista de nifs generados a excel
    */
   exportJsonNies(): void {
-    const formattedNies = this.listaNies.map(nie => ({ NIE: nie }));
-    this.excelService.exportAsExcelFile(formattedNies, 'Lista_NIEs');
+    const formattedNies = this.listaNies.map(nie => ({ [this.translate.instant(marker('generadores.jpromocion.documentos.excel.nies.columnas.nie'))]: nie }));
+    this.excelService.exportAsExcelFile(formattedNies, this.translate.instant(marker('generadores.jpromocion.documentos.excel.nies.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnie.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelnie.titulo')));
@@ -375,8 +375,8 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
    * Exportar la lista de nifs generados a excel
    */
   exportJsonCifs(): void {
-    const formattedCifs = this.listaCifs.map(cif => ({ CIF: cif }));
-    this.excelService.exportAsExcelFile(formattedCifs, 'Lista_CIFs');
+    const formattedCifs = this.listaCifs.map(cif => ({ [this.translate.instant(marker('generadores.jpromocion.documentos.excel.cifs.columnas.cif'))]: cif }));
+    this.excelService.exportAsExcelFile(formattedCifs, this.translate.instant(marker('generadores.jpromocion.documentos.excel.cifs.titulo')));
     this.openSnackBar(
       this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelcif.mensaje')),
       this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelcif.titulo')));
@@ -422,8 +422,8 @@ export class GeneraDocumentosComponent extends BaseGeneraComponent implements On
    * Exportar la lista de pasaporte generados a excel
    */
     exportJsonPasaporte(): void {
-      const formattedNies = this.listaPasaportes.map(nie => ({ NIE: nie }));
-      this.excelService.exportAsExcelFile(formattedNies, 'Lista_Pasaportes');
+      const formattedPasportes = this.listaPasaportes.map(passp => ({ [this.translate.instant(marker('generadores.jpromocion.documentos.excel.pasaportes.columnas.pasaporte'))]: passp }));
+      this.excelService.exportAsExcelFile(formattedPasportes, this.translate.instant(marker('generadores.jpromocion.documentos.excel.pasaportes.titulo')));
       this.openSnackBar(
         this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelpasaporte.mensaje')),
         this.translate.instant(marker('generadores.jpromocion.documentos.mensajes.excelpasaporte.titulo')));
