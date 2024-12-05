@@ -12,7 +12,15 @@ export const routes: Routes = [
       import('./dashboard/dashboard.component').then(
         (c) => c.DashboardComponent
       ),
-      title: 'generadores.jpromocion.menu.principal'
+      //Modificamos devolver el title por devolverlo dentro de un data ¿por?
+      //al devolver el title, se sobreescribia la propieda title del head de html, con el valor
+      //aqui cargado... y como ahora es una key para buscar traduccion... la key se veia como
+      //titulo de la pestaña en el navegador.
+      //De esta forma lo devolvemos como un valor dentro de "data" y lo utilizaremos en menu.component.html
+      //para coger los nombres de cada opcion de menu.
+      //El title del head de html no se sobreescribira, y se mantendra el valor generico que tiene en el index.html
+      //title: 'generadores.jpromocion.menu.principal'
+      data: { title: 'generadores.jpromocion.menu.principal' }
   },
   {
     path: 'genera-documentos',
@@ -20,7 +28,7 @@ export const routes: Routes = [
       import('./genera-documentos/genera-documentos.component').then(
         (c) => c.GeneraDocumentosComponent
       ),
-      title: 'generadores.jpromocion.menu.documentos'
+      data: { title: 'generadores.jpromocion.menu.documentos' }
   },
   {
     path: 'genera-cuentas',
@@ -28,7 +36,7 @@ export const routes: Routes = [
       import('./genera-cuentas/genera-cuentas.component').then(
         (c) => c.GeneraCuentasComponent
       ),
-      title: 'generadores.jpromocion.menu.bancario'
+      data: { title: 'generadores.jpromocion.menu.bancario' }
   },
   {
     path: 'genera-perfiles',
@@ -36,7 +44,7 @@ export const routes: Routes = [
       import('./genera-perfiles/genera-perfiles.component').then(
         (c) => c.GeneraPerfilesComponent
       ),
-      title: 'generadores.jpromocion.menu.perfiles'
+      data: { title: 'generadores.jpromocion.menu.perfiles' }
   },
   {
     path: 'genera-textos',
@@ -44,7 +52,7 @@ export const routes: Routes = [
       import('./genera-textos/genera-textos.component').then(
         (c) => c.GeneraTextosComponent
       ),
-      title: 'generadores.jpromocion.menu.textos'
+      data: { title: 'generadores.jpromocion.menu.textos' }
   },
   {
     path: 'genera-numeros',
@@ -52,7 +60,7 @@ export const routes: Routes = [
       import('./genera-numeros/genera-numeros.component').then(
         (c) => c.GeneraNumerosComponent
       ),
-      title: 'generadores.jpromocion.menu.numeros'
+      data: { title: 'generadores.jpromocion.menu.numeros' }
   },
   {
     path: 'genera-fechas',
@@ -60,7 +68,7 @@ export const routes: Routes = [
       import('./genera-fechas/genera-fechas.component').then(
         (c) => c.GeneraFechasComponent
       ),
-      title: 'generadores.jpromocion.menu.fechas'
+      data: { title: 'generadores.jpromocion.menu.fechas' }
   },
   {
     path: 'genera-coches',
@@ -68,7 +76,7 @@ export const routes: Routes = [
       import('./genera-coches/genera-coches.component').then(
         (c) => c.GeneraCochesComponent
       ),
-      title: 'generadores.jpromocion.menu.vehiculos'
+      data: { title: 'generadores.jpromocion.menu.vehiculos' }
   },
   {
     path: 'genera-localizacion',
@@ -76,7 +84,7 @@ export const routes: Routes = [
       import('./genera-localizacion/genera-localizacion.component').then(
         (c) => c.GeneraLocalizacionComponent
       ),
-      title: 'generadores.jpromocion.menu.localizacion'
+      data: { title: 'generadores.jpromocion.menu.localizacion' }
   },
   {
     path: 'genera-barras',
@@ -84,7 +92,7 @@ export const routes: Routes = [
       import('./genera-barras/genera-barras.component').then(
         (c) => c.GeneraBarrasComponent
       ),
-      title: 'generadores.jpromocion.menu.codbarras'
+      data: { title: 'generadores.jpromocion.menu.codbarras' }
   },
   {
     path: 'genera-archivos',
@@ -92,7 +100,7 @@ export const routes: Routes = [
       import('./genera-archivos/genera-archivos.component').then(
         (c) => c.GeneraArchivosComponent
       ),
-      title: 'generadores.jpromocion.menu.archivos'
+      data: { title: 'generadores.jpromocion.menu.archivos' }
   },
   {
     path: 'genera-colores',
@@ -100,7 +108,7 @@ export const routes: Routes = [
       import('./genera-colores/genera-colores.component').then(
         (c) => c.GeneraColoresComponent
       ),
-      title: 'generadores.jpromocion.menu.colores'
+      data: { title: 'generadores.jpromocion.menu.colores' }
   },
   {
     path: 'genera-variados',
@@ -108,7 +116,7 @@ export const routes: Routes = [
       import('./genera-variados/genera-variados.component').then(
         (c) => c.GeneraVariadosComponent
       ),
-      title: 'generadores.jpromocion.menu.variados'
+      data: { title: 'generadores.jpromocion.menu.variados' }
   },
   {
     path: 'about',
@@ -116,6 +124,6 @@ export const routes: Routes = [
       import('./about/about.component').then(
         (c) => c.AboutComponent
       ),
-      title: 'generadores.jpromocion.menu.acercade'
+      data: { title: 'generadores.jpromocion.menu.acercade' }
   },
 ];

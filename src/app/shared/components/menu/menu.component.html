@@ -23,7 +23,11 @@
         -->
         <div class="textoMenu resaltarMenu" style="display: flex; align-items: center;">
           <mat-icon class="{{ getIconClass(item.path ?? '') }}">{{ getIconoRuta(item.path ?? '')}}</mat-icon>
-          <span  style="margin-left: 2px;">{{ (item.title ? item.title.toString() : '') | translate }}</span>
+          <!--
+            Ver en app.routes.ts porque modificamos esto
+            <span  style="margin-left: 2px;">{{ (item.title ? item.title.toString() : '') | translate }}</span>
+          -->
+          <span  style="margin-left: 2px;">{{ (item.data?.['title']?.toString() ?? '') | translate }}</span>
         </div>
       </a>
       }
