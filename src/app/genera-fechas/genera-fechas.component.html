@@ -81,6 +81,7 @@
 
             <mat-form-field style="margin-left: 5px;">
               <mat-label>{{ 'generadores.jpromocion.fechas.entrada.horanacimiento.label' | translate }}</mat-label>
+              <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
               <input matInput
                     name="in_horaNacimiento"
                     [format]="24"
@@ -91,8 +92,17 @@
                         (click)="pickerHoraNacimiento.open()">
                   watch_later
               </mat-icon>
+              -->
+              <input matInput
+                    name="in_horaNacimiento"
+                    [matTimepicker]="pickerHoraNacimiento"
+                    [(ngModel)]="fechaNacimiento">
+              <mat-timepicker-toggle matIconSuffix [for]="pickerHoraNacimiento"/>
+              <mat-timepicker interval="15min" #pickerHoraNacimiento/>
             </mat-form-field>
+            <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
             <ngx-mat-timepicker color="accent" #pickerHoraNacimiento></ngx-mat-timepicker>
+            -->
 
             <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonEdad()"
               attr.aria-label="{{ 'generadores.jpromocion.fechas.boton.calcularedad.label' | translate }}"
@@ -229,6 +239,7 @@
 
             <mat-form-field style="margin-left: 5px;">
               <mat-label>{{ 'generadores.jpromocion.fechas.entrada.hora1.label' | translate }}</mat-label>
+              <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
               <input matInput
                     name="in_horaDifParam1"
                     [format]="24"
@@ -239,8 +250,17 @@
                         (click)="pickerHoraDifParam1.open()">
                   watch_later
               </mat-icon>
+              -->
+              <input matInput
+                    name="in_horaDifParam1"
+                    [matTimepicker]="pickerHoraDifParam1"
+                    [(ngModel)]="fechaDifParam1">
+              <mat-timepicker-toggle matIconSuffix [for]="pickerHoraDifParam1"/>
+              <mat-timepicker interval="15min" #pickerHoraDifParam1/>
             </mat-form-field>
+            <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
             <ngx-mat-timepicker color="accent" #pickerHoraDifParam1></ngx-mat-timepicker>
+            -->
           </div>
           <div>
             <mat-form-field>
@@ -250,9 +270,9 @@
               <mat-datepicker-toggle matIconSuffix [for]="pickerFecDifParam2"></mat-datepicker-toggle>
               <mat-datepicker #pickerFecDifParam2 disabled="false"></mat-datepicker>
             </mat-form-field>
-
             <mat-form-field style="margin-left: 5px;">
               <mat-label>{{ 'generadores.jpromocion.fechas.entrada.hora2.label' | translate }}</mat-label>
+              <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
               <input matInput
                     name="in_horaDifParam2"
                     [format]="24"
@@ -263,8 +283,17 @@
                         (click)="pickerHoraDifParam2.open()">
                   watch_later
               </mat-icon>
+              -->
+              <input matInput
+                    name="in_horaDifParam2"
+                    [matTimepicker]="pickerHoraDifParam2"
+                    [(ngModel)]="fechaDifParam2">
+              <mat-timepicker-toggle matIconSuffix [for]="pickerHoraDifParam2"/>
+              <mat-timepicker interval="15min" #pickerHoraDifParam2/>
             </mat-form-field>
+            <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
             <ngx-mat-timepicker color="accent" #pickerHoraDifParam2></ngx-mat-timepicker>
+            -->
           </div>
 
           <button type="button"  mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonDiferencia()"
@@ -441,6 +470,7 @@
 
             <mat-form-field style="margin-left: 5px;">
               <mat-label>{{ 'generadores.jpromocion.fechas.entrada.hora.label' | translate }}</mat-label>
+              <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
               <input matInput
                     name="in_horaOperarParam"
                     [format]="24"
@@ -451,8 +481,17 @@
                         (click)="pickerHoraOperarParam.open()">
                   watch_later
               </mat-icon>
+              -->
+              <input matInput
+                    name="in_horaOperarParam"
+                    [matTimepicker]="pickerHoraOperarParam"
+                    [(ngModel)]="fechaOperarParam">
+              <mat-timepicker-toggle matIconSuffix [for]="pickerHoraOperarParam"/>
+              <mat-timepicker interval="15min" #pickerHoraOperarParam/>
             </mat-form-field>
+            <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
             <ngx-mat-timepicker color="accent" #pickerHoraOperarParam></ngx-mat-timepicker>
+            -->
 
             <mat-form-field style="width: 200px;margin-left: 5px;">
               <mat-label>{{ 'generadores.jpromocion.fechas.entrada.operacion.label' | translate }}</mat-label>
@@ -615,6 +654,7 @@
 
             <mat-form-field style="margin-left: 5px;">
               <mat-label>{{ 'generadores.jpromocion.fechas.entrada.horalocal.label' | translate }}</mat-label>
+              <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
               <input matInput
                     name="in_paramHoraLocal"
                     [format]="24"
@@ -625,8 +665,17 @@
                         (click)="pickerparamHoraLocal.open()">
                   watch_later
               </mat-icon>
+              -->
+              <input matInput
+                    name="in_horaNacimiento"
+                    [matTimepicker]="pickerparamHoraLocal"
+                    [(ngModel)]="paramFechaLocal">
+              <mat-timepicker-toggle matIconSuffix [for]="pickerparamHoraLocal"/>
+              <mat-timepicker interval="15min" #pickerparamHoraLocal/>
             </mat-form-field>
+            <!-- volver a ngx-mat-timepicker cuando actualicen a 19??
             <ngx-mat-timepicker color="accent" #pickerparamHoraLocal></ngx-mat-timepicker>
+            -->
 
             <button type="button" mat-fab class="botonRotatorio" color="accent" style="margin-left: 5px;" (click)="onClickBotonFechaUTC()"
               attr.aria-label="{{ 'generadores.jpromocion.generarcomunes.boton.transformar.label' | translate }}"

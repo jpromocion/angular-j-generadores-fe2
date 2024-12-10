@@ -14,7 +14,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 //https://stackoverflow.com/questions/49720908/angular-material-matdatepicker-no-provider-found-for-dateadapter
 import {MatNativeDateModule} from '@angular/material/core';
-import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+//volver a ngx-mat-timepicker cuando actualicen a 19??
+//import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import {MatTimepickerModule} from '@angular/material/timepicker';
 import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.component';
 import { DateService } from '../core/services/date.service';
 import { Edad } from '../core/models/edad';
@@ -26,7 +28,9 @@ import { marker} from '@colsen1991/ngx-translate-extract-marker';
     selector: 'app-genera-fechas',
     imports: [FormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule, MatTooltipModule,
         MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule,
-        NgxMatTimepickerModule, TranslateModule],
+        TranslateModule,
+        //NgxMatTimepickerModule,
+        MatTimepickerModule],
     templateUrl: './genera-fechas.component.html',
     styleUrl: './genera-fechas.component.scss'
 })
@@ -43,15 +47,22 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   textoGenerado: string[] = [];
 
   //fecha naciumiento
-  fechaNacimiento: Date = new Date('1984-01-01');
-  horaNacimiento: string = '13:00';
+  //volver a ngx-mat-timepicker cuando actualicen a 19??
+  //NOTA: con el nuevo MatTimepickerModule de Angular... podria juntarse dia y hora en el mismo
+  //fechaNacimiento: Date = new Date('1984-01-01');
+  //horaNacimiento: string = '13:00';
+  //NOTA: con el nuevo MatTimepickerModule de Angular... podria juntarse dia y hora en el mismo
+  fechaNacimiento: Date = new Date('1984-01-01 13:00');
   edadRes: Edad | undefined;
 
   //fecha diferencia
-  fechaDifParam1: Date = new Date('1984-01-01');
+  //volver a ngx-mat-timepicker cuando actualicen a 19??
+  // fechaDifParam1: Date = new Date('1984-01-01');
+  // fechaDifParam2: Date = new Date();
+  // horaDifParam1: string = '13:00';
+  // horaDifParam2: string = '13:00';
+  fechaDifParam1: Date = new Date('1984-01-01 13:00');
   fechaDifParam2: Date = new Date();
-  horaDifParam1: string = '13:00';
-  horaDifParam2: string = '13:00';
   difRes: Edad | undefined;
 
   //dia de la semana
@@ -59,8 +70,10 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   diaSemanaRes: string = '';
 
   //fecha diferencia
+  //volver a ngx-mat-timepicker cuando actualicen a 19??
+  // fechaOperarParam: Date = new Date();
+  // horaOperarParam: string = '13:00';
   fechaOperarParam: Date = new Date();
-  horaOperarParam: string = '13:00';
   selectedTipoOpera: string = '';
   tiposOpera: Array<any> = [
     //{valor: '', nombre: 'Seleccionar una operación.'},
@@ -84,8 +97,10 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
   horaUTCResTimUnix: string = '';
 
   //fecha -> time unix
+  //volver a ngx-mat-timepicker cuando actualicen a 19??
+  // paramFechaLocal: Date = new Date();
+  // paramHoraLocal: string = ('0' + this.paramFechaLocal.getHours()).slice(-2) + ':' + ('0' + this.paramFechaLocal.getMinutes()).slice(-2);
   paramFechaLocal: Date = new Date();
-  paramHoraLocal: string = ('0' + this.paramFechaLocal.getHours()).slice(-2) + ':' + ('0' + this.paramFechaLocal.getMinutes()).slice(-2);
   timeUnixRes: number | undefined;
 
   //pascua
@@ -230,16 +245,22 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroredad.mensaje')),
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroredad.titulo')));
       return;
+    } else if (isNaN(this.fechaNacimiento.getTime())) {
+      this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.titulo')));
+      return;
     } else{
+      //volver a ngx-mat-timepicker cuando actualicen a 19??
       //limpiar horas y minutos de fechaNacimiento
-      this.fechaNacimiento = this.limpiarHorasMinutos(this.fechaNacimiento);
-
+      //this.fechaNacimiento = this.limpiarHorasMinutos(this.fechaNacimiento);
       //fijarle ahora la hora y minutos del picker time
-      if (this.horaNacimiento != ''){
-        let horaMinutos = this.horaNacimiento.split(':');
-        this.fechaNacimiento.setHours(parseInt(horaMinutos[0]));
-        this.fechaNacimiento.setMinutes(parseInt(horaMinutos[1]));
-      }
+      // if (this.horaNacimiento != ''){
+      //   let horaMinutos = this.horaNacimiento.split(':');
+      //   this.fechaNacimiento.setHours(parseInt(horaMinutos[0]));
+      //   this.fechaNacimiento.setMinutes(parseInt(horaMinutos[1]));
+      // }
+
       let fechaNueva = new Date(this.fechaNacimiento);
       //console.log('Fecha nueva: ' + fechaNueva);
       this.getAge(fechaNueva);
@@ -303,29 +324,35 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiff2.mensaje')),
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errordiff2.titulo')));
         return;
+    } else if (isNaN(this.fechaDifParam1.getTime()) || isNaN(this.fechaDifParam2.getTime())) {
+      this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.titulo')));
+      return;
     } else{
+      //volver a ngx-mat-timepicker cuando actualicen a 19??
       //limpiar horas y minutos de fechas de diferencia
-      this.fechaDifParam1 = this.limpiarHorasMinutos(this.fechaDifParam1);
-      this.fechaDifParam2 = this.limpiarHorasMinutos(this.fechaDifParam2);
-
+      // this.fechaDifParam1 = this.limpiarHorasMinutos(this.fechaDifParam1);
+      // this.fechaDifParam2 = this.limpiarHorasMinutos(this.fechaDifParam2);
       //fijarle ahora la hora y minutos del picker time
-      if (this.horaDifParam1 != ''){
-        let horaMinutos = this.horaDifParam1.split(':');
-        this.fechaDifParam1.setHours(parseInt(horaMinutos[0]));
-        this.fechaDifParam1.setMinutes(parseInt(horaMinutos[1]));
-      }
-      let fechaDifParam1Nueva = new Date(this.fechaDifParam1);
+      // if (this.horaDifParam1 != ''){
+      //   let horaMinutos = this.horaDifParam1.split(':');
+      //   this.fechaDifParam1.setHours(parseInt(horaMinutos[0]));
+      //   this.fechaDifParam1.setMinutes(parseInt(horaMinutos[1]));
+      // }
+      // let fechaDifParam1Nueva = new Date(this.fechaDifParam1);
 
-      if (this.horaDifParam2 != ''){
-        let horaMinutos = this.horaDifParam2.split(':');
-        this.fechaDifParam2.setHours(parseInt(horaMinutos[0]));
-        this.fechaDifParam2.setMinutes(parseInt(horaMinutos[1]));
-      }
-      let fechaDifParam2Nueva = new Date(this.fechaDifParam2);
+      // if (this.horaDifParam2 != ''){
+      //   let horaMinutos = this.horaDifParam2.split(':');
+      //   this.fechaDifParam2.setHours(parseInt(horaMinutos[0]));
+      //   this.fechaDifParam2.setMinutes(parseInt(horaMinutos[1]));
+      // }
+      // let fechaDifParam2Nueva = new Date(this.fechaDifParam2);
 
       //console.log('Fecha nueva 1: ' + fechaDifParam1Nueva);
       //console.log('Fecha nueva 2: ' + fechaDifParam2Nueva);
-      this.getDateDiff(fechaDifParam1Nueva, fechaDifParam2Nueva);
+      //this.getDateDiff(fechaDifParam1Nueva, fechaDifParam2Nueva);
+      this.getDateDiff(this.fechaDifParam1, this.fechaDifParam2);
     }
 
 
@@ -384,6 +411,11 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera1.mensaje')),
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera1.titulo')));
       return;
+    } else if (isNaN(this.fechaOperarParam.getTime())) {
+      this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.titulo')));
+      return;
     } else if (this.selectedTipoOpera == ''){
       this.openSnackBar(
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera2.mensaje')),
@@ -395,18 +427,20 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
           this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera3.mensaje')),
           this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.erroropera3.titulo')));
     } else{
+      //volver a ngx-mat-timepicker cuando actualicen a 19??
       //limpiar horas y minutos de fechas de diferencia
-      this.fechaOperarParam = this.limpiarHorasMinutos(this.fechaOperarParam);
-
+      // this.fechaOperarParam = this.limpiarHorasMinutos(this.fechaOperarParam);
       //fijarle ahora la hora y minutos del picker time
-      if (this.horaOperarParam != ''){
-        let horaMinutos = this.horaOperarParam.split(':');
-        this.fechaOperarParam.setHours(parseInt(horaMinutos[0]));
-        this.fechaOperarParam.setMinutes(parseInt(horaMinutos[1]));
-      }
-      let fechaOperarParamNueva = new Date(this.fechaOperarParam);
+      // if (this.horaOperarParam != ''){
+      //   let horaMinutos = this.horaOperarParam.split(':');
+      //   this.fechaOperarParam.setHours(parseInt(horaMinutos[0]));
+      //   this.fechaOperarParam.setMinutes(parseInt(horaMinutos[1]));
+      // }
+      // let fechaOperarParamNueva = new Date(this.fechaOperarParam);
 
-      this.getDateoperation(fechaOperarParamNueva, this.selectedTipoOpera, this.paramOperaAnyos, this.paramOperaMeses,
+      // this.getDateoperation(fechaOperarParamNueva, this.selectedTipoOpera, this.paramOperaAnyos, this.paramOperaMeses,
+      //   this.paramOperaDias, this.paramOperaHoras, this.paramOperaMinutos);
+      this.getDateoperation(this.fechaOperarParam, this.selectedTipoOpera, this.paramOperaAnyos, this.paramOperaMeses,
         this.paramOperaDias, this.paramOperaHoras, this.paramOperaMinutos);
     }
 
@@ -582,19 +616,25 @@ export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorfecha.mensaje')),
         this.translate.instant(marker('generadores.jpromocion.fechas.mensajes.errorfecha.titulo')));
       return;
+    } else if (isNaN(this.paramFechaLocal.getTime())) {
+      this.openSnackBar(
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.mensaje')),
+      this.translate.instant(marker('generadores.jpromocion.generarcomunes.mensajes.errorfechainvalida.titulo')));
+      return;
     } else{
+      //volver a ngx-mat-timepicker cuando actualicen a 19??
       //limpiar horas y minutos
-      this.paramFechaLocal = this.limpiarHorasMinutos(this.paramFechaLocal);
-
+      // this.paramFechaLocal = this.limpiarHorasMinutos(this.paramFechaLocal);
       //fijarle ahora la hora y minutos del picker time
-      if (this.paramHoraLocal != ''){
-        let horaMinutos = this.paramHoraLocal.split(':');
-        this.paramFechaLocal.setHours(parseInt(horaMinutos[0]));
-        this.paramFechaLocal.setMinutes(parseInt(horaMinutos[1]));
-      }
-      let fechaNueva = new Date(this.paramFechaLocal);
+      // if (this.paramHoraLocal != ''){
+      //   let horaMinutos = this.paramHoraLocal.split(':');
+      //   this.paramFechaLocal.setHours(parseInt(horaMinutos[0]));
+      //   this.paramFechaLocal.setMinutes(parseInt(horaMinutos[1]));
+      // }
+      // let fechaNueva = new Date(this.paramFechaLocal);
 
-      this.getTimeToUnixtime(fechaNueva);
+      // this.getTimeToUnixtime(fechaNueva);
+      this.getTimeToUnixtime(this.paramFechaLocal);
     }
 
 

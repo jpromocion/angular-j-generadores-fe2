@@ -106,6 +106,10 @@
         },
         "mensajes": {
           "errorservicio": "{{operacion}} failed: {{mensaje}} - Additional error: {{erroradicional}}",
+          "errorfechainvalida": {
+            "mensaje": "The date is not correct.",
+            "titulo": "DateNotCorrect"
+          },
           "copiadoportapapeles": {
             "mensaje": "Data copied to clipboard",
             "titulo": "ClipboardCopy"

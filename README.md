@@ -72,7 +72,10 @@ Creado con Angular v18 [Angular CLI](https://github.com/angular/angular-cli) ver
 ### Actualización versión Angular a 19
 
 Posteriormente con la salida de la versión Angular-v19 Seguimos las instrucciones de [Actualizar 18 a 19] (https://angular.dev/update-guide?v=18.0-19.0&l=3)
-> Incluye tambien la de Angular Material en las instrucciones. Curiosamente, Angular material lleva ya un TimePicker en la v19, pero sigue siendo peor que el "ngx-mat-timepicker" que utilizamos es su momento, por lo que seguimos utilizando este.
+> Incluye tambien la de Angular Material en las instrucciones.
+> Angular material lleva ya un TimePicker en la v19, pero tiene carencias respecto a "ngx-mat-timepicker". Si bien permite combinar en un campo date al mismo tiempo una fecha y tiempo sin separarlos, no permite la selección de hora por relog redondo que tiene "ngx-mat-timepicker".
+> Sin embargo, actualmente [ngx-mat-timepicker](https://www.npmjs.com/package/ngx-mat-timepicker?activeTab=readme) no lo han revisado para ser compatible con angular material 19, por lo que da un error de dependencias en el npm install: *@angular/animations@"^18.0.0"*
+> De momento por tanto debemos dejar de usarlo y pasar a utilizar el propuesto por Angular Material nuevo.
 
 
 

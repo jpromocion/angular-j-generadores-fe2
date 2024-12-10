@@ -106,6 +106,10 @@
         },
         "mensajes": {
           "errorservicio": "{{operacion}} fallo: {{mensaje}} - Error adicional: {{erroradicional}}",
+          "errorfechainvalida": {
+            "mensaje": "La fecha no es correcta",
+            "titulo": "FechaIncorrecta"
+          },
           "copiadoportapapeles": {
             "mensaje": "Dato copiado al portapapeles",
             "titulo": "CopiaPortapapeles"
