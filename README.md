@@ -191,9 +191,9 @@ npm install @ngx-translate/core @ngx-translate/http-loader @colsen1991/ngx-trans
 - Ver [Guía aplicar NGX-Translate](https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-angular-app-with-ngx-translate)
 
 
-Adicionalmente ocurria que en local todo funcionaba correctamente, pero al desplegar en Render/Railway, las traducciones no eran localizadas.
-Básicamente daba un error de no encontrar "https://angular-j-generadores-fe-production.up.railway.app/i18n/es.json". Lo cual era cierto, porque la url que si funcionaba era "https://angular-j-generadores-fe-production.up.railway.app/es.json", sin el subfolder.
-- Estuvimos intentado meter en el angular.json en los "assets" del build lo siguiente para forzar que en el dist del build se cree la carpeta. Sin embargo, aunque el dist que genera el build efectivamente ahora si mete una carpeta "i18n", se desplego así y no funciono, la url para ver uno de los archivos de languaje seguía siendo "https://angular-j-generadores-fe-production.up.railway.app/es.json":
+~~Adicionalmente ocurria que en local todo funcionaba correctamente, pero al desplegar en Render/Railway, las traducciones no eran localizadas.
+Básicamente daba un error de no encontrar "https://angular-j-generadores-fe-production.up.railway.app/i18n/es.json". Lo cual era cierto, porque la url que si funcionaba era "https://angular-j-generadores-fe-production.up.railway.app/es.json", sin el subfolder.~~
+- ~~Estuvimos intentado meter en el angular.json en los "assets" del build lo siguiente para forzar que en el dist del build se cree la carpeta. Sin embargo, aunque el dist que genera el build efectivamente ahora si mete una carpeta "i18n", se desplego así y no funciono, la url para ver uno de los archivos de languaje seguía siendo "https://angular-j-generadores-fe-production.up.railway.app/es.json"~~:
 ```
 "assets": [
   {
@@ -207,13 +207,21 @@ Básicamente daba un error de no encontrar "https://angular-j-generadores-fe-pro
   }
 ],
 ```
-- Finalmente se optó por la politica de "si mahoma no va a la montaña... la montaña viene a mahoma". Los .json del i18n se pasan directamente al folder "public/", y modificamos el app.config.ts para indicar que los busque directamente en el raíz, no el subfolder "i18n". De esta forma al desplegar Railway/Render si funciona porque ahora si busca la traucción en la ruta directa "https://angular-j-generadores-fe-production.up.railway.app/es.json".
+- ~~Finalmente se optó por la politica de "si mahoma no va a la montaña... la montaña viene a mahoma". Los .json del i18n se pasan directamente al folder "public/", y modificamos el app.config.ts para indicar que los busque directamente en el raíz, no el subfolder "i18n". De esta forma al desplegar Railway/Render si funciona porque ahora si busca la traucción en la ruta directa "https://angular-j-generadores-fe-production.up.railway.app/es.json".~~
 ```
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   //new TranslateHttpLoader(http, './i18n/', '.json');
   new TranslateHttpLoader(http, './', '.json');
 ```
-- Quiza habría que investigar más para conseguir que desplegado también las viera en subfolder "i18n", pero desplegarlo probando despliegues directos a producción... mmm no. Habría que bajarse un nginx local y probar que pasa realmente... pero de momento me conformo con esta solución.
+- **SOLVENTAMOS** finalmente para dejar json de idiomas en subfolder. Al final el problema es el COPY de Docker, el cual haciendose con el * lo que hace es no copiar subfolders sino coger todo el contenido de un subfolder y hacerle un merge al directorio raíz donde copia ([dockerfile-copy-keep-subdirectory-structure](https://stackoverflow.com/questions/30215830/dockerfile-copy-keep-subdirectory-structure)). Por ello dejamos los json dentro del *i18n*, el "app.config.ts" lo dejamos con apunte al *i18n* finalmente, y en el DockerFile:
+```
+COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/* /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/i18n /usr/share/nginx/html/i18n
+```
+  - El primer COPY era el pre-existente. El segundo COPY es el añadido.
+  - Donde el primer COPY anterior, realmente mete los .json de *i18n* dentro del mismo raíz */html*.
+  - El segundo COPY fuerza finalmente a que se cree dentro el subfolder *i18n* con todo su contenido.
+  - A decir verdad, de esta forma los json quedan tanto en */html* copiados como en */html/i18n*. Se podría estudiar no utilizar el * y copiar ficheros de dentro... pero a priori no sabemos que genera, por lo que habría que hacer algún loop... no merece la pena calentarse más la cabeza con esto.
 
 
 ## Docker - Render o Railway

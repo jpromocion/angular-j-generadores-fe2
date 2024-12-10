@@ -14,8 +14,10 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
   //en subfolder i18n, siempre aparecen en la raiz https://angular-j-generadores-fe-production.up.railway.app/es.json
   //Asi que los hemos puesto directamente en el public raiz para ver si asi funciona desplegado en render/railway...
   //basicamente "si mahoma no va a la montaña... la montaña viene a mahoma"
-  new TranslateHttpLoader(http, './i18n/', '.json');
   //new TranslateHttpLoader(http, './', '.json');
+  //SOLVENTADO: finalmente era problema en el dockerfile, donde el COPY, parecia no estra copìando bien el
+  //subfolder, dejandolo todo siempre en raiz. Hemos corregido el dockerfile y ahora si funciona con el subfolder.
+  new TranslateHttpLoader(http, './i18n/', '.json');
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),

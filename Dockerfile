@@ -39,8 +39,15 @@ COPY --from=builder /usr/src/app/nginx.conf /etc/nginx/nginx.conf
 #    ser "/angular-j-generadores-fe2"
 #  - Copiar el contenido de "browser" a la html de nginx directamente. Toda nuestra aplicacion ocupa todo el server.
 # Todo esto tambien depende de la configuracion del nginx.conf, claro. Hacemos la segunda opción
-COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/i18n /usr/share/nginx/html/i18n
 COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/* /usr/share/nginx/html
+#ADICIONAL: copy del i18n. En local los archivos json de lenguaje, se desplegaban perfectamente en el subfolder i18n
+#  y todo funcionaba, y sin embargo al desplegar el docker, el i18n/es.json, nunca respodia en la url, tenia que ser
+#  directamete /es.json.
+#  https://stackoverflow.com/questions/30215830/dockerfile-copy-keep-subdirectory-structure -> es el problema de copiar con *
+#  vemos como realmente coge lo de dentro y lo fusiona a la ruta de destino. Por eso aparecen es.json en la raiz
+#  Por ello metemos un copy adicional del subfolder i18n dentro de html, para que cree ese folder con su contenido.
+#  Al final tenemos los json en los dos, pero vamos a utilizar el del subfolder.
+COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/i18n /usr/share/nginx/html/i18n
 
 #Aqui el expuesto es el del servidor Nginx... que es el 80 noirmal
 EXPOSE 80
