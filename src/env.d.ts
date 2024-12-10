@@ -1,14 +1,15 @@
+declare interface Env {
 // @ngx-env/builder ->
 // https://www.npmjs.com/package/@ngx-env/builder
 // https://github.com/dimeloper/angular-environment-variables
 // https://dev.to/dimeloper/managing-environment-variables-in-angular-apps-14gn
 // Modulo que nos permite utilizar las variables de entorno para la configuracion de produccion.
 // Define the type of the environment variables.
-declare interface Env {
+
   readonly NODE_ENV: string;
   // Replace the following with your own environment variables.
   // Example: NGX_VERSION: string;
-  readonly NG_APP_API_REST_PROD: string;
+  NG_APP_API_REST_PROD: string;
 }
 
 // Choose how to access the environment variables.
@@ -27,6 +28,6 @@ declare interface ImportMeta {
 declare const _NGX_ENV_: Env;
 
 // 3. Use process.env.YOUR_ENV_VAR in your code. (deprecated)
-declare namespace NodeJS {
-  export interface ProcessEnv extends Env {}
-}
+// declare namespace NodeJS {
+//   export interface ProcessEnv extends Env {}
+// }
