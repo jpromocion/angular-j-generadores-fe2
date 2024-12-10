@@ -39,6 +39,7 @@ COPY --from=builder /usr/src/app/nginx.conf /etc/nginx/nginx.conf
 #    ser "/angular-j-generadores-fe2"
 #  - Copiar el contenido de "browser" a la html de nginx directamente. Toda nuestra aplicacion ocupa todo el server.
 # Todo esto tambien depende de la configuracion del nginx.conf, claro. Hacemos la segunda opción
+COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/i18n /usr/share/nginx/html/i18n
 COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/* /usr/share/nginx/html
 
 #Aqui el expuesto es el del servidor Nginx... que es el 80 noirmal
