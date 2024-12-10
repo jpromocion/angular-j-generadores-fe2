@@ -19,13 +19,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-barras',
-  standalone: true,
-  imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
-    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule,
-    TranslateModule],
-  templateUrl: './genera-barras.component.html',
-  styleUrl: './genera-barras.component.scss'
+    selector: 'app-genera-barras',
+    imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
+        MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule,
+        TranslateModule],
+    templateUrl: './genera-barras.component.html',
+    styleUrl: './genera-barras.component.scss'
 })
 export class GeneraBarrasComponent extends BaseGeneraComponent implements OnInit {
 

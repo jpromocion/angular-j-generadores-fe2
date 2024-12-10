@@ -15,22 +15,21 @@ import { TranslateModule } from '@ngx-translate/core';
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss',
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    AsyncPipe,
-    RouterLink,
-    RouterLinkActive,
-    ComprameCafeComponent,
-    TranslateModule
-  ]
+    selector: 'app-menu',
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.scss',
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        AsyncPipe,
+        RouterLink,
+        RouterLinkActive,
+        ComprameCafeComponent,
+        TranslateModule
+    ]
 })
 export class MenuComponent {
 

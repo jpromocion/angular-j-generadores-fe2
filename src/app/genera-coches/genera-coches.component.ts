@@ -17,13 +17,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-coches',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule,
-    MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule,
-    MatCardModule, MatAutocompleteModule, TranslateModule],
-  templateUrl: './genera-coches.component.html',
-  styleUrl: './genera-coches.component.scss'
+    selector: 'app-genera-coches',
+    imports: [FormsModule, ReactiveFormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule,
+        MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule,
+        MatCardModule, MatAutocompleteModule, TranslateModule],
+    templateUrl: './genera-coches.component.html',
+    styleUrl: './genera-coches.component.scss'
 })
 export class GeneraCochesComponent extends BaseGeneraComponent implements OnInit {
 

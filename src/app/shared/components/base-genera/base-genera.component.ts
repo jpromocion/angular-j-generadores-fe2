@@ -16,47 +16,33 @@ import {TranslateService} from "@ngx-translate/core";
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-base-genera',
-  standalone: true,
-  imports: [],
-  //templateUrl: './base-genera.component.html',
-  //styleUrl: './base-genera.component.scss'
-  template: '',
-  animations: [
-    trigger(
-      'entradaLateralAnimation', [
-        transition(':enter', [
-          style({transform: 'translateX(100%)', opacity: 0}),
-          animate('1s', style({transform: 'translateX(0)', opacity: 1}))
+    selector: 'app-base-genera',
+    imports: [],
+    //templateUrl: './base-genera.component.html',
+    //styleUrl: './base-genera.component.scss'
+    template: '',
+    animations: [
+        trigger('entradaLateralAnimation', [
+            transition(':enter', [
+                style({ transform: 'translateX(100%)', opacity: 0 }),
+                animate('1s', style({ transform: 'translateX(0)', opacity: 1 }))
+            ]),
+            transition(':leave', [
+                style({ transform: 'translateX(0)', opacity: 1 }),
+                animate('1s', style({ transform: 'translateX(100%)', opacity: 0 }))
+            ])
         ]),
-        transition(':leave', [
-          style({transform: 'translateX(0)', opacity: 1}),
-          animate('1s', style({transform: 'translateX(100%)', opacity: 0}))
+        trigger('encogimientoAnimation', [
+            transition(':enter', [
+                style({ height: '0', opacity: 0 }),
+                animate('1s ease-out', style({ height: '*', opacity: 1 }))
+            ]),
+            transition(':leave', [
+                style({ height: '*', opacity: 1 }),
+                animate('1s ease-in', style({ height: '0', opacity: 0 }))
+            ])
         ])
-      ]
-    ),
-    trigger(
-      'encogimientoAnimation',
-      [
-        transition(
-          ':enter',
-          [
-            style({ height: '0', opacity: 0 }),
-            animate('1s ease-out',
-                    style({ height: '*', opacity: 1 }))
-          ]
-        ),
-        transition(
-          ':leave',
-          [
-            style({ height: '*', opacity: 1 }),
-            animate('1s ease-in',
-                    style({ height: '0', opacity: 0 }))
-          ]
-        )
-      ]
-    )
-  ],
+    ]
 })
 export abstract class BaseGeneraComponent implements OnInit  {
 

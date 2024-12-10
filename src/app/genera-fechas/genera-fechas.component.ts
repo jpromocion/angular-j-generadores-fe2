@@ -23,13 +23,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-fechas',
-  standalone: true,
-  imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,MatDatepickerModule,MatNativeDateModule,
-    NgxMatTimepickerModule, TranslateModule],
-  templateUrl: './genera-fechas.component.html',
-  styleUrl: './genera-fechas.component.scss'
+    selector: 'app-genera-fechas',
+    imports: [FormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule, MatTooltipModule,
+        MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule,
+        NgxMatTimepickerModule, TranslateModule],
+    templateUrl: './genera-fechas.component.html',
+    styleUrl: './genera-fechas.component.scss'
 })
 export class GeneraFechasComponent extends BaseGeneraComponent implements OnInit {
 

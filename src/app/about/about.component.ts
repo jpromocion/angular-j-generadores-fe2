@@ -6,11 +6,10 @@ import {ComprameCafeComponent} from '../shared/components/comprame-cafe/comprame
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-about',
-  standalone: true,
-  imports: [MatIconModule, ComprameCafeComponent, TranslateModule],
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.scss'
+    selector: 'app-about',
+    imports: [MatIconModule, ComprameCafeComponent, TranslateModule],
+    templateUrl: './about.component.html',
+    styleUrl: './about.component.scss'
 })
 export class AboutComponent implements OnInit {
 

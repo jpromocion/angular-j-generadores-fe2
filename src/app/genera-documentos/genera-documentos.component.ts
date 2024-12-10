@@ -21,13 +21,12 @@ import { marker} from '@colsen1991/ngx-translate-extract-marker';
 declare var $: any;
 
 @Component({
-  selector: 'app-genera-documentos',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,
-    MatGridListModule, MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,MatAutocompleteModule,
-    TranslateModule],
-  templateUrl: './genera-documentos.component.html',
-  styleUrl: './genera-documentos.component.scss',
+    selector: 'app-genera-documentos',
+    imports: [FormsModule, ReactiveFormsModule, NgIf, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule,
+        MatGridListModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatListModule, MatAutocompleteModule,
+        TranslateModule],
+    templateUrl: './genera-documentos.component.html',
+    styleUrl: './genera-documentos.component.scss'
 })
 export class GeneraDocumentosComponent extends BaseGeneraComponent implements OnInit {
 

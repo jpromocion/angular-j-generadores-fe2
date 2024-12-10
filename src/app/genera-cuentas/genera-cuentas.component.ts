@@ -21,12 +21,11 @@ import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 
 @Component({
-  selector: 'app-genera-cuentas',
-  standalone: true,
-  imports: [FormsModule, NgIf, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule, MatGridListModule,
-    MatInputModule, MatSelectModule, MatFormFieldModule, MatListModule, TranslateModule],
-  templateUrl: './genera-cuentas.component.html',
-  styleUrl: './genera-cuentas.component.scss'
+    selector: 'app-genera-cuentas',
+    imports: [FormsModule, NgIf, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule, MatGridListModule,
+        MatInputModule, MatSelectModule, MatFormFieldModule, MatListModule, TranslateModule],
+    templateUrl: './genera-cuentas.component.html',
+    styleUrl: './genera-cuentas.component.scss'
 })
 export class GeneraCuentasComponent extends BaseGeneraComponent implements OnInit {
 

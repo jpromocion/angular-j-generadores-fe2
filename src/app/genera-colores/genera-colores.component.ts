@@ -21,12 +21,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-colores',
-  standalone: true,
-  imports: [FormsModule, NgIf,MatIconModule,MatButtonModule,MatCardModule,MatTooltipModule,MatGridListModule,MatInputModule,MatSelectModule,MatFormFieldModule,MatListModule,
-    ColorPickerModule,MatSliderModule,TranslateModule],
-  templateUrl: './genera-colores.component.html',
-  styleUrl: './genera-colores.component.scss'
+    selector: 'app-genera-colores',
+    imports: [FormsModule, NgIf, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule, MatGridListModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatListModule,
+        ColorPickerModule, MatSliderModule, TranslateModule],
+    templateUrl: './genera-colores.component.html',
+    styleUrl: './genera-colores.component.scss'
 })
 export class GeneraColoresComponent extends BaseGeneraComponent implements OnInit {
 

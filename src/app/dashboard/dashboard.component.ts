@@ -18,24 +18,23 @@ import {BaseGeneraComponent} from '../shared/components/base-genera/base-genera.
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
-  standalone: true,
-  imports: [
-    MatGridListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    FormsModule,
-    MatInputModule,
-    MatTooltipModule,
-    MessagesComponent,
-    MatRippleModule,
-    ComprameCafeComponent,
-    TranslateModule
-  ]
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss',
+    imports: [
+        MatGridListModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        FormsModule,
+        MatInputModule,
+        MatTooltipModule,
+        MessagesComponent,
+        MatRippleModule,
+        ComprameCafeComponent,
+        TranslateModule
+    ]
 })
 export class DashboardComponent extends BaseGeneraComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);

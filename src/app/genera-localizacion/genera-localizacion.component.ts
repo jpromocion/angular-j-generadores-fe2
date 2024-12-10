@@ -29,14 +29,13 @@ import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 
 @Component({
-  selector: 'app-genera-localizacion',
-  standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
-    MatTableModule, MatPaginatorModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
-    CdkDropList, CdkDrag, TranslateModule],
-  templateUrl: './genera-localizacion.component.html',
-  styleUrl: './genera-localizacion.component.scss'
+    selector: 'app-genera-localizacion',
+    imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule, MatTooltipModule, CaseTransformerPipe,
+        MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule, MatCardModule, MatCheckboxModule,
+        MatTableModule, MatPaginatorModule, MatSortModule, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass,
+        CdkDropList, CdkDrag, TranslateModule],
+    templateUrl: './genera-localizacion.component.html',
+    styleUrl: './genera-localizacion.component.scss'
 })
 export class GeneraLocalizacionComponent extends BaseGeneraComponent implements OnInit, AfterViewInit {
 

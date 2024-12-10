@@ -28,13 +28,12 @@ import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 
 @Component({
-  selector: 'app-genera-perfiles',
-  standalone: true,
-  imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,MatGridListModule, CaseTransformerPipe,
-    MatTableModule, MatPaginatorModule,MatFormFieldModule,MatInputModule,MatSortModule,NgSwitch,NgSwitchCase,NgSwitchDefault,NgClass,
-    MatSelectModule, CdkDropList, CdkDrag, MatBadgeModule, TranslateModule],
-  templateUrl: './genera-perfiles.component.html',
-  styleUrl: './genera-perfiles.component.scss'
+    selector: 'app-genera-perfiles',
+    imports: [NgFor, FormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule, MatTooltipModule, MatGridListModule, CaseTransformerPipe,
+        MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSortModule, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass,
+        MatSelectModule, CdkDropList, CdkDrag, MatBadgeModule, TranslateModule],
+    templateUrl: './genera-perfiles.component.html',
+    styleUrl: './genera-perfiles.component.scss'
 })
 export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnInit , AfterViewInit  {
 

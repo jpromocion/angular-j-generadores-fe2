@@ -18,13 +18,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-variados',
-  standalone: true,
-  imports: [FormsModule,ReactiveFormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
-    MatAutocompleteModule,TranslateModule],
-  templateUrl: './genera-variados.component.html',
-  styleUrl: './genera-variados.component.scss'
+    selector: 'app-genera-variados',
+    imports: [FormsModule, ReactiveFormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule, MatTooltipModule,
+        MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule, MatCardModule, MatCheckboxModule,
+        MatAutocompleteModule, TranslateModule],
+    templateUrl: './genera-variados.component.html',
+    styleUrl: './genera-variados.component.scss'
 })
 export class GeneraVariadosComponent extends BaseGeneraComponent implements OnInit {
   //filtro general

@@ -19,13 +19,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-numeros',
-  standalone: true,
-  imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
-    MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule,
-    TranslateModule],
-  templateUrl: './genera-numeros.component.html',
-  styleUrl: './genera-numeros.component.scss'
+    selector: 'app-genera-numeros',
+    imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCardModule, MatIconModule,
+        MatListModule, MatCheckboxModule, MatSlideToggleModule, MatSelectModule, MatButtonToggleModule, MatRadioModule,
+        TranslateModule],
+    templateUrl: './genera-numeros.component.html',
+    styleUrl: './genera-numeros.component.scss'
 })
 export class GeneraNumerosComponent extends BaseGeneraComponent implements OnInit {
   //filtro general

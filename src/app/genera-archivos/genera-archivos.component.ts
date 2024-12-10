@@ -19,13 +19,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-archivos',
-  standalone: true,
-  imports: [FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule,
-    MatFormFieldModule,MatInputModule,MatSelectModule,MatListModule,MatCardModule,MatCheckboxModule,
-    TranslateModule],
-  templateUrl: './genera-archivos.component.html',
-  styleUrl: './genera-archivos.component.scss'
+    selector: 'app-genera-archivos',
+    imports: [FormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule, MatTooltipModule,
+        MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule, MatCardModule, MatCheckboxModule,
+        TranslateModule],
+    templateUrl: './genera-archivos.component.html',
+    styleUrl: './genera-archivos.component.scss'
 })
 export class GeneraArchivosComponent extends BaseGeneraComponent implements OnInit {
 

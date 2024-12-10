@@ -4,11 +4,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-comprame-cafe',
-  standalone: true,
-  imports: [MatIconModule,MatButtonModule, TranslateModule],
-  templateUrl: './comprame-cafe.component.html',
-  styleUrl: './comprame-cafe.component.scss'
+    selector: 'app-comprame-cafe',
+    imports: [MatIconModule, MatButtonModule, TranslateModule],
+    templateUrl: './comprame-cafe.component.html',
+    styleUrl: './comprame-cafe.component.scss'
 })
 export class ComprameCafeComponent {
 

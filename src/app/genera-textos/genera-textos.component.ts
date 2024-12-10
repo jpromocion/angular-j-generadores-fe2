@@ -14,12 +14,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-genera-textos',
-  standalone: true,
-  imports: [ FormsModule, NgIf, MatButtonToggleModule,MatIconModule,MatButtonModule,MatTooltipModule, CaseTransformerPipe,
-    MatFormFieldModule,MatInputModule, TranslateModule],
-  templateUrl: './genera-textos.component.html',
-  styleUrl: './genera-textos.component.scss'
+    selector: 'app-genera-textos',
+    imports: [FormsModule, NgIf, MatButtonToggleModule, MatIconModule, MatButtonModule, MatTooltipModule, CaseTransformerPipe,
+        MatFormFieldModule, MatInputModule, TranslateModule],
+    templateUrl: './genera-textos.component.html',
+    styleUrl: './genera-textos.component.scss'
 })
 export class GeneraTextosComponent extends BaseGeneraComponent implements OnInit {
 

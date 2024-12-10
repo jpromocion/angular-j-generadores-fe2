@@ -8,11 +8,10 @@ import {TranslateService} from "@ngx-translate/core";
 import { marker} from '@colsen1991/ngx-translate-extract-marker';
 
 @Component({
-  selector: 'app-messages',
-  standalone: true,
-  imports: [NgFor, NgIf,MatButtonModule, TranslateModule],
-  templateUrl: './messages.component.html',
-  styleUrl: './messages.component.css'
+    selector: 'app-messages',
+    imports: [NgFor, NgIf, MatButtonModule, TranslateModule],
+    templateUrl: './messages.component.html',
+    styleUrl: './messages.component.css'
 })
 export class MessagesComponent {
 
