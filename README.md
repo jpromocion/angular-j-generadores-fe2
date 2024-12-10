@@ -213,7 +213,7 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
   //new TranslateHttpLoader(http, './i18n/', '.json');
   new TranslateHttpLoader(http, './', '.json');
 ```
--Quiza habría que investigar más para conseguir que desplegado también las viera en subfolder "i18n", pero desplegarlo probando despliegues directos a producción... mmm no. Habría que bajarse un nginx local y probar que pasa realmente... pero de momento me conformo con esta solución.
+- Quiza habría que investigar más para conseguir que desplegado también las viera en subfolder "i18n", pero desplegarlo probando despliegues directos a producción... mmm no. Habría que bajarse un nginx local y probar que pasa realmente... pero de momento me conformo con esta solución.
 
 
 ## Docker - Render o Railway
