@@ -213,7 +213,7 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
   //new TranslateHttpLoader(http, './i18n/', '.json');
   new TranslateHttpLoader(http, './', '.json');
 ```
-- **SOLVENTAMOS** finalmente para dejar json de idiomas en subfolder. Al final el problema es el COPY de Docker, el cual haciendose con el * lo que hace es no copiar subfolders sino coger todo el contenido de un subfolder y hacerle un merge al directorio raíz donde copia ([dockerfile-copy-keep-subdirectory-structure](https://stackoverflow.com/questions/30215830/dockerfile-copy-keep-subdirectory-structure)). Por ello dejamos los json dentro del *i18n*, el "app.config.ts" lo dejamos con apunte al *i18n* finalmente, y en el DockerFile:
+**SOLVENTAMOS** finalmente para dejar json de idiomas en subfolder. Al final el problema es el COPY de Docker, el cual haciendose con el * lo que hace es no copiar subfolders sino coger todo el contenido de un subfolder y hacerle un merge al directorio raíz donde copia ([dockerfile-copy-keep-subdirectory-structure](https://stackoverflow.com/questions/30215830/dockerfile-copy-keep-subdirectory-structure)). Por ello dejamos los json dentro del *i18n*, el "app.config.ts" lo dejamos con apunte al *i18n* finalmente, y en el DockerFile:
 ```
 COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/* /usr/share/nginx/html
 COPY --from=builder /usr/src/app/dist/angular-j-generadores-fe2/browser/i18n /usr/share/nginx/html/i18n
