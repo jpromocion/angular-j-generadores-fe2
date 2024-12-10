@@ -14,8 +14,8 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
   //en subfolder i18n, siempre aparecen en la raiz https://angular-j-generadores-fe-production.up.railway.app/es.json
   //Asi que los hemos puesto directamente en el public raiz para ver si asi funciona desplegado en render/railway...
   //basicamente "si mahoma no va a la montaña... la montaña viene a mahoma"
-  //new TranslateHttpLoader(http, './i18n/', '.json');
-  new TranslateHttpLoader(http, './', '.json');
+  new TranslateHttpLoader(http, './i18n/', '.json');
+  //new TranslateHttpLoader(http, './', '.json');
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
