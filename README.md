@@ -1,6 +1,6 @@
-# Generadores de jpromocion - FrontEnd en Angular 2
+# Generadores de jpromocion - FrontEnd en Angular
 
-Pretende ser un frontend de ejemplo realizado en Angular 18 para atacar la API REST JSON de generadores desarrollada en mi otro proyecto [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores) y poder utilizar visualmente la explotación de datos auto-generados.
+Pretende ser un frontend de ejemplo realizado en Angular para atacar la API REST JSON de generadores desarrollada en mi otro proyecto [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores) y poder utilizar visualmente la explotación de datos auto-generados.
 
 La diferencia con [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) es que aquí vamos a crear la aplicación con angular material también pero con hojas de estilo SCSS y utilizando las plantillas de esquema de angular material para la distribución, para tener una interfaz más bonita.
 
@@ -60,13 +60,19 @@ Ejecutar `ng build` para construir el proyecto. El artefacto montado será guard
 
 ## Creación original desde cero
 
-Creado con [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3:
+Creado con Angular v18 [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3:
   - `ng new`
     - workspace: angular-j-generadores-fe2
     - hoja estlo: SCSS
     - SSR: no
 
-NOTA: Los componentes, entidades, servicios reutilizados nos los hemos ido trayendo directamente desde [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) copiando.
+> Los componentes, entidades, servicios reutilizados nos los hemos ido trayendo directamente desde [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) copiando. Y ya hemos evolucionado desde ahí.
+
+
+### Actualización versión Angular a 19
+
+Posteriormente con la salida de la versión Angular-v19 Seguimos las instrucciones de [Actualizar 18 a 19] (https://angular.dev/update-guide?v=18.0-19.0&l=3)
+> Incluye tambien la de Angular Material en las instrucciones. Curiosamente, Angular material lleva ya un TimePicker en la v19, pero sigue siendo peor que el "ngx-mat-timepicker" que utilizamos es su momento, por lo que seguimos utilizando este.
 
 
 
