@@ -60,6 +60,9 @@
           "anterior": "Página anterior",
           "de": "de"
         },
+        "columnasvisibles":{
+          "selectall": "Seleccionar todas"
+        },
         "frame": {
           "filtros": "Filtros"
         },

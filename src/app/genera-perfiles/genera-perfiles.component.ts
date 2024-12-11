@@ -429,16 +429,16 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
 
   //seleccionar columnas a mostrar en tabla personas:
   //-Lista de todas las opciones posibles para el combo.
-  //NOTA: utilizamos las columnas originales... a las que se añade la opcion especial Seleccionar Todos
-  listaColumnasPersonas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
+  //NOTA: utilizamos las columnas originales -> el label para mostra traducidas... a las que se añade la opcion especial Seleccionar Todos
+  listaColumnasPersonas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.map((col) => col.label).concat([BaseGeneraComponent.columSeleccionarTodas]);
   //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
   //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
   selectColumnasPersonas: string[] = this.listaColumnasPersonas;
 
   //seleccionar columnas a mostrar en tabla empresas:
   //-Lista de todas las opciones posibles para el combo.
-  //NOTA: utilizamos las columnas originales... a las que se añade la opcion especial Seleccionar Todos
-  listaColumnasEmpresas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
+  //NOTA: utilizamos las columnas originales -> el label para mostra traducidas... a las que se añade la opcion especial Seleccionar Todos
+  listaColumnasEmpresas: string[] = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.map((col) => col.label).concat([BaseGeneraComponent.columSeleccionarTodas]);
   //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
   //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
   selectColumnasEmpresas: string[] = this.listaColumnasEmpresas;
@@ -831,7 +831,14 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    * sobre la lista de columnas mostradas asociadas a la tabla.
    */
   sincronizarListaColumVisiblesPersonas(): void {
-    this.displayedColumnsPersonas = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+    let columnasConLabel = this.selectColumnasPersonas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas)
+    //En el combo tenemos una lista de columnas con label, accedemos a la tabla original y buscamos las claves "key"
+    //y nos quedamos con una lista de las que corresponden. Pues es lo que espera displayedColumnsPersonas
+    this.displayedColumnsPersonas =
+    columnasConLabel.map(label => {
+      const column = GeneraPerfilesComponent.COLUMNS_SCHEMA_PERSONAS.find(col => col.label === label);
+      return column ? column.key : '';
+    }).filter(key => key !== '');
   }
 
   /**
@@ -1096,7 +1103,14 @@ export class GeneraPerfilesComponent extends BaseGeneraComponent implements OnIn
    * sobre la lista de columnas mostradas asociadas a la tabla.
    */
   sincronizarListaColumVisiblesEmpresas(): void {
-    this.displayedColumnsEmpresas = this.selectColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+    let columnasConLabel = this.selectColumnasEmpresas.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas)
+    //En el combo tenemos una lista de columnas con label, accedemos a la tabla original y buscamos las claves "key"
+    //y nos quedamos con una lista de las que corresponden. Pues es lo que espera displayedColumnsEmpresas
+    this.displayedColumnsEmpresas =
+    columnasConLabel.map(label => {
+      const column = GeneraPerfilesComponent.COLUMNS_SCHEMA_EMPRESAS.find(col => col.label === label);
+      return column ? column.key : '';
+    }).filter(key => key !== '');
   }
 
   /**

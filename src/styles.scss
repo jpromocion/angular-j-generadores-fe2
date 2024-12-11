@@ -350,6 +350,11 @@ mat-header-cell {
   color: $color-lila-texto-menu;
 }
 
+//En angular material 19 la cabeceras han pasado a verse negras... cambiamos a blanco
+.mat-sort-header-content{
+  color: var(--mat-sidenav-content-text-color, var(--mat-sys-on-background));
+}
+
 
 
 

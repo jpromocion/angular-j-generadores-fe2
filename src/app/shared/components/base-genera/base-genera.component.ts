@@ -47,7 +47,7 @@ import { marker} from '@colsen1991/ngx-translate-extract-marker';
 export abstract class BaseGeneraComponent implements OnInit  {
 
   //Opcion fija "Seleccionar todas" para los combos de columnas a mostrar en tablas
-  static columSeleccionarTodas = 'Seleccionar todas';
+  static columSeleccionarTodas = 'generadores.jpromocion.generarcomunes.columnasvisibles.selectall';
 
   //tipo de letra para transformaciones masyucula, minuscula, capitaliza
   tipoLetra: string = 'M';

@@ -872,7 +872,7 @@
           @for (columna of listaColumnasPersonas; track columna) {
             <mat-option #matOptionColumPersonas [value]="columna"
               (click)="togglePerOneColumnasPersonas(matOptionColumPersonas.selected, matOptionColumPersonas.value)">
-              {{columna}}
+              {{columna | translate}}
             </mat-option>
           }
         </mat-select>
@@ -997,7 +997,7 @@
           @for (columna of listaColumnasEmpresas; track columna) {
             <mat-option #matOptionColumEmpresas [value]="columna"
               (click)="togglePerOneColumnasEmpresas(matOptionColumEmpresas.selected, matOptionColumEmpresas.value)">
-              {{columna}}
+              {{columna | translate}}
             </mat-option>
           }
         </mat-select>

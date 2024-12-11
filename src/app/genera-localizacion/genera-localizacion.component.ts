@@ -250,8 +250,8 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
 
   //seleccionar columnas a mostrar en tabla direcciones:
   //-Lista de todas las opciones posibles para el combo.
-  //NOTA: utilizamos las columnas originales... a las que se añade la opcion especial Seleccionar Todos
-  listaColumnasDirecciones: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.key).concat([BaseGeneraComponent.columSeleccionarTodas]);
+  //NOTA: utilizamos las columnas originales -> el label para mostra traducidas... a las que se añade la opcion especial Seleccionar Todos
+  listaColumnasDirecciones: string[] = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.map((col) => col.label).concat([BaseGeneraComponent.columSeleccionarTodas]);
   //-Lista que controla que opciones de las anteriores están marcadas (ngModel del mat-select)
   //NOTA: de inicio se marcaran todas, incluyendo la de Seleccionar Todos tambien
   selectColumnasDirecciones: string[] = this.listaColumnasDirecciones;
@@ -984,7 +984,14 @@ export class GeneraLocalizacionComponent extends BaseGeneraComponent implements 
    * sobre la lista de columnas mostradas asociadas a la tabla.
    */
   sincronizarListaColumVisiblesDirecciones(): void {
-    this.displayedColumnsDireccionGenerado = this.selectColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas);
+    let columnasConLabel = this.selectColumnasDirecciones.filter((col) => col != BaseGeneraComponent.columSeleccionarTodas)
+    //En el combo tenemos una lista de columnas con label, accedemos a la tabla original y buscamos las claves "key"
+    //y nos quedamos con una lista de las que corresponden. Pues es lo que espera displayedColumnsDireccionGenerado
+    this.displayedColumnsDireccionGenerado =
+    columnasConLabel.map(label => {
+      const column = GeneraLocalizacionComponent.COLUMNS_SCHEMA_DOMICILIO.find(col => col.label === label);
+      return column ? column.key : '';
+    }).filter(key => key !== '');
   }
 
   /**

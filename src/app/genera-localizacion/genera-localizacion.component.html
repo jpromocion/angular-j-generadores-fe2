@@ -480,7 +480,7 @@
                 @for (columna of listaColumnasDirecciones; track columna) {
                   <mat-option #matOptionColumDirecciones [value]="columna"
                     (click)="togglePerOneColumnasDireccion(matOptionColumDirecciones.selected, matOptionColumDirecciones.value)">
-                    {{columna}}
+                    {{columna | translate}}
                   </mat-option>
                 }
               </mat-select>
