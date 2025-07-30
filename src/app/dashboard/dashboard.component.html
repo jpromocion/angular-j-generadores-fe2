@@ -1,38 +1,37 @@
 
 <div class="grid-container">
+  <div class="center-panel-wrapper">
+    <!--matRipple: mete una especia de sombra en el click sobre esta zona-->
+    <div class="box slide-in-elliptic-top-fwd"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleDisabled]="disabled"
+      [matRippleUnbounded]="unbounded"
+      [matRippleRadius]="radius" >
 
-  <!--matRipple: mete una especia de sombra en el click sobre esta zona-->
-  <div class="box slide-in-elliptic-top-fwd"
-    matRipple
-    [matRippleCentered]="centered"
-    [matRippleDisabled]="disabled"
-    [matRippleUnbounded]="unbounded"
-    [matRippleRadius]="radius" >
+      <h2>{{ 'generadores.jpromocion.menu.principal' | translate }}</h2>
 
-    <h2>{{ 'generadores.jpromocion.menu.principal' | translate }}</h2>
+      <img style="width: 100px;height:auto;" src="/generador.ico" alt="logo">
 
-    <img style="width: 100px;height:auto;" src="/generador.ico" alt="logo">
+      <div style="margin-top: 10px; max-width: 400px;">
+        <p>{{ 'generadores.jpromocion.descripcion' | translate }}</p>
+      </div>
 
-    <div style="margin-top: 10px; max-width: 400px;">
-      <p>{{ 'generadores.jpromocion.descripcion' | translate }}</p>
+      <input type="hidden" [(ngModel)]="mostrarApiUrlPorAsegurar"  >
+
+      <app-comprame-cafe style="margin-top: 10px;"></app-comprame-cafe>
+
+        <!--EL item para rellenar el api-key con el que funcionaran todas las invocaciones-->
+        <mat-form-field style="min-width: 200px;width: auto !important; margin-top: 30px;">
+          <mat-label>{{ 'generadores.jpromocion.principal.apikey.label' | translate }}</mat-label>
+          <input matInput id="apiKey" [type]="visibilityApiKey ? 'password' : 'text'" [(ngModel)]="apiKey" maxlength="100" (input)="cambioValorApiKey($event)" >
+          <mat-icon matSuffix (click)="visibilityApiKey = !visibilityApiKey">{{visibilityApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.principal.apikey.tooltip' | translate }}">help</mat-icon>
+          <mat-hint>{{ 'generadores.jpromocion.principal.apikey.tooltip' | translate }}</mat-hint>
+        </mat-form-field>
+
+      <app-messages style="margin-top: 20px;"></app-messages>
+
     </div>
-
-    <input type="hidden" [(ngModel)]="mostrarApiUrlPorAsegurar"  >
-
-    <app-comprame-cafe style="margin-top: 10px;"></app-comprame-cafe>
-
-
-      <!--EL item para rellenar el api-key con el que funcionaran todas las invocaciones-->
-      <mat-form-field style="min-width: 200px;width: auto !important; margin-top: 30px;">
-        <mat-label>{{ 'generadores.jpromocion.principal.apikey.label' | translate }}</mat-label>
-        <input matInput id="apiKey" [type]="visibilityApiKey ? 'password' : 'text'" [(ngModel)]="apiKey" maxlength="100" (input)="cambioValorApiKey($event)" >
-        <mat-icon matSuffix (click)="visibilityApiKey = !visibilityApiKey">{{visibilityApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>
-        <mat-icon matSuffix matTooltip="{{ 'generadores.jpromocion.principal.apikey.tooltip' | translate }}">help</mat-icon>
-        <mat-hint>{{ 'generadores.jpromocion.principal.apikey.tooltip' | translate }}</mat-hint>
-      </mat-form-field>
-
-    <app-messages style="margin-top: 20px;"></app-messages>
-
   </div>
-
 </div>

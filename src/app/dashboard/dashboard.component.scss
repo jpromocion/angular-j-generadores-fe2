@@ -1,53 +1,45 @@
 @use '../../styles' as stylesGeneral;
 
-//Buscamos poner el panel de datos en un panel con marco y que degrade la imagen que ponemos de fondo
 .grid-container {
-  background: url("/fondo_dados.jpg") no-repeat;
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  height: 100vh;
-  //degradadmos imagen para que se integre mejor con el fondo aplicando el color negro de base
-  mask-image: radial-gradient(circle at center, transparent 30%, #161215 100%);
+  background: url("/fondo_dados.jpg") center center / cover no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100dvh;
+  min-width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  //aplicamos un filtro a la imagen para aplicarle el color rosita y no se sienta tan distinto de la aplicaicon
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: stylesGeneral.$color-lila-texto-menu;
-    opacity: 0.8;
-    mix-blend-mode: multiply;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(22,18,21,0.5) 0%, rgba(22,18,21,0.9) 100%);
     pointer-events: none;
-
+    z-index: 1;
   }
-  //para aplicar asi el efecto zoom... pero crea unas barras horizontal/vertical en el navegador -> no gusta
-  // &::after {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   background: inherit;
-  //   z-index: -1;
-  //   animation: kenburns-top-right 3s ease-out both;
-  // }
-}
 
+  .center-panel-wrapper {
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+}
 
 
 .box {
   width: auto;
   height: auto;
   border: 2px solid #625d5d;
-  margin-top: 10%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -58,10 +50,5 @@
   background: transparent;
   min-width: 10%;
   box-shadow: 5px 5px 10px stylesGeneral.$color-lila-base-menu !important;
-  @media (min-width: 768px) {
-    margin-left: 20%;
-  }
-  @media (min-width: 1024px) {
-    margin-left: 30%;
-  }
+  margin: 0; // Elimina márgenes laterales
 }
