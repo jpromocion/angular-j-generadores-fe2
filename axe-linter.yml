@@ -1,0 +1,3 @@
+rules:
+  #image-alt: false             # Muestra advertencia en vez de error si falta alt
+
