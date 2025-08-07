@@ -10,8 +10,9 @@
         <mat-card-content>
 
           <div>
-            <label>{{ 'generadores.jpromocion.archivos.entrada.tipoentrada.label' | translate }}: </label>
-            <mat-button-toggle-group name="codifica64Entrada" aria-label="codifica64Entrada" [(ngModel)]="codifica64Entrada" style="margin-left: 10px;margin-top: 10px;">
+            <span role="label" id="tipoEntradaCodi64Label">{{ 'generadores.jpromocion.archivos.entrada.tipoentrada.label' | translate }}: </span>
+            <mat-button-toggle-group name="codifica64Entrada" aria-labelledby="tipoEntradaCodi64Label"
+              [(ngModel)]="codifica64Entrada" style="margin-left: 10px;margin-top: 10px;">
               <mat-button-toggle value="texto">{{ 'generadores.jpromocion.archivos.entrada.tipoentrada.valortexto' | translate }}</mat-button-toggle>
               <mat-button-toggle value="archivo">{{ 'generadores.jpromocion.archivos.entrada.tipoentrada.valorarchivo' | translate }}</mat-button-toggle>
             </mat-button-toggle-group>

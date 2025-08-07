@@ -274,6 +274,8 @@ RUN echo $NG_APP_API_REST_PROD
 
 
 
+
+
 ## Mejorando la estructura del proyecto
 
 Viendo el tamaño final, realizamos una reestructuración de la estructura del proyecto, dado que la que te genera por defecto Angular CLI es para cosas sencillas.
@@ -317,3 +319,97 @@ ng build --configuration=production
 ```
 
 Del contenido que el anterior comando genera en "dist" copias lo que ha generado dentro de "dist\angular-j-generadores-fe2\browser" directamente a "C:\nginx-1.27.3\html". Vuelves a levantar y accedes a "http://localhost/80"
+
+
+## Accesibilidad
+
+Se incoporan elementos para controlar accesibilidad durante desarrollo.
+
+### angular-eslint
+[angular-eslint](https://github.com/angular-eslint/angular-eslint/tree/main)
+Un plugin EsLint (analizar el código fuente para encontrar patrones). Especializado en el ecosistema Angular, incluye reglas de accesibilidad específicas de Angular y buenas prácticas del framework. Dispone de unas 11 reglas de accesibilidad.
+
+Instalación en proyecto:
+```
+ng add angular-eslint
+```
+
+Su archivo de configuración es el nuevo "eslint.config.js", donde dejamos solo las propieas de html: accesibilidad y recomendaciones.
+```
+{
+  files: ["**/*.html"],
+  extends: [
+    ...angular.configs.templateRecommended,
+    ...angular.configs.templateAccessibility,
+  ],
+  rules: {},
+}
+```
+
+Añadio la regla "lint": "ng lint" en package.json directamente. Por lo que para ejecutar este análisis basta con ejecutar cualquiera de los dos siguientes comandos:
+```
+npm run lint
+ng lint
+```
+
+### html-validate
+[html-validate](https://html-validate.org/)
+Se centra en la validez del HTML subyacente. Asegura que tu HTML es semánticamente correcto y cumple con los estándares. Más de 26 reglas de accesibilidad, aunque solo válidas para HTML puro, no será capaz de interpretar nada propio de Angular, por lo que algunas reglas pueden necesitar ser desactivadas para no dar falsos positivos.
+
+Requiere instalar la herramienta:
+```
+npm install --save-dev html-validate
+```
+
+Se creo en raíz el ".htmlvalidate.json" para configurar:
+```
+{
+  "extends": [
+    "html-validate:recommended",
+    "html-validate:a11y"
+  ],
+  "elements": [
+    "html5"
+  ],
+  "rules": {
+  }
+}
+```
+> NOTA: se recomienda dejar solo las de accesibilidad "html-validate:a11y"
+
+Si se quieren excepcionar reglas concretas se puede modificar el rules:
+```
+  "rules": {
+    // Puedes desactivar reglas que den falsos positivos con Angular
+    "no-inline-style": "off",
+    "no-unknown-elements": "off",
+    // Si usas [hidden] de Angular, puedes desactivar esta regla
+    "attribute-boolean-style": "off"
+  }
+```
+
+Es necesario crear la regla en package.json para poder ejecutar sobre los html:
+```
+"scripts": {
+  ...
+  "lint:html": "html-validate \"src/**/*.html\""
+},
+```
+
+Para ejecutar este análisis basta con ejecutar cualquiera de los dos siguientes comandos:
+```
+npm run lint:html
+```
+
+Se crea adicionalmente la regla en package.json para poder ejecutar ambos:
+```
+"scripts": {
+  ...
+  "lint:all": "npm run lint && npm run lint:html"
+},
+```
+
+Cuya ejecución sería:
+```
+npm run lint:all
+```
