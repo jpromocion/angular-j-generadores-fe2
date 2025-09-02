@@ -43,3 +43,4 @@ Thumbs.db
 
 #Variable de entorno @ngx-env/builder
 .env
+*.code-workspace
