@@ -1,0 +1,130 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - navigation [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: Menu
+      - navigation [ref=e9]:
+        - link "Main" [ref=e10] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e13] [cursor=pointer]:
+            - img [ref=e14] [cursor=pointer]: dashboard
+            - generic [ref=e15] [cursor=pointer]: Main
+        - link "Documents" [ref=e16] [cursor=pointer]:
+          - /url: /genera-documentos
+          - generic [ref=e19] [cursor=pointer]:
+            - img [ref=e20] [cursor=pointer]: badge
+            - generic [ref=e21] [cursor=pointer]: Documents
+        - link "Banking" [ref=e22] [cursor=pointer]:
+          - /url: /genera-cuentas
+          - generic [ref=e25] [cursor=pointer]:
+            - img [ref=e26] [cursor=pointer]: account_balance
+            - generic [ref=e27] [cursor=pointer]: Banking
+        - link "Profiles" [ref=e28] [cursor=pointer]:
+          - /url: /genera-perfiles
+          - generic [ref=e31] [cursor=pointer]:
+            - img [ref=e32] [cursor=pointer]: person
+            - generic [ref=e33] [cursor=pointer]: Profiles
+        - link "Texts" [ref=e34] [cursor=pointer]:
+          - /url: /genera-textos
+          - generic [ref=e37] [cursor=pointer]:
+            - img [ref=e38] [cursor=pointer]: edit_note
+            - generic [ref=e39] [cursor=pointer]: Texts
+        - link "Numbers" [ref=e40] [cursor=pointer]:
+          - /url: /genera-numeros
+          - generic [ref=e43] [cursor=pointer]:
+            - img [ref=e44] [cursor=pointer]: "123"
+            - generic [ref=e45] [cursor=pointer]: Numbers
+        - link "Dates" [ref=e46] [cursor=pointer]:
+          - /url: /genera-fechas
+          - generic [ref=e49] [cursor=pointer]:
+            - img [ref=e50] [cursor=pointer]: calendar_month
+            - generic [ref=e51] [cursor=pointer]: Dates
+        - link "Vehicles" [ref=e52] [cursor=pointer]:
+          - /url: /genera-coches
+          - generic [ref=e55] [cursor=pointer]:
+            - img [ref=e56] [cursor=pointer]: directions_car
+            - generic [ref=e57] [cursor=pointer]: Vehicles
+        - link "Location" [ref=e58] [cursor=pointer]:
+          - /url: /genera-localizacion
+          - generic [ref=e61] [cursor=pointer]:
+            - img [ref=e62] [cursor=pointer]: travel_explore
+            - generic [ref=e63] [cursor=pointer]: Location
+        - link "Bar Code" [ref=e64] [cursor=pointer]:
+          - /url: /genera-barras
+          - generic [ref=e67] [cursor=pointer]:
+            - img [ref=e68] [cursor=pointer]: qr_code_2
+            - generic [ref=e69] [cursor=pointer]: Bar Code
+        - link "Files" [ref=e70] [cursor=pointer]:
+          - /url: /genera-archivos
+          - generic [ref=e73] [cursor=pointer]:
+            - img [ref=e74] [cursor=pointer]: folder_copy
+            - generic [ref=e75] [cursor=pointer]: Files
+        - link "Colors" [ref=e76] [cursor=pointer]:
+          - /url: /genera-colores
+          - generic [ref=e79] [cursor=pointer]:
+            - img [ref=e80] [cursor=pointer]: palette
+            - generic [ref=e81] [cursor=pointer]: Colors
+        - link "Various" [ref=e82] [cursor=pointer]:
+          - /url: /genera-variados
+          - generic [ref=e85] [cursor=pointer]:
+            - img [ref=e86] [cursor=pointer]: more_horiz
+            - generic [ref=e87] [cursor=pointer]: Various
+        - link "About" [ref=e88] [cursor=pointer]:
+          - /url: /about
+          - generic [ref=e91] [cursor=pointer]:
+            - img [ref=e92] [cursor=pointer]: info
+            - generic [ref=e93] [cursor=pointer]: About
+        - button "Buy me a coffee!!" [ref=e96] [cursor=pointer]:
+          - img [ref=e97] [cursor=pointer]: favorite
+          - img [ref=e98] [cursor=pointer]: coffee
+          - generic [ref=e99] [cursor=pointer]: Buy me a coffee!!
+  - generic [ref=e103]:
+    - generic [ref=e104]:
+      - button "Toggle sidenav" [ref=e105] [cursor=pointer]:
+        - img [ref=e106] [cursor=pointer]: menu
+      - generic [ref=e109]:
+        - heading "Random generators for testing" [level=1] [ref=e110]
+        - generic [ref=e111]:
+          - img "es" [ref=e112]
+          - img "en" [ref=e113]
+    - generic [ref=e116]:
+      - heading "Banking Elements" [level=2] [ref=e117]
+      - generic [ref=e118]:
+        - generic [ref=e124]:
+          - generic [ref=e126]: Num. generations
+          - spinbutton "Num. generations" [ref=e127]: "1"
+        - generic [ref=e131]:
+          - generic [ref=e132]: Generate IBANs
+          - button "Generate a list of IBANs" [ref=e134] [cursor=pointer]:
+            - img [ref=e135] [cursor=pointer]: refresh
+        - generic [ref=e140]:
+          - generic [ref=e141]: Generate Cards
+          - generic [ref=e142]:
+            - generic [ref=e146] [cursor=pointer]:
+              - generic [ref=e148] [cursor=pointer]: Select card type
+              - combobox "Select card type" [ref=e149] [cursor=pointer]:
+                - generic [ref=e150] [cursor=pointer]:
+                  - generic [ref=e152] [cursor=pointer]: Select a specific type to generate only this type.
+                  - img [ref=e155] [cursor=pointer]
+            - button [ref=e158] [cursor=pointer]:
+              - img [ref=e159] [cursor=pointer]: refresh
+        - generic [ref=e162]:
+          - generic [ref=e164]:
+            - generic [ref=e165]: Validate IBAN
+            - generic [ref=e167]:
+              - generic [ref=e171]:
+                - generic [ref=e173]: IBAN to check
+                - textbox "IBAN to check" [ref=e174]
+              - button [ref=e176] [cursor=pointer]:
+                - img [ref=e177] [cursor=pointer]: search_check
+          - generic [ref=e181]:
+            - generic [ref=e182]: Validate Card
+            - generic [ref=e184]:
+              - generic [ref=e188]:
+                - generic [ref=e190]: Card to check
+                - textbox "Card to check" [ref=e191]
+              - button [ref=e193] [cursor=pointer]:
+                - img [ref=e194] [cursor=pointer]: search_check
+```

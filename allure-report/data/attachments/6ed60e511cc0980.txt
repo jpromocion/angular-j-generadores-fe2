@@ -1,0 +1,5 @@
+[a11y] Violacion encontrada: [
+  { id: 'button-name', impact: 'critical', nodes: 3 },
+  { id: 'color-contrast', impact: 'serious', nodes: 4 },
+  { id: 'link-name', impact: 'serious', nodes: 2 }
+]

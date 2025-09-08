@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { label, LabelName, Severity } from 'allure-js-commons';
 import AxeBuilder from '@axe-core/playwright';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join, basename } from 'node:path';
@@ -6,6 +7,13 @@ import { createHtmlReport } from 'axe-html-reporter';
 
 
 test.describe('Accessibility', () => {
+  // Etiquetado global para esta suite en Allure
+  test.beforeEach(() => {
+  label(LabelName.PARENT_SUITE, 'E2E');
+  label(LabelName.SUITE, 'Accesibilidad');
+  label(LabelName.FEATURE, 'Generadores');
+  label(LabelName.SEVERITY, Severity.CRITICAL);
+  });
   // Pruebas paramétricas para todas las URLs de la aplicación (incluye home y about)
   const rutasAProbar: Array<{ path: string; selector: string; nombre: string }> = [
     { path: '/', selector: 'app-root', nombre: 'home' },
@@ -26,8 +34,22 @@ test.describe('Accessibility', () => {
 
   for (const ruta of rutasAProbar) {
     test(`Violaciones accesibilidad criticas/severas en pagina ${ruta.nombre}`, async ({ page }) => {
+  // Etiquetas específicas por caso
+  label(LabelName.STORY, `Página ${ruta.nombre}`);
+  label('page', ruta.path);
       await page.goto(ruta.path);
       await page.waitForSelector(ruta.selector, { state: 'attached' });
+
+      // Evitar falsos positivos de contraste por animaciones/transiciones (opacidad < 1)
+      // Se desactivan para test
+      await page.addStyleTag({
+        content: `
+          * { transition: none !important; }
+          .tracking-in-expand, .bounce-in-bottom, .rotate-center, .kenburns-top-right {
+            animation: none !important;
+          }
+        `,
+      });
 
       const accessibilityScanResults = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
@@ -58,7 +80,15 @@ test.describe('Accessibility', () => {
 
 // Prueba funcional separada: pulsa el botón de generar NIF en /genera-documentos
 test.describe('Funcional - Genera Documentos', () => {
+  // Etiquetado global para funcional
+  test.beforeEach(() => {
+  label(LabelName.PARENT_SUITE, 'E2E');
+  label(LabelName.SUITE, 'Funcional');
+  label(LabelName.FEATURE, 'Genera Documentos');
+  label(LabelName.SEVERITY, Severity.NORMAL);
+  });
   test('Pulsa btnGenerarNif y muestra lista de NIFs', async ({ page }) => {
+  label(LabelName.STORY, 'Generar NIF');
   const count = 10;
   const mockNifs = Array.from({ length: count }, (_, i) => `NIF${i + 1}`);
   let requestCount = 0;

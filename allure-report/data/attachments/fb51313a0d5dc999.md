@@ -1,0 +1,273 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - navigation [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: Menu
+        - navigation [ref=e9]:
+          - link "Main" [ref=e10] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e13] [cursor=pointer]:
+              - img [ref=e14] [cursor=pointer]: dashboard
+              - generic [ref=e15] [cursor=pointer]: Main
+          - link "Documents" [ref=e16] [cursor=pointer]:
+            - /url: /genera-documentos
+            - generic [ref=e19] [cursor=pointer]:
+              - img [ref=e20] [cursor=pointer]: badge
+              - generic [ref=e21] [cursor=pointer]: Documents
+          - link "Banking" [ref=e22] [cursor=pointer]:
+            - /url: /genera-cuentas
+            - generic [ref=e25] [cursor=pointer]:
+              - img [ref=e26] [cursor=pointer]: account_balance
+              - generic [ref=e27] [cursor=pointer]: Banking
+          - link "Profiles" [ref=e28] [cursor=pointer]:
+            - /url: /genera-perfiles
+            - generic [ref=e31] [cursor=pointer]:
+              - img [ref=e32] [cursor=pointer]: person
+              - generic [ref=e33] [cursor=pointer]: Profiles
+          - link "Texts" [ref=e34] [cursor=pointer]:
+            - /url: /genera-textos
+            - generic [ref=e37] [cursor=pointer]:
+              - img [ref=e38] [cursor=pointer]: edit_note
+              - generic [ref=e39] [cursor=pointer]: Texts
+          - link "Numbers" [ref=e40] [cursor=pointer]:
+            - /url: /genera-numeros
+            - generic [ref=e43] [cursor=pointer]:
+              - img [ref=e44] [cursor=pointer]: "123"
+              - generic [ref=e45] [cursor=pointer]: Numbers
+          - link "Dates" [ref=e46] [cursor=pointer]:
+            - /url: /genera-fechas
+            - generic [ref=e49] [cursor=pointer]:
+              - img [ref=e50] [cursor=pointer]: calendar_month
+              - generic [ref=e51] [cursor=pointer]: Dates
+          - link "Vehicles" [ref=e52] [cursor=pointer]:
+            - /url: /genera-coches
+            - generic [ref=e55] [cursor=pointer]:
+              - img [ref=e56] [cursor=pointer]: directions_car
+              - generic [ref=e57] [cursor=pointer]: Vehicles
+          - link "Location" [ref=e58] [cursor=pointer]:
+            - /url: /genera-localizacion
+            - generic [ref=e61] [cursor=pointer]:
+              - img [ref=e62] [cursor=pointer]: travel_explore
+              - generic [ref=e63] [cursor=pointer]: Location
+          - link "Bar Code" [ref=e64] [cursor=pointer]:
+            - /url: /genera-barras
+            - generic [ref=e67] [cursor=pointer]:
+              - img [ref=e68] [cursor=pointer]: qr_code_2
+              - generic [ref=e69] [cursor=pointer]: Bar Code
+          - link "Files" [ref=e70] [cursor=pointer]:
+            - /url: /genera-archivos
+            - generic [ref=e73] [cursor=pointer]:
+              - img [ref=e74] [cursor=pointer]: folder_copy
+              - generic [ref=e75] [cursor=pointer]: Files
+          - link "Colors" [ref=e76] [cursor=pointer]:
+            - /url: /genera-colores
+            - generic [ref=e79] [cursor=pointer]:
+              - img [ref=e80] [cursor=pointer]: palette
+              - generic [ref=e81] [cursor=pointer]: Colors
+          - link "Various" [ref=e82] [cursor=pointer]:
+            - /url: /genera-variados
+            - generic [ref=e85] [cursor=pointer]:
+              - img [ref=e86] [cursor=pointer]: more_horiz
+              - generic [ref=e87] [cursor=pointer]: Various
+          - link "About" [ref=e88] [cursor=pointer]:
+            - /url: /about
+            - generic [ref=e91] [cursor=pointer]:
+              - img [ref=e92] [cursor=pointer]: info
+              - generic [ref=e93] [cursor=pointer]: About
+          - button "Buy me a coffee!!" [ref=e96] [cursor=pointer]:
+            - img [ref=e97] [cursor=pointer]: favorite
+            - img [ref=e98] [cursor=pointer]: coffee
+            - generic [ref=e99] [cursor=pointer]: Buy me a coffee!!
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - button "Toggle sidenav" [ref=e105] [cursor=pointer]:
+          - img [ref=e106] [cursor=pointer]: menu
+        - generic [ref=e109]:
+          - heading "Random generators for testing" [level=1] [ref=e110]
+          - generic [ref=e111]:
+            - img "es" [ref=e112]
+            - img "en" [ref=e113]
+      - generic [ref=e116]:
+        - heading "Colors" [level=2] [ref=e117]
+        - generic [ref=e118]:
+          - generic [ref=e121]:
+            - generic [ref=e122]: Color Selector
+            - generic [ref=e123]:
+              - paragraph [ref=e124]:
+                - emphasis [ref=e126]: In operations that work with 1 color, they will use the "Main Color".
+              - paragraph [ref=e127]:
+                - emphasis [ref=e129]: In operations that work with 2 colors, they will use the "Main Color" as color 1, and the "Secondary Color" as color 2.
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - generic [ref=e132]: Main color
+                  - generic [ref=e145]:
+                    - textbox [ref=e147]: "#ffffff"
+                    - generic [ref=e149]: Hex
+                  - button "#ffffff" [ref=e153]:
+                    - generic [ref=e155]: "#ffffff"
+                - generic [ref=e158]:
+                  - generic [ref=e159]: Secondary color
+                  - generic [ref=e172]:
+                    - textbox [ref=e174]: "#000000"
+                    - generic [ref=e176]: Hex
+                  - button "#000000" [ref=e180]:
+                    - generic [ref=e182]: "#000000"
+          - generic [ref=e187]:
+            - generic [ref=e188]: Generate Color
+            - button "Generate a random color" [ref=e190] [cursor=pointer]:
+              - img [ref=e191] [cursor=pointer]: refresh
+          - generic [ref=e194]:
+            - generic [ref=e196]:
+              - generic [ref=e197]: Hexadecimal -> RGB
+              - generic [ref=e198]:
+                - generic [ref=e201]:
+                  - generic [ref=e202]:
+                    - generic [ref=e204]: Hexadecimal color
+                    - textbox "Hexadecimal color Red Green Blue" [ref=e205]
+                  - img [ref=e207]: help
+                - button "Degrees-radians conversion" [ref=e209] [cursor=pointer]:
+                  - img [ref=e210] [cursor=pointer]: sync_alt
+            - generic [ref=e214]:
+              - generic [ref=e215]: RGB -> Hexadecimal
+              - generic [ref=e216]:
+                - generic [ref=e220]:
+                  - generic [ref=e222]: Red
+                  - spinbutton [ref=e223]
+                - generic [ref=e228]:
+                  - generic [ref=e230]: Green
+                  - spinbutton [ref=e231]
+                - generic [ref=e236]:
+                  - generic [ref=e238]: Blue
+                  - spinbutton [ref=e239]
+                - button "Degrees-radians conversion" [ref=e241] [cursor=pointer]:
+                  - img [ref=e242] [cursor=pointer]: sync_alt
+            - generic [ref=e246]:
+              - generic [ref=e247]: Lighten color
+              - generic [ref=e248]:
+                - paragraph [ref=e249]:
+                  - emphasis [ref=e251]: Uses the "Main Color" from the "Color Selector" block.
+                - generic [ref=e252] [cursor=pointer]:
+                  - slider [ref=e253] [cursor=pointer]: "50"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: "50"
+                - button "Lighten color" [ref=e254] [cursor=pointer]:
+                  - img [ref=e255] [cursor=pointer]: refresh
+            - generic [ref=e259]:
+              - generic [ref=e260]: Darken color
+              - generic [ref=e261]:
+                - paragraph [ref=e262]:
+                  - emphasis [ref=e264]: Uses the "Main Color" from the "Color Selector" block.
+                - generic [ref=e265] [cursor=pointer]:
+                  - slider [ref=e266] [cursor=pointer]: "50"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: "50"
+                - button "Darken color" [ref=e267] [cursor=pointer]:
+                  - img [ref=e268] [cursor=pointer]: refresh
+          - generic [ref=e273]:
+            - generic [ref=e274]: Tint/Saturate/Brightness color
+            - generic [ref=e275]:
+              - paragraph [ref=e276]:
+                - emphasis [ref=e278]: Uses the "Main Color" from the "Color Selector" block.
+              - generic [ref=e279]:
+                - generic [ref=e280]:
+                  - generic [ref=e282]: Hue
+                  - generic [ref=e283] [cursor=pointer]:
+                    - slider [ref=e284] [cursor=pointer]: "0"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: "0"
+                - generic [ref=e285]:
+                  - generic [ref=e287]: Saturation
+                  - generic [ref=e288] [cursor=pointer]:
+                    - slider [ref=e289] [cursor=pointer]: "0"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: "0"
+                - generic [ref=e290]:
+                  - generic [ref=e292]: Brightness
+                  - generic [ref=e293] [cursor=pointer]:
+                    - slider [ref=e294] [cursor=pointer]: "50"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: "50"
+              - button "Transform color" [ref=e295] [cursor=pointer]:
+                - img [ref=e296] [cursor=pointer]: refresh
+          - generic [ref=e299]:
+            - generic [ref=e301]:
+              - generic [ref=e302]: Invert color
+              - generic [ref=e303]:
+                - paragraph [ref=e304]:
+                  - emphasis [ref=e306]: Uses the "Main Color" from the "Color Selector" block.
+                - button "Invert color" [ref=e307] [cursor=pointer]:
+                  - img [ref=e308] [cursor=pointer]: refresh
+            - generic [ref=e312]:
+              - generic [ref=e313]: Alpha color
+              - generic [ref=e314]:
+                - paragraph [ref=e315]:
+                  - emphasis [ref=e317]: Uses the "Main Color" from the "Color Selector" block.
+                - generic [ref=e318] [cursor=pointer]:
+                  - slider [ref=e319] [cursor=pointer]: "100"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: "100"
+                - button "Alpha color" [ref=e320] [cursor=pointer]:
+                  - img [ref=e321] [cursor=pointer]: refresh
+            - generic [ref=e325]:
+              - generic [ref=e326]: Mix colors
+              - generic [ref=e327]:
+                - paragraph [ref=e328]:
+                  - emphasis [ref=e330]: Uses the "Main Color" from the "Color Selector" block as color 1 of the mix.
+                - paragraph [ref=e331]:
+                  - emphasis [ref=e333]: Uses the "Secondary Color" from the "Color Selector" block as color 2 of the mix.
+                - generic [ref=e335]: "% color 2 intervention"
+                - generic [ref=e336] [cursor=pointer]:
+                  - slider [ref=e337] [cursor=pointer]: "50"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: "50"
+                - button "Mix colors" [ref=e338] [cursor=pointer]:
+                  - img [ref=e339] [cursor=pointer]: refresh
+          - generic [ref=e344]:
+            - generic [ref=e345]: Gradient colors
+            - generic [ref=e346]:
+              - paragraph [ref=e347]:
+                - emphasis [ref=e349]: Uses the "Main Color" from the "Color Selector" block as color 1 of the gradient.
+              - paragraph [ref=e350]:
+                - emphasis [ref=e352]: Uses the "Secondary Color" from the "Color Selector" block as color 2 of the gradient.
+              - generic [ref=e354]: Num. gradients to generate
+              - generic [ref=e355] [cursor=pointer]:
+                - slider [ref=e356] [cursor=pointer]: "32"
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: "32"
+              - button "Get gradients" [ref=e357] [cursor=pointer]:
+                - img [ref=e358] [cursor=pointer]: refresh
+          - generic [ref=e363]:
+            - generic [ref=e364]: Monochromatic colors
+            - generic [ref=e365]:
+              - paragraph [ref=e366]:
+                - emphasis [ref=e368]: Uses the "Main Color" from the "Color Selector" block.
+              - generic [ref=e370]: Num. colors
+              - generic [ref=e371] [cursor=pointer]:
+                - slider [ref=e372] [cursor=pointer]: "32"
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: "32"
+              - button "Get monochromatic colors" [ref=e373] [cursor=pointer]:
+                - img [ref=e374] [cursor=pointer]: refresh
+  - generic [ref=e385]: "ColorService: getHexToRgb failed: Http failure response for http://localhost:8085/generadores/color/hexToRgb?hexa=ffffff: 0 Unknown Error - Additional error: [object ProgressEvent]"
+```

@@ -1,0 +1,147 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - navigation [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: Menu
+        - navigation [ref=e9]:
+          - link "Main" [ref=e10] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e13] [cursor=pointer]:
+              - img [ref=e14] [cursor=pointer]: dashboard
+              - generic [ref=e15] [cursor=pointer]: Main
+          - link "Documents" [ref=e16] [cursor=pointer]:
+            - /url: /genera-documentos
+            - generic [ref=e19] [cursor=pointer]:
+              - img [ref=e20] [cursor=pointer]: badge
+              - generic [ref=e21] [cursor=pointer]: Documents
+          - link "Banking" [ref=e22] [cursor=pointer]:
+            - /url: /genera-cuentas
+            - generic [ref=e25] [cursor=pointer]:
+              - img [ref=e26] [cursor=pointer]: account_balance
+              - generic [ref=e27] [cursor=pointer]: Banking
+          - link "Profiles" [ref=e28] [cursor=pointer]:
+            - /url: /genera-perfiles
+            - generic [ref=e31] [cursor=pointer]:
+              - img [ref=e32] [cursor=pointer]: person
+              - generic [ref=e33] [cursor=pointer]: Profiles
+          - link "Texts" [ref=e34] [cursor=pointer]:
+            - /url: /genera-textos
+            - generic [ref=e37] [cursor=pointer]:
+              - img [ref=e38] [cursor=pointer]: edit_note
+              - generic [ref=e39] [cursor=pointer]: Texts
+          - link "Numbers" [ref=e40] [cursor=pointer]:
+            - /url: /genera-numeros
+            - generic [ref=e43] [cursor=pointer]:
+              - img [ref=e44] [cursor=pointer]: "123"
+              - generic [ref=e45] [cursor=pointer]: Numbers
+          - link "Dates" [ref=e46] [cursor=pointer]:
+            - /url: /genera-fechas
+            - generic [ref=e49] [cursor=pointer]:
+              - img [ref=e50] [cursor=pointer]: calendar_month
+              - generic [ref=e51] [cursor=pointer]: Dates
+          - link "Vehicles" [ref=e52] [cursor=pointer]:
+            - /url: /genera-coches
+            - generic [ref=e55] [cursor=pointer]:
+              - img [ref=e56] [cursor=pointer]: directions_car
+              - generic [ref=e57] [cursor=pointer]: Vehicles
+          - link "Location" [ref=e58] [cursor=pointer]:
+            - /url: /genera-localizacion
+            - generic [ref=e61] [cursor=pointer]:
+              - img [ref=e62] [cursor=pointer]: travel_explore
+              - generic [ref=e63] [cursor=pointer]: Location
+          - link "Bar Code" [ref=e64] [cursor=pointer]:
+            - /url: /genera-barras
+            - generic [ref=e67] [cursor=pointer]:
+              - img [ref=e68] [cursor=pointer]: qr_code_2
+              - generic [ref=e69] [cursor=pointer]: Bar Code
+          - link "Files" [ref=e70] [cursor=pointer]:
+            - /url: /genera-archivos
+            - generic [ref=e73] [cursor=pointer]:
+              - img [ref=e74] [cursor=pointer]: folder_copy
+              - generic [ref=e75] [cursor=pointer]: Files
+          - link "Colors" [ref=e76] [cursor=pointer]:
+            - /url: /genera-colores
+            - generic [ref=e79] [cursor=pointer]:
+              - img [ref=e80] [cursor=pointer]: palette
+              - generic [ref=e81] [cursor=pointer]: Colors
+          - link "Various" [ref=e82] [cursor=pointer]:
+            - /url: /genera-variados
+            - generic [ref=e85] [cursor=pointer]:
+              - img [ref=e86] [cursor=pointer]: more_horiz
+              - generic [ref=e87] [cursor=pointer]: Various
+          - link "About" [ref=e88] [cursor=pointer]:
+            - /url: /about
+            - generic [ref=e91] [cursor=pointer]:
+              - img [ref=e92] [cursor=pointer]: info
+              - generic [ref=e93] [cursor=pointer]: About
+          - button "Buy me a coffee!!" [ref=e96] [cursor=pointer]:
+            - img [ref=e97] [cursor=pointer]: favorite
+            - img [ref=e98] [cursor=pointer]: coffee
+            - generic [ref=e99] [cursor=pointer]: Buy me a coffee!!
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - button "Toggle sidenav" [ref=e105] [cursor=pointer]:
+          - img [ref=e106] [cursor=pointer]: menu
+        - generic [ref=e109]:
+          - heading "Random generators for testing" [level=1] [ref=e110]
+          - generic [ref=e111]:
+            - img "es" [ref=e112]
+            - img "en" [ref=e113]
+      - generic [ref=e116]:
+        - heading "Files" [level=2] [ref=e117]
+        - generic [ref=e119]:
+          - generic [ref=e121]:
+            - generic [ref=e122]: Base 64 (encode)
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - generic [ref=e125]: "Entry type:"
+                - radiogroup "Entry type:" [ref=e126]:
+                  - radio "Text" [checked] [ref=e127] [cursor=pointer]:
+                    - generic [ref=e130] [cursor=pointer]: Text
+                  - radio "File" [ref=e131] [cursor=pointer]:
+                    - generic [ref=e133] [cursor=pointer]: File
+              - generic [ref=e137]:
+                - generic [ref=e139]: Value to encode
+                - textbox "Value to encode" [ref=e140]
+              - button "Encode base64" [ref=e143] [cursor=pointer]:
+                - img [ref=e144] [cursor=pointer]: code
+          - generic [ref=e148]:
+            - generic [ref=e149]: Base 64 (decode)
+            - generic [ref=e150]:
+              - generic [ref=e151]:
+                - generic [ref=e152]: "Entry type:"
+                - radiogroup "decodifica64Salida" [ref=e153]:
+                  - radio "Text" [checked] [ref=e154] [cursor=pointer]:
+                    - generic [ref=e157] [cursor=pointer]: Text
+                  - radio "File" [ref=e158] [cursor=pointer]:
+                    - generic [ref=e160] [cursor=pointer]: File
+              - generic [ref=e164]:
+                - generic [ref=e166]: Value to decode
+                - textbox "Value to decode" [ref=e167]
+              - button "Decode base64" [ref=e170] [cursor=pointer]:
+                - img [ref=e171] [cursor=pointer]: code
+          - generic [ref=e175]:
+            - generic [ref=e176]: Get Hash
+            - generic [ref=e177]:
+              - generic [ref=e181] [cursor=pointer]:
+                - generic [ref=e183] [cursor=pointer]: Value to decode
+                - combobox "Value to decode" [ref=e184] [cursor=pointer]:
+                  - generic [ref=e185] [cursor=pointer]:
+                    - generic [ref=e187] [cursor=pointer]: Select ...
+                    - img [ref=e190] [cursor=pointer]
+              - button "Choose file" [ref=e193]:
+                - generic [ref=e194]: Choose file
+              - button "Get hash" [ref=e198] [cursor=pointer]:
+                - img [ref=e199] [cursor=pointer]: code
+          - generic [ref=e203]:
+            - generic [ref=e204]: Generate Zip
+            - generic [ref=e205]:
+              - button "Choose file(s)" [ref=e206]:
+                - generic [ref=e207]: Choose file(s)
+              - button "Generate zip" [ref=e211] [cursor=pointer]:
+                - img [ref=e212] [cursor=pointer]: download
+  - generic [ref=e223]: "FilesService: getHashtypes failed: Http failure response for http://localhost:8085/generadores/file/hashtypes: 0 Unknown Error - Additional error: [object ProgressEvent]"
+```

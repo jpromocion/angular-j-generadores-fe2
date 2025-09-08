@@ -49,3 +49,7 @@ Thumbs.db
 axe-reports/
 test-results/
 artifacts/
+allure-results/
+# Commit report to keep definitive history visible in Allure
+# allure-report/ (do NOT ignore, to allow committing)
+# Optionally keep trends source too by not ignoring allure-history

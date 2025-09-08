@@ -447,3 +447,30 @@ Para ejecutar estas pruebas:
 npm run e2e
 ```
 axe-html-reporter generará los reportes HTML en la ruta "axe-reports" (utilizando internamente además una "test-results" y una "artifacts" durante la ejecución). Todas estas rutas no se suben al repositorio.
+
+
+### Allure Report para las pruebas axe-core con E2E (Playwright)
+[Allure Report](https://allurereport.org/es/) nos permite visualizar la información en un dashboard de control de las pruebas axe-core con E2E (Playwright) vistas en el punto anterior.
+Allure Report lo tendremos instalado en nuestro S.O. y ejecutable via path.
+
+En la aplicación se instaló el plugin:
+```
+npm install -D allure-playwright
+```
+
+Se modificó el "playwright.config.ts" de la configuración del punto anterior, para incoporar como reporter allure-playwright.
+
+Metimos en "package.json" todos los scripts necesarios:
+```
+"allure:serve": "allure serve allure-results",
+"e2e:allure:serve": "cmd /c \"npm run e2e & npm run allure:serve\"",
+"allure:generate": "allure generate allure-results -o allure-report --clean",
+"allure:open": "allure open allure-report",
+"allure:history:pull": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"New-Item -ItemType Directory -Force -Path .\\allure-results\\history | Out-Null; if (Test-Path .\\allure-history) { Copy-Item .\\allure-history\\* -Destination .\\allure-results\\history -Recurse -Force } elseif (Test-Path .\\allure-report\\history) { Copy-Item .\\allure-report\\history\\* -Destination .\\allure-results\\history -Recurse -Force }\"",
+"allure:history:push": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"New-Item -ItemType Directory -Force -Path .\\allure-history | Out-Null; if (Test-Path .\\allure-report\\history) { Copy-Item .\\allure-report\\history\\* -Destination .\\allure-history -Recurse -Force }\"",
+"e2e:allure:report": "cmd /c \"npm run e2e & npm run allure:history:pull & npm run allure:generate & npm run allure:history:push & npm run allure:open\""
+```
+
+- npm run e2e:allure:serve: Ejecuta las pruebas E2E generando el resultado en "allure-results" y luego abre esos resultados ejecutando el comando allure en el S.O. Servidor Allure Report desplegado para ver los resultados en http://127.0.0.1:60203.
+- npm run e2e:allure:report: Ejecuta lo anterior, pero al mismo tiempo va creando una imagen fija en "allure-report", que conserva las tendencias históricas. Hace uso de "allure-history" como respaldo local. Por tanto cada vez que ejecutamos esto, hace una foto fija para la tendencia. Tambien levanta el servidor de Allure Report en http://127.0.0.1:60203 con los resultados. Por esto, las carpetas "allure-report" y "allure-history" si las subimos al repositorio, son los datos que se mostrarán por un Allure Report Server.
+- npm run allure:open: Se levanta el servidor de Allure Report en http://127.0.0.1:60203 con los resultados de "allure-report" que estén cargados. Sin necesidad de hacer un nuevo análisis.

@@ -1,0 +1,1 @@
+[a11y] Violacion encontrada: [ { id: 'color-contrast', impact: 'serious', nodes: 3 } ]

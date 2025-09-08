@@ -1,0 +1,169 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - navigation [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: Menu
+        - navigation [ref=e9]:
+          - link "Main" [ref=e10] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e13] [cursor=pointer]:
+              - img [ref=e14] [cursor=pointer]: dashboard
+              - generic [ref=e15] [cursor=pointer]: Main
+          - link "Documents" [ref=e16] [cursor=pointer]:
+            - /url: /genera-documentos
+            - generic [ref=e19] [cursor=pointer]:
+              - img [ref=e20] [cursor=pointer]: badge
+              - generic [ref=e21] [cursor=pointer]: Documents
+          - link "Banking" [ref=e22] [cursor=pointer]:
+            - /url: /genera-cuentas
+            - generic [ref=e25] [cursor=pointer]:
+              - img [ref=e26] [cursor=pointer]: account_balance
+              - generic [ref=e27] [cursor=pointer]: Banking
+          - link "Profiles" [ref=e28] [cursor=pointer]:
+            - /url: /genera-perfiles
+            - generic [ref=e31] [cursor=pointer]:
+              - img [ref=e32] [cursor=pointer]: person
+              - generic [ref=e33] [cursor=pointer]: Profiles
+          - link "Texts" [ref=e34] [cursor=pointer]:
+            - /url: /genera-textos
+            - generic [ref=e37] [cursor=pointer]:
+              - img [ref=e38] [cursor=pointer]: edit_note
+              - generic [ref=e39] [cursor=pointer]: Texts
+          - link "Numbers" [ref=e40] [cursor=pointer]:
+            - /url: /genera-numeros
+            - generic [ref=e43] [cursor=pointer]:
+              - img [ref=e44] [cursor=pointer]: "123"
+              - generic [ref=e45] [cursor=pointer]: Numbers
+          - link "Dates" [ref=e46] [cursor=pointer]:
+            - /url: /genera-fechas
+            - generic [ref=e49] [cursor=pointer]:
+              - img [ref=e50] [cursor=pointer]: calendar_month
+              - generic [ref=e51] [cursor=pointer]: Dates
+          - link "Vehicles" [ref=e52] [cursor=pointer]:
+            - /url: /genera-coches
+            - generic [ref=e55] [cursor=pointer]:
+              - img [ref=e56] [cursor=pointer]: directions_car
+              - generic [ref=e57] [cursor=pointer]: Vehicles
+          - link "Location" [ref=e58] [cursor=pointer]:
+            - /url: /genera-localizacion
+            - generic [ref=e61] [cursor=pointer]:
+              - img [ref=e62] [cursor=pointer]: travel_explore
+              - generic [ref=e63] [cursor=pointer]: Location
+          - link "Bar Code" [ref=e64] [cursor=pointer]:
+            - /url: /genera-barras
+            - generic [ref=e67] [cursor=pointer]:
+              - img [ref=e68] [cursor=pointer]: qr_code_2
+              - generic [ref=e69] [cursor=pointer]: Bar Code
+          - link "Files" [ref=e70] [cursor=pointer]:
+            - /url: /genera-archivos
+            - generic [ref=e73] [cursor=pointer]:
+              - img [ref=e74] [cursor=pointer]: folder_copy
+              - generic [ref=e75] [cursor=pointer]: Files
+          - link "Colors" [ref=e76] [cursor=pointer]:
+            - /url: /genera-colores
+            - generic [ref=e79] [cursor=pointer]:
+              - img [ref=e80] [cursor=pointer]: palette
+              - generic [ref=e81] [cursor=pointer]: Colors
+          - link "Various" [ref=e82] [cursor=pointer]:
+            - /url: /genera-variados
+            - generic [ref=e85] [cursor=pointer]:
+              - img [ref=e86] [cursor=pointer]: more_horiz
+              - generic [ref=e87] [cursor=pointer]: Various
+          - link "About" [ref=e88] [cursor=pointer]:
+            - /url: /about
+            - generic [ref=e91] [cursor=pointer]:
+              - img [ref=e92] [cursor=pointer]: info
+              - generic [ref=e93] [cursor=pointer]: About
+          - button "Buy me a coffee!!" [ref=e96] [cursor=pointer]:
+            - img [ref=e97] [cursor=pointer]: favorite
+            - img [ref=e98] [cursor=pointer]: coffee
+            - generic [ref=e99] [cursor=pointer]: Buy me a coffee!!
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - button "Toggle sidenav" [ref=e105] [cursor=pointer]:
+          - img [ref=e106] [cursor=pointer]: menu
+        - generic [ref=e109]:
+          - heading "Random generators for testing" [level=1] [ref=e110]
+          - generic [ref=e111]:
+            - img "es" [ref=e112]
+            - img "en" [ref=e113]
+      - generic [ref=e117]:
+        - heading "Random generators for testing" [level=1] [ref=e118]
+        - paragraph [ref=e119]: "Generation of common elements for test data filling: identity documents, complete profiles, numbers, dates, colors... Random generations, common validations."
+        - img "logo" [ref=e120]
+        - button "Buy me a coffee!!" [ref=e122] [cursor=pointer]:
+          - img [ref=e123] [cursor=pointer]: favorite
+          - img [ref=e124] [cursor=pointer]: coffee
+          - generic [ref=e125] [cursor=pointer]: Buy me a coffee!!
+        - heading "FrontEnd Angular" [level=3] [ref=e128]
+        - paragraph [ref=e130]: Version v.3.0.1
+        - generic [ref=e131]:
+          - generic [ref=e132] [cursor=pointer]:
+            - generic: Github
+            - link "GitHub" [ref=e134] [cursor=pointer]:
+              - /url: https://github.com/jpromocion/angular-j-generadores-fe2
+              - img "GitHub" [ref=e135] [cursor=pointer]
+          - link "angular-j-generadores-fe2" [ref=e137] [cursor=pointer]:
+            - /url: https://github.com/jpromocion/angular-j-generadores-fe2
+        - heading "API REST Backend" [level=3] [ref=e138]
+        - paragraph [ref=e140]: Version
+        - generic [ref=e141]:
+          - generic [ref=e142] [cursor=pointer]:
+            - generic: Github
+            - link "GitHub" [ref=e144] [cursor=pointer]:
+              - /url: https://github.com/jpromocion/rest-j-generadores
+              - img "GitHub" [ref=e145] [cursor=pointer]
+          - link "rest-j-generadores" [ref=e147] [cursor=pointer]:
+            - /url: https://github.com/jpromocion/rest-j-generadores
+        - heading "Author" [level=1] [ref=e148]
+        - heading "Jose Javier Gálvez Gómez (jpromocion)" [level=2] [ref=e149]
+        - img "logo" [ref=e151]
+        - heading "Contact Information" [level=2] [ref=e152]
+        - generic [ref=e153]:
+          - heading "LinkedIn" [level=3] [ref=e154]
+          - generic [ref=e155]:
+            - generic [ref=e156] [cursor=pointer]:
+              - generic: LinkedIn
+              - link "Linkedin" [ref=e158] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/josejgalvez
+                - img "Linkedin" [ref=e159] [cursor=pointer]
+            - link "linkedin.com/in/josejgalvez" [ref=e161] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/josejgalvez
+          - heading "GitHub" [level=3] [ref=e162]
+          - generic [ref=e163]:
+            - generic [ref=e164] [cursor=pointer]:
+              - generic: Github
+              - link "GitHub" [ref=e166] [cursor=pointer]:
+                - /url: https://github.com/jpromocion
+                - img "GitHub" [ref=e167] [cursor=pointer]
+            - link "github.com/jpromocion" [ref=e169] [cursor=pointer]:
+              - /url: https://github.com/jpromocion
+          - heading "Send email" [level=3] [ref=e170]
+          - generic [ref=e172]:
+            - generic [ref=e173] [cursor=pointer]:
+              - generic: Email
+              - link "Email" [ref=e175] [cursor=pointer]:
+                - /url: mailto:jpromocion@gmail.com
+                - img "Email" [ref=e176] [cursor=pointer]
+            - link "jpromocion@gmail.com" [ref=e178] [cursor=pointer]:
+              - /url: mailto:jpromocion@gmail.com
+        - generic [ref=e179]:
+          - img [ref=e181] [cursor=pointer]
+          - generic [ref=e183]:
+            - link "Acceso a perfil de Linkedin del autor" [ref=e184] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/josejgalvez
+              - button:
+                - img
+            - link [ref=e185] [cursor=pointer]:
+              - /url: https://github.com/jpromocion
+              - button:
+                - img
+          - link [ref=e187] [cursor=pointer]:
+            - /url: mailto:jpromocion@gmail.com
+            - button:
+              - img
+  - generic [ref=e196]: "DemoService: getVersion failed: Http failure response for http://localhost:8085/generadores/demo/version: 0 Unknown Error - Additional error: [object ProgressEvent]"
+```

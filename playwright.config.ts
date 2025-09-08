@@ -7,7 +7,15 @@ export default defineConfig({
   expect: { timeout: 5_000 },
   fullyParallel: true,
   retries: process.env['CI'] ? 2 : 0,
-  reporter: 'list',
+  // Reporter combinado: consola + Allure
+  reporter: [
+    ['list'],
+    ['allure-playwright', {
+      outputFolder: 'allure-results',
+      detail: true,
+      suiteTitle: false,
+    }],
+  ],
   use: {
     baseURL: process.env['PLAYWRIGHT_BASE_URL'] ?? 'http://localhost:4200',
     trace: 'on-first-retry',

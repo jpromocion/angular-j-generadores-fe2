@@ -1,0 +1,1 @@
+HTML report was saved into the following directory C:\Users\jgalvez\github\angular-j-generadores-fe2/artifacts/accessibilityReport.html

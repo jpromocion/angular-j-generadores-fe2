@@ -12,7 +12,14 @@
     "lint:all": "npm run lint && npm run lint:html",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
-    "e2e:debug": "PWDEBUG=1 playwright test"
+    "e2e:debug": "PWDEBUG=1 playwright test",
+    "allure:serve": "allure serve allure-results",
+    "e2e:allure:serve": "cmd /c \"npm run e2e & npm run allure:serve\"",
+    "allure:generate": "allure generate allure-results -o allure-report --clean",
+    "allure:open": "allure open allure-report",
+    "allure:history:pull": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"New-Item -ItemType Directory -Force -Path .\\allure-results\\history | Out-Null; if (Test-Path .\\allure-history) { Copy-Item .\\allure-history\\* -Destination .\\allure-results\\history -Recurse -Force } elseif (Test-Path .\\allure-report\\history) { Copy-Item .\\allure-report\\history\\* -Destination .\\allure-results\\history -Recurse -Force }\"",
+    "allure:history:push": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"New-Item -ItemType Directory -Force -Path .\\allure-history | Out-Null; if (Test-Path .\\allure-report\\history) { Copy-Item .\\allure-report\\history\\* -Destination .\\allure-history -Recurse -Force }\"",
+    "e2e:allure:report": "cmd /c \"npm run e2e & npm run allure:history:pull & npm run allure:generate & npm run allure:history:push & npm run allure:open\""
   },
   "private": true,
   "dependencies": {
@@ -46,6 +53,7 @@
     "@playwright/test": "^1.55.0",
     "@types/file-saver": "^2.0.7",
     "@types/jasmine": "~5.1.0",
+    "allure-playwright": "^3.3.3",
     "angular-eslint": "20.1.1",
     "axe-html-reporter": "^2.2.11",
     "eslint": "^9.29.0",

@@ -1,0 +1,199 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - navigation [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: Menu
+      - navigation [ref=e9]:
+        - link "Main" [ref=e10] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e13] [cursor=pointer]:
+            - img [ref=e14] [cursor=pointer]: dashboard
+            - generic [ref=e15] [cursor=pointer]: Main
+        - link "Documents" [ref=e16] [cursor=pointer]:
+          - /url: /genera-documentos
+          - generic [ref=e19] [cursor=pointer]:
+            - img [ref=e20] [cursor=pointer]: badge
+            - generic [ref=e21] [cursor=pointer]: Documents
+        - link "Banking" [ref=e22] [cursor=pointer]:
+          - /url: /genera-cuentas
+          - generic [ref=e25] [cursor=pointer]:
+            - img [ref=e26] [cursor=pointer]: account_balance
+            - generic [ref=e27] [cursor=pointer]: Banking
+        - link "Profiles" [ref=e28] [cursor=pointer]:
+          - /url: /genera-perfiles
+          - generic [ref=e31] [cursor=pointer]:
+            - img [ref=e32] [cursor=pointer]: person
+            - generic [ref=e33] [cursor=pointer]: Profiles
+        - link "Texts" [ref=e34] [cursor=pointer]:
+          - /url: /genera-textos
+          - generic [ref=e37] [cursor=pointer]:
+            - img [ref=e38] [cursor=pointer]: edit_note
+            - generic [ref=e39] [cursor=pointer]: Texts
+        - link "Numbers" [ref=e40] [cursor=pointer]:
+          - /url: /genera-numeros
+          - generic [ref=e43] [cursor=pointer]:
+            - img [ref=e44] [cursor=pointer]: "123"
+            - generic [ref=e45] [cursor=pointer]: Numbers
+        - link "Dates" [ref=e46] [cursor=pointer]:
+          - /url: /genera-fechas
+          - generic [ref=e49] [cursor=pointer]:
+            - img [ref=e50] [cursor=pointer]: calendar_month
+            - generic [ref=e51] [cursor=pointer]: Dates
+        - link "Vehicles" [ref=e52] [cursor=pointer]:
+          - /url: /genera-coches
+          - generic [ref=e55] [cursor=pointer]:
+            - img [ref=e56] [cursor=pointer]: directions_car
+            - generic [ref=e57] [cursor=pointer]: Vehicles
+        - link "Location" [ref=e58] [cursor=pointer]:
+          - /url: /genera-localizacion
+          - generic [ref=e61] [cursor=pointer]:
+            - img [ref=e62] [cursor=pointer]: travel_explore
+            - generic [ref=e63] [cursor=pointer]: Location
+        - link "Bar Code" [ref=e64] [cursor=pointer]:
+          - /url: /genera-barras
+          - generic [ref=e67] [cursor=pointer]:
+            - img [ref=e68] [cursor=pointer]: qr_code_2
+            - generic [ref=e69] [cursor=pointer]: Bar Code
+        - link "Files" [ref=e70] [cursor=pointer]:
+          - /url: /genera-archivos
+          - generic [ref=e73] [cursor=pointer]:
+            - img [ref=e74] [cursor=pointer]: folder_copy
+            - generic [ref=e75] [cursor=pointer]: Files
+        - link "Colors" [ref=e76] [cursor=pointer]:
+          - /url: /genera-colores
+          - generic [ref=e79] [cursor=pointer]:
+            - img [ref=e80] [cursor=pointer]: palette
+            - generic [ref=e81] [cursor=pointer]: Colors
+        - link "Various" [ref=e82] [cursor=pointer]:
+          - /url: /genera-variados
+          - generic [ref=e85] [cursor=pointer]:
+            - img [ref=e86] [cursor=pointer]: more_horiz
+            - generic [ref=e87] [cursor=pointer]: Various
+        - link "About" [ref=e88] [cursor=pointer]:
+          - /url: /about
+          - generic [ref=e91] [cursor=pointer]:
+            - img [ref=e92] [cursor=pointer]: info
+            - generic [ref=e93] [cursor=pointer]: About
+        - button "Buy me a coffee!!" [ref=e96] [cursor=pointer]:
+          - img [ref=e97] [cursor=pointer]: favorite
+          - img [ref=e98] [cursor=pointer]: coffee
+          - generic [ref=e99] [cursor=pointer]: Buy me a coffee!!
+  - generic [ref=e103]:
+    - generic [ref=e104]:
+      - button "Toggle sidenav" [ref=e105] [cursor=pointer]:
+        - img [ref=e106] [cursor=pointer]: menu
+      - generic [ref=e109]:
+        - heading "Random generators for testing" [level=1] [ref=e110]
+        - generic [ref=e111]:
+          - img "es" [ref=e112]
+          - img "en" [ref=e113]
+    - generic [ref=e116]:
+      - heading "QR and Barcodes" [level=2] [ref=e117]
+      - generic [ref=e118]:
+        - generic [ref=e120]:
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - generic [ref=e126]: Width
+              - spinbutton "Width" [ref=e127]
+            - img [ref=e129]: help
+          - generic [ref=e133]:
+            - generic [ref=e134]:
+              - generic [ref=e136]: Height
+              - spinbutton "Height" [ref=e137]
+            - img [ref=e139]: help
+        - generic [ref=e141]:
+          - generic [ref=e143]:
+            - generic [ref=e144]: QR
+            - generic [ref=e145]:
+              - paragraph [ref=e146]:
+                - emphasis [ref=e148]: QR codes are becoming the most recognized 2D barcodes worldwide. The great advantage of the QR code is that we can store large amounts of data in a limited space.
+              - paragraph [ref=e149]:
+                - emphasis [ref=e151]: They use four standardized encoding modes to store data efficiently.
+              - paragraph [ref=e152]:
+                - emphasis [ref=e154]: Additionally, they are flexible in size and can be easily scanned with a smartphone. Like PDF417, a QR code can withstand some damage without causing data loss.
+              - generic [ref=e158]:
+                - generic [ref=e160]: Value to encode
+                - textbox "Value to encode" [ref=e161]
+              - generic [ref=e163]:
+                - generic [ref=e166]:
+                  - generic [ref=e167]:
+                    - generic [ref=e169]: Upper text
+                    - textbox "Upper text" [ref=e170]
+                  - img [ref=e172]: help
+                - generic [ref=e176]:
+                  - generic [ref=e177]:
+                    - generic [ref=e179]: Lower text
+                    - textbox "Lower text" [ref=e180]
+                  - img [ref=e182]: help
+                - button [ref=e184] [cursor=pointer]:
+                  - img [ref=e185] [cursor=pointer]: refresh
+          - generic [ref=e189]:
+            - generic [ref=e190]: PDF417
+            - generic [ref=e191]:
+              - paragraph [ref=e192]:
+                - emphasis [ref=e194]: PDF417 is a stacked linear barcode composed of multiple 1D barcodes stacked on top of each other. Therefore, it can use a traditional linear scanner.
+              - paragraph [ref=e195]:
+                - emphasis [ref=e197]: We might expect to find it in a variety of applications, such as travel (boarding passes), ID cards, and inventory management.
+              - generic [ref=e201]:
+                - generic [ref=e203]: Value to encode
+                - textbox "Value to encode" [ref=e204]
+              - button [ref=e206] [cursor=pointer]:
+                - img [ref=e207] [cursor=pointer]: refresh
+          - generic [ref=e211]:
+            - generic [ref=e212]: EAN-13
+            - generic [ref=e213]:
+              - paragraph [ref=e214]:
+                - emphasis [ref=e216]: EAN codes are known worldwide as European article numbers and international article numbers. They are designed to be read at the point of sale. There are also some different variations of the EAN code, such as EAN-13, EAN-8, JAN-13, and ISBN.
+              - paragraph [ref=e217]:
+                - emphasis [ref=e219]: "The EAN-13 code is the most widely used EAN standard. It consists of 13 digits: an initial '0' followed by the UPC-A code (12 digits)."
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - generic [ref=e225]: Value to encode
+                  - textbox "Value to encode" [ref=e226]
+                - img [ref=e228]: help
+              - button [ref=e230] [cursor=pointer]:
+                - img [ref=e231] [cursor=pointer]: refresh
+        - generic [ref=e234]:
+          - generic [ref=e236]:
+            - generic [ref=e237]: Code 128
+            - generic [ref=e238]:
+              - paragraph [ref=e239]:
+                - emphasis [ref=e241]: The Code 128 barcode is a compact, high-density linear code used in the logistics and transportation industries for orders and distribution.
+              - paragraph [ref=e242]:
+                - emphasis [ref=e244]: It can encode the 128 ASCII characters and its length is variable.
+              - generic [ref=e247]:
+                - generic [ref=e248]:
+                  - generic [ref=e250]: Value to encode
+                  - textbox "Value to encode" [ref=e251]
+                - img [ref=e253]: help
+              - button [ref=e255] [cursor=pointer]:
+                - img [ref=e256] [cursor=pointer]: refresh
+          - generic [ref=e260]:
+            - generic [ref=e261]: UPC-A
+            - generic [ref=e262]:
+              - paragraph [ref=e263]:
+                - emphasis [ref=e265]: UPC (Universal Product Code) codes are some of the most used 1D barcodes and are mainly found in the United States.
+              - paragraph [ref=e266]:
+                - emphasis [ref=e268]: "The UPC-A is a numeric-only code that contains 12 digits: a manufacturer identification number (6 digits), an item number (5 digits), and a check digit."
+              - generic [ref=e271]:
+                - generic [ref=e272]:
+                  - generic [ref=e274]: Value to encode
+                  - textbox "Value to encode" [ref=e275]
+                - img [ref=e277]: help
+              - button [ref=e279] [cursor=pointer]:
+                - img [ref=e280] [cursor=pointer]: refresh
+          - generic [ref=e284]:
+            - generic [ref=e285]: UPC-E
+            - generic [ref=e286]:
+              - paragraph [ref=e287]:
+                - emphasis [ref=e289]: A variant of the UPC that has only 8 digits and is used for small packages.
+              - generic [ref=e292]:
+                - generic [ref=e293]:
+                  - generic [ref=e295]: Value to encode
+                  - textbox "Value to encode" [ref=e296]
+                - img [ref=e298]: help
+              - button [ref=e300] [cursor=pointer]:
+                - img [ref=e301] [cursor=pointer]: refresh
+```
