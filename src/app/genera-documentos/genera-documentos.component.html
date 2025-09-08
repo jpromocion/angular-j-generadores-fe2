@@ -19,7 +19,8 @@
         <mat-card-content>
           <button type="button" mat-fab class="botonRotatorio" attr.aria-label="{{ 'generadores.jpromocion.documentos.frame.generarnif' | translate }}"
             (click)="onClickBotonGenerarListaNif()"
-            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below">
+            matTooltip="{{ 'generadores.jpromocion.generarcomunes.boton.generar.tooltip' | translate }}" matTooltipPosition="below"
+            id="btnGenerarNif">
             <mat-icon>refresh</mat-icon>
           </button>
           <button type="button" mat-fab class="botonRotatorio" [@encogimientoAnimation] *ngIf="listaNifs?.length && listaNifs.length > 0"

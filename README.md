@@ -413,3 +413,37 @@ Cuya ejecución sería:
 ```
 npm run lint:all
 ```
+
+
+### axe-core con E2E (Playwright)
+[axe-core](https://github.com/dequelabs/axe-core) el motor de verificación de comprobaciones de accesibilidad sobre páginas combinado con el framework de test sobre URL desplegadas Playwright.
+Ejecuta las validaciones de Axe de forma automatizada sobre las URL, a las que además se puede ejecutar acciones antes de realizar el test de accesibilidad.
+
+Se instalaron los plugins con:
+```
+npm i -D @playwright/test @axe-core/playwright
+npx playwright install
+npm i -D axe-html-reporter
+```
+NOTA: El último es para incluir el plugin axe-html-reporter para generar informes HTML de los resultados de axe-core.
+
+Se modificó el package.json para tener los scripts de lanzamiento:
+```
+"e2e": "playwright test",
+"e2e:ui": "playwright test --ui",
+"e2e:debug": "PWDEBUG=1 playwright test"
+```
+- e2e: ejecutar las pruebas.
+- e2e:ui: ejecutarlas desde una interfaz visual.
+
+En el fichero "playwright.config.ts" se añadio la configuración de Playwright, haciendo referencia a la carpeta "e2e" donde estarán los test a ejecutar.
+Dentro creamos "a11y.spec.ts" donde vamos a configurar los test de accesibilidad:
+- Ejecutamos uno por cada URL de generacion.
+- Hemos creado uno para pulsar el boton de generacion de NIFS mockeando la salida, y realizar el test de accesibilidad despues de la obtención del resultado. Además añade una captura de pantalla sobre el informe.
+- A partir de aquí ya podriamos crear muchas combinaciones para probarlo todo.
+
+Para ejecutar estas pruebas:
+```
+npm run e2e
+```
+axe-html-reporter generará los reportes HTML en la ruta "axe-reports" (utilizando internamente además una "test-results" y una "artifacts" durante la ejecución). Todas estas rutas no se suben al repositorio.

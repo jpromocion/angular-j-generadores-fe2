@@ -44,3 +44,8 @@ Thumbs.db
 #Variable de entorno @ngx-env/builder
 .env
 *.code-workspace
+
+# Playwright / Axe outputs
+axe-reports/
+test-results/
+artifacts/
