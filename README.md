@@ -1,5 +1,7 @@
 # Generadores de jpromocion - FrontEnd en Angular
 
+![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-green.svg)
+
 Pretende ser un frontend de ejemplo realizado en Angular para atacar la API REST JSON de generadores desarrollada en mi otro proyecto [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores) y poder utilizar visualmente la explotación de datos auto-generados.
 
 La diferencia con [angular-j-generadores-fe](https://github.com/jpromocion/angular-j-generadores-fe) es que aquí vamos a crear la aplicación con angular material también pero con hojas de estilo SCSS y utilizando las plantillas de esquema de angular material para la distribución, para tener una interfaz más bonita.
@@ -474,3 +476,15 @@ Metimos en "package.json" todos los scripts necesarios:
 - npm run e2e:allure:serve: Ejecuta las pruebas E2E generando el resultado en "allure-results" y luego abre esos resultados ejecutando el comando allure en el S.O. Servidor Allure Report desplegado para ver los resultados en http://127.0.0.1:60203.
 - npm run e2e:allure:report: Ejecuta lo anterior, pero al mismo tiempo va creando una imagen fija en "allure-report", que conserva las tendencias históricas. Hace uso de "allure-history" como respaldo local. Por tanto cada vez que ejecutamos esto, hace una foto fija para la tendencia. Tambien levanta el servidor de Allure Report en http://127.0.0.1:60203 con los resultados. Por esto, las carpetas "allure-report" y "allure-history" si las subimos al repositorio, son los datos que se mostrarán por un Allure Report Server.
 - npm run allure:open: Se levanta el servidor de Allure Report en http://127.0.0.1:60203 con los resultados de "allure-report" que estén cargados. Sin necesidad de hacer un nuevo análisis.
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la licencia Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
+
+**Resumen:**
+- Eres libre de usar, copiar, modificar y distribuir este software para fines no comerciales, siempre que otorgues el crédito adecuado al autor original ("jpromocion").
+- Para cualquier uso comercial de este software o de trabajos derivados, debes obtener el permiso expreso y por escrito de "jpromocion".
+- El software se proporciona "tal cual", sin garantía de ningún tipo.
+
+Para más detalles, consulta el archivo [LICENSE](./LICENSE) y la licencia oficial [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
+
