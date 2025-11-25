@@ -1,6 +1,7 @@
 # Generadores de jpromocion - FrontEnd en Angular
 
 ![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-green.svg)
+[![Dona PayPal](https://img.shields.io/badge/Dona-PayPal-blue.svg)](https://www.paypal.com/donate/?hosted_button_id=S2CX67ZD5C97C)
 
 Pretende ser un frontend de ejemplo realizado en Angular para atacar la API REST JSON de generadores desarrollada en mi otro proyecto [rest-j-generadores](https://github.com/jpromocion/rest-j-generadores) y poder utilizar visualmente la explotación de datos auto-generados.
 
